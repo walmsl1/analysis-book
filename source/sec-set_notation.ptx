@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-set_notation" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Set Notation</title>
+
+  <p> A <alert> set </alert> 
+    <idx><h>set</h></idx>
+    is a collection of objects called <alert> elements </alert>
+    <idx><h>elements</h></idx>
+    . The main actor is the set of real numbers <m> \R </m>,
+    whose elements include familiar faces like <m>\displaystyle 3, \frac{7}{9}, 1.23456\ldots, \pi, e, \sqrt{2}, \ln(2) </m>.
+  </p>
+</section>

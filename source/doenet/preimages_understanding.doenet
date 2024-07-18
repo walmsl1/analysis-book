@@ -1,0 +1,164 @@
+<setup>
+  <!-- Function definition -->
+  <function name="f">x^2</function>
+  <!-- Helper function for shading graph -->
+  <function name="h">4</function>
+
+  <!-- Intervals for A -->
+  <subsetOfReals name="interval1">[2,4]</subsetOfReals>
+  <subsetOfReals name="interval2">[0,4]</subsetOfReals>
+  <subsetOfReals name="interval3">(0,4]</subsetOfReals>
+  <subsetOfReals name="interval4">(0,4)</subsetOfReals>
+  <subsetOfReals name="interval5">{4}</subsetOfReals>
+  <subsetOfReals name="interval6">R</subsetOfReals>
+
+  <!-- Answers to questions -->
+  <subsetOfReals name="ans1">[-2,-sqrt(2)] or [sqrt(2),2]</subsetOfReals>
+  <subsetOfReals name="ans2">[-2,2]</subsetOfReals>
+  <subsetOfReals name="ans3">[-2,0) or (0,2]</subsetOfReals>
+  <subsetOfReals name="ans4">(-2,0) or (0,2)</subsetOfReals>
+  <subsetOfReals name="ans5">{-2} or {2}</subsetOfReals>
+  <subsetOfReals name="ans6">R</subsetOfReals>
+  
+  <!-- Hides bool input for viewing graph -->
+  <boolean name="hide1">$q2Bool=true or $q3Bool=true or $q4Bool=true or $q5Bool=true or $q6Bool=true</boolean>
+  <boolean name="hide2">$q1Bool=true or $q3Bool=true or $q4Bool=true or $q5Bool=true or $q6Bool=true</boolean>
+  <boolean name="hide3">$q1Bool=true or $q2Bool=true or $q4Bool=true or $q5Bool=true or $q6Bool=true</boolean>
+  <boolean name="hide4">$q1Bool=true or $q2Bool=true or $q3Bool=true or $q5Bool=true or $q6Bool=true</boolean>
+  <boolean name="hide5">$q1Bool=true or $q2Bool=true or $q3Bool=true or $q4Bool=true or $q6Bool=true</boolean>
+  <boolean name="hide6">$q1Bool=true or $q2Bool=true or $q3Bool=true or $q4Bool=true or $q5Bool=true</boolean>
+</setup>
+
+<title>Check Your Understanding</title>
+
+<!-- Table for formatting Questions -->
+<table suppressTableNameInTitle><title>Let <m>f(x) = x^2</m>. For each set <m>A</m> below, determine its pre-image <m>f^{−1}(A)</m></title>
+  <tabular top="major" bottom="minor" left="minor" right="minor">
+    <row header>
+      <cell><m>A</m></cell>
+      <cell><m>f^{-1}(A)</m></cell>
+      <cell></cell></row>
+    <row>
+      <cell><m>$interval1</m></cell>
+      <cell>
+        <answer name="q1">
+          <mathInput name="q1Box" bindValueTo="$q1Input"/>
+          <award>
+            <when>$q1Box = $ans1</when>
+          </award>
+        </answer>
+      </cell>
+      <cell><p><booleanInput name="q1Bool" hide="$hide1"/>
+        Click to View on Graph Below</p></cell></row>
+    <row>
+      <cell><m>$interval2</m></cell>
+      <cell>
+        <answer name="q2">
+          <mathInput name="q2Box" bindValueTo="$q2Input"/>
+          <award>
+            <when>$q2Box = $ans2</when>
+          </award>
+        </answer>
+      </cell>
+      <cell><p><booleanInput name="q2Bool" hide="$hide2"/>
+        Click to View on Graph Below</p></cell></row>
+    <row>
+      <cell><m>$interval3</m></cell>
+      <cell>
+        <answer name="q3">
+          <mathInput name="q3Box" bindValueTo="$q3Input"/>
+          <award>
+            <when>$q3Box = $ans3</when>
+          </award>
+        </answer>
+      </cell>
+      <cell><p><booleanInput name="q3Bool" hide="$hide3"/>
+        Click to View on Graph Below</p></cell></row>
+    <row>
+      <cell><m>$interval4</m></cell>
+      <cell>
+        <answer name="q4">
+          <mathInput name="q4Box" bindValueTo="$q4Input"/>
+          <award>
+            <when>$q4Box = $ans4</when>
+          </award>
+        </answer>
+      </cell>
+      <cell><p><booleanInput name="q4Bool" hide="$hide4"/>
+        Click to View on Graph Below</p></cell></row>
+    <row>
+      <cell><m>$interval5</m></cell>
+      <cell>
+        <answer name="q5">
+          <mathInput name="q5Box" bindValueTo="$q5Input"/>
+          <award>
+            <when>$q5Box = $ans5</when>
+          </award>
+        </answer>
+      </cell>
+      <cell><p><booleanInput name="q5Bool" hide="$hide5"/>
+        Click to View on Graph Below</p></cell></row>
+    <row>
+      <cell><m>$interval6</m></cell>
+      <cell>
+        <answer name="q6">
+          <mathInput name="q6Box" bindValueTo="$q6Input"/>
+          <award>
+            <when>$q6Box = $ans6</when>
+          </award>
+        </answer>
+      </cell>
+      <cell><p><booleanInput name="q6Bool" hide="$hide6"/>
+        Click for Numberline Input</p></cell></row>
+  </tabular>
+</table>
+
+<!-- SubsetReal Input for each question -->
+<subsetOfRealsInput hide="$q1Bool = false" name="q1Input"/>
+<subsetOfRealsInput hide="$q2Bool = false" name="q2Input"/>
+<subsetOfRealsInput hide="$q3Bool = false" name="q3Input"/>
+<subsetOfRealsInput hide="$q4Bool = false" name="q4Input"/>
+<subsetOfRealsInput hide="$q5Bool = false" name="q5Input"/>
+<subsetOfRealsInput hide="$q6Bool = false" name="q6Input"/>
+
+<!-- Graph of f and A -->
+<graph name="g">
+  $f
+  <conditionalContent>
+    <case condition="$q1Bool=true">
+      <line through="(0,2) (1,2)" draggable="false" styleNumber="5"/>
+      <line through="(0,4) (1,4)" draggable="false" styleNumber="5"/>
+    </case>
+    <case condition="$q2Bool=true">
+      <line through="(0,0) (1,0)" draggable="false" styleNumber="5"/>
+      <line through="(0,4) (1,4)" draggable="false" styleNumber="5"/>
+      <regionBetweenCurveXAxis function="$h" styleNumber="4" boundaryValues="-100 100"/>
+    </case>
+    <case condition="$q3Bool=true">
+      <line through="(0,0) (1,0)" draggable="false" styleNumber="6"/>
+      <line through="(0,4) (1,4)" draggable="false" styleNumber="5"/>
+      <regionBetweenCurveXAxis function="$h" styleNumber="4" boundaryValues="-100 100"/>
+    </case>
+    <case condition="$q4Bool=true">
+      <line through="(0,0) (1,0)" draggable="false" styleNumber="6"/>
+      <line through="(0,4) (1,4)" draggable="false" styleNumber="6"/>
+      <regionBetweenCurveXAxis function="$h" styleNumber="4" boundaryValues="-100 100"/>
+    </case>
+    <case condition="$q5Bool=true">
+      <line through="(0,2) (1,2)" draggable="false" styleNumber="5"/>
+    </case>
+    <case condition="$q6Bool=true"></case>
+  </conditionalContent>
+</graph>
+
+<sideBySide margins="13%">
+  <callAction actionName="addChildren" target="g">
+    <line through="(1,0) (1,1)" styleNumber="3"/>
+    <label>Add Vertical Line</label>
+  </callAction>
+  <callAction actionName="deleteChildren" target="g" number="1">
+    <line through="(1,0) (1,1)" styleNumber="3"/>
+    <label>Remove Vertical Line</label>
+  </callAction>
+</sideBySide>
+  

@@ -3,7 +3,7 @@ name: Typo/Error report
 about: Report errors in the text to help improve the book
 title: 'Typo/Error:'
 labels: Typo
-assignees: oscarlevin
+assignees: walmsl1
 
 ---
 

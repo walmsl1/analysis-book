@@ -3,13 +3,11 @@
 <backmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="backmatter" permid="mqL">
   <title>Backmatter</title>
   
-  <solutions divisional="hint" permid="SxU">
-    <title>Selected Hints</title>
-  </solutions>
-  
-  <solutions divisional="solution" permid="yFd">
-    <title>Selected Solutions</title>
-  </solutions>
+  <appendix xml:id="appendix-list-results">
+    <title>Theorems and Lemmas</title>
+
+    <list-of elements="theorem lemma" divisions="chapter" empty="yes"/>
+  </appendix>
   
   <appendix permid="GjC">
     <title>List of Symbols</title>

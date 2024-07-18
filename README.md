@@ -1,10 +1,3 @@
-# Discrete Mathematics: An Open Introduction
-
-An open textbook for Discrete Mathematics, as taught at the University of Northern Colorado.  More information about the project is available on [the book's main website](http://discrete.openmathbooks.org).
-
-The `main` branch now has the source code for the 3rd edition.  Work on the 4th edition is done on the `edition` branch.
-
-
 ## Compilation instructions
 
 This text is written in [PreTeXt](https://pretextbook.org), so the primary source files can be found in the `source` directory.  These can be compiled into HTML or PDF files (as well as some other formats) using the following directions.
@@ -13,15 +6,15 @@ This text is written in [PreTeXt](https://pretextbook.org), so the primary sourc
 
 The easiest way to build output formats from the source is to use the PreTeXt-CLI.  To get this set up, follow the instructions in the [PreTeXt guide](https://pretextbook.org/doc/guide/html/quickstart-getting-pretext.html).  You will need Python, LaTeX, and `pdf2svg` (if you wish to compile the html version; this requires an [extra step](https://pretextbook.org/doc/guide/html/section-installing-pdf2svg.html) on Windows).
 
-Open up a terminal and in your preferred directory, clone `discrete-book` repositories:
+Open up a terminal and in your preferred directory, clone `analysis-book` repositories:
 
-`git clone https://github.com/oscarlevin/discrete-book.git`
+`git clone https://github.com/walmsl1/analysis-book.git`
 
-(If you had previously done this, you will likely want to get the most recent versions of the repository by entering `git pull` from the discrete-book folder.)
+(If you had previously done this, you will likely want to get the most recent versions of the repository by entering `git pull` from the analysis-book folder.)
 
-Then change to the `discrete-book` folder:
+Then change to the `analysis-book` folder:
 
-`cd discrete-book`
+`cd analysis-book`
 
 ### Compiling
 

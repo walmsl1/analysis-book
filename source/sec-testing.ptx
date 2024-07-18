@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-1-2" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Intervals</title>
+
+    <!-- \begin{tikzpicture}[fill=gray!50, scale=.5[every circle node/.style={draw}]]
+                \draw[->] (-3,0) - (3,0);
+                \draw (-2.5,0) node[circle] - (2.5,0) node[circle];
+                \draw (-2.5,0) node[anchor=south]{a};
+                \draw (2.5,0) node[anchor=south]{b};
+                \end{tikzpicture} -->
+
+    <!-- <figure xml:id="sup_inf_activity">
+        <interactive xml:id="sup_inf_activity-doenetml" platform="doenetml" width="150%" aspect="1:1">
+            <slate surface="doenetml">
+                <xi:include href="doenet_files/sup_and_inf.doenet" parse="text"/>
+            </slate>
+        </interactive>
+    </figure> -->
+
+    <!-- <figure>
+        <interactive desmos="3ykjjzekee" width="100%" aspect="1:1" />
+    </figure> -->
+
+    <!-- <image source="images/cantorScale.gif"/> -->
+
+    <exercises xml:id="parsons-exercises">
+    <title>Parsons Problems</title>
+    <idx><h>parsons problems</h></idx>
+        <!-- <exercise label="first-parsons" adaptive="yes" indentation="hide">
+            <title>Parsons Problem</title>
+            <statement><p><m>\xi=a^2+b</m> for <m>a,b \in \mathbb{Z}</m>. Prove that if <m>a</m> is even and <m>b</m> is odd, then <m>\xi</m> is odd.</p></statement>
+            <blocks>
+                <block name="0">
+                    <p>Suppose <m>a</m> is an even integer.</p>
+                </block>
+                <block name="1">
+                    <p>Suppose <m>b</m> is an odd integer.</p>
+                </block>
+                <block name="3" depends="0">
+                    <choice><p>Since <m>a</m> is even, then <m>a=2n+1</m> for some <m>n \in \mathbb{Z}</m>.</p></choice>
+                    <choice correct="yes"><p>Since <m>a</m> is even, then <m>a=2n</m> for some <m>n \in \mathbb{Z}</m>.</p></choice>
+                </block>
+                <block name="4" depends="1">
+                    <choice correct="yes"><p>Since <m>b</m> is odd, then <m>b=2m+1</m> for some <m>m \in \mathbb{Z}</m>.</p></choice>
+                    <choice><p>Since <m>b</m> is odd, then <m>a=2m</m> for some <m>m \in \mathbb{Z}</m>.</p></choice>
+                </block>
+                <block name="2" depends="0 1">
+                    <p>Let <m>\xi=a^2+b</m>.</p>
+                </block>
+                <block name="5" depends="2 3 4">
+                    <p>Then <m>\xi = 4n^2 + 2m + 1 = 2(2n^2 + m) + 1</m>.</p>
+                </block>
+                <block name="6" depends="5">
+                    <p>Since <m>2n^2 + m</m> is an integer, <m>\xi</m> is odd by definition.</p>
+                </block>
+                <block correct="no">
+                    <p><m>\xi</m> is even.</p>
+                </block>
+            </blocks>
+        </exercise> -->
+        <exercise label="parsons-with-partial-order" language="python" adaptive="yes" indentation="hide">
+            <title>Parsons Problem, Partial Ordering</title>
+            <statement>
+                <p>Parsons problems can specify a partial ordering that allows for multiple valid solutions.</p>
+                <p>Try putting the blocks in a valid order to calculate and print<c>c</c> Only use the required blocks. There are many valid orderings.</p>
+            </statement>
+            <blocks>
+                <block order="5" name="math">
+                    <cline>import math</cline>
+                </block>
+                <block order="7" correct="no">
+                    <cline>import antigravity</cline>
+                </block>
+                <block order="6" name="a">
+                    <cline>a = 3</cline>
+                </block>
+                <block order="2" name="b">
+                    <choice correct="yes">
+                        <cline>b = 4</cline>
+                    </choice>
+                    <choice>
+                        <cline>4 = b</cline>
+                    </choice>
+                </block>
+                <block order="3" name="cSq" depends="a b">
+                    <cline>cSquared = a ** 2 + b ** 2</cline>
+                </block>
+                <block order="1" name="c" depends="cSq math">
+                    <cline>c = math.sqrt(cSquared)</cline>
+                </block>
+                <block order="4" depends="c">
+                    <cline>print(c)</cline>
+                </block>
+            </blocks>
+        </exercise>
+    </exercises>
+
+    <sbsgroup>
+        <sidebyside valign="middle"  widths="15% 20% 35% 20%">
+            <p><alert>Interval</alert></p>
+            <p><alert>Name</alert></p>
+            <p><alert>Definition</alert></p>
+            <p><alert>Sketch</alert></p>
+        </sidebyside>
+        <sidebyside valign="middle" widths="15% 15% 30% 30%"> 
+            <p><m>(a,b)</m></p>
+            <p>Open Interval</p>
+            <p><m>\{ x \in \R \mid a \lt x \lt b \}</m></p>
+            <image>
+                <latex-image>
+                    \begin{tikzpicture}[scale=0.5]
+                    \draw (-2.5,0) circle (4pt) node[below]{a};
+                    \draw (2.5,0) circle (4pt) node[below]{b};
+                    \draw[->] (-3,0) -- (3,0);
+                    \draw[->] (3,0) -- (-3,0);
+                    \draw[very thick] (-2.5,0) -- (2.5,0);
+                    \end{tikzpicture}
+                </latex-image>
+            </image>
+        </sidebyside>
+        <sidebyside valign="middle" widths="15% 15% 30% 30%"> 
+            <p><m>[a,b]</m></p>
+            <p>Closed Interval</p>
+            <p><m>\{ x \in \R \mid a \le x \le b \}</m></p>
+            <image>
+                <latex-image>
+                    \begin{tikzpicture}[scale=0.5]
+                    \draw[fill=black] (-2.5,0) circle (4pt) node[below]{a};
+                    \draw[fill=black] (2.5,0) circle (4pt) node[below]{b};
+                    \draw[->] (-3,0) -- (3,0);
+                    \draw[->] (3,0) -- (-3,0);
+                    \draw[very thick] (-2.5,0) -- (2.5,0);
+                    \end{tikzpicture}
+                </latex-image>
+            </image>
+        </sidebyside>
+        <sidebyside valign="middle" widths="15% 15% 30% 30%"> 
+            <p><m>(a,b]</m></p>
+            <p>Half-Open Interval</p>
+            <p><m>\{ x \in \R \mid a \lt x \le b \}</m></p>
+            <image>
+                <latex-image>
+                    \begin{tikzpicture}[scale=0.5]
+                    \draw (-2.5,0) circle (4pt) node[below]{a};
+                    \draw[fill=black] (2.5,0) circle (4pt) node[below]{b};
+                    \draw[->] (-3,0) -- (3,0);
+                    \draw[->] (3,0) -- (-3,0);
+                    \draw[very thick] (-2.5,0) -- (2.5,0);
+                    \end{tikzpicture}
+                </latex-image>
+            </image>
+        </sidebyside>
+        <sidebyside valign="middle" widths="15% 15% 30% 30%"> 
+            <p><m>[a,b)</m></p>
+            <p>Half-Open Interval</p>
+            <p><m>\{ x \in \R \mid a \le x \lt b \}</m></p>
+            <image>
+                <latex-image>
+                    \begin{tikzpicture}[scale=0.5]
+                    \draw[fill=black] (-2.5,0) circle (4pt) node[below]{a};
+                    \draw (2.5,0) circle (4pt) node[below]{b};
+                    \draw[->] (-3,0) -- (3,0);
+                    \draw[->] (3,0) -- (-3,0);
+                    \draw[very thick] (-2.5,0) -- (2.5,0);
+                    \end{tikzpicture}
+                </latex-image>
+            </image>
+        </sidebyside>
+        <sidebyside valign="middle" widths="15% 15% 30% 30%"> 
+            <p><m>(a,\infty)</m></p>
+            <p>Open Ray</p>
+            <p><m>\{ x \in \R \mid a \lt x \}</m></p>
+            <image>
+                <latex-image>
+                    \begin{tikzpicture}[scale=0.5]
+                    \draw (-2.5,0) circle (4pt) node[below]{a};
+                    \draw[->] (-3,0) -- (3,0);
+                    \draw[->] (3,0) -- (-3,0);
+                    \draw[very thick,->] (-2.5,0) -- (3,0);
+                    \end{tikzpicture}
+                </latex-image>
+            </image>
+        </sidebyside>
+        <sidebyside valign="middle" widths="15% 15% 30% 30%"> 
+            <p><m>[a,\infty)</m></p>
+            <p>Closed Ray</p>
+            <p><m>\{ x \in \R \mid a \le x \}</m></p>
+            <image>
+                <latex-image>
+                    \begin{tikzpicture}[scale=0.5]
+                    \draw[fill=black] (-2.5,0) circle (4pt) node[below]{a};
+                    \draw[->] (-3,0) -- (3,0);
+                    \draw[->] (3,0) -- (-3,0);
+                    \draw[very thick,->] (-2.5,0) -- (3,0);
+                    \end{tikzpicture}
+                </latex-image>
+            </image>
+        </sidebyside>
+        <sidebyside valign="middle" widths="15% 15% 30% 30%"> 
+            <p><m>(-\infty,a)</m></p>
+            <p>Open Ray</p>
+            <p><m>\{ x \in \R \mid x \lt a \}</m></p>
+            <image>
+                <latex-image>
+                    \begin{tikzpicture}[scale=0.5]
+                    \draw (2.5,0) circle (4pt) node[below]{a};
+                    \draw[->] (-3,0) -- (3,0);
+                    \draw[->] (3,0) -- (-3,0);
+                    \draw[very thick,->] (2.5,0) -- (-3,0);
+                    \end{tikzpicture}
+                </latex-image>
+            </image>
+        </sidebyside>
+        <sidebyside valign="middle" widths="15% 15% 30% 30%"> 
+            <p><m>(-\infty,a]</m></p>
+            <p>Closed Ray</p>
+            <p><m>\{ x \in \R \mid x \le a \}</m></p>
+            <image>
+                <latex-image>
+                    \begin{tikzpicture}[scale=0.5]
+                    \draw[fill=black] (2.5,0) circle (4pt) node[below]{a};
+                    \draw[->] (-3,0) -- (3,0);
+                    \draw[->] (3,0) -- (-3,0);
+                    \draw[very thick,->] (2.5,0) -- (-3,0);
+                    \end{tikzpicture}
+                </latex-image>
+            </image>
+        </sidebyside>
+    </sbsgroup>
+
+    <proof permid="qGS">
+      <p permid="saG">
+        Suppose this were not the case.
+        That is, suppose there are only finitely many primes.
+        Then there must be a last, largest prime, call it <m>p</m>.
+        Consider the number
+        <me permid="JIL">
+          N = p! + 1 = (p \cdot (p-1) \cdot \cdots 3\cdot 2 \cdot 1) + 1
+        </me>.
+      </p>
+
+      <p permid="YhP">
+        Now <m>N</m> is certainly larger than <m>p</m>.
+        Also, <m>N</m> is not divisible by any number less than or equal to <m>p</m>,
+        since every number less than or equal to <m>p</m> divides <m>p!</m>.
+        Thus the prime factorization of <m>N</m> contains prime numbers
+        (possibly just <m>N</m> itself)
+        all greater than <m>p</m>.
+        So <m>p</m> is not the largest prime, a contradiction.
+        Therefore there are infinitely many primes.
+      </p>
+    </proof>
+
+    <p>A reference to the further reading is <xref ref="theory_of_groups">here</xref>.</p>
+</section>

@@ -1,0 +1,34 @@
+<setup>
+<!-- Function to be graphed -->
+  <function name="f" symbolic>
+    x^2
+    <label><m>f(x)=x^2</m></label></function>
+  <number name="a">2</number>
+  <number name="b">4</number>
+
+<!--   Helper functions for shading between two curves -->
+<!--   <function name="g">4</function> -->
+<!--   <function name="h">2</function> -->
+</setup>
+
+<!-- Graph -->
+<graph>
+  $f
+  
+<!--   Shaded region to represent the interval A -->
+<!--     <regionBetweenCurves boundaryValues="-10 10" styleNumber="6">$g $h</regionBetweenCurves> -->
+  
+  <!-- Horizontal lines to represent A -->
+  <line name="IHL" styleNumber="5" through="(1,$a) (2,$a)"/>
+  <line name="OHL" styleNumber="6" through="(1,$b) (2,$b)"/>
+
+  <!-- Vertical lines to represent f^{-1}(A) -->
+  <line name="OVL1" styleNumber="6" through="(-sqrt($b),1) (-sqrt($b),2)"/>
+  <line name="IVL1" styleNumber="5" through="(-sqrt($a),1) (-sqrt($a),2)"/>
+  <line name="IVL2" styleNumber="5" through="(sqrt($a),1) (sqrt($a),2)"/>
+  <line name="OVL2" styleNumber="6" through="(sqrt($b),1) (sqrt($b),2)"/>
+
+  <!-- Line Segments to represent f^{-1}(A) on the x-axis -->
+  <lineSegment styleNumber="4" endpoints="(-sqrt($b),0) (-sqrt($a),0)" />
+  <lineSegment styleNumber="4" endpoints="(sqrt($a),0) (sqrt($b),0)" />
+</graph>

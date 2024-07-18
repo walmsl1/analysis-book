@@ -1,0 +1,259 @@
+<p>1. Read through Section 4 of Ross until you have read <alert>The Completeness Axiom</alert>, then write down the following important definitions in your notebook: <alert>maximum, minimum, lower bound, upper bound, bounded, supremum, infimum</alert>. Then read Section 5 until (but not including) Example 1.</p>
+
+<p>2. Fill in the following table. If a max or min doesn’t exist, or if a set has no upper or lower bounds, write DNE.</p>
+
+<table suppressTableNameInTitle="true">
+  <tabular top="medium" bottom="medium" left="medium" right="medium">
+    <row valign="center" header>
+      <cell colSpan="$r1" halign="center">Set <m>S</m></cell>
+      <cell colSpan="2" halign="center">max <m>S</m></cell>
+      <cell colSpan="2" halign="center">min <m>S</m></cell>
+      <cell colSpan="3" halign="center">give two upper bounds</cell>
+      <cell colSpan="3" halign="center">bounded above? (yes or no)</cell>
+      <cell colSpan="2" halign="center">sup <m>S</m></cell>
+      <cell colSpan="3" halign="center">give two lower bounds</cell>
+      <cell colSpan="3" halign="center">bounded below? (yes or no)</cell>
+      <cell colSpan="2" halign="center">inf <m>S</m></cell>
+      <cell colSpan="3" halign="center">bounded? (yes or no)</cell>
+    </row>
+    <row valign="center">
+      <cell colSpan="$r1" halign="center"><m>[2,5]</m></cell>
+      <cell colSpan="2" halign="center"><answer>$ans1a</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans1b</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user1c1"/>
+        <mathInput name="user1c2"/>
+        <answer><award><when>$user1c1 >= $ans1c and $user1c2 >= 
+          $ans1c</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans1d</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans1e</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user1f1"/>
+        <mathInput name="user1f2"/>
+        <answer><award><when>$user1f1 <= $ans1f and $user1f2 <= 
+          $ans1f</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans1g</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans1h</answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans1i</answer></cell>
+    </row>
+    <row valign="center">
+      <cell colSpan="$r1" halign="center"><m>[2,5)</m></cell>
+      <cell colSpan="2" halign="center"><answer>$ans2a</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans2b</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user2c1"/>
+        <mathInput name="user2c2"/>
+        <answer><award><when>$user2c1 >= $ans2c and $user2c2 >= 
+          $ans2c</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans2d</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans2e</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user2f1"/>
+        <mathInput name="user2f2"/>
+        <answer><award><when>$user2f1 <= $ans2f and $user2f2 <= 
+          $ans2f</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans2g</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans2h</answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans2i</answer></cell>
+    </row>
+    <row valign="center">
+      <cell colSpan="$r1" halign="center"><m>\{ \frac{1}{n} \mid n \in \mathbb{N} \}</m></cell>
+      <cell colSpan="2" halign="center"><answer>$ans3a</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans3b</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user3c1"/>
+        <mathInput name="user3c2"/>
+        <answer><award><when>$user3c1 >= $ans3c and $user3c2 >= 
+          $ans3c</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans3d</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans3e</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user3f1"/>
+        <mathInput name="user3f2"/>
+        <answer><award><when>$user3f1 <= $ans3f and $user3f2 <= 
+          $ans3f</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans3g</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans3h</answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans3i</answer></cell>
+    </row>
+    <row valign="center">
+      <cell colSpan="$r1" halign="center"><m>\{ 1 - \frac{1}{3^n} \mid n \in \mathbb{N} \}</m></cell>
+      <cell colSpan="2" halign="center"><answer>$ans4a</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans4b</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user4c1"/>
+        <mathInput name="user4c2"/>
+        <answer><award><when>$user4c1 >= $ans4c and $user4c2 >= 
+          $ans4c</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans4d</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans4e</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user4f1"/>
+        <mathInput name="user4f2"/>
+        <answer><award><when>$user4f1 <= $ans4f and $user4f2 <= 
+          $ans4f</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans4g</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans4h</answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans4i</answer></cell>
+    </row>
+    <row valign="center">
+      <cell colSpan="$r1" halign="center"><m>\{ r \in \mathbb{Q} \mid r^2 < 2 \}</m></cell>
+      <cell colSpan="2" halign="center"><answer>$ans5a</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans5b</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user5c1"/>
+        <mathInput name="user5c2"/>
+        <answer><award><when>$user5c1 >= $ans5c and $user5c2 >= 
+          $ans5c</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans5d</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans5e</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user5f1"/>
+        <mathInput name="user5f2"/>
+        <answer><award><when>$user5f1 <= $ans5f and $user5f2 <= 
+          $ans5f</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans5g</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans5h</answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans5i</answer></cell>
+    </row>
+    <row valign="center">
+      <cell colSpan="$r1" halign="center"><m>\{ n+\frac{(-1)^n}{n} \mid n \in \mathbb{N} \}</m></cell>
+      <cell colSpan="2" halign="center"><answer>$ans6a</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans6b</answer></cell>
+      <cell colSpan="3" halign="center">
+        <textInput width="44px" name="user6c1"/>
+        <textInput width="44px" name="user6c2"/>
+        <answer><award><when>$user6c1 = $ans6c or $user6c2 = 
+          $ans6c</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans6d</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans6e</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user6f1"/>
+        <mathInput name="user6f2"/>
+        <answer><award><when>$user6f1 <= $ans6f and $user6f2 <= 
+          $ans6f</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans6g</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans6h</answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans6i</answer></cell>
+    </row>
+    <row valign="center">
+      <cell colSpan="$r1" halign="center"><math>(0,infinity)</math></cell>
+      <cell colSpan="2" halign="center"><answer>$ans7a</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans7b</answer></cell>
+      <cell colSpan="3" halign="center">
+        <textInput width="44px" name="user7c1"/>
+        <textInput width="44px" name="user7c2"/>
+        <answer><award><when>$user7c1 = $ans7c or $user7c2 = 
+          $ans7c</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans7d</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans7e</answer></cell>
+      <cell colSpan="3" halign="center">
+        <mathInput name="user7f1"/>
+        <mathInput name="user7f2"/>
+        <answer><award><when>$user7f1 <= $ans7f and $user7f2 <= 
+          $ans7f</when></award></answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans7g</answer></cell>
+      <cell colSpan="2" halign="center"><answer>$ans7h</answer></cell>
+      <cell colSpan="3" halign="center"><answer>$ans7i</answer></cell>
+    </row>
+  </tabular>
+</table>
+
+<setup>
+  <textList name="q3splitName"><split><text>
+    $userq3</text></split></textList>
+  <boolean name="q3rightClose">     
+    $q3splitName.texts[$q3splitName.numValues] = <text>]</text></boolean>
+  <extractMath type="operand" operandNumber="1" name="q3em">
+    $userq3</extractMath>
+</setup>
+
+<p>3. Give an example of a set <m>S</m> which is bounded above but has no maximum.</p>
+    <subsetOfRealsInput name="userq3"/>
+<sideBySide margins="5%">
+  <div></div>
+  <div>
+    <mathInput bindValueTo="$userq3"/>
+<answer><award><when>$q3em.y != infinity and $q3rightClose=false</when></award></answer></div></sideBySide>
+
+<p>4. If <m>S</m> is not bounded above, how do we define <m>\sup S</m>?</p>
+<p><m>\sup S =</m><answer>infinity</answer></p>
+
+<p>5. What does <alert>The Completeness Axiom</alert> say?</p>
+<answer type="text" handGraded expanded/>
+
+<setup>
+  <number name="r1">6</number>
+  
+  <number name="ans1a">5</number>
+  <text name="ans2a">DNE</text>
+  <number name="ans3a">1</number>
+  <text name="ans4a">DNE</text>
+  <text name="ans5a">DNE</text>
+  <text name="ans6a">DNE</text>
+  <text name="ans7a">DNE</text>
+
+  <number name="ans1b">2</number>
+  <number name="ans2b">2</number>
+  <text name="ans3b">DNE</text>
+  <number name="ans4b">2/3</number>
+  <text name="ans5b">DNE</text>
+  <number name="ans6b">0</number>
+  <text name="ans7b">DNE</text>
+
+  <number name="ans1c">5</number>
+  <number name="ans2c">5</number>
+  <number name="ans3c">1</number>
+  <number name="ans4c">2/3</number>
+  <math name="ans5c">sqrt(2)</math>
+  <text name="ans6c">DNE</text>
+  <text name="ans7c">DNE</text>
+
+  <text name="ans1d">yes</text>
+  <text name="ans2d">yes</text>
+  <text name="ans3d">yes</text>
+  <text name="ans4d">yes</text>
+  <text name="ans5d">yes</text>
+  <text name="ans6d">no</text>
+  <text name="ans7d">no</text>
+  
+  <number name="ans1e">5</number>
+  <number name="ans2e">5</number>
+  <number name="ans3e">1</number>
+  <number name="ans4e">1</number>
+  <math name="ans5e">sqrt(2)</math>
+  <math name="ans6e">infinity</math>
+  <math name="ans7e">infinity</math>
+
+  <number name="ans1f">2</number>
+  <number name="ans2f">2</number>
+  <number name="ans3f">0</number>
+  <number name="ans4f">2/3</number>
+  <math name="ans5f">-sqrt(2)</math>
+  <number name="ans6f">0</number>
+  <number name="ans7f">0</number>
+
+  <text name="ans1g">yes</text>
+  <text name="ans2g">yes</text>
+  <text name="ans3g">yes</text>
+  <text name="ans4g">yes</text>
+  <text name="ans5g">yes</text>
+  <text name="ans6g">yes</text>
+  <text name="ans7g">yes</text>
+
+  <number name="ans1h">2</number>
+  <number name="ans2h">2</number>
+  <number name="ans3h">0</number>
+  <number name="ans4h">2/3</number>
+  <math name="ans5h">-sqrt(2)</math>
+  <number name="ans6h">0</number>
+  <number name="ans7h">0</number>
+
+  <text name="ans1i">yes</text>
+  <text name="ans2i">yes</text>
+  <text name="ans3i">yes</text>
+  <text name="ans4i">yes</text>
+  <text name="ans5i">yes</text>
+  <text name="ans6i">no</text>
+  <text name="ans7i">no</text>
+</setup>

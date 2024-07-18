@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-preimages" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Pre-Images</title>
+
+  <p> For a function <m>f:D \to \R</m> and a subset <m>A</m> of <m>\R</m>, the 
+    <alert>pre-image of <m>A</m> under <m>f</m></alert> is the set of all inputs whose image belongs 
+    to <m>A</m>; in notation, <m>f^{-1}(A)=\{x \in D: f(x)\in A\}</m>. Consider the example <m>f(x)=x^2</m> 
+    and <m>A=[2,4)</m>. We want to determine all values of <m>x</m> for which <m>x^2 \in [2,4)</m>, and we 
+    can do this analytically. If <m>2 \le x^2 \lt 4</m>, then either <m>\sqrt{2} \le x \lt 2</m> or 
+    <m>-2 \lt x \le - \sqrt{2}</m>; hence <m>f^{-1}(A)=(-2,-\sqrt{2}] \cup [\sqrt{2},2)</m>. Graphically, any 
+    point <m>(x,f(x))</m> on the graph of <m>f</m> that lies in the horizontal strip <m>2 \le y \lt 4</m> 
+    yields a value of <m>x</m> for which <m>2 \le f(x) \lt 4</m>.
+  </p>
+
+  <figure xml:id="preimages_graph-figure">
+    <caption>The solid line at <m>y=2</m> indicates we include all inputs <m>x</m> for which <m>f(x)=2</m>, and the 
+      dotted line at <m>y=4</m> indicates we exclude all inputs <m>x</m> for which <m>f(x)=4</m>.</caption>
+    <interactive xml:id="preimages_graph-interactive" platform="doenetml" width="100%" aspect="1.5:1">
+      <slate surface="doenetml">
+        <xi:include href="doenet/preimages_graph.doenet" parse="text"/>
+      </slate>
+    </interactive>
+  </figure>
+
+  <figure xml:id="preimages_understanding-figure">
+    <title>Check Your Understanding</title>
+    <interactive xml:id="preimages_understanding-interactive" platform="doenetml" width="100%" aspect="2:2">
+    <slate surface="doenetml">
+      <xi:include href="doenet/preimages_understanding.doenet" parse="text"/>
+    </slate>
+    </interactive>
+  </figure>
+    
+  <figure xml:id="preimages_preview-figure">
+    <title>Preview Exercise</title>
+    <interactive xml:id="preimages_preview-interactive" platform="doenetml" width="100%" aspect="2:2">
+    <slate surface="doenetml">
+      <xi:include href="doenet/preimages_preview.doenet" parse="text"/>
+    </slate>
+    </interactive>
+  </figure>
+</section>
