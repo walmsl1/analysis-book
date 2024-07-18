@@ -20,19 +20,14 @@ Then change to the `analysis-book` folder:
 
 If everything has been set up properly above, you can now execute the following commands to build the book.  To create a PDF, you can enter:
 
-`pretext build pdf -w`
+`pretext build pdf`
 
 To make the HTML version:
 
-`pretext build html -w -d`
+`pretext build html`
 
-The `-w` and `-d` flags are only needed the first time you compile, to extract the WeBWorK exercises and create SVGs for the images.  Use the flags again only if you edit these elements in the source. 
+To view the book, use:
 
+`pretext view TARGET`
 
-## Contributing
-
-Any and all suggestions to improve the text are welcome.  Thanks to those who have already pointed out typos/issues they have found.  If you would like to make a more substantial contribution, please contact me so we can discuss how best to proceed.
-
-## Previous editions
-
-The previous editions have branches, and also tags.  Feel free to switch to those if you want to grab the source for those editions.
+Current targets include `html`, `pdf`, `latex`, `runestone`, and `subset`. These are defined in the project.ptx file.
