@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sec_intro-intro" permid="hPw">
-    <title>Example Formatting</title>
-    <subsection>
-        <title>Definition Formatting</title>
-        <blockquote>
-            <p permid="PLS">
-            dis<midpoint/>crete / dis'krët.
-            </p>
+    <title>Example Formatting</title>   
 
-            <p permid="vTb">
-            <em>Adjective</em>: Individually separate and distinct.
-            </p>
-
-            <p permid="cak">
-            <em>Synonyms</em>: separate - detached - distinct - abstract.
-            </p>
-        </blockquote>
-    </subsection>
-
-  <investigation>
-    <p>
-      <em>This is an Investigation!</em>
-    </p>
-  </investigation>
+    <investigation>
+        <p>
+            <em>This is an Investigation!</em>  
+        </p>
+    </investigation>
 
   <assemblage>
       <title>Assemblage</title>
@@ -46,7 +30,7 @@
     </assemblage>
 
     <example>
-        <title>Example with Solution</title>
+        <title>Example with Hint and Solution</title>
         <statement>
         <p permid="wwr">
             Find recursive definitions and closed formulas for the arithmetic sequences below.
@@ -110,38 +94,6 @@
         </p>
     </aside>
 
-    <proof>
-        <p>
-        Let <m>P(n)</m> be the statement,
-        <q><m>n</m> is either prime or can be written as the product of primes.</q>
-        We will prove <m>P(n)</m> is true for all <m>n \ge 2</m>.
-        </p>
-
-        <p>
-        Base case: <m>P(2)</m> is true because <m>2</m> is indeed prime.
-        </p>
-
-        <p>
-        Inductive case: assume <m>P(k)</m> is true for all <m>k \lt n</m>.
-        We want to show that <m>P(n)</m> is true.
-        That is, we want to show that <m>n</m> is either prime or is the product of primes.
-        If <m>n</m> is prime, we are done.
-        If not, then <m>n</m> has more than 2 divisors,
-        so we can write <m>n = m_1 \cdot m_2</m>,
-        with <m>m_1</m> and <m>m_2</m> less than <m>n</m>
-        (and greater than 1).
-        By the inductive hypothesis,
-        <m>m_1</m> and <m>m_2</m> are each either prime or can be written as the product of primes.
-        In either case,
-        we have that <m>n</m> is written as the product of primes.
-        </p>
-
-        <p>
-        Thus by the strong induction,
-        <m>P(n)</m> is true for all <m>n \ge 2</m>.
-        </p>
-    </proof>
-
     <theorem>
         <statement>
             <idx><h>non-planar graph</h><h sortby="k5"><m>K_5</m></h></idx>
@@ -151,5 +103,11 @@
             </p>
         </statement>
     </theorem>
+
+    <lemma>
+        <statement>
+            <p>Insert lemma</p>
+        </statement>
+    </lemma>
 </section>
 
