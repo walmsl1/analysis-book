@@ -27,7 +27,7 @@
     <exercises xml:id="parsons-exercises">
     <title>Parsons Problems</title>
     <idx><h>parsons problems</h></idx>
-        <!-- <exercise label="first-parsons" adaptive="yes" indentation="hide" width="100%">
+        <exercise label="first-parsons" adaptive="yes" indentation="hide" width="100%">
             <title>Parsons Problem</title>
             <statement><p><m>\xi=a^2+b</m> for <m>a,b \in \mathbb{Z}</m>. Prove that if <m>a</m> is even and <m>b</m> is odd, then <m>\xi</m> is odd.</p></statement>
             <blocks>
@@ -58,7 +58,7 @@
                     <p><m>\xi</m> is even.</p>
                 </block>
             </blocks>
-        </exercise> -->
+        </exercise>
         <exercise label="parsons-with-partial-order" language="python" adaptive="yes" indentation="hide">
             <title>Parsons Problem, Partial Ordering</title>
             <statement>
