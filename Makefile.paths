@@ -37,11 +37,11 @@
 
 # PreTeXt distribution root
 # Example: PTX = ../mathbook  (or PTX = /users/oscar/GitHub/mathbook)
-PTX = C:\Users\borst\pretext
+PTX = C:\Users\walmsl1\pretext_crap\pretext
 
 # DMOI clone location
 # Example: DMOI = ./ (or DMOI = /users/oscar/GitHub/dmoi-instructor)
-DMOI = C:\Users\borst\Runestone\books\analysis-book
+DMOI = C:\Users\walmsl1\pretext_crap\analysis-book
 
 # Products are built in subdirectories
 # of a "scratch" directory
