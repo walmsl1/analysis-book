@@ -18,13 +18,9 @@ Then change to the `analysisbook` folder:
 
 ### Compiling
 
-If everything has been set up properly above, you can now execute the following commands to build the book.  To create a PDF, you can enter:
+If everything has been set up properly above, you can now execute the following commands to build the book.  To build the book:
 
-`pretext build pdf`
-
-To make the HTML version:
-
-`pretext build html`
+`pretext build TARGET`
 
 To view the book, use:
 
@@ -36,7 +32,7 @@ Current targets include `html`, `pdf`, `latex`, `runestone`, and `subset`. These
 
 1. Install a text editor of your choice. I use Visual Studio Code (https://code.visualstudio.com/Download).
 
-2. Install python (https://www.python.org/downloads/). I am using python 3.9.13 because I get an error with longintrepr.h not being found using python 3.10 and newer.
+2. Install python (https://www.python.org/downloads/). I am using python 3.9.13 because I get an error with longintrepr.h not being found using python 3.11 and newer.
 
 3. Download the Github CLI (https://www.activestate.com/resources/quick-reads/pip-install-git/). 
 
