@@ -41,20 +41,19 @@ PTX = C:\Users\borst\pretext
 
 # DMOI clone location
 # Example: DMOI = ./ (or DMOI = /users/oscar/GitHub/dmoi-instructor)
-DMOI = C:\Users\borst\Runestone\books\analysis-book
+DMOI = C:\Users\borst\Runestone\books\analysisbook
 
 # Products are built in subdirectories
 # of a "scratch" directory
 # or use SCRATCH = $(DMOI) to build inside main repository.
 SCRATCH = $(DMOI)
 
-
 # These are executables to helper applications
 # Provide as much of a path as is needed
 
 # LaTeX engine, executable
 # xelatex is preferable, but pdflatex is another option
-ENGINE = pdflatex
+ENGINE = xelatex
 
 # PDF viewer (eg "open -a preview" on Mac)
 PDFVIEWER = 

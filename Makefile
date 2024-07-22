@@ -228,6 +228,9 @@ latex:
   xsltproc -xinclude -stringparam publisher "pub-standard.xml" $(PTXUSR)/dmoi-latex.xsl $(MAIN) > dmoi.tex;
 
 latex-fresh: ww-extraction latex
+
+requirements:
+	
 	
 pdf:
 	cd $(PDFOUT); \
