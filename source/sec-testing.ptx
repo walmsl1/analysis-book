@@ -29,33 +29,33 @@
     <idx><h>parsons problems</h></idx>
         <exercise label="first-parsons" adaptive="yes" indentation="hide">
             <title>Parsons Problem</title>
-            <statement><cline><m>\xi=a^2+b</m> for <m>a,b \in \mathbb{Z}</m>. Prove that if <m>a</m> is even and <m>b</m> is odd, then <m>\xi</m> is odd.</cline></statement>
+            <statement><div><m>\xi=a^2+b</m> for <m>a,b \in \mathbb{Z}</m>. Prove that if <m>a</m> is even and <m>b</m> is odd, then <m>\xi</m> is odd.</div></statement>
             <blocks>
                 <block name="0">
-                    <cline>Suppose <m>a</m> is an even integer.</cline>
+                    <div>Suppose <m>a</m> is an even integer.</div>
                 </block>
                 <block name="1">
-                    <cline>Suppose <m>b</m> is an odd integer.</cline>
+                    <div>Suppose <m>b</m> is an odd integer.</div>
                 </block>
                 <block name="3" depends="0">
-                    <choice><cline>Since <m>a</m> is even, then <m>a=2n+1</m> for some <m>n \in \mathbb{Z}</m>.</cline></choice>
-                    <choice correct="yes"><cline>Since <m>a</m> is even, then <m>a=2n</m> for some <m>n \in \mathbb{Z}</m>.</cline></choice>
+                    <choice><div>Since <m>a</m> is even, then <m>a=2n+1</m> for some <m>n \in \mathbb{Z}</m>.</div></choice>
+                    <choice correct="yes"><div>Since <m>a</m> is even, then <m>a=2n</m> for some <m>n \in \mathbb{Z}</m>.</div></choice>
                 </block>
                 <block name="4" depends="1">
-                    <choice correct="yes"><cline>Since <m>b</m> is odd, then <m>b=2m+1</m> for some <m>m \in \mathbb{Z}</m>.</cline></choice>
-                    <choice><cline>Since <m>b</m> is odd, then <m>a=2m</m> for some <m>m \in \mathbb{Z}</m>.</cline></choice>
+                    <choice correct="yes"><div>Since <m>b</m> is odd, then <m>b=2m+1</m> for some <m>m \in \mathbb{Z}</m>.</div></choice>
+                    <choice><div>Since <m>b</m> is odd, then <m>a=2m</m> for some <m>m \in \mathbb{Z}</m>.</div></choice>
                 </block>
                 <block name="2" depends="0 1">
-                    <cline>Let \xi= a**2 + b.</cline>
+                    <div>Let \xi= a**2 + b.</div>
                 </block>
                 <block name="5" depends="2 3 4">
-                    <cline>Then <m>\xi = 4n^2 + 2m + 1 = 2(2n^2 + m) + 1</m>.</cline>
+                    <div>Then <m>\xi = 4n^2 + 2m + 1 = 2(2n^2 + m) + 1</m>.</div>
                 </block>
                 <block name="6" depends="5">
-                    <cline>Since <m>2n^2 + m</m> is an integer, <m>\xi</m> is odd by definition.</cline>
+                    <div>Since <m>2n^2 + m</m> is an integer, <m>\xi</m> is odd by definition.</div>
                 </block>
                 <block correct="no">
-                    <cline><m>\xi</m> is even.</cline>
+                    <div><m>\xi</m> is even.</div>
                 </block>
             </blocks>
         </exercise>
