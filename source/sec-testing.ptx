@@ -29,7 +29,7 @@
     <idx><h>parsons problems</h></idx>
         <exercise label="first-parsons" adaptive="yes" indentation="hide">
             <title>Parsons Problem</title>
-            <statement><p><m>\xi=a^2+b</m> for <m>a,b \in \mathbb{Z}</m>. Prove that if <m>a</m> is even and <m>b</m> is odd, then <m>\xi</m> is odd.</p></statement>
+            <statement><cline><m>\xi=a^2+b</m> for <m>a,b \in \mathbb{Z}</m>. Prove that if <m>a</m> is even and <m>b</m> is odd, then <m>\xi</m> is odd.</cline></statement>
             <blocks>
                 <block name="0">
                     <cline>Suppose <m>a</m> is an even integer.</cline>
@@ -70,7 +70,7 @@
                     <cline>import math</cline>
                 </block>
                 <block order="7" correct="no">
-                    <cline>import antigravity import antigravity import antigravity</cline>
+                    <cline>import antigravity</cline>
                 </block>
                 <block order="6" name="a">
                     <cline>a = 3</cline>
