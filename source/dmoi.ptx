@@ -4,7 +4,7 @@
   <xi:include href="./bookinfo.ptx"/>
   <book xml:id="dmoi" permid="xel">
     <title>Real Analysis</title>
-    <subtitle>An Open Introduction, 3rd edition</subtitle>
+    <subtitle>An Open Primer</subtitle>
     <xi:include href="./frontmatter.ptx"/>
 
     <xi:include href="./ch-intro.ptx"/>
