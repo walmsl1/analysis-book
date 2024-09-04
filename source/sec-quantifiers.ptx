@@ -3,12 +3,16 @@
 <section xml:id="sec-quantifiers" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Quantifiers in Proofs</title>
 
-  <p> A <alert> mathematical statement </alert> is a phrase or sentence that can reasonably be called true or false. 
+  <p> A <alert> mathematical statement </alert> is a phrase or sentence that can reasonably be called true or false. For convenience, they are sometimes assigned a letter like <m> P </m> or <m> Q </m> to make them easier to refer to. Consider the following mathematical statement.
+  <me> P: \text{there exists a real number} x \text{such that} x^2-x>0. </me>
   The <alert> negation </alert> of a mathematical statement <m> P </m> is a new statment, which we will denote by 
   <m> \text{not} P </m>, whose truth value is opposite that of <m> P </m>. 
    A mathematical <alert> proof </alert> is a logical argument to convince the reader that a mathematical statement is true or false. 
   </p>
 
+ <p> Consider the statement
+
+ </p>
  <proof>
   <p> This is a proof in a proof block. What does it look like? </p>
   <p> Trying out line break. </p>
