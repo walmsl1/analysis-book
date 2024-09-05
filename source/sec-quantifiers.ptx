@@ -5,7 +5,7 @@
 
   <p> A <alert> mathematical statement </alert> is a phrase or sentence that can reasonably be called true or false. For convenience, they are sometimes assigned a letter like <m> P </m> or <m> Q </m> to make them easier to refer to. Consider the following mathematical statement.
   <me> P: \text{there exists a real number } x \text{ such that } x^2-x>0. </me>
-  Is this statement true? If it is, we should be able to produce a number <m> x</m>, compute <m> x^2-x </m>, and verify that the quantity <m> x^2-x </m> is positive. The number <m> x=3 </m> has this property, along with many other real numbers. For shorthand notation, we will write <m> \exists </m> to mean ``there exists" and s.t. to mean ``such that". In shorthand, <m> P </m> becomes
+  Is this statement true? If it is, we should be able to produce a number <m> x</m>, compute <m> x^2-x </m>, and verify that the quantity <m> x^2-x </m> is positive. The number <m> x=3 </m> has this property, along with many other real numbers. For shorthand notation, we will write <m> \exists </m> to mean ``there exists" and s.t. to mean ``such that". The phrase "such that" will always follow a <m> \exists </m>; the "such that" phrase describes or defines the object that exists. In shorthand, <m> P </m> becomes
   <me> P: \exists x\in \R \text{ s.t. } x^2-x>0, </me>
   or equivalently,
   <me> P: \exists x\in \R \text{ s.t. } x^2-x\in (0,\infty). </me>
@@ -13,7 +13,7 @@
   <proof>
   Let <m> x=3 </m>.
   We must show <m> x^2-x>0 </m>. 
-  Since <m> x=3 </m>, we have <m> x^2-x=6>0</m>, as desired. 
+  Since <m> x=3 </m>, then <m> x^2-x=6</m>, and since <m> 6>0 </m>, we have <m> x^2-x>0 </m>, as desired. 
    </proof>
 
   While this proof might seem like too much effort to prove a simple statement, we will reap many benefits by developing some general proof principles in straightforward situations. First, we will use the overall structure of this existence proof for  almost every existence argument in this class. It is worth writing down a general ``proof outline" of an existence argument.
@@ -26,14 +26,36 @@
       </p>
 
       <p>
-      <em> Proof outline. </em> Define <m> x </m> (either by an equation or as a consequence of a definition). We must show this thing about <m> x </m> happens.
+      <em> Proof outline. </em> Define <m> x </m> (either by an equation or as a consequence of a definition ). We must show <m> x\in \mathcal{S} </m> (this can be omitted in some basic situations) and this thing about <m> x </m> happens.
       </p>
-
-      <p> <m> \vdots </m> (Argue why this thing about <m> x </m> happens). </p>
-      <p> Thus <m> x </m> has this thing happen, as desired. </p>
+      <p> <m> \vdots </m> </p>
+      <p> Thus this thing about <m> x </m> happens, as desired. </p>
   </assemblage>
   
-  There are a few things to take away from this proof. 
+  Typically, our proofs will end with "as desired" to reiterate that we showed what we set out to show. This is a stylistic choice and not strictly necessary - proof writing does not have a strict set of rules. Our focus for the first several classes will be on constructing logical arguments; we will worry about some nuances of proof writing at a later day.
+
+  The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can cloud a situation which is uncomplicated. We could opt to replace the last line with something like "Since <m> x=6 </m>, then <m>x^2-x=6>0</m>, as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of equalities and inequalities outloud in our head: <m> x^2-x </m> equals <m> 6 </m>, and <m> 6 </m> is greater than <m> 0 </m>. We then conlcude, by looking at the beginning and ending expressions in the string, that <m> x^2-x </m> is greater than <m> 0 </m>, which had to be shown. 
+
+  The other quantifier is "for all", whose shorthand is <m> \forall </m>. Let's see it in action by considering this new mathematical statement <m> Q </m>. 
+  <me> Q: \forall x\in (1,2), x^2-x>0, </me>
+  Is <m> Q </m> true? A quick look at the graphs of 
+  <image>
+      <latex-image>
+  \begin{tikzpicture}
+  \begin{axis}[grid=both, axis lines = middle, height = 3.5in, width = 3.5in, xmin=-3,xmax=3,ymin=-2,ymax=10,xlabel={\large{$x$}}, ylabel={\large{$y$}}, xtick={-6,-5,...,7}, ytick={-4,-3,...,10}, minor tick num =0, samples=101]
+  \addplot[domain=-5:5,black]{x^2};
+  \addplot[domain=-5:5,blue]{(x-1)^2)};
+  \end{axis}
+  \end{tikzpicture}
+        </latex-image>
+  </image>
+  
+  
+  
+  Let's change the <m> \exists </m> above into a <m> \forall </m> and consider what happens in the following statement.
+  <me> Q: \forall x\in \R, x^2-x>0. </me>
+  or equivalently,
+  <me> Q: \forall x\in \R, x^2-x\in (0,\infty). </me>
   The <alert> negation </alert> of a mathematical statement <m> P </m> is a new statment, which we will denote by 
   <m> \text{not} P </m>, whose truth value is opposite that of <m> P </m>. 
    A mathematical <alert> proof </alert> is a logical argument to convince the reader that a mathematical statement is true or false. 
