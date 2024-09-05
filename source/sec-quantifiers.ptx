@@ -27,7 +27,8 @@
         is just a fancy word for <q>containing no cycles.</q>
         </fn>
       </p>
-  
+    </assemblage>
+    
   There are a few things to take away from this proof. 
   The <alert> negation </alert> of a mathematical statement <m> P </m> is a new statment, which we will denote by 
   <m> \text{not} P </m>, whose truth value is opposite that of <m> P </m>. 
