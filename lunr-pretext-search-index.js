@@ -52,16 +52,16 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "0.2",
   "title": "Quantifiers in Proofs",
-  "body": " Quantifiers in Proofs  A mathematical statement is a phrase or sentence that can reasonably be called true or false. For convenience, they are sometimes assigned a letter like or to make them easier to refer to. Consider the following mathematical statement. Is this statement true? If it is, we should be able to produce a number , compute , and verify that the quantity is positive. The number has this property, along with many other real numbers. For shorthand notation, we will write to mean ``there exists\" and s.t. to mean ``such that\". In shorthand, becomes  Here is our very first proof, a proof of .  Let . We must show . Since , we have , and since , we have .  The negation of a mathematical statement is a new statment, which we will denote by , whose truth value is opposite that of . A mathematical proof is a logical argument to convince the reader that a mathematical statement is true or false.  Consider the statement   This is a proof in a proof block. What does it look like?  Trying out line break.  To see if it works.    Suppose this were not the case. That is, suppose there are only finitely many primes. Then there must be a last, largest prime, call it . Consider the number .  Now is certainly larger than . Also, is not divisible by any number less than or equal to , since every number less than or equal to divides . Thus the prime factorization of contains prime numbers (possibly just itself) all greater than . So is not the largest prime, a contradiction. Therefore there are infinitely many primes.   "
+  "body": " Quantifiers in Proofs  A mathematical statement is a phrase or sentence that can reasonably be called true or false. For convenience, they are sometimes assigned a letter like or to make them easier to refer to. Consider the following mathematical statement. Is this statement true? If it is, we should be able to produce a number , compute , and verify that the quantity is positive. The number has this property, along with many other real numbers. For shorthand notation, we will write to mean ``there exists\" and s.t. to mean ``such that\". In shorthand, becomes or equivalently, Now that we are convinced is true, let's see our very first proof. Let . We must show . Since , we have , as desired. While this proof might seem like too much trouble, we will reap many benefits by developing some general proof principles in simple situations. First, we will use the overall structure of this existence proof for almost every existence argument in this class. It is worth writing down a general ``proof outline\" of an existence argument.  Proof Outline for Existence  To prove: s.t. this thing about happens.A tree is a connected graph containing no cycles. Sometimes this is stated as a tree is an acyclic connected graph;  acyclic is just a fancy word for containing no cycles.    There are a few things to take away from this proof. The negation of a mathematical statement is a new statment, which we will denote by , whose truth value is opposite that of . A mathematical proof is a logical argument to convince the reader that a mathematical statement is true or false.  Consider the statement   This is a proof in a proof block. What does it look like?  Trying out line break.  To see if it works.    Suppose this were not the case. That is, suppose there are only finitely many primes. Then there must be a last, largest prime, call it . Consider the number .  Now is certainly larger than . Also, is not divisible by any number less than or equal to , since every number less than or equal to divides . Thus the prime factorization of contains prime numbers (possibly just itself) all greater than . So is not the largest prime, a contradiction. Therefore there are infinitely many primes.   "
 },
 {
-  "id": "sec-quantifiers-2-14",
+  "id": "sec-quantifiers-2",
   "level": "2",
-  "url": "sec-quantifiers.html#sec-quantifiers-2-14",
-  "type": "Proof",
-  "number": "1",
+  "url": "sec-quantifiers.html#sec-quantifiers-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
   "title": "",
-  "body": " Let . We must show . Since , we have , and since , we have .  "
+  "body": "tree "
 },
 {
   "id": "sec-quantifiers-4",
