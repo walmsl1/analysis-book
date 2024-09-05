@@ -5,7 +5,16 @@
 
   <p> A <alert> mathematical statement </alert> is a phrase or sentence that can reasonably be called true or false. For convenience, they are sometimes assigned a letter like <m> P </m> or <m> Q </m> to make them easier to refer to. Consider the following mathematical statement.
   <me> P: \text{there exists a real number } x \text{ such that } x^2-x>0. </me>
-  Is this statement true? If it is, we should be able to produce a number <m> x</m>, compute <m> x^2-x </m>, and verify that the quantity <m> x^2-x </m> is positive. The number <m> x=3 </m> has this property, along with many other real numbers. For shorthand notation, we will write <m> \exists </m>
+  Is this statement true? If it is, we should be able to produce a number <m> x</m>, compute <m> x^2-x </m>, and verify that the quantity <m> x^2-x </m> is positive. The number <m> x=3 </m> has this property, along with many other real numbers. For shorthand notation, we will write <m> \exists </m> to mean ``there exists" and s.t. to mean ``such that". In shorthand, <m> P </m> becomes
+  <me> P: \exists x\in \R \text{ s.t. } x^2-x>0, \text{ or equivalently} </me>
+  <me> P: \exists x\in \R \text{ s.t. } x^2-x\in (0,\infty). </me>
+  Here is our very first proof, a proof of <m> P </m>.     
+  <proof> <cd>
+  Let <m> x=3 </m>.
+  We must show <m> x^2-x>0 </m>. 
+  Since <m> x=3 </m>, we have <m> x^2-x=6</m>, and since <m> 6>0 </m>, we have <m> x^2-x>0 </m>. 
+  </cd> </proof>
+
   The <alert> negation </alert> of a mathematical statement <m> P </m> is a new statment, which we will denote by 
   <m> \text{not} P </m>, whose truth value is opposite that of <m> P </m>. 
    A mathematical <alert> proof </alert> is a logical argument to convince the reader that a mathematical statement is true or false. 

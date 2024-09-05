@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <docinfo xmlns:xi="http://www.w3.org/2001/XInclude">
-  <brandlogo url="http://discrete.openmathbooks.org/dmoi3.html" source="images/cover.png"/>
+  <!--<brandlogo url="http://discrete.openmathbooks.org/dmoi3.html" source="images/cover.png"/> -->
 
 <covers front="external/images/front.pdf" back="external/images/back.pdf"/>
 
 <document-id>analysisbook</document-id>
 
-<blurb shelf="Mathematics">
+<!--<blurb shelf="Mathematics">
   3rd Edition. A free, open source textbook appropriate for a first or second year undergraduate course for math and computer science majors. The book is especially well-suited for courses that incorporate inquiry-based learning. Since Spring 2013, the book has been used as the primary textbook or a supplemental resource at more than 200 colleges and universities around the world. The text is endorsed by the American Institute of Mathematics' Open Textbook Initiative and is well reviewed on the Open Textbook Library.
-</blurb>
+</blurb> -->
 
 <macros>
 \renewcommand{\d}{\displaystyle}
