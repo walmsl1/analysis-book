@@ -3,6 +3,20 @@
 <section xml:id="sec-integration-intro" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Integration</title>
 
+Geometrically, a definite integral represents the area <m>A<\m> between a curve <m>f<\m> and the horizontal axis over an interval <m>[a,b]<\m>. 
+
+\begin{center}
+    \begin{tikzpicture}
+\begin{axis}[height=4in, width=4in, axis lines = middle,  xmin = -10, xmax = 10, ymin = -10, ymax = 10, xtick={3.14/4,6.28}, xticklabels={$a$,$b$},ytick=\empty,samples=\samplesize,xlabel={$x$ },ylabel={$y$ }, grid=none]
+\addplot[domain=3.14/4:6.28,fill=gray!40] {x*sin(deg(x))/2+4}\closedcycle;
+     \addplot[domain=-10:10,thick,black]{x*sin(deg(x))/2+4};
+     \node at (3.2,2) {$A$};
+      \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+To underestimate the area <m>A<\m>, we place rectangles below the curve by first creating a \textbf{partition} <m>P<\m> of the interval <m>[a,b]<\m> as <m>P=\{a=t_0<t_1<\cdots <t_n=b\}<m>. Each subinterval <m>[t_{i-1}, t_i]<m> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <m>\inf\{f(x): x\in [t_{i-1}, t_i]\}<m> to be the rectangles height. If instead we take <m>\sup \{f(x): x\in [t_{i-1}, t_i]\}<m>, we get a rectangle above the curve over that subinterval.
+
  <figure xml:id="darboux_interactive">
     <caption>This is a Doenet activity.</caption>
     <interactive xml:id="darboux-display" platform="doenetml" width="100%" aspect="1.5:1">
