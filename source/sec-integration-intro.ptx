@@ -21,7 +21,10 @@ Geometrically, a definite integral represents the area <m>A</m> between a curve 
         </latex-image>
   </image>
 
-
+<p>
+To underestimate the area <m>A</m>, we place rectangles below the curve by first creating a <alert>partition</alert> 
+<m>P</m> of the interval <m>[a,b]</m> as <m>P=\{a=t_0 \lt t_1<\cdots \lt t_n=b\}</m>. Each subinterval <m>[t_{i-1}, t_i]</m> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <m>\inf\{f(x): x\in [t_{i-1}, t_i]\}</m> to be the rectangles height. If instead we take <m>\sup \{f(x): x\in [t_{i-1}, t_i]\}</>, we get a rectangle above the curve over that subinterval.
+</p>
 
  <figure xml:id="darboux_interactive">
     <caption>This is a Doenet activity.</caption>
