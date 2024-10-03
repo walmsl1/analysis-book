@@ -7,7 +7,7 @@
     <caption>This is a Doenet activity.</caption>
     <interactive xml:id="darboux-display" platform="doenetml" width="100%" aspect="1.5:1">
       <slate surface="doenetml">
-        <xi:include href="doenet\integration_darboux_interactive.doenet" parse="text"/>
+        <xi:include href="doenet/integration_darboux_interactive.doenet" parse="text"/>
       </slate>
     </interactive>
   </figure>
