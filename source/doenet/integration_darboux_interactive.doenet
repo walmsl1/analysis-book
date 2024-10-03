@@ -50,32 +50,22 @@
           </math></else></conditionalContent>
     </template>
   </map></sum></number>
+  <math name="userFunction">x*sin(x)/2 + 4</math>
+  <number name="a">pi/4</number>
+  <number name="b">2*pi</number>
 </setup>
 
 <sideBySide>
   <stack>
-    <p><alert>Enter a function:</alert>
-      <mathInput name="userFunction" prefill="x*sin(x)/2 + 4"/></p>
-
-    <!--User input for a-->
-    <p><alert>Enter Values for the Domain:</alert></p>
-    <sideBySide>
-      <p><m>a=</m>
-        <mathInput name="a" prefill="pi/4"/></p>
-
-      <!--User input for b -->
-      <p><m>b=</m>
-      <mathInput name="b" prefill="2*pi"/></p>
-    </sideBySide>
-  </stack>
-  <stack>
     <p>Upper Darboux Sum: <m>$upperDarbox</m></p>
     <p>Lower Darboux Sum: <m>$lowerDarbox</m></p>
+  </stack>
+  <stack>
     <p>Difference: <math simplify>$upperDarbox-$lowerDarbox</math></p>
   </stack>
 </sideBySide>
 
-<graph name="g">
+<graph name="g" xmin="-2" xmax="10" ymin="-2" ymax="10" displayXAxisTickLabels="false" displayYAxisTickLabels="false">
   $f
 
   <!-- Endpoints -->
@@ -121,6 +111,9 @@
       <!-- Create a box for the upper and lower sums -->
       <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMax) ($sortedXs[$i+1],$tempFuncMax) ($sortedXs[$i+1],0)" styleNumber="3" filled/>
       <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMin) ($sortedXs[$i+1],$tempFuncMin) ($sortedXs[$i+1],0)" styleNumber="2" filled/>
+      <conditionalContent condition="$i>1">
+        <m anchor="($sortedXs[$i],-0.5)">t_{<number>$i-1</number>}</m>
+      </conditionalContent>
     </template>
     <sources alias="i">
       <sequence from="1" to="$numBoxes"/></sources>
@@ -134,5 +127,3 @@
 <!-- Button to remove point -->
 <updateValue target="numBoxes" newValue="$numBoxes - 1" disabled="$numBoxes=1">
   <label>Remove Point</label></updateValue>
-
-
