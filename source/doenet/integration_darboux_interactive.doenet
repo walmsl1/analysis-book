@@ -1,0 +1,138 @@
+<title>Darboux Sum Interactive Graph</title>
+
+<setup>
+  <!-- Integrand -->
+  <function name="f">$userFunction</function>
+
+  <!-- Number of boxes of integration -->
+  <number name="numBoxes">1</number>
+
+  <!-- Helper function to constrain to x-axis -->
+  <function name="h">0</function>
+  
+  <!-- Collect the x-coordinates of points and sorts them-->
+  <sort name="sortedXs">
+    <collect source="g" componentTypes="point" prop="x"/></sort>
+
+  <!-- Collect top right point of boxes --> 
+  <collect name="recCoords" source="g" componentTypes="polygon" prop="vertices" propIndex="3"/>
+
+  <!--Calculates the upper darbox sum-->
+  <number name="upperDarbox"><sum><map>
+    <sources alias="i"><sequence from="1" to="2*$numBoxes" step="2"/>  
+    </sources>
+    <template>
+      <conditionalContent>
+        <!-- Area of the first box -->
+        <case condition="$i < 3">
+          <math>$recCoords[$i].x * $recCoords[$i].y</math></case>
+
+        <!-- Area of subsequent boxes -->
+        <else>
+          <math>($recCoords[$i].x-$recCoords[$i-2].x)*$recCoords[$i].y
+          </math></else></conditionalContent>
+    </template>
+  </map></sum></number>
+
+  <!--Calculates the lower darbox sum-->
+  <number name="lowerDarbox"><sum><map>
+    <sources alias="i"><sequence from="2" to="2*$numBoxes" step="2"/>  
+    </sources>
+    <template>
+      <conditionalContent>
+        <!-- Area of the first box -->
+        <case condition="$i < 3">
+          <math>$recCoords[$i].x * $recCoords[$i].y</math></case>
+
+        <!-- Area of subsequent boxes -->
+        <else>
+          <math>($recCoords[$i].x-$recCoords[$i-2].x)*$recCoords[$i].y
+          </math></else></conditionalContent>
+    </template>
+  </map></sum></number>
+</setup>
+
+<sideBySide>
+  <stack>
+    <p><alert>Enter a function:</alert>
+      <mathInput name="userFunction" prefill="x*sin(x)/2 + 4"/></p>
+
+    <!--User input for a-->
+    <p><alert>Enter Values for the Domain:</alert></p>
+    <sideBySide>
+      <p><m>a=</m>
+        <mathInput name="a" prefill="pi/4"/></p>
+
+      <!--User input for b -->
+      <p><m>b=</m>
+      <mathInput name="b" prefill="2*pi"/></p>
+    </sideBySide>
+  </stack>
+  <stack>
+    <p>Upper Darboux Sum: <m>$upperDarbox</m></p>
+    <p>Lower Darboux Sum: <m>$lowerDarbox</m></p>
+    <p>Difference: <math simplify>$upperDarbox-$lowerDarbox</math></p>
+  </stack>
+</sideBySide>
+
+<graph name="g">
+  $f
+
+  <!-- Endpoints -->
+  <endpoint name="aEndpoint" coords="($a,0)" styleNumber="5" 
+    draggable="false">
+    <constraints>
+      <constrainTo>$h</constrainTo></constraints></endpoint>
+  
+  <endpoint name="bEndpoint" coords="($b,0)" styleNumber="5" 
+    draggable="false">
+    <constraints>
+      <constrainTo>$h</constrainTo></constraints></endpoint>
+
+  <!-- Line segment to represent the interval --> 
+  <lineSegment name="interval" endpoints="$aEndpoint.coords 
+    $bEndpoint.coords" draggable="false" styleNumber="4"/>
+  
+  <!-- Map for creating boxes -->
+  <map>
+    <template>
+      <setup>
+        <!-- Random number in interval -->
+        <sampleRandomNumbers name="rand" from="$a" to="$b" step="0.01"/>
+        
+        <!-- f with domain restricted between adjacent points -->
+        <function name="tempFunc" domain="[$sortedXs[$i], 
+          $sortedXs[$i+1]]">$userFunction</function>
+
+        <!-- Max and min of function on restricted f -->
+        <math name="tempFuncMax"><max>$$tempFunc($sortedXs[$i]) 
+          $tempFunc.maximumValues $$tempFunc($sortedXs[$i+1])</max>
+        </math>
+        <math name="tempFuncMin"><min>$$tempFunc($sortedXs[$i]) $tempFunc.minimumValues $$tempFunc($sortedXs[$i+1])</min></math>
+      </setup>
+
+      <!-- Adds a point when numBoxes increases -->
+      <conditionalContent condition="$i>1">
+        <point styleNumber="6" coords="($rand, 0)">
+          <constraints>
+            <constrainTo>$interval</constrainTo></constraints></point>
+      </conditionalContent>
+
+      <!-- Create a box for the upper and lower sums -->
+      <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMax) ($sortedXs[$i+1],$tempFuncMax) ($sortedXs[$i+1],0)" styleNumber="3" filled/>
+      <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMin) ($sortedXs[$i+1],$tempFuncMin) ($sortedXs[$i+1],0)" styleNumber="2" filled/>
+    </template>
+    <sources alias="i">
+      <sequence from="1" to="$numBoxes"/></sources>
+  </map>
+</graph>
+
+<!-- Button to add random point in interval -->
+<updateValue target="numBoxes" newValue="$numBoxes + 1">
+  <label>Add Point</label></updateValue>
+
+<!-- Button to remove point -->
+<updateValue target="numBoxes" newValue="$numBoxes - 1" disabled="$numBoxes=1">
+  <label>Remove Point</label></updateValue>
+
+

@@ -3,5 +3,12 @@
 <section xml:id="sec-integration-intro" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Integration</title>
 
- 
+ <figure xml:id="darboux_interactive">
+    <caption>This is a Doenet activity.</caption>
+    <interactive xml:id="darboux-display" platform="doenetml" width="100%" aspect="1.5:1">
+      <slate surface="doenetml">
+        <xi:include href="doenet\integration_darboux_interactive.doenet" parse="text"/>
+      </slate>
+    </interactive>
+  </figure>
 </section>

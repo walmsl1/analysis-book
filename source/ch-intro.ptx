@@ -13,6 +13,7 @@
   <xi:include href="sec-preimages.ptx"/>
   <xi:include href="sec-testing.ptx"/>
   <xi:include href="sec-example_format.ptx"/>
+  <xi:include href="sec-integration-intro.ptx"/>
 
   <references>
     <title>References and Suggested Readings</title>
