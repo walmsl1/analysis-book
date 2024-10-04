@@ -1,0 +1,129 @@
+<p>We are going to graph a function <m> f</m> at a point <m> a </m> with a horizontal <m>\epsilon</m>-strip containing the point <m>(a,f(a))</m></p>
+
+<p> Enter a function whose graph will appear below.
+ <m> f(x)= </m> <mathInput name="func" prefill="x^3+x^2-2x-1"/>
+  <setup>  
+   <function name="f">$func</function>
+  </setup>
+</p>
+
+<!-- Pick x-value for point of interest -->
+<p>Choose a value for <m>a</m> (or adjust slider): <m>a = </m> <mathInput name="a" bindValueTo="$aSlider"/> 
+<slider from="-3" to="3" step="0.01" name="aSlider" initialValue="1" />
+</p>
+<!-- Pick value for epsilon -->
+<p>Choose a value of <m>\epsilon</m> (or adjust slider): <m>\epsilon = </m> <mathInput name="eps" bindValueTo="$epsSlider"/></p>
+
+<slider from="0" to="2" step="0.001" name="epsSlider" initialValue="0.71" />
+
+<!-- Defining the point on which to focus -->
+<setup>
+  <point name="P">($a,$$f($a))</point>
+  <number name="Py" fixed > $P.y </number>
+  <number name="Px" fixed > $P.x </number>
+</setup>
+
+<!-- Graphing f and the epsilon-delta "window" -->
+<setup>
+ <graph name ="g" xmin="-3" xmax="3" ymin="-3" ymax="3">
+ $f
+ $P
+ <line styleNumber="4" through="(1,$Py+$eps) (2,$Py+$eps)" />
+ <line styleNumber="4" through="(1,$Py-$eps) (2,$Py-$eps)" />
+ <line styleNumber="6" through="($Px-$delta,1) ($Px-$delta,2)" />
+ <line styleNumber="6" through="($Px+$delta,1) ($Px+$delta,2)" />
+ </graph>
+
+  <point name="V1">($a-$delta,$$f($a)-$eps)</point>
+  <number name="V1y" fixed > $V1.y </number>
+  <number name="V1x" fixed > $V1.x </number>
+
+  <point name="V2">($a+$delta,$$f($a)+$eps)</point>
+  <number name="V2y" fixed > $V2.y </number>
+  <number name="V2x" fixed > $V2.x </number>
+</setup>
+
+<sideBySide>
+ <subsection>
+    <title>Initial graph</title>
+    <graph copySource="g" name="zoomedOut" >
+    </graph>
+  </subsection>
+  <subsection>
+    <title>Zoomed graph</title>
+    <graph copySource="g"
+      xmin="$a-2*$delta"
+      xmax="$a+2*$delta"
+      ymin="$$f($a)-2*$eps"
+      ymax="$$f($a)+2*$eps"
+      >
+      </graph>
+  </subsection>
+</sideBySide>
+
+
+<p>Choose a value of <m>\delta</m> (or adjust slider):<m>\delta = </m> <mathInput name="delta" bindValueTo="$deltaSlider"/></p>
+
+<slider from="0" to="2" step="0.00001" name="deltaSlider" initialValue="1.4" />
+
+<problem>
+<p> Let <m> f(x)=$f</m> and  <m>a=$a,</m>. For each value of <m> \epsilon </m> given below, use the graph above to determine a value of <m> \delta </m> for which <me> |x-a|\lt\delta \implies  |f(x)-f(a)|\lt\epsilon. </me></p>
+
+  <setup>
+   <number name="eps1">0.71 </number>
+    <number name="eps2">0.1 </number>
+    <number name="eps3">0.001 </number>
+  </setup>
+
+ <tabular top="minor" bottom="minor">
+    <row>
+      <cell> <m>\epsilon=$eps1</m> </cell>
+      <cell><m> \delta = </m><mathInput name="delta1" /></cell>
+      <answer>
+  <award>
+    <when>
+      $max1<=$eps1
+    </when>
+  </award>
+</answer>
+    </row>
+    <row>
+      <cell> <m>\epsilon=$eps2</m> </cell>
+      <cell><m> \delta = </m><mathInput name="delta2" /></cell>
+      <answer>
+  <award>
+    <when>
+      $max2<=$eps2
+    </when>
+  </award>
+</answer>
+    </row>
+    <row>
+      <cell> <m>\epsilon=$eps3</m> </cell>
+      <cell><m> \delta = </m><mathInput name="delta3" /></cell>
+      <answer>
+  <award>
+    <when>
+      $max3<=$eps3
+    </when>
+  </award>
+</answer>
+    </row>
+  </tabular>
+
+<setup>
+ <function name="check1" domain="[$a-$delta1,$a+$delta1]"><abs> 
+ $f-$$f($a) </abs> </function>
+  <number name="max1"><max>$$check1($a-$delta1) $check1.maximumValues $$check1($a+$delta1)</max></number>
+
+  <function name="check2" domain="[$a-$delta2,$a+$delta2]"><abs> 
+ $f-$$f($a) </abs> </function>
+  <number name="max2"><max>$$check2($a-$delta2) $check2.maximumValues $$check2($a+$delta2)</max></number>
+
+  <function name="check3" domain="[$a-$delta3,$a+$delta3]"><abs> 
+ $f-$$f($a) </abs> </function>
+  <number name="max3"><max>$$check3($a-$delta3) $check3.maximumValues $$check3($a+$delta3)</max></number>
+</setup>
+
+
+</problem>
