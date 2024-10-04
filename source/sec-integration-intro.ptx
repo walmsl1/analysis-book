@@ -32,8 +32,50 @@
 
 
 <p>
-  To underestimate the area <m>A</m>, we place rectangles below the curve by first creating a <alert>partition</alert> 
-  <m>P</m> of the interval <m>[a,b]</m> as <m>P=\{a=t_0 \lt t_1 \lt \cdots \lt t_n=b\}</m>. Each subinterval <m>[t_{i-1}, t_i]</m> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <m>\inf\{f(x): x\in [t_{i-1}, t_i]\}</m> to be the rectangles height. If instead we take <m>\sup \{f(x): x\in [t_{i-1}, t_i]\}</m>, we get a rectangle above the curve over that subinterval.
+To underestimate the area <m>A</m>, we place rectangles below the curve by first creating a <alert>partition</alert> 
+<m>P</m> of the interval <m>[a,b]</m> as <m>P=\{a=t_0 \lt t_1 \lt \cdots \lt t_n=b\}</m>. Each subinterval <m>[t_{i-1}, t_i]</m> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <m>\inf\{f(x): x\in [t_{i-1}, t_i]\}</m> to be the rectangles height. If instead we take <m>\sup \{f(x): x\in [t_{i-1}, t_i]\}</m>, we get a rectangle above the curve over that subinterval.
+
+Adding up the areas of each lower rectangle gives us a <alert> lower sum </alert> over the partition <m>P</m>, which we denote by <m>L(f,P)</m>.
+
+<me>L(f,P) =\sum_{i=1}^n \inf\{f(x): x\in [t_{i-1}, t_i]\} (t_i-t_{i-1}).</me>
+
+Any lower sum is an underestimate of the true area <m>A</m>, so the supremum of all possible lower estimates gives us a sort of "best underestimate" of <m>A</m>, and we call it the <alert>lower integral</alert> of <m>f</m> over <m>[a,b]</m>:
+
+<me> L(f)=\sup\{L(f,P): P \text{ is any partition of } [a,b]\}. </me>
+
+Whatever the area <m>A</m> is, the geometric intuition is that
+<me>L(f)\leq A.</me>
+Similarly, the <alert>upper sum</alert> over <m>P</m> is given by
+
+<me> U(f,P) =\sum_{i=1}^n \sup\{f(x): x\in [t_{i-1}, t_i]\} (t_i-t_{i-1}),</me>
+
+and the infimum over all possible upper sums gives us a ``best overestimate" of <m>A</m>, called the <alert>upper integral</alert> of <m>f</m> over <m>[a,b]</m>:
+
+<me>U(f)=\inf\{U(f,P): P \text{ is any partition of } [a,b]\}.</me>
+
+Geometrically, we suspect <m>A\leq U(f)</m>, and so we should have <m>L(f)\leq A \leq U(f)</m>. When <m>L(f)=U(f)</m>, we say that <m>f</m> is <alert>integrable</alert> over <m>[a,b]</m>, and we define its area under the curve as <m>L(f)</m> (or <m>U(f)</m>, since they are equal), and we write
+<me>\int f =\int_a^b f(x)\, dx = L(f)=U(f).</me>
+You may find it surprising that there are functions <m>f</m> for which <m>L(f) \lt U(f)</m>, which is to say not every function is integrable. But fear not; we will show that every continuous function is integrable, ensuring that everything you did in Calculus was not for naught!
+
+It is worth checking that <m>L(f)</m> is in fact no greater than <m>U(f)</m>, and this fact follows from checking several details which themselves follow from our groundwork in sups and infs. We will leave the details of the following facts to the exercises.
+\begin{itemize}
+    \item If <m>P</m> and <m>Q</m> are partitions of <m>[a,b]</m> and <m>P\subseteq Q</m>, then
+    <m>L(f,P)\leq L(f,Q)\leq U(f,Q)\leq U(f,P)</m>.
+    \item For any partitions <m>P</m> and <m>Q</m> of <m>[a,b]</m>, <m>L(f,P)\leq U(f,Q)</m>.
+    \item <m>L(f)\leq U(f)</m>.
+\end{itemize}
+
+The definition of being integrable was built upon intuitive geometric principles, but it is not the most practical definition to check; it requires computing both <m>L(f)</m> and <m>U(f)</m> exactly, which is typically a formidable task even for relatively tame functions, as we will see. Luckily, there is an easier to check <m>\epsilon</m>-criterion at our disposal.
+
+<theorem>
+        <statement>
+            <p>
+                A function <m>f</m> is integrable on <m>[a,b]</m> if and only if for all <m>\epsilon>0</m>, there exists a partition <m>P</m> such that <m>U(f,P)-L(f,P) \lt \epsilon</m>.
+            </p>
+        </statement>
+    </theorem>
+
+Let's put this theorem in action to see why discontinuous functions can still be integrable.
 </p>
 
  <figure xml:id="darboux_interactive">
