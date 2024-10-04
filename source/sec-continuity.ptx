@@ -5,11 +5,13 @@
 
   <p> 
     Roughly speaking, a function <m>f</m> is continuous at a point <m>a</m> provided when <m>x</m> is close to <m>a</m>, <m>f(x)</m> is close to <m>f(a)</m>. This loose definition conveys the intuition, but is not rigorous enough for a formal definition. How close should <m>f(x)</m> be to <m>f(a)</m>? How close must <m>x</m> be to <m>a</m>? We need quantifiers for a precise statement.
+  </p>
 
-\begin{definition}
-    We say <m>f</m> is \textbf{continuous at <m>a</m>} if <m>\forall \, \epsilon>0 \, \exists \, \delta >0</m> s.t. <m>\forall \, x\in \{x\in \R: |x-a| \lt \delta\}</m>, <m>|f(x)-f(a)|\lt \epsilon</m>.
-\end{definition}
+  <p>
+    We say <m>f</m> is \textbf{continuous at <m>a</m>} if <m>\forall \, \epsilon \gt 0 \, \exists \, \delta \gt 0</m> s.t. <m>\forall \, x\in \{x\in \R: |x-a| \lt \delta\}</m>, <m>|f(x)-f(a)|\lt \epsilon</m>.
+  </p>
 
+<p>
 The challenge is that, given an <m>\epsilon \gt 0</m>, we must conclude that <m>|f(x)-f(a)|\lt\epsilon<m>, or rather <m>f(a)-\epsilon \lt f(x) \lt f(a)+\epsilon </m>. Here, <m>\epsilon</m> is measuring how far away <m>f(x)<m> and <m>f(a)<m> can be. To meet the conclusion graphically, we need to keep the graph of <m>f</m> between the horizontal lines <m>y=f(a)+\epsilon</m> and <m>y=f(a)-\epsilon</m>.
 
 
