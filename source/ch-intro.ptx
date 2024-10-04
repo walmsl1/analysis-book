@@ -8,16 +8,16 @@
     </p>
   </introduction>
   
-  <xi:include href="sec-set_notation.ptx"/>
-  <xi:include href="sec-quantifiers.ptx"/>
-  <xi:include href="sec-preimages.ptx"/>
-  <xi:include href="sec-testing.ptx"/>
-  <xi:include href="sec-example_format.ptx"/>
+  <!-- <xi:include href="sec-set_notation.ptx"/> -->
+  <!-- <xi:include href="sec-quantifiers.ptx"/> -->
+  <!-- <xi:include href="sec-preimages.ptx"/> -->
+  <!-- <xi:include href="sec-testing.ptx"/> -->
+  <!-- <xi:include href="sec-example_format.ptx"/> -->
   <xi:include href="sec-continuity.ptx"/>
   <xi:include href="sec-integration-intro.ptx"/>
 
   <references>
     <title>References and Suggested Readings</title>
-    <biblio xml:id="theory_of_groups" type="raw">Burnside, W. <title>Theory of Groups of Finite Order</title>. 2nd ed. Cambridge University Press, Cambridge, 1911; Dover, New York, 1953.  A classic.  Also available at books.google.com.</biblio>
+    <!-- <biblio xml:id="theory_of_groups" type="raw">Burnside, W. <title>Theory of Groups of Finite Order</title>. 2nd ed. Cambridge University Press, Cambridge, 1911; Dover, New York, 1953.  A classic.  Also available at books.google.com.</biblio> -->
   </references>
 </chapter>
