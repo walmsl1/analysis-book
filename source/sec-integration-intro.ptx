@@ -3,11 +3,11 @@
 <section xml:id="sec-integration-intro" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Integration</title>
 
-<p> 
-Geometrically, a definite integral represents the area <m>A</m> between a curve <m>f</m> and the horizontal axis over an interval <m>[a,b]</m>. 
-</p>
+  <p> 
+    Geometrically, a definite integral represents the area <m>A</m> between a curve <m>f</m> and the horizontal axis over an interval <m>[a,b]</m>. 
+  </p>
 
-<image>
+<!-- <image>
       <latex-image>
 \begin{center}
     \begin{tikzpicture}
@@ -19,16 +19,26 @@ Geometrically, a definite integral represents the area <m>A</m> between a curve 
     \end{tikzpicture}
 \end{center}
         </latex-image>
-  </image>
+  </image> -->
+
+  <figure xml:id="integration_graph-figure">
+    <caption>The area between the curve and the horizontal axis is the definite integral of <m>f</m> over the interval <m>[a,b]</m>.</caption>
+    <interactive xml:id="integration_graph-interactive" platform="doenetml" width="100%" aspect="1:0.8">
+      <slate surface="doenetml">
+        <xi:include href="doenet/integration_graph.doenet" parse="text"/>
+      </slate>
+    </interactive>
+  </figure>
+
 
 <p>
-To underestimate the area <m>A</m>, we place rectangles below the curve by first creating a <alert>partition</alert> 
-<m>P</m> of the interval <m>[a,b]</m> as <m>P=\{a=t_0 \lt t_1<\cdots \lt t_n=b\}</m>. Each subinterval <m>[t_{i-1}, t_i]</m> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <m>\inf\{f(x): x\in [t_{i-1}, t_i]\}</m> to be the rectangles height. If instead we take <m>\sup \{f(x): x\in [t_{i-1}, t_i]\}</>, we get a rectangle above the curve over that subinterval.
+  To underestimate the area <m>A</m>, we place rectangles below the curve by first creating a <alert>partition</alert> 
+  <m>P</m> of the interval <m>[a,b]</m> as <m>P=\{a=t_0 \lt t_1 \lt \cdots \lt t_n=b\}</m>. Each subinterval <m>[t_{i-1}, t_i]</m> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <m>\inf\{f(x): x\in [t_{i-1}, t_i]\}</m> to be the rectangles height. If instead we take <m>\sup \{f(x): x\in [t_{i-1}, t_i]\}</m>, we get a rectangle above the curve over that subinterval.
 </p>
 
  <figure xml:id="darboux_interactive">
     <caption>This is a Doenet activity.</caption>
-    <interactive xml:id="darboux-display" platform="doenetml" width="100%" aspect="1.5:1">
+    <interactive xml:id="darboux-display" platform="doenetml" width="100%" aspect="1.5:1.5">
       <slate surface="doenetml">
         <xi:include href="doenet/integration_darboux_interactive.doenet" parse="text"/>
       </slate>
