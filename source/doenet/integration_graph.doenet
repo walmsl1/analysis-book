@@ -1,0 +1,13 @@
+<setup>
+  <function name="f" styleNumber="5">x*sin(x)/2 + 4</function>
+  <number name="a">pi/4</number>
+  <number name="b">2*pi</number>
+</setup>
+
+<graph name="g" xmin="-2" xmax="10" ymin="-2" ymax="10" displayXAxisTickLabels="false" displayYAxisTickLabels="false">
+  $f
+  <regionBetweenCurveXAxis styleNumber="6" function="$f" boundaryValues="$a $b"/>
+  <text anchor="(2.5,2)">A</text>
+  <text anchor="($a,-0.5)">a</text>
+  <text anchor="($b,-0.5)">b</text>
+</graph>

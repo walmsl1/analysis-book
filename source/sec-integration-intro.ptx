@@ -3,11 +3,11 @@
 <section xml:id="sec-integration-intro" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Integration</title>
 
-<p> 
-Geometrically, a definite integral represents the area <m>A</m> between a curve <m>f</m> and the horizontal axis over an interval <m>[a,b]</m>. 
-</p>
+  <p> 
+    Geometrically, a definite integral represents the area <m>A</m> between a curve <m>f</m> and the horizontal axis over an interval <m>[a,b]</m>. 
+  </p>
 
-<image>
+<!-- <image>
       <latex-image>
 \begin{center}
     \begin{tikzpicture}
@@ -19,7 +19,17 @@ Geometrically, a definite integral represents the area <m>A</m> between a curve 
     \end{tikzpicture}
 \end{center}
         </latex-image>
-  </image>
+  </image> -->
+
+  <figure xml:id="integration_graph-figure">
+    <caption>The area between the curve and the horizontal axis is the definite integral of <m>f</m> over the interval <m>[a,b]</m>.</caption>
+    <interactive xml:id="integration_graph-interactive" platform="doenetml" width="100%" aspect="1:0.8">
+      <slate surface="doenetml">
+        <xi:include href="doenet/integration_graph.doenet" parse="text"/>
+      </slate>
+    </interactive>
+  </figure>
+
 
 <p>
 To underestimate the area <m>A</m>, we place rectangles below the curve by first creating a <alert>partition</alert> 
@@ -70,7 +80,7 @@ Let's put this theorem in action to see why discontinuous functions can still be
 
  <figure xml:id="darboux_interactive">
     <caption>This is a Doenet activity.</caption>
-    <interactive xml:id="darboux-display" platform="doenetml" width="100%" aspect="1.5:1">
+    <interactive xml:id="darboux-display" platform="doenetml" width="100%" aspect="1.5:1.5">
       <slate surface="doenetml">
         <xi:include href="doenet/integration_darboux_interactive.doenet" parse="text"/>
       </slate>
