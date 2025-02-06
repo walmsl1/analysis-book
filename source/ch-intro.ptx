@@ -9,7 +9,7 @@
   </introduction>
   
   <!-- <xi:include href="sec-set_notation.ptx"/> -->
-  <!-- <xi:include href="sec-quantifiers.ptx"/> -->
+  <xi:include href="sec-quantifiers.ptx"/>
   <!-- <xi:include href="sec-preimages.ptx"/> -->
   <!-- <xi:include href="sec-testing.ptx"/> -->
   <!-- <xi:include href="sec-example_format.ptx"/> -->

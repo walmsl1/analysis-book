@@ -8,7 +8,7 @@
 
     <!-- \begin{definition} -->
     <definition>
-      We say <m>f</m> is <alert>continuous at <m>a</m></alert> if <m>\forall \, \epsilon \le 0 \, \exists \, \delta \gt 0</m> s.t. <m>\forall \, x\in \{x\in \R: |x-a| \lt \delta\}</m>, <m>|f(x)-f(a)|\lt \epsilon</m>.
+      We say <m>f</m> is <alert>continuous at <m>a</m></alert> if <m>\forall \, \epsilon \gt 0 \, \exists \, \delta \gt 0</m> s.t. <m>\forall \, x\in \{x\in \R: |x-a| \lt \delta\}</m>, <m>|f(x)-f(a)|\lt \epsilon</m>.
     </definition>
     <!-- \end{definition} -->
 

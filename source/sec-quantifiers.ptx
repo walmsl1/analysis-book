@@ -10,32 +10,39 @@
   or equivalently,
   <me> P: \exists x\in \R \text{ s.t. } x^2-x\in (0,\infty). </me>
   Now that we are convinced <m> P </m> is true, let's see our very first proof.     
+  </p>
+
   <proof>
   Let <m> x=3 </m>.
   We must show <m> x^2-x>0 </m>. 
   Since <m> x=3 </m>, then <m> x^2-x=6</m>, and since <m> 6>0 </m>, we have <m> x^2-x>0 </m>, as desired. 
    </proof>
 
+  <p>
   While this proof might seem like too much effort to prove a simple statement, we will reap many benefits by developing some general proof principles in straightforward situations. First, we will use the overall structure of this existence proof for  almost every existence argument in this class. It is worth writing down a general ``proof outline" of an existence argument.
 
   <assemblage permid="kYk">
       <title>Proof Outline for Existence</title>
 
       <p permid="QJU">
-        To prove: <m> \exists x \in \mathcal{S} </m> s.t. this thing about <m> x</m> happens.
+        To prove: <m> \exists x \in \mathcal{S} </m> s.t. these things about <m> x</m> happen.
       </p>
 
       <p>
-      <em> Proof outline. </em> Define <m> x </m> (either by an equation or as a consequence of a definition ). We must show <m> x\in \mathcal{S} </m> (this can be omitted in some basic situations) and this thing about <m> x </m> happens.
+      <em> Proof outline. </em> Define <m> x </m> (either by an equation or as a consequence of a definition ). We must show these things about <m> x </m> happens.
       </p>
       <p> <m> \vdots </m> </p>
       <p> Thus this thing about <m> x </m> happens, as desired. </p>
   </assemblage>
   
   Typically, our proofs will end with "as desired" to reiterate that we showed what we set out to show. This is a stylistic choice and not strictly necessary - proof writing does not have a strict set of rules. Our focus for the first several classes will be on constructing logical arguments; we will worry about some nuances of proof writing at a later day.
+  </p>
 
+  <p>
   The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can cloud a situation which is uncomplicated. We could opt to replace the last line with something like "Since <m> x=6 </m>, then <m>x^2-x=6>0</m>, as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of equalities and inequalities outloud in our head: <m> x^2-x </m> equals <m> 6 </m>, and <m> 6 </m> is greater than <m> 0 </m>. We then conlcude, by looking at the beginning and ending expressions in the string, that <m> x^2-x </m> is greater than <m> 0 </m>, which had to be shown. 
+  </p>
 
+  <p>
   The other quantifier is "for all", whose shorthand is <m> \forall </m>. Let's see it in action by considering this new mathematical statement <m> Q </m>. 
   <me> Q: \forall x\in (1,2), x^2-x>0, </me>
   Is <m> Q </m> true? A quick look at the graphs of 
