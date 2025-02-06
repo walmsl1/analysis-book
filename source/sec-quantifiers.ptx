@@ -51,7 +51,7 @@
   \begin{tikzpicture}
   \begin{axis}[grid=both, axis lines = middle, height = 3.5in, width = 3.5in, xmin=-3,xmax=3,ymin=-2,ymax=10,xlabel={\large{$x$}}, ylabel={\large{$y$}}, xtick={-6,-5,...,7}, ytick={-4,-3,...,10}, minor tick num =0, samples=101]
   \addplot[domain=-5:5,black]{x^2};
-  \addplot[domain=-5:5,blue]{(x-1)^2)};
+  \addplot[domain=-5:5,blue]{(x-1)^2};
   \end{axis}
   \end{tikzpicture}
         </latex-image>
