@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math"
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="_static/pretext/css/pretext.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/shell_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/banner_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/toc_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/style_oscarlevin.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/colors_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/setcolors.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="external/custom-styles.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/doenet-standalone-test@0.6.0/dist/style.css">
+<script onload="onLoad()" type="module" src="https://cdn.jsdelivr.net/npm/doenet-standalone-test@0.6.0/dist/doenet-standalone.min.js"></script><script>function onLoad() {window.renderDoenetToContainer(document.querySelector(".doenetml-applet"))}</script>
+</head>
+<body class="ptx-content ignore-math" id="analysisbook"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><div class="doenetml-applet">
+<div class="doenetml-loading" style="text-align:center">
+<p><img src="https://www.doenet.org/Doenet_Logo_Frontpage.png"></p>
+<p>Waiting on the page to load...</p>
+</div>
+<script type="text/doenetml">
+        <title>Darboux Sum Interactive Graph</title>
+
+<setup>
+  <!-- Integrand -->
+  <function name="f">$userFunction</function>
+
+  <!-- Number of boxes of integration -->
+  <number name="numBoxes">1</number>
+
+  <!-- Helper function to constrain to x-axis -->
+  <function name="h">0</function>
+  
+  <!-- Collect the x-coordinates of points and sorts them-->
+  <sort name="sortedXs">
+    <collect source="g" componentTypes="point" prop="x"/></sort>
+
+  <!-- Collect top right point of boxes --> 
+  <collect name="recCoords" source="g" componentTypes="polygon" prop="vertices" propIndex="3"/>
+
+  <!--Calculates the upper darbox sum-->
+  <number name="upperDarbox"><sum><map>
+    <sources alias="i"><sequence from="1" to="2*$numBoxes" step="2"/>  
+    </sources>
+    <template>
+      <conditionalContent>
+        <!-- Area of the first box -->
+        <case condition="$i < 3">
+          <math>$recCoords[$i].x * $recCoords[$i].y</math></case>
+
+        <!-- Area of subsequent boxes -->
+        <else>
+          <math>($recCoords[$i].x-$recCoords[$i-2].x)*$recCoords[$i].y
+          </math></else></conditionalContent>
+    </template>
+  </map></sum></number>
+
+  <!--Calculates the lower darbox sum-->
+  <number name="lowerDarbox"><sum><map>
+    <sources alias="i"><sequence from="2" to="2*$numBoxes" step="2"/>  
+    </sources>
+    <template>
+      <conditionalContent>
+        <!-- Area of the first box -->
+        <case condition="$i < 3">
+          <math>$recCoords[$i].x * $recCoords[$i].y</math></case>
+
+        <!-- Area of subsequent boxes -->
+        <else>
+          <math>($recCoords[$i].x-$recCoords[$i-2].x)*$recCoords[$i].y
+          </math></else></conditionalContent>
+    </template>
+  </map></sum></number>
+  <math name="userFunction">x*sin(x)/2 + 4</math>
+  <number name="a">pi/4</number>
+  <number name="b">2*pi</number>
+</setup>
+
+<sideBySide>
+  <stack>
+    <p>Upper Darboux Sum: <m>$upperDarbox</m></p>
+    <p>Lower Darboux Sum: <m>$lowerDarbox</m></p>
+  </stack>
+  <stack>
+    <p>Difference: <math simplify>$upperDarbox-$lowerDarbox</math></p>
+  </stack>
+</sideBySide>
+
+<graph name="g" xmin="-2" xmax="10" ymin="-2" ymax="10" displayXAxisTickLabels="false" displayYAxisTickLabels="false">
+  $f
+
+  <!-- Endpoints -->
+  <endpoint name="aEndpoint" coords="($a,0)" styleNumber="5" 
+    draggable="false">
+    <constraints>
+      <constrainTo>$h</constrainTo></constraints></endpoint>
+  
+  <endpoint name="bEndpoint" coords="($b,0)" styleNumber="5" 
+    draggable="false">
+    <constraints>
+      <constrainTo>$h</constrainTo></constraints></endpoint>
+
+  <!-- Line segment to represent the interval --> 
+  <lineSegment name="interval" endpoints="$aEndpoint.coords 
+    $bEndpoint.coords" draggable="false" styleNumber="4"/>
+  
+  <!-- Map for creating boxes -->
+  <map>
+    <template>
+      <setup>
+        <!-- Random number in interval -->
+        <sampleRandomNumbers name="rand" from="$a" to="$b" step="0.01"/>
+        
+        <!-- f with domain restricted between adjacent points -->
+        <function name="tempFunc" domain="[$sortedXs[$i], 
+          $sortedXs[$i+1]]">$userFunction</function>
+
+        <!-- Max and min of function on restricted f -->
+        <math name="tempFuncMax"><max>$$tempFunc($sortedXs[$i]) 
+          $tempFunc.maximumValues $$tempFunc($sortedXs[$i+1])</max>
+        </math>
+        <math name="tempFuncMin"><min>$$tempFunc($sortedXs[$i]) $tempFunc.minimumValues $$tempFunc($sortedXs[$i+1])</min></math>
+      </setup>
+
+      <!-- Adds a point when numBoxes increases -->
+      <conditionalContent condition="$i>1">
+        <point styleNumber="6" coords="($rand, 0)">
+          <constraints>
+            <constrainTo>$interval</constrainTo></constraints></point>
+      </conditionalContent>
+
+      <!-- Create a box for the upper and lower sums -->
+      <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMax) ($sortedXs[$i+1],$tempFuncMax) ($sortedXs[$i+1],0)" styleNumber="3" filled/>
+      <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMin) ($sortedXs[$i+1],$tempFuncMin) ($sortedXs[$i+1],0)" styleNumber="2" filled/>
+      <conditionalContent condition="$i>1">
+        <m anchor="($sortedXs[$i],-0.5)">t_{<number>$i-1</number>}</m>
+      </conditionalContent>
+    </template>
+    <sources alias="i">
+      <sequence from="1" to="$numBoxes"/></sources>
+  </map>
+</graph>
+
+<!-- Button to add random point in interval -->
+<updateValue target="numBoxes" newValue="$numBoxes + 1">
+  <label>Add Point</label></updateValue>
+
+<!-- Button to remove point -->
+<updateValue target="numBoxes" newValue="$numBoxes - 1" disabled="$numBoxes=1">
+  <label>Remove Point</label></updateValue>
+      </script>
+</div></div></body>
+</html>
