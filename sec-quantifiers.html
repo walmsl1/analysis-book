@@ -200,44 +200,80 @@ P: \exists x\in \R \text{ s.t. } x^2-x\in (0,\infty).
 <em class="emphasis">Proof outline.</em> Define <span class="process-math">\(x \)</span> (either by an equation or as a consequence of a definition ). We must show these things about <span class="process-math">\(x \)</span> happens.</div>
 <div class="para" id="sec-quantifiers-4-1-4"><span class="process-math">\(\vdots \)</span></div>
 <div class="para" id="sec-quantifiers-4-1-5">Thus these things about <span class="process-math">\(x \)</span> happen, as desired.</div></article> Typically, our proofs will end with "as desired" to reiterate that we showed what we set out to show. This is a stylistic choice and not strictly necessary - proof writing does not have a strict set of rules. Our focus for the first several classes will be on constructing logical arguments; we will worry about some nuances of proof writing at a later day.</div>
-<div class="para" id="sec-quantifiers-5">The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can cloud a situation which is uncomplicated. We could opt to replace the last line with something like "Since <span class="process-math">\(x=6 \text{,}\)</span> then <span class="process-math">\(x^2-x=6&gt;0\text{,}\)</span> as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of (in)equalities outloud in our head: <span class="process-math">\(x^2-x \)</span> equals <span class="process-math">\(6 \text{,}\)</span> and <span class="process-math">\(6 \)</span> is greater than <span class="process-math">\(0 \text{.}\)</span> We then conlcude, by looking at the beginning and ending expressions in the string, that <span class="process-math">\(x^2-x \)</span> is greater than <span class="process-math">\(0 \text{,}\)</span> which had to be shown.</div>
-<div class="para" id="sec-quantifiers-6">Let’s look at another mathematical statement, <span class="process-math">\(Q: \)</span> For all natural numbers <span class="process-math">\(n \text{,}\)</span> <span class="process-math">\(n^2\geq n \text{.}\)</span> Is  <span class="process-math">\(Q \)</span> true? Checking a few cases makes it seem so, but if it is, we cannot simply check cases, as there are infinitely many natural numbers we would have to check. Thus proving a "for all" statement will require a new strategy. We will need an abstract argument, and the idea is to introduce a <em class="emphasis">variable</em>, like <span class="process-math">\(n \text{,}\)</span> to stand in place for some arbitrary natural number. Then we can simply check the statement for that one arbitrary natural number <span class="process-math">\(n \text{,}\)</span> but all we know about <span class="process-math">\(n \)</span> is where it came from; we do not know its exact value, but we do know that it is some positive integer.</div>
-<article class="proof" id="sec-quantifiers-7"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3>Let <span class="process-math">\(n \)</span> be any natural number. We must show <span class="process-math">\(n^2\geq n \text{.}\)</span> Since <span class="process-math">\(n\geq 1 \text{,}\)</span> we know <span class="process-math">\(n-1 \geq 0 \text{.}\)</span> Since both <span class="process-math">\(n \)</span> and <span class="process-math">\(n-1 \)</span> are non-negative, so is their product. Hence <span class="process-math">\(n(n-1)\geq 0 \text{,}\)</span> which implies <span class="process-math">\(n^2 - n\geq 0 \text{,}\)</span> which is equivalent to <span class="process-math">\(n^2 \geq n \text{,}\)</span> as desired.</article><div class="para logical" id="sec-quantifiers-8">
-<div class="para">The mathematical shorthand for "for all" is <span class="process-math">\(\forall \text{,}\)</span> which allows us to more concisely write <span class="process-math">\(Q: \forall n\in \N, n^2\geq n.\)</span> The last example shows our general strategy for proving "for all" statements. <article class="assemblage assemblage-like" id="sec-quantifiers-8-3"><h3 class="heading"><span class="title">Proof Outline for "For All" Proofs.</span></h3>
-<div class="para" id="QJU" data-permid="QJU">To prove: <span class="process-math">\(\forall x \in \mathcal{S} \text{,}\)</span> this thing about <span class="process-math">\(x\)</span> happens.</div>
-<div class="para" id="sec-quantifiers-8-3-3">
-<em class="emphasis">Proof outline.</em> Let <span class="process-math">\(x\in \mathcal{S}. \)</span>  We must show this thing about <span class="process-math">\(x \)</span> happens.</div>
-<div class="para" id="sec-quantifiers-8-3-4"><span class="process-math">\(\vdots \)</span></div>
-<div class="para" id="sec-quantifiers-8-3-5">Thus these things about <span class="process-math">\(x \)</span> happen, as desired.</div></article> While the proof outlines for existence and for all statements share many similarities, the philosophies are quite different. To prove existence, need only produce one element that exists with the requisite properties. To prove a for all statement, we have to show <em class="emphasis">every element</em> has the requisite properties.  Consider the statement <span class="process-math">\(R: \forall x\in \R, x^2-x\ge 0 \text{.}\)</span> Equivalently, we could write <span class="process-math">\(R: \forall x\in \R, x^2-x\in [0,\infty).\)</span> Is <span class="process-math">\(R \)</span> true? A quick look at the graph of <span class="process-math">\(x^2-x \)</span> will convince us that <span class="process-math">\(R \)</span> is false. <div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="generated/latex-image/sec-quantifiers-8-11.svg" role="img" class="contained"></div> It is not true that for every real number <span class="process-math">\(x \text{,}\)</span> <span class="process-math">\(x^2-x\ge 0 \)</span> because <em class="emphasis">there exists</em> a real number <span class="process-math">\(x \)</span> for which the opposite conclusion, namely <span class="process-math">\(x^2-x \lt 0 \text{,}\)</span> holds. For example, <span class="process-math">\(x=0.5 \text{,}\)</span> <span class="process-math">\(x=0.25, \)</span> or any <span class="process-math">\(x\in (0,1) \)</span> has the opposite property that <span class="process-math">\(x^2-x\lt 0 \text{.}\)</span> The negation of a mathemical statement <span class="process-math">\(R \)</span>  is the mathematical statement, labeled <span class="process-math">\(\text{not} R \text{,}\)</span> whose truth value is opposite that of <span class="process-math">\(R \text{.}\)</span> For the specific statement <span class="process-math">\(R \)</span> above, we have</div>
+<div class="para" id="sec-quantifiers-5">The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can draw out a situation which is uncomplicated. We could opt to replace the last line with something like "Since <span class="process-math">\(x=6 \text{,}\)</span> then <span class="process-math">\(x^2-x=6&gt;0\text{,}\)</span> as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of (in)equalities outloud in our head: <span class="process-math">\(x^2-x \)</span> equals <span class="process-math">\(6 \text{,}\)</span> and <span class="process-math">\(6 \)</span> is greater than <span class="process-math">\(0 \text{.}\)</span> We then conlcude, by looking at the beginning and ending expressions in the string, that <span class="process-math">\(x^2-x \)</span> is greater than <span class="process-math">\(0 \text{,}\)</span> which had to be shown.</div>
+<div class="para logical" id="sec-quantifiers-6">
+<div class="para">Let’s look at another mathematical statement.</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\text{not} R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. 
+Q:  \text{ For all natural numbers}   
+\end{equation*}
+</div>
+<div class="para">Is  <span class="process-math">\(Q \)</span> true? Checking a few cases makes it seem so, but if it is, we cannot simply check cases, as there are infinitely many natural numbers we would have to check. Thus proving a "for all" statement will require a new strategy. We will need an abstract argument, and the idea is to introduce a <em class="emphasis">variable</em>, like <span class="process-math">\(n \text{,}\)</span> to stand in place for some arbitrary natural number. Then we can simply check the statement for that one arbitrary natural number <span class="process-math">\(n \text{,}\)</span> but all we know about <span class="process-math">\(n \)</span> is where it came from. We do not know its exact value, but we do know that it is some positive integer.</div>
+</div>
+<article class="proof" id="sec-quantifiers-7"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3>Let <span class="process-math">\(n \)</span> be any natural number. We must show <span class="process-math">\(n^2\geq n \text{.}\)</span> Since <span class="process-math">\(n\geq 1 \text{,}\)</span> we know <span class="process-math">\(n-1 \geq 0 \text{.}\)</span> Since both <span class="process-math">\(n \)</span> and <span class="process-math">\(n-1 \)</span> are non-negative, so is their product. Hence <span class="process-math">\(n(n-1)\geq 0 \text{,}\)</span> which implies <span class="process-math">\(n^2 - n\geq 0 \text{,}\)</span> which is equivalent to <span class="process-math">\(n^2 \geq n \text{,}\)</span> as desired.</article><div class="para logical" id="sec-quantifiers-8">
+<div class="para">The mathematical shorthand for "for all" is <span class="process-math">\(\forall \text{,}\)</span> which allows us to more concisely write <span class="process-math">\(Q \)</span> in the following way:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+Q: \forall n\in \N, n^2\geq n.
+\end{equation*}
+</div>
+<div class="para">The last example shows our general strategy for proving "for all" statements. <article class="assemblage assemblage-like" id="sec-quantifiers-8-4"><h3 class="heading"><span class="title">Proof Outline for "For All" Proofs.</span></h3>
+<div class="para" id="QJU" data-permid="QJU">To prove: <span class="process-math">\(\forall x \in \mathcal{S} \text{,}\)</span> this thing about <span class="process-math">\(x\)</span> happens.</div>
+<div class="para" id="sec-quantifiers-8-4-3">
+<em class="emphasis">Proof outline.</em> Let <span class="process-math">\(x\in \mathcal{S}. \)</span>  We must show this thing about <span class="process-math">\(x \)</span> happens.</div>
+<div class="para" id="sec-quantifiers-8-4-4"><span class="process-math">\(\vdots \)</span></div>
+<div class="para" id="sec-quantifiers-8-4-5">Thus this thing about <span class="process-math">\(x \)</span> happens, as desired.</div></article> While the proof outlines for existence and for all statements share many similarities, the philosophies are quite different. To prove existence, we need only produce one element that exists with the requisite properties. To prove a for all statement, we have to show <em class="emphasis">every element</em> has the requisite properties.  Consider the following statement.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+R: \forall x\in \R, x^2-x\ge 0 \text{.}
+\end{equation*}
+</div>
+<div class="para">Equivalently, we could write</div>
+<div class="displaymath process-math">
+\begin{equation*}
+R: \forall x\in \R, x^2-x\in [0,\infty).
+\end{equation*}
+</div>
+<div class="para">Is <span class="process-math">\(R \)</span> true? A quick look at the graph of <span class="process-math">\(x^2-x \)</span> will convince us that <span class="process-math">\(R \)</span> is false. <div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="generated/latex-image/sec-quantifiers-8-12.svg" role="img" class="contained"></div> It is not true that for every real number <span class="process-math">\(x \text{,}\)</span> <span class="process-math">\(x^2-x\ge 0 \text{,}\)</span> because <em class="emphasis">there exists</em> a real number <span class="process-math">\(x \)</span> for which the opposite conclusion, namely <span class="process-math">\(x^2-x \lt 0 \text{,}\)</span> holds. For example, <span class="process-math">\(x=0.5 \text{,}\)</span> <span class="process-math">\(x=0.25, \)</span> or any <span class="process-math">\(x\in (0,1) \)</span> has the opposite property that <span class="process-math">\(x^2-x\lt 0 \text{.}\)</span> The <em class="alert">negation</em> of a mathemical statement <span class="process-math">\(R \text{,}\)</span>  is a new mathematical statement labeled <span class="process-math">\(\text{not } R \text{,}\)</span> whose truth value is opposite that of <span class="process-math">\(R \text{.}\)</span> For the specific statement <span class="process-math">\(R \)</span> above, we have</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\text{not } R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. 
 \end{equation*}
 </div>
 <div class="para">Equivalently,</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\text{not} R: \exists x\in \R \text{ s.t. } x^2-x \not \in [0,\infty). 
+\text{not } R: \exists x\in \R \text{ s.t. } x^2-x \not \in [0,\infty). 
 \end{equation*}
 </div>
 <div class="para">The benefit of the second version of not <span class="process-math">\(R \)</span> above is that it avoids inequalities, which can make writing the negation easier because one is not tempted to just reverse every inequality without thinking.</div>
 </div>
-<div class="para logical" id="sec-quantifiers-9">
-<div class="para">Please notice the important fact that the negation of a "for all" statement is a "there exists" statement. This is worth remembering. <article class="assemblage assemblage-like" id="sec-quantifiers-9-1"><h3 class="heading"><span class="title">Negation of "For All" Statements.</span></h3>
+<div class="para" id="sec-quantifiers-9">Please notice the important fact that the negation of a "for all" statement is a "there exists" statement. This is worth remembering. <article class="assemblage assemblage-like" id="sec-quantifiers-9-1"><h3 class="heading"><span class="title">Negation of "For All" Statements.</span></h3>
 <div class="para" id="QJU" data-permid="QJU">
 <span class="process-math">\(P: \forall x \in \mathcal{S} \text{,}\)</span> this thing about <span class="process-math">\(x\)</span> happens.</div>
 <div class="para" id="sec-quantifiers-9-1-3">
-<span class="process-math">\(\text{not } P: \exists x\in \mathcal{S} \)</span> s.t. that thing about <span class="process-math">\(x \)</span> doesn’t happen.</div></article> If we’re asked to decide whehter a statement is true or false and prove our claim, it is helpful to alert the reader of our proof to our strategy. Let’s see a proof that <span class="process-math">\(R \)</span> is false. <article class="proof" id="sec-quantifiers-9-3"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3>
-<div class="para" id="sec-quantifiers-9-3-1">We prove <span class="process-math">\(R \)</span> false by proving its negation, which is <span class="process-math">\(\exists x\in \R \text{ s.t. } x^2-x\lt 0 \text{,}\)</span> true. Let <span class="process-math">\(x=0.5 \text{.}\)</span> We must show <span class="process-math">\(x^2-x \lt 0 \text{.}\)</span> Since <span class="process-math">\(x^2-x = -0.25 \lt 0, \text{,}\)</span> we have <span class="process-math">\(x^2-x\lt 0 \text{,}\)</span> as desired.</div></article> To prove a statement false, we will almost always try to prove its negation true. Only in rare instances in this course will we employ a different strategy. Let’s see one more example. Consider the statement <span class="process-math">\(T: \exists x\in \R \)</span> s.t. <span class="process-math">\(x^2=-1 \text{.}\)</span> Is <span class="process-math">\(T \)</span> true? If it were, we could produce a real number <span class="process-math">\(x \)</span> whose square is a negative number. This is not possible, because <em class="emphasis">every</em> real number has a non-negative square. In this case, the negation of <span class="process-math">\(T \)</span> is</div>
+<span class="process-math">\(\text{not } P: \exists x\in \mathcal{S} \)</span> s.t. that thing about <span class="process-math">\(x \)</span> doesn’t happen.</div></article>
+</div>
+<div class="para" id="sec-quantifiers-10">If we’re asked to decide whehter a statement is true or false and prove our claim, it is helpful to alert the reader of our proof to our strategy. Let’s see a proof that <span class="process-math">\(R \)</span> is false. <article class="proof" id="sec-quantifiers-10-2"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3>
+<div class="para" id="sec-quantifiers-10-2-1">We prove <span class="process-math">\(R \)</span> false by proving its negation, which is <span class="process-math">\(\exists x\in \R \text{ s.t. } x^2-x\lt 0 \text{,}\)</span> true. Let <span class="process-math">\(x=0.5 \text{.}\)</span> We must show <span class="process-math">\(x^2-x \lt 0 \text{.}\)</span> Since <span class="process-math">\(x^2-x = -0.25 \lt 0, \text{,}\)</span> we have <span class="process-math">\(x^2-x\lt 0 \text{,}\)</span> as desired.</div></article>
+</div>
+<div class="para logical" id="sec-quantifiers-11">
+<div class="para">To prove a statement false, we will almost always try to prove its negation true. Only in rare instances in this course will we employ a different strategy. Let’s see one more example. Consider the statement</div>
+<div class="displaymath process-math">
+\begin{equation*}
+T: \exists x\in \R  \text{ s.t. } x^2=-1. 
+\end{equation*}
+</div>
+<div class="para">Is <span class="process-math">\(T \)</span> true? If it were, we could produce a real number <span class="process-math">\(x \)</span> whose square is a negative number. This is not possible, because <em class="emphasis">every</em> real number has a non-negative square. In this case, the negation of <span class="process-math">\(T \)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \text{not } T: \forall x\in \R, x^2\neq -1. 
 \end{equation*}
 </div>
-<div class="para">This example highlights the fact that the negation of a "for all" statement is a "there exists" statement, a fact worth remembering. <article class="assemblage assemblage-like" id="sec-quantifiers-9-11"><h3 class="heading"><span class="title">Negation of "There Exists" Statements.</span></h3>
+<div class="para">This example highlights the fact that the negation of a "for all" statement is a "there exists" statement, a fact worth remembering. <article class="assemblage assemblage-like" id="sec-quantifiers-11-7"><h3 class="heading"><span class="title">Negation of "There Exists" Statements.</span></h3>
 <div class="para" id="QJU" data-permid="QJU">
 <span class="process-math">\(P: \exists x \in \mathcal{S} \)</span> s.t. this thing about <span class="process-math">\(x\)</span> happens.</div>
-<div class="para" id="sec-quantifiers-9-11-3">
+<div class="para" id="sec-quantifiers-11-7-3">
 <span class="process-math">\(\text{not } P: \forall x\in \mathcal{S} \text{,}\)</span>  that thing about <span class="process-math">\(x \)</span> doesn’t happen.</div></article>
 </div>
 </div></section></div>
