@@ -39,18 +39,22 @@
   </p>
 
   <p>
-  The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can cloud a situation which is uncomplicated. We could opt to replace the last line with something like "Since <m> x=6 </m>, then <m>x^2-x=6>0</m>, as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of (in)equalities outloud in our head: <m> x^2-x </m> equals <m> 6 </m>, and <m> 6 </m> is greater than <m> 0 </m>. We then conlcude, by looking at the beginning and ending expressions in the string, that <m> x^2-x </m> is greater than <m> 0 </m>, which had to be shown. 
+  The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can draw out a situation which is uncomplicated. We could opt to replace the last line with something like "Since <m> x=6 </m>, then <m>x^2-x=6>0</m>, as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of (in)equalities outloud in our head: <m> x^2-x </m> equals <m> 6 </m>, and <m> 6 </m> is greater than <m> 0 </m>. We then conlcude, by looking at the beginning and ending expressions in the string, that <m> x^2-x </m> is greater than <m> 0 </m>, which had to be shown. 
   </p>
 
   <p>
-    Let's look at another mathematical statement, <m> Q: </m> For all natural numbers <m> n </m>, <m> n^2\geq n </m>. Is  <m> Q </m> true? Checking a few cases makes it seem so, but if it is, we cannot simply check cases, as there are infinitely many natural numbers we would have to check. Thus proving a "for all" statement will require a new strategy. We will need an abstract argument, and the idea is to introduce a <em> variable </em>, like <m> n </m>, to stand in place for some arbitrary natural number. Then we can simply check the statement for that one arbitrary natural number <m> n </m>, but all we know about <m> n </m> is where it came from; we do not know its exact value, but we do know that it is some positive integer.
+    Let's look at another mathematical statement.
+     <me> Q:  \text{ For all natural numbers} <m> n </m>, <m> n^2\geq n </m>. </me>
+      Is  <m> Q </m> true? Checking a few cases makes it seem so, but if it is, we cannot simply check cases, as there are infinitely many natural numbers we would have to check. Thus proving a "for all" statement will require a new strategy. We will need an abstract argument, and the idea is to introduce a <em> variable </em>, like <m> n </m>, to stand in place for some arbitrary natural number. Then we can simply check the statement for that one arbitrary natural number <m> n </m>, but all we know about <m> n </m> is where it came from. We do not know its exact value, but we do know that it is some positive integer.
   </p> 
 
     <proof>
   Let <m> n </m> be any natural number. We must show <m> n^2\geq n </m>. Since <m> n\geq 1 </m>, we know <m> n-1 \geq 0 </m>. Since both <m> n </m> and <m> n-1 </m> are non-negative, so is their product. Hence <m> n(n-1)\geq 0 </m>, which implies <m> n^2 - n\geq 0 </m>, which is equivalent to <m> n^2 \geq n </m>, as desired.
    </proof>
 
-  <p> The mathematical shorthand for "for all" is <m> \forall </m>, which allows us to more concisely write <m> Q: \forall n\in \N, n^2\geq n.</m> The last example shows our general strategy for proving "for all" statements. 
+  <p> The mathematical shorthand for "for all" is <m> \forall </m>, which allows us to more concisely write <m> Q </m> in the following way:
+  <me> Q: \forall n\in \N, n^2\geq n.</me> 
+  The last example shows our general strategy for proving "for all" statements. 
 
 <assemblage>
       <title>Proof Outline for "For All" Proofs</title>
@@ -63,13 +67,17 @@
       <em> Proof outline. </em> Let <m> x\in \mathcal{S}. </m>  We must show this thing about <m> x </m> happens.
       </p>
       <p> <m> \vdots </m> </p>
-      <p> Thus these things about <m> x </m> happen, as desired. </p>
+      <p> Thus this thing about <m> x </m> happens, as desired. </p>
   </assemblage>
 
-  While the proof outlines for existence and for all statements share many similarities, the philosophies are quite different. To prove existence, need only produce one element that exists with the requisite properties. To prove a for all statement, we have to show <em> every element </em> has the requisite properties. 
+  While the proof outlines for existence and for all statements share many similarities, the philosophies are quite different. To prove existence, we need only produce one element that exists with the requisite properties. To prove a for all statement, we have to show <em> every element </em> has the requisite properties. 
 
   <title> Negations </title>
-  Consider the statement <m> R: \forall x\in \R, x^2-x\ge 0 </m>. Equivalently, we could write <m> R: \forall x\in \R, x^2-x\in [0,\infty).</m> Is <m> R </m> true? A quick look at the graph of <m> x^2-x </m> will convince us that <m> R </m> is false.
+  Consider the following statement.
+   <me> R: \forall x\in \R, x^2-x\ge 0 </me>.
+    Equivalently, we could write 
+    <me> R: \forall x\in \R, x^2-x\in [0,\infty).</me>
+     Is <m> R </m> true? A quick look at the graph of <m> x^2-x </m> will convince us that <m> R </m> is false.
   <image width="50%">
       <latex-image>
   \begin{tikzpicture}
@@ -79,11 +87,11 @@
   \end{tikzpicture}
         </latex-image>
   </image>
-  It is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m> because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The negation of a mathemical statement <m> R </m>  is the mathematical statement, labeled <m> \text{not} R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
+  It is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m>, because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The <alert> negation </alert> of a mathemical statement <m> R </m>,  is a new mathematical statement labeled <m> \text{not } R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
 
-  <me> \text{not} R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. </me>
+  <me> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. </me>
   Equivalently,
-  <me> \text{not} R: \exists x\in \R \text{ s.t. } x^2-x \not \in [0,\infty). </me>
+  <me> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x \not \in [0,\infty). </me>
   The benefit of the second version of not <m> R </m> above is that it avoids inequalities, which can make writing the negation easier because one is not tempted to just reverse every inequality without thinking. 
   </p> 
 
@@ -100,7 +108,8 @@
        <m> \text{not } P: \exists x\in \mathcal{S} </m> s.t. that thing about <m> x </m> doesn't happen. 
       </p>
   </assemblage>
-  
+  </p>
+  <p>
   If we're asked to decide whehter a statement is true or false and prove our claim, it is helpful to alert the reader of our proof to our strategy. Let's see a proof that <m> R </m> is false.
 
   <proof>
@@ -108,8 +117,12 @@
       We prove <m> R </m> false by proving its negation, which is <m> \exists x\in \R \text{ s.t. } x^2-x\lt 0 </m>, true. Let <m> x=0.5 </m>. We must show <m> x^2-x \lt 0 </m>. Since <m> x^2-x = -0.25 \lt 0, </m>, we have <m> x^2-x\lt 0 </m>, as desired.
     </p>
   </proof>
+  </p>
 
-  To prove a statement false, we will almost always try to prove its negation true. Only in rare instances in this course will we employ a different strategy. Let's see one more example. Consider the statement <m> T: \exists x\in \R </m> s.t. <m> x^2=-1 </m>. Is <m> T </m> true? If it were, we could produce a real number <m> x </m> whose square is a negative number. This is not possible, because <em> every </em> real number has a non-negative square. In this case, the negation of <m> T </m> is
+  <p>
+  To prove a statement false, we will almost always try to prove its negation true. Only in rare instances in this course will we employ a different strategy. Let's see one more example. Consider the statement 
+  <me> T: \exists x\in \R </m> \text{ s.t. } <m> x^2=-1. </me>
+   Is <m> T </m> true? If it were, we could produce a real number <m> x </m> whose square is a negative number. This is not possible, because <em> every </em> real number has a non-negative square. In this case, the negation of <m> T </m> is
   
   <me> \text{not } T: \forall x\in \R, x^2\neq -1. </me>
 
