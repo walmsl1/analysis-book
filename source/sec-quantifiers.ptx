@@ -121,7 +121,7 @@
 
   <p>
   To prove a statement false, we will almost always try to prove its negation true. Only in rare instances in this course will we employ a different strategy. Let's see one more example. Consider the statement 
-  <me> T: \exists x\in \R </m> \text{ s.t. } <m> x^2=-1. </me>
+  <me> T: \exists x\in \R  \text{ s.t. } x^2=-1. </me>
    Is <m> T </m> true? If it were, we could produce a real number <m> x </m> whose square is a negative number. This is not possible, because <em> every </em> real number has a non-negative square. In this case, the negation of <m> T </m> is
   
   <me> \text{not } T: \forall x\in \R, x^2\neq -1. </me>
