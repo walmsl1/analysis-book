@@ -89,7 +89,44 @@ window.MathJax = {
 <link href="_static/pretext/css/colors_default.css" rel="stylesheet" type="text/css">
 <link href="_static/pretext/css/setcolors.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="external/custom-styles.css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.5.6';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-runtime.82032a8574f6ce75.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-723.3e6434f80549315a.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-runestone.f6bda0c0ccce4835.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.5.6/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.5.6/prefix-runestone.6a985cbf816db5c7.css">
 <style>
+#rcE { counter-set: rcE 0; }
+#rcE > li::marker { content: ""counter(rcE,decimal)"."; }
+#rcE > li { counter-increment: rcE; }
+#sec_intro-intro-4-3-2-1 { counter-set: sec_intro-intro-4-3-2-1 0; }
+#sec_intro-intro-4-3-2-1 > li::marker { content: ""counter(sec_intro-intro-4-3-2-1,decimal)"."; }
+#sec_intro-intro-4-3-2-1 > li { counter-increment: sec_intro-intro-4-3-2-1; }
 </style>
 </head>
 <body id="analysisbook" class="pretext book ignore-math">
@@ -109,7 +146,7 @@ window.MathJax = {
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-continuity.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="ch_intro-6.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-continuity.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="ch_intro-9.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
 \newcommand{\N}{\mathbb N}
 \newcommand{\B}{\mathbf B}
 \newcommand{\Z}{\mathbb Z}
@@ -156,10 +193,16 @@ window.MathJax = {
 <li class="toc-item toc-chapter contains-active">
 <div class="toc-title-box"><a href="ch_intro.html" class="internal"><span class="codenumber">0</span> <span class="title">Introduction</span></a></div>
 <ul class="structural toc-item-list contains-active">
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-quantifiers.html" class="internal"><span class="codenumber">0.1</span> <span class="title">Quantifiers in Proofs</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-continuity.html" class="internal"><span class="codenumber">0.2</span> <span class="title">Continuity</span></a></div></li>
-<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-integration-intro.html" class="internal"><span class="codenumber">0.3</span> <span class="title">Integration</span></a></div></li>
-<li class="toc-item toc-references"><div class="toc-title-box"><a href="ch_intro-6.html" class="internal"><span class="codenumber">0</span> <span class="title">References and Suggested Readings</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-set_notation.html" class="internal"><span class="codenumber">0.1</span> <span class="title">Set Notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-quantifiers.html" class="internal"><span class="codenumber">0.2</span> <span class="title">Quantifiers in Proofs</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-1-2.html" class="internal"><span class="codenumber">0.3</span> <span class="title">Intervals</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-1-2.html#parsons-exercises" class="internal"><span class="codenumber">0.3</span> <span class="title">Parsons Problems</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec_intro-intro.html" class="internal"><span class="codenumber">0.4</span> <span class="title">Example Formatting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-continuity.html" class="internal"><span class="codenumber">0.5</span> <span class="title">Continuity</span></a></div></li>
+<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-integration-intro.html" class="internal"><span class="codenumber">0.6</span> <span class="title">Integration</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="ch_intro-9.html" class="internal"><span class="codenumber">0</span> <span class="title">References and Suggested Readings</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-backmatter">
@@ -173,11 +216,11 @@ window.MathJax = {
 </li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-integration-intro"><h2 class="heading hide-type">
-<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.3</span><span class="space"> </span><span class="title">Integration</span>
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.6</span><span class="space"> </span><span class="title">Integration</span>
 </h2>
 <div class="para" id="sec-integration-intro-2">Geometrically, a definite integral represents the area <span class="process-math">\(A\)</span> between a curve <span class="process-math">\(f\)</span> and the horizontal axis over an interval <span class="process-math">\([a,b]\text{.}\)</span>
 </div>
-<figure class="figure figure-like" id="integration_graph-figure"><iframe id="integration_graph-interactive" width="600" height="480" src="integration_graph-interactive-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.3.1<span class="period">.</span></span><span class="space"> </span>The area between the curve and the horizontal axis is the definite integral of <span class="process-math">\(f\)</span> over the interval <span class="process-math">\([a,b]\text{.}\)</span></figcaption></figure><div class="para logical" id="sec-integration-intro-4">
+<figure class="figure figure-like" id="integration_graph-figure"><iframe id="integration_graph-interactive" width="600" height="480" src="integration_graph-interactive-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.6.1<span class="period">.</span></span><span class="space"> </span>The area between the curve and the horizontal axis is the definite integral of <span class="process-math">\(f\)</span> over the interval <span class="process-math">\([a,b]\text{.}\)</span></figcaption></figure><div class="para logical" id="sec-integration-intro-4">
 <div class="para">To underestimate the area <span class="process-math">\(A\text{,}\)</span> we place rectangles below the curve by first creating a <em class="alert">partition</em> <span class="process-math">\(P\)</span> of the interval <span class="process-math">\([a,b]\)</span> as <span class="process-math">\(P=\{a=t_0 \lt t_1 \lt \cdots \lt t_n=b\}\text{.}\)</span> Each subinterval <span class="process-math">\([t_{i-1}, t_i]\)</span> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <span class="process-math">\(\inf\{f(x): x\in [t_{i-1}, t_i]\}\)</span> to be the rectangles height. If instead we take <span class="process-math">\(\sup \{f(x): x\in [t_{i-1}, t_i]\}\text{,}\)</span> we get a rectangle above the curve over that subinterval. Adding up the areas of each lower rectangle gives us a <em class="alert">lower sum</em> over the partition <span class="process-math">\(P\text{,}\)</span> which we denote by <span class="process-math">\(L(f,P)\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -230,13 +273,13 @@ U(f)=\inf\{U(f,P): P \text{ is any partition of } [a,b]\}.
 <div class="para"> The definition of being integrable was built upon intuitive geometric principles, but it is not the most practical definition to check; it requires computing both <span class="process-math">\(L(f)\)</span> and <span class="process-math">\(U(f)\)</span> exactly, which is typically a formidable task even for relatively tame functions, as we will see. Luckily, there is an easier to check <span class="process-math">\(\epsilon\)</span>-criterion at our disposal.</div>
 </div>
 <article class="theorem theorem-like" id="sec-integration-intro-6"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">0.3.2</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">0.6.2</span><span class="period">.</span>
 </h3>
 <div class="para" id="sec-integration-intro-6-1-1">A function <span class="process-math">\(f\)</span> is integrable on <span class="process-math">\([a,b]\)</span> if and only if for all <span class="process-math">\(\epsilon \ge 0\text{,}\)</span> there exists a partition <span class="process-math">\(P\)</span> such that <span class="process-math">\(U(f,P)-L(f,P) \lt \epsilon\text{.}\)</span>
 </div></article><div class="para" id="sec-integration-intro-7">Let’s put this theorem in action to see why discontinuous functions can still be integrable.</div>
-<figure class="figure figure-like" id="darboux_interactive"><iframe id="darboux-display" width="600" height="600" src="darboux-display-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.3.3<span class="period">.</span></span><span class="space"> </span>This is a Doenet activity.</figcaption></figure></section></div>
+<figure class="figure figure-like" id="darboux_interactive"><iframe id="darboux-display" width="600" height="600" src="darboux-display-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.6.3<span class="period">.</span></span><span class="space"> </span>This is a Doenet activity.</figcaption></figure></section></div>
 <div class="ptx-content-footer">
-<a class="previous-button button" href="sec-continuity.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="ch_intro-6.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="sec-continuity.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="ch_intro-9.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
