@@ -25,7 +25,7 @@ var ptx_lunr_docs = [
   "type": "Acknowledgements",
   "number": "",
   "title": "Acknowledgements",
-  "body": "We are grateful to Layton Borst, whose work througout Summer 2024 got this book up and running. "
+  "body": " We are grateful to Layton Borst, whose work througout Summer 2024 got this book up and running.  "
 },
 {
   "id": "xOf",
