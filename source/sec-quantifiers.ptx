@@ -21,8 +21,8 @@
   <p>
   While this proof might seem like too much effort to prove a simple statement, we will reap many benefits by developing some general proof principles in straightforward situations. First, we will use the overall structure of this existence proof for  almost every existence argument in this class. It is worth writing down a general ``proof outline" of an existence argument.
 
-  <assemblage permid="kYk">
-      <title>Proof Outline for Existence</title>
+  <assemblage>
+      <title>Proof Outline for "Existence" Proofs</title>
 
       <p permid="QJU">
         To prove: <m> \exists x \in \mathcal{S} </m> s.t. these things about <m> x</m> happen.
@@ -43,62 +43,90 @@
   </p>
 
   <p>
-  The other quantifier is "for all", whose shorthand is <m> \forall </m>. Let's see it in action by considering this new mathematical statement <m> Q </m>. 
-  <me> Q: \forall x\in (1,2), x^2-x>0, </me>
-  Is <m> Q </m> true? A quick look at the graphs of 
-  <image>
+    Let's look at another mathematical statement, <m> Q: </m> For all natural numbers <m> n </m>, <m> n^2\geq n </m>. Is  <m> Q </m> true? Checking a few cases makes it seem so, but if it is, we cannot simply check cases, as there are infinitely many natural numbers we would have to check. Thus proving a "for all" statement will require a new strategy. We will need an abstract argument, and the idea is to introduce a <em> variable </em>, like <m> n </m>, to stand in place for some arbitrary natural number. Then we can simply check the statement for that one arbitrary natural number <m> n </m>, but all we know about <m> n </m> is where it came from; we do not know its exact value, but we do know that it is some positive integer.
+  </p> 
+
+    <proof>
+  Let <m> n </m> be any natural number. We must show <m> n^2\geq n </m>. Since <m> n\geq 1 </m>, we know <m> n-1 \geq 0 </m>. Since both <m> n </m> and <m> n-1 </m> are non-negative, so is their product. Hence <m> n(n-1)\geq 0 </m>, which implies <m> n^2 - n\geq 0 </m>, which is equivalent to <m> n^2 \geq n </m>, as desired.
+   </proof>
+
+  <p> The mathematical shorthand for "for all" is <m> \forall </m>, which allows us to more concisely write <m> Q: \forall n\in \N, n^2\geq n.</m> The last example shows our general strategy for proving "for all" statements. 
+
+<assemblage>
+      <title>Proof Outline for "For All" Proofs</title>
+
+      <p permid="QJU">
+        To prove: <m> \forall x \in \mathcal{S} </m>, this thing about <m> x</m> happens.
+      </p>
+
+      <p>
+      <em> Proof outline. </em> Let <m> x\in \mathcal{S}. </m>  We must show this thing about <m> x </m> happens.
+      </p>
+      <p> <m> \vdots </m> </p>
+      <p> Thus these things about <m> x </m> happen, as desired. </p>
+  </assemblage>
+
+  While the proof outlines for existence and for all statements share many similarities, the philosophies are quite different. To prove existence, need only produce one element that exists with the requisite properties. To prove a for all statement, we have to show <em> every element </em> has the requisite properties. 
+
+  <title> Negations </title>
+  Consider the statement <m> R: \forall x\in \R, x^2-x\ge 0 </m>. Equivalently, we could write <m> R: \forall x\in \R, x^2-x\in [0,\infty).</m> Is <m> R </m> true? A quick look at the graph of <m> x^2-x </m> will convince us that <m> R </m> is false.
+  <image width=2in>
       <latex-image>
   \begin{tikzpicture}
-  \begin{axis}[grid=both, axis lines = middle, height = 1.5in, width = 1.5in, xmin=-3,xmax=3,ymin=-2,ymax=10,xlabel={\large{$x$}}, ylabel={\large{$y$}}, xtick={-6,-5,...,7}, ytick={-4,-3,...,10}, minor tick num =0, samples=101]
-  \addplot[domain=-5:5,black]{x^2};
-  \addplot[domain=-5:5,blue]{(x-1)^2};
+  \begin{axis}[grid=both, axis lines = middle, height = 3.5in, width = 3.5in, xmin=-3,xmax=3,ymin=-2,ymax=10,xlabel={\large{$x$}}, ylabel={\large{$y$}}, xtick={-6,-5,...,7}, ytick={-4,-3,...,10}, minor tick num =0, samples=101]
+  \addplot[domain=-5:5,black]{x^2-x};
   \end{axis}
   \end{tikzpicture}
         </latex-image>
   </image>
-  
-  
-  
-  Let's change the <m> \exists </m> above into a <m> \forall </m> and consider what happens in the following statement.
-  <me> Q: \forall x\in \R, x^2-x>0. </me>
-  or equivalently,
-  <me> Q: \forall x\in \R, x^2-x\in (0,\infty). </me>
-  The <alert> negation </alert> of a mathematical statement <m> P </m> is a new statment, which we will denote by 
-  <m> \text{not} P </m>, whose truth value is opposite that of <m> P </m>. 
-   A mathematical <alert> proof </alert> is a logical argument to convince the reader that a mathematical statement is true or false. 
-  </p>
+  It is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m> because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The negation of a mathemical statement <m> R </m>  is the mathematical statement, labeled <m> \text{not} R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
 
- <p> Consider the statement
+  <me> \text{not} R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. </me>
+  Equivalently,
+  <me> \text{not} R: \exists x\in \R \text{ s.t. } x^2-x \not \in [0,\infty). </me>
+  The benefit of the second version of not <m> R </m> above is that it avoids inequalities, which can make writing the negation easier because one is not tempted to just reverse every inequality without thinking. 
+  </p> 
 
- </p>
- <proof>
-  <p> This is a proof in a proof block. What does it look like? </p>
-  <p> Trying out line break. </p>
-  <p> To see if it works. </p>
- </proof>
+  <p> Please notice the important fact that the negation of a "for all" statement is a "there exists" statement. This is worth remembering.
 
- <proof permid="qGS">
-      <p permid="saG">
-        Suppose this were not the case.
-        That is, suppose there are only finitely many primes.
-        Then there must be a last, largest prime, call it <m>p</m>.
-        Consider the number
-        <me permid="JIL">
-          N = p! + 1 = (p \cdot (p-1) \cdot \cdots 3\cdot 2 \cdot 1) + 1
-        </me>.
+  <assemblage>
+      <title>Negation of "For All" Statements</title>
+
+      <p permid="QJU">
+        <m> P: \forall x \in \mathcal{S} </m>, this thing about <m> x</m> happens.
       </p>
 
-      <p permid="YhP">
-        Now <m>N</m> is certainly larger than <m>p</m>.
-        Also, <m>N</m> is not divisible by any number less than or equal to <m>p</m>,
-        since every number less than or equal to <m>p</m> divides <m>p!</m>.
-        Thus the prime factorization of <m>N</m> contains prime numbers
-        (possibly just <m>N</m> itself)
-        all greater than <m>p</m>.
-        So <m>p</m> is not the largest prime, a contradiction.
-        Therefore there are infinitely many primes.
+      <p>
+       <m> \text{not } P: \exists x\in \mathcal{S} </m> s.t. that thing about <m> x </m> doesn't happen. 
       </p>
-    </proof>
+  </assemblage>
+  
+  If we're asked to decide whehter a statement is true or false and prove our claim, it is helpful to alert the reader of our proof to our strategy. Let's see a proof that <m> R </m> is false.
 
-    Look, here's the deal.
+  <proof>
+    <p>
+      We prove <R> false by proving its negation, which is <m> \exists x\in \R \text{ s.t. } x^2-x\lt 0 </m>, true. Let <m> x=0.5 </m>. We must show <m> x^2-x \lt 0 </m>. Since <m> x^2-x = -0.25 \lt 0, </m>, we have <m> x^2-x\lt 0 </m>, as desired.
+    </p>
+  </proof>
+
+  To prove a statement false, we will almost always try to prove its negation true. Only in rare instances in this course will we employ a different strategy. Let's see one more example. Consider the statement <m> T: \exists x\in \R </m> s.t. <m> x^2=-1 </m>. Is <m> T </m> true? If it were, we could produce a real number <m> x </m> whose square is a negative number. This is not possible, because <em> every </em> real number has a non-negative square. In this case, the negation of <m> T </m> is
+  
+  <me> \text{not } T: \forall x\in \R, x^2\neq -1. </me>
+
+  This example highlights the fact that the negation of a "for all" statement is a "there exists" statement, a fact worth remembering.
+
+  <assemblage>
+      <title>Negation of "There Exists" Statements</title>
+
+      <p permid="QJU">
+        <m> P: \exists x \in \mathcal{S} </m> s.t. this thing about <m> x</m> happens.
+      </p>
+
+      <p>
+       <m> \text{not } P: \forall x\in \mathcal{S} </m>,  that thing about <m> x </m> doesn't happen. 
+      </p>
+  </assemblage>
+  
+  
+  
 </section>
