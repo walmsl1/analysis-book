@@ -70,7 +70,7 @@
 
   <title> Negations </title>
   Consider the statement <m> R: \forall x\in \R, x^2-x\ge 0 </m>. Equivalently, we could write <m> R: \forall x\in \R, x^2-x\in [0,\infty).</m> Is <m> R </m> true? A quick look at the graph of <m> x^2-x </m> will convince us that <m> R </m> is false.
-  <image width=2in>
+  <image width="50%">
       <latex-image>
   \begin{tikzpicture}
   \begin{axis}[grid=both, axis lines = middle, height = 3.5in, width = 3.5in, xmin=-3,xmax=3,ymin=-2,ymax=10,xlabel={\large{$x$}}, ylabel={\large{$y$}}, xtick={-6,-5,...,7}, ytick={-4,-3,...,10}, minor tick num =0, samples=101]
@@ -105,7 +105,7 @@
 
   <proof>
     <p>
-      We prove <R> false by proving its negation, which is <m> \exists x\in \R \text{ s.t. } x^2-x\lt 0 </m>, true. Let <m> x=0.5 </m>. We must show <m> x^2-x \lt 0 </m>. Since <m> x^2-x = -0.25 \lt 0, </m>, we have <m> x^2-x\lt 0 </m>, as desired.
+      We prove <m> R </m> false by proving its negation, which is <m> \exists x\in \R \text{ s.t. } x^2-x\lt 0 </m>, true. Let <m> x=0.5 </m>. We must show <m> x^2-x \lt 0 </m>. Since <m> x^2-x = -0.25 \lt 0, </m>, we have <m> x^2-x\lt 0 </m>, as desired.
     </p>
   </proof>
 
@@ -126,7 +126,7 @@
        <m> \text{not } P: \forall x\in \mathcal{S} </m>,  that thing about <m> x </m> doesn't happen. 
       </p>
   </assemblage>
-  
+  </p>
   
   
 </section>
