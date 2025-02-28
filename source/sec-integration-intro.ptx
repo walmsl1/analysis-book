@@ -4,7 +4,7 @@
   <title>Integration</title>
 
   <p> 
-    Geometrically, a definite integral represents the area <m>A</m> between a curve <m>f</m> and the horizontal axis over an interval <m>[a,b]</m>. 
+    As we learned in Calculus, a definite integral geometrically represents the area <m>A</m> between a curve <m>f</m> and the horizontal axis over an interval <m>[a,b]</m>. 
   </p>
 
 <!-- <image>
@@ -31,6 +31,36 @@
   </figure>
 
   <p>
+    If the function is a straight line, then the shape is a polygon whose area we can compute exactly. But when the function is curvy, how do we define the area? The idea is to rectangles, whose areas are easily computed, to approximate the true area under the curve. In Calculus I, the most common rectangle sums are the left and right hand Riemann sums. Those sums are useful because they are easy to draw and compute; we can tell a computer (human or machine) a simple algorithm to follow. But how good of an approximation is a left or right hand sum? If some of the rectangles are above the curve while others are below, this is a challenging question to answer. To develop the theory of integration, we will want to know without question whether a rectangle sum is an underestimate or overestimate. 
+    
+    The way to guarantee this is to always stick rectangles below the curve for underestimates and above the curve for overesitmates. Consider a subinterval <m> [t_{i-1}, t_{i}] </m> of <m> [a,b] </m>. The quantity 
+    <me> m(f,[t_{i-1},t_{i}]):= \inf\{f(x): x\in [t_{i-1},t_{i}]\} </me>
+     is the greatest lower bound of all the function values <m> f(x) </m> for <m>x\in [t_{i-1},t_{i}] </m>, i.e. 
+    <me> \forall x\in  [t_{i-1},t_{i}], f(x)\leq m(f,[t_{i-1},t_{i}]).</me>
+    Thus if we make a rectangle with height <m> m(f,[t_{i-1},t_{i}]) </m> over the subinterval <m> [t_{i-1},t_{i}] </m>, that rectangles area, which is simply
+    <me> m(f,[t_{i-1},t_{i}]) (t_{i}-t_{i-1}), </me>
+    will be an underestimate of the true area under the curve on that subinterval. We then break up the entire interval <m> [a,b] </m> into smaller intervals using what's called a  <alert>partition</alert> 
+    <m>P</m> of the interval: a partition of <m>[a,b]</m> is a finite set of striclty increasing numbers <m>P=\{t_0,t_1,\ldots, t_n\} </m> such that <m> t_0=a </m> and <m> t_n=b </m>. Then on each subinterval <m> [t_{i-1},t_{i}] </m>, we produce a lower estimate as described above, then add together all the "lower rectangles" areas to arrive at an underestimate for the true area over the whole interval, called a <alert> lower sum </alert> of <m> f </m> over <m> [a,b] </m>:
+
+    <me>L(f,P) =\sum_{i=1}^n \inf\{f(x): x\in [t_{i-1}, t_{i}]\} (t_{i-1}-t_{i-1}).</me>
+
+    For overestimates, we use sups instead of infs, and with the notation <m> M(f,[t_{i-1},t_{i}])=\sup\{f(x): x\in [t_{i-1},t_{i}]\}</m>, the <alert> upper sum </alert> of <m> f </m> over <m> [a,b] </m> is
+
+    <me> U(f,P) =\sum_{i=1}^n \sup\{f(x): x\in [t_{i1}, t_{=+1}]\} (t_{i-1}-t_{i-1}),</me>
+
+    <figure xml:id="integration_graph-figure2">
+    <caption>The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.</caption>
+    <interactive xml:id="integration_graph-interactive2" platform="doenetml" width="100%" aspect="1:0.8">
+      <slate surface="doenetml">
+        <xi:include href="doenet/integration_graph_2.doenet" parse="text"/>
+      </slate>
+    </interactive>
+  </figure>
+  </p>
+    
+    <p>
+    Since each lower sum is an underestimate of the true area, the supremum of all lower sums, called <alert> lower integral </alert> of <m> f </m> over <m>[a,b]</m>, will give us the "best underestimate"; in notation,
+    <me> L(f)=\sup\{L(f,P): P \text{is any partition of } [a,b]\}. </me>
     To underestimate the area <m>A</m>, we place rectangles below the curve by first creating a <alert>partition</alert> 
     <m>P</m> of the interval <m>[a,b]</m> as <m>P=\{a=t_0 \lt t_1 \lt \cdots \lt t_n=b\}</m>. Each subinterval <m>[t_{i-1}, t_i]</m> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <m>\inf\{f(x): x\in [t_{i-1}, t_i]\}</m> to be the rectangles height. If instead we take <m>\sup \{f(x): x\in [t_{i-1}, t_i]\}</m>, we get a rectangle above the curve over that subinterval.
 

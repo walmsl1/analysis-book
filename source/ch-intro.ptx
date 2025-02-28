@@ -14,7 +14,7 @@
   <!-- <xi:include href="sec-testing.ptx"/>-->
   <!--<xi:include href="sec-example_format.ptx"/>-->
   <!--<xi:include href="sec-continuity.ptx"/>-->
-  <!--<xi:include href="sec-integration-intro.ptx"/>-->
+  <xi:include href="sec-integration-intro.ptx"/>
 
   <references>
     <title>References and Suggested Readings</title>
