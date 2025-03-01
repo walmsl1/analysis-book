@@ -4,8 +4,8 @@ A discontinuous function is graphed below. Create a partition where the upper su
 <setup>
   <!-- Integrand -->
     <piecewiseFunction name="f" symbolic="false" styleNumber="5">
-    <function domain="(-infinity,4)">0.5*x+1</function>
-    <function domain="[4,infinity)">8-x</function>
+    <function domain="(-infinity,4)">1.3</function>
+    <function domain="[4,infinity)">4.7</function>
   </piecewiseFunction>
 
   <!-- Number of boxes of integration -->
