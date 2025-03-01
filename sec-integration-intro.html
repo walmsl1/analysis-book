@@ -89,44 +89,7 @@ window.MathJax = {
 <link href="_static/pretext/css/colors_default.css" rel="stylesheet" type="text/css">
 <link href="_static/pretext/css/setcolors.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="external/custom-styles.css">
-<!--** eBookCongig is necessary to configure interactive       **-->
-<!--** Runestone components to run locally in reader's browser **-->
-<!--** No external communication:                              **-->
-<!--**     log level is 0, Runestone Services are disabled     **-->
-<script type="text/javascript">
-eBookConfig = {};
-eBookConfig.useRunestoneServices = false;
-eBookConfig.host = 'http://127.0.0.1:8000';
-eBookConfig.course = 'PTX_Course_Title_Here';
-eBookConfig.basecourse = 'PTX_Base_Course';
-eBookConfig.isLoggedIn = false;
-eBookConfig.email = '';
-eBookConfig.isInstructor = false;
-eBookConfig.logLevel = 0;
-eBookConfig.username = '';
-eBookConfig.readings = null;
-eBookConfig.activities = null;
-eBookConfig.downloadsEnabled = false;
-eBookConfig.allow_pairs = false;
-eBookConfig.enableScratchAC = false;
-eBookConfig.build_info = "";
-eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.5.6';
-eBookConfig.jobehost = '';
-eBookConfig.proxyuri_runs = '';
-eBookConfig.proxyuri_files = '';
-eBookConfig.enable_chatcodes =  false;
-</script>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-runtime.82032a8574f6ce75.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-723.3e6434f80549315a.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-runestone.f6bda0c0ccce4835.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.5.6/prefix-723.3bccd435914aa0ff.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.5.6/prefix-runestone.6a985cbf816db5c7.css">
 <style>
-#rcE { counter-set: rcE 0; }
-#rcE > li::marker { content: ""counter(rcE,decimal)"."; }
-#rcE > li { counter-increment: rcE; }
-#sec_intro-intro-4-3-2-1 { counter-set: sec_intro-intro-4-3-2-1 0; }
-#sec_intro-intro-4-3-2-1 > li::marker { content: ""counter(sec_intro-intro-4-3-2-1,decimal)"."; }
-#sec_intro-intro-4-3-2-1 > li { counter-increment: sec_intro-intro-4-3-2-1; }
 </style>
 </head>
 <body id="analysisbook" class="pretext book ignore-math">
@@ -146,7 +109,7 @@ eBookConfig.enable_chatcodes =  false;
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-continuity.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="ch_intro-9.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-quantifiers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="ch_intro-5.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
 \newcommand{\N}{\mathbb N}
 \newcommand{\B}{\mathbf B}
 \newcommand{\Z}{\mathbb Z}
@@ -193,16 +156,9 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-chapter contains-active">
 <div class="toc-title-box"><a href="ch_intro.html" class="internal"><span class="codenumber">0</span> <span class="title">Introduction</span></a></div>
 <ul class="structural toc-item-list contains-active">
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-set_notation.html" class="internal"><span class="codenumber">0.1</span> <span class="title">Set Notation</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-quantifiers.html" class="internal"><span class="codenumber">0.2</span> <span class="title">Quantifiers in Proofs</span></a></div></li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec-1-2.html" class="internal"><span class="codenumber">0.3</span> <span class="title">Intervals</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-1-2.html#parsons-exercises" class="internal"><span class="codenumber">0.3</span> <span class="title">Parsons Problems</span></a></div></li></ul>
-</li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec_intro-intro.html" class="internal"><span class="codenumber">0.4</span> <span class="title">Example Formatting</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-continuity.html" class="internal"><span class="codenumber">0.5</span> <span class="title">Continuity</span></a></div></li>
-<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-integration-intro.html" class="internal"><span class="codenumber">0.6</span> <span class="title">Integration</span></a></div></li>
-<li class="toc-item toc-references"><div class="toc-title-box"><a href="ch_intro-9.html" class="internal"><span class="codenumber">0</span> <span class="title">References and Suggested Readings</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-quantifiers.html" class="internal"><span class="codenumber">0.1</span> <span class="title">Quantifiers in Proofs</span></a></div></li>
+<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-integration-intro.html" class="internal"><span class="codenumber">0.2</span> <span class="title">Integration</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="ch_intro-5.html" class="internal"><span class="codenumber">0</span> <span class="title">References and Suggested Readings</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-backmatter">
@@ -216,70 +172,72 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-integration-intro"><h2 class="heading hide-type">
-<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.6</span><span class="space"> </span><span class="title">Integration</span>
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.2</span><span class="space"> </span><span class="title">Integration</span>
 </h2>
-<div class="para" id="sec-integration-intro-2">Geometrically, a definite integral represents the area <span class="process-math">\(A\)</span> between a curve <span class="process-math">\(f\)</span> and the horizontal axis over an interval <span class="process-math">\([a,b]\text{.}\)</span>
+<div class="para" id="sec-integration-intro-2">As we learned in Calculus, a definite integral geometrically represents the area <span class="process-math">\(A\)</span> between a curve <span class="process-math">\(f\)</span> and the horizontal axis over an interval <span class="process-math">\([a,b]\text{.}\)</span>
 </div>
-<figure class="figure figure-like" id="integration_graph-figure"><iframe id="integration_graph-interactive" width="600" height="480" src="integration_graph-interactive-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.6.1<span class="period">.</span></span><span class="space"> </span>The area between the curve and the horizontal axis is the definite integral of <span class="process-math">\(f\)</span> over the interval <span class="process-math">\([a,b]\text{.}\)</span></figcaption></figure><div class="para logical" id="sec-integration-intro-4">
-<div class="para">To underestimate the area <span class="process-math">\(A\text{,}\)</span> we place rectangles below the curve by first creating a <em class="alert">partition</em> <span class="process-math">\(P\)</span> of the interval <span class="process-math">\([a,b]\)</span> as <span class="process-math">\(P=\{a=t_0 \lt t_1 \lt \cdots \lt t_n=b\}\text{.}\)</span> Each subinterval <span class="process-math">\([t_{i-1}, t_i]\)</span> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <span class="process-math">\(\inf\{f(x): x\in [t_{i-1}, t_i]\}\)</span> to be the rectangles height. If instead we take <span class="process-math">\(\sup \{f(x): x\in [t_{i-1}, t_i]\}\text{,}\)</span> we get a rectangle above the curve over that subinterval. Adding up the areas of each lower rectangle gives us a <em class="alert">lower sum</em> over the partition <span class="process-math">\(P\text{,}\)</span> which we denote by <span class="process-math">\(L(f,P)\text{.}\)</span>
+<figure class="figure figure-like" id="integration_graph-figure"><iframe id="integration_graph-interactive" width="600" height="480" src="integration_graph-interactive-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.2.1<span class="period">.</span></span><span class="space"> </span>The area between the curve and the horizontal axis is the definite integral of <span class="process-math">\(f\)</span> over the interval <span class="process-math">\([a,b]\text{.}\)</span></figcaption></figure><div class="para" id="sec-integration-intro-4">If the function is a straight line, then the shape is a polygon whose area we can compute exactly. But when the function is curvy, how do we define the area? The idea is to rectangles, whose areas are easily computed, to approximate the true area under the curve. In Calculus I, the most common rectangle sums are the left and right hand Riemann sums. Those sums are useful because they are easy to draw and compute; we can tell a computer (human or machine) a simple algorithm to follow. But how good of an approximation is a left or right hand sum? If some of the rectangles are above the curve while others are below, this is a challenging question to answer. To develop the theory of integration, we will want to know without question whether a rectangle sum is an underestimate or overestimate. The way to guarantee this is to always stick rectangles below the curve for underestimates and above the curve for overesitmates, as in the graphic below. <figure class="figure figure-like" id="integration_graph-figure2"><iframe id="integration_graph-interactive2" width="600" height="480" src="integration_graph-interactive2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.2.2<span class="period">.</span></span><span class="space"> </span>The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.</figcaption></figure>
+</div>
+<div class="para logical" id="sec-integration-intro-5">
+<div class="para">The set of subdivision points <span class="process-math">\(P=\{t_0,t_1,\ldots,t_n\}\)</span> form what’s called a <dfn class="terminology">partition</dfn> of <span class="process-math">\([a,b] \)</span> - a finite set of strictly increasing values starting at <span class="process-math">\(t_0=a \)</span> and ending with <span class="process-math">\(t_n=b \text{.}\)</span> On a given subinterval <span class="process-math">\([t_{i-1}, t_{i}] \text{,}\)</span> the height of the "lower rectangle" is given by</div>
+<div class="displaymath process-math">
+\begin{equation*}
+m(f,[t_{i-1},t_{i}]):= \inf\{f(x): x\in [t_{i-1},t_{i}]\}, 
+\end{equation*}
+</div>
+<div class="para">since this value is guaranteed to be less than or equal to any other <span class="process-math">\(y \)</span>-value of the function on that subinterval. Hence the area of an individual "lower rectangle" is just</div>
+<div class="displaymath process-math">
+\begin{equation*}
+m(f,[t_{i-1},t_{i}]) (t_{i}-t_{i-1}), 
+\end{equation*}
+</div>
+<div class="para">and if we sum the areas of each, we get the <dfn class="terminology">lower sum</dfn> for <span class="process-math">\(f \)</span> over <span class="process-math">\(P \text{:}\)</span>
 </div>
 <div class="displaymath process-math">
 \begin{equation*}
-L(f,P) =\sum_{i=1}^n \inf\{f(x): x\in [t_{i-1}, t_i]\} (t_i-t_{i-1}).
+L(f,P) =\sum_{i=1}^n m(f,[t_{i-1},t_{i}]) (t_{i-1}-t_{i-1}).
 \end{equation*}
 </div>
-<div class="para">Any lower sum is an underestimate of the true area <span class="process-math">\(A\text{,}\)</span> so the supremum of all possible lower estimates gives us a sort of "best underestimate" of <span class="process-math">\(A\text{,}\)</span> and we call it the <em class="alert">lower integral</em> of <span class="process-math">\(f\)</span> over <span class="process-math">\([a,b]\text{:}\)</span>
+<div class="para">Now each lower sum is an underestimate for the true area, so the <em class="alert">supremum</em> of all possible lower sums will give us a "best underestimate" for the area; we call this the <dfn class="terminology">lower integral</dfn> of <span class="process-math">\(f \)</span> over <span class="process-math">\(P \text{:}\)</span>
 </div>
 <div class="displaymath process-math">
 \begin{equation*}
 L(f)=\sup\{L(f,P): P \text{ is any partition of } [a,b]\}. 
 \end{equation*}
 </div>
-<div class="para">Whatever the area <span class="process-math">\(A\)</span> is, the geometric intuition is that</div>
+</div>
+<div class="para logical" id="sec-integration-intro-6">
+<div class="para">Similarly, we take <span class="process-math">\(M(f,[t_{i-1},t_k]):=\sup \{f(x): x\in [t_{i-1},t_{i}]\} \)</span> for the heights of the "upper rectangles", and get the <dfn class="terminology">upper sum</dfn>
+</div>
 <div class="displaymath process-math">
 \begin{equation*}
-L(f)\leq A.
+U(f,P) =\sum_{i=1}^n M(f,[t_{i-1},t_k]) (t_{i-1}-t_{i-1}).
 \end{equation*}
 </div>
-<div class="para">Similarly, the <em class="alert">upper sum</em> over <span class="process-math">\(P\)</span> is given by</div>
-<div class="displaymath process-math">
-\begin{equation*}
-U(f,P) =\sum_{i=1}^n \sup\{f(x): x\in [t_{i-1}, t_i]\} (t_i-t_{i-1}),
-\end{equation*}
-</div>
-<div class="para">and the infimum over all possible upper sums gives us a ``best overestimate" of <span class="process-math">\(A\text{,}\)</span> called the <em class="alert">upper integral</em> of <span class="process-math">\(f\)</span> over <span class="process-math">\([a,b]\text{:}\)</span>
+<div class="para">Each upper sum is an overestimate for the true area, so the <em class="alert">infimum</em> of all possible upper sums will give us a "best overestimate" for the area; we call this the <dfn class="terminology">upper integral</dfn>  of <span class="process-math">\(f \)</span> over <span class="process-math">\(P \text{:}\)</span>
 </div>
 <div class="displaymath process-math">
 \begin{equation*}
 U(f)=\inf\{U(f,P): P \text{ is any partition of } [a,b]\}.
 \end{equation*}
 </div>
+<div class="para">As we will see in class, there are functions whose upper and lower integrals can differ! If the upper and lower integrals of <span class="process-math">\(f \)</span> are the same, we say that <span class="process-math">\(f \)</span> is <dfn class="terminology">integrable</dfn> over <span class="process-math">\([a,b] \text{,}\)</span> and in this case, we introduce the following notation to represent the value of <span class="process-math">\(U(f) \)</span> and <span class="process-math">\(L(f) \text{;}\)</span>
 </div>
-<div class="para logical" id="sec-integration-intro-5">
-<div class="para">Geometrically, we suspect <span class="process-math">\(A\leq U(f)\text{,}\)</span> and so we should have <span class="process-math">\(L(f)\leq A \leq U(f)\text{.}\)</span> When <span class="process-math">\(L(f)=U(f)\text{,}\)</span> we say that <span class="process-math">\(f\)</span> is <em class="alert">integrable</em> over <span class="process-math">\([a,b]\text{,}\)</span> and we define its area under the curve as <span class="process-math">\(L(f)\)</span> (or <span class="process-math">\(U(f)\text{,}\)</span> since they are equal), and we write</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\int f =\int_a^b f(x)\, dx = L(f)=U(f).
+\displaystyle \int_a^b f := \int_a^b f(x)\, dx :=U(f)=L(f). 
 \end{equation*}
 </div>
-<div class="para">You may find it surprising that there are functions <span class="process-math">\(f\)</span> for which <span class="process-math">\(L(f) \lt U(f)\text{,}\)</span> which is to say not every function is integrable. But fear not; we will show that every continuous function is integrable, ensuring that everything you did in Calculus was not for naught! It is worth checking that <span class="process-math">\(L(f)\)</span> is in fact no greater than <span class="process-math">\(U(f)\text{,}\)</span> and this fact follows from checking several details which themselves follow from our groundwork in sups and infs. We will leave the details of the following facts to the exercises. </div>
-<ul class="disc" id="sec-integration-intro-5-14">
-<li id="sec-integration-intro-5-14-1"><div class="para" id="p-derived-sec-integration-intro-5-14-1">If <span class="process-math">\(P\)</span> and <span class="process-math">\(Q\)</span> are partitions of <span class="process-math">\([a,b]\)</span> and <span class="process-math">\(P\subseteq Q\text{,}\)</span> then <span class="process-math">\(L(f,P)\leq L(f,Q)\leq U(f,Q)\leq U(f,P)\text{.}\)</span>
-</div></li>
-<li id="sec-integration-intro-5-14-2"><div class="para" id="p-derived-sec-integration-intro-5-14-2">For any partitions <span class="process-math">\(P\)</span> and <span class="process-math">\(Q\)</span> of <span class="process-math">\([a,b]\text{,}\)</span> <span class="process-math">\(L(f,P)\leq U(f,Q)\text{.}\)</span>
-</div></li>
-<li id="sec-integration-intro-5-14-3"><div class="para" id="p-derived-sec-integration-intro-5-14-3"><span class="process-math">\(L(f)\leq U(f)\text{.}\)</span></div></li>
-</ul>
-<div class="para"> The definition of being integrable was built upon intuitive geometric principles, but it is not the most practical definition to check; it requires computing both <span class="process-math">\(L(f)\)</span> and <span class="process-math">\(U(f)\)</span> exactly, which is typically a formidable task even for relatively tame functions, as we will see. Luckily, there is an easier to check <span class="process-math">\(\epsilon\)</span>-criterion at our disposal.</div>
 </div>
-<article class="theorem theorem-like" id="sec-integration-intro-6"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">0.6.2</span><span class="period">.</span>
+<div class="para" id="sec-integration-intro-7">Apparently not every function is integrable (as we shall see in class), so which functions are integrable? Can we classify them? As a start towards answering this question, we could use an easier to check criterion for integrability. Right now, given some function <span class="process-math">\(f \text{,}\)</span> we would have to compute its upper and lower integrals, which can be a formidable task (without more powerful integration tools) even for a tame function like <span class="process-math">\(f(x)=e^x \text{.}\)</span> Luckily, there is a criterion we can use to more easily check when a function is integrable; we will not prove this result. <article class="theorem theorem-like" id="sec-integration-intro-7-3"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">0.2.3</span><span class="period">.</span>
 </h3>
-<div class="para" id="sec-integration-intro-6-1-1">A function <span class="process-math">\(f\)</span> is integrable on <span class="process-math">\([a,b]\)</span> if and only if for all <span class="process-math">\(\epsilon \ge 0\text{,}\)</span> there exists a partition <span class="process-math">\(P\)</span> such that <span class="process-math">\(U(f,P)-L(f,P) \lt \epsilon\text{.}\)</span>
-</div></article><div class="para" id="sec-integration-intro-7">Let’s put this theorem in action to see why discontinuous functions can still be integrable.</div>
-<figure class="figure figure-like" id="darboux_interactive"><iframe id="darboux-display" width="600" height="600" src="darboux-display-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.6.3<span class="period">.</span></span><span class="space"> </span>This is a Doenet activity.</figcaption></figure></section></div>
+<div class="para" id="sec-integration-intro-7-3-1-1">A function <span class="process-math">\(f\)</span> is integrable on <span class="process-math">\([a,b]\)</span> if and only if for all <span class="process-math">\(\epsilon \gt 0\text{,}\)</span> there exists a partition <span class="process-math">\(P\)</span> such that <span class="process-math">\(U(f,P)-L(f,P) \lt \epsilon\text{.}\)</span>
+</div></article> The benefit of the above theorem is that we need only find one partition <span class="process-math">\(P \)</span> on which the upper <em class="alert">sum</em> and lower <em class="alert">sum</em> are close. The downside is that checking that <span class="process-math">\(\epsilon \)</span> condition won’t tell us what the value of the integral is, even though we will then know the function is integrable!</div>
+<div class="para" id="sec-integration-intro-8">Let’s put this theorem in action to see why discontinuous functions can still be integrable.</div>
+<figure class="figure figure-like" id="darboux_interactive"><iframe id="darboux-display" width="600" height="600" src="darboux-display-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.2.4<span class="period">.</span></span><span class="space"> </span>This is a Doenet activity.</figcaption></figure></section></div>
 <div class="ptx-content-footer">
-<a class="previous-button button" href="sec-continuity.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="ch_intro-9.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="sec-quantifiers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="ch_intro-5.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">

@@ -73,9 +73,72 @@ var ptx_lunr_docs = [
   "body": " We prove false by proving its negation, which is , true. Let . We must show . Since , we have , as desired.  "
 },
 {
-  "id": "ch_intro-4",
+  "id": "sec-integration-intro",
   "level": "1",
-  "url": "ch_intro-4.html",
+  "url": "sec-integration-intro.html",
+  "type": "Section",
+  "number": "0.2",
+  "title": "Integration",
+  "body": " Integration  As we learned in Calculus, a definite integral geometrically represents the area between a curve and the horizontal axis over an interval .    The area between the curve and the horizontal axis is the definite integral of over the interval .    If the function is a straight line, then the shape is a polygon whose area we can compute exactly. But when the function is curvy, how do we define the area? The idea is to rectangles, whose areas are easily computed, to approximate the true area under the curve. In Calculus I, the most common rectangle sums are the left and right hand Riemann sums. Those sums are useful because they are easy to draw and compute; we can tell a computer (human or machine) a simple algorithm to follow. But how good of an approximation is a left or right hand sum? If some of the rectangles are above the curve while others are below, this is a challenging question to answer. To develop the theory of integration, we will want to know without question whether a rectangle sum is an underestimate or overestimate. The way to guarantee this is to always stick rectangles below the curve for underestimates and above the curve for overesitmates, as in the graphic below.  The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.     The set of subdivision points form what's called a partition of - a finite set of strictly increasing values starting at and ending with . On a given subinterval , the height of the \"lower rectangle\" is given by since this value is guaranteed to be less than or equal to any other -value of the function on that subinterval. Hence the area of an individual \"lower rectangle\" is just and if we sum the areas of each, we get the lower sum for over : Now each lower sum is an underestimate for the true area, so the supremum of all possible lower sums will give us a \"best underestimate\" for the area; we call this the lower integral of over :   Similarly, we take for the heights of the \"upper rectangles\", and get the upper sum  Each upper sum is an overestimate for the true area, so the infimum of all possible upper sums will give us a \"best overestimate\" for the area; we call this the upper integral of over : As we will see in class, there are functions whose upper and lower integrals can differ! If the upper and lower integrals of are the same, we say that is integrable over , and in this case, we introduce the following notation to represent the value of and ;   Apparently not every function is integrable (as we shall see in class), so which functions are integrable? Can we classify them? As a start towards answering this question, we could use an easier to check criterion for integrability. Right now, given some function , we would have to compute its upper and lower integrals, which can be a formidable task (without more powerful integration tools) even for a tame function like . Luckily, there is a criterion we can use to more easily check when a function is integrable; we will not prove this result.   A function is integrable on if and only if for all , there exists a partition such that .   The benefit of the above theorem is that we need only find one partition on which the upper sum and lower sum are close. The downside is that checking that condition won't tell us what the value of the integral is, even though we will then know the function is integrable!  Let's put this theorem in action to see why discontinuous functions can still be integrable.   This is a Doenet activity.    "
+},
+{
+  "id": "integration_graph-figure",
+  "level": "2",
+  "url": "sec-integration-intro.html#integration_graph-figure",
+  "type": "Figure",
+  "number": "0.2.1",
+  "title": "",
+  "body": " The area between the curve and the horizontal axis is the definite integral of over the interval .   "
+},
+{
+  "id": "integration_graph-figure2",
+  "level": "2",
+  "url": "sec-integration-intro.html#integration_graph-figure2",
+  "type": "Figure",
+  "number": "0.2.2",
+  "title": "",
+  "body": " The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.   "
+},
+{
+  "id": "sec-integration-intro-5",
+  "level": "2",
+  "url": "sec-integration-intro.html#sec-integration-intro-5",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "partition lower sum lower integral "
+},
+{
+  "id": "sec-integration-intro-6",
+  "level": "2",
+  "url": "sec-integration-intro.html#sec-integration-intro-6",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "upper sum upper integral integrable "
+},
+{
+  "id": "sec-integration-intro-7-3",
+  "level": "2",
+  "url": "sec-integration-intro.html#sec-integration-intro-7-3",
+  "type": "Theorem",
+  "number": "0.2.3",
+  "title": "",
+  "body": "  A function is integrable on if and only if for all , there exists a partition such that .   "
+},
+{
+  "id": "darboux_interactive",
+  "level": "2",
+  "url": "sec-integration-intro.html#darboux_interactive",
+  "type": "Figure",
+  "number": "0.2.4",
+  "title": "",
+  "body": " This is a Doenet activity.   "
+},
+{
+  "id": "ch_intro-5",
+  "level": "1",
+  "url": "ch_intro-5.html",
   "type": "References",
   "number": "0",
   "title": "References and Suggested Readings",

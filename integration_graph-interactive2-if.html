@@ -77,45 +77,33 @@ window.MathJax = {
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/doenet-standalone-test@0.6.0/dist/style.css">
 <script onload="onLoad()" type="module" src="https://cdn.jsdelivr.net/npm/doenet-standalone-test@0.6.0/dist/doenet-standalone.min.js"></script><script>function onLoad() {window.renderDoenetToContainer(document.querySelector(".doenetml-applet"))}</script>
 </head>
-<body class="ptx-content ignore-math" id="dmoi"><div style="width:600px; height:400px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><div class="doenetml-applet">
+<body class="ptx-content ignore-math" id="analysisbook"><div style="width:600px; height:480px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><div class="doenetml-applet">
 <div class="doenetml-loading" style="text-align:center">
 <p><img src="https://www.doenet.org/Doenet_Logo_Frontpage.png"></p>
 <p>Waiting on the page to load...</p>
 </div>
 <script type="text/doenetml">
         <setup>
-<!-- Function to be graphed -->
-  <function name="f" symbolic>
-    x^2
-    <label><m>f(x)=x^2</m></label></function>
-  <number name="a">2</number>
-  <number name="b">4</number>
-
-<!--   Helper functions for shading between two curves -->
-<!--   <function name="g">4</function> -->
-<!--   <function name="h">2</function> -->
+  <function name="f" styleNumber="5">x*sin(x)/2 + 4</function>
+  <number name="a">pi/4</number>
+  <number name="b">2*pi</number>
 </setup>
 
-<!-- Graph -->
-<graph>
+<graph name="g" xmin="-2" xmax="10" ymin="-2" ymax="10" displayXAxisTickLabels="false" displayYAxisTickLabels="false">
   $f
-  
-<!--   Shaded region to represent the interval A -->
-<!--     <regionBetweenCurves boundaryValues="-10 10" styleNumber="6">$g $h</regionBetweenCurves> -->
-  
-  <!-- Horizontal lines to represent A -->
-  <line name="IHL" styleNumber="5" through="(1,$a) (2,$a)"/>
-  <line name="OHL" styleNumber="6" through="(1,$b) (2,$b)"/>
-
-  <!-- Vertical lines to represent f^{-1}(A) -->
-  <line name="OVL1" styleNumber="6" through="(-sqrt($b),1) (-sqrt($b),2)"/>
-  <line name="IVL1" styleNumber="5" through="(-sqrt($a),1) (-sqrt($a),2)"/>
-  <line name="IVL2" styleNumber="5" through="(sqrt($a),1) (sqrt($a),2)"/>
-  <line name="OVL2" styleNumber="6" through="(sqrt($b),1) (sqrt($b),2)"/>
-
-  <!-- Line Segments to represent f^{-1}(A) on the x-axis -->
-  <lineSegment styleNumber="4" endpoints="(-sqrt($b),0) (-sqrt($a),0)" />
-  <lineSegment styleNumber="4" endpoints="(sqrt($a),0) (sqrt($b),0)" />
+  <rectangle filled center="(pi/4+0.2708,2.315)" width="0.5146" height="4.63" styleNumber="1"/>
+  <rectangle filled center="(pi/4+0.2708,2.14)" width="0.5146" height="4.28" styleNumber="2"/>
+  <rectangle filled center="(1.3+1.5/2,2.455)" width="1.5" height="4.91" styleNumber="1"/>
+  <rectangle filled center="(1.3+1.5/2,2.235)" width="1.5" height="4.47" styleNumber="2"/>
+  <rectangle filled center="(2.8+0.7,2.235)" width="1.4" height="4.47" styleNumber="1"/>
+  <rectangle filled center="(2.8+0.7,1.085)" width="1.4" height="2.17" styleNumber="2"/>
+  <rectangle filled center="(4.2+pi-2.1,2)" width="2*pi-4.2" height="4" styleNumber="1"/>
+  <rectangle filled center="(4.2+pi-2.1,0.795)" width="2*pi-4.2" height="1.59" styleNumber="2"/>
+  <text anchor="($a,-0.5)"><math>t_0</math></text>
+  <text anchor="(1.3,-0.5)"><math>t_1</math></text>
+  <text anchor="(2.8,-0.5)"><math>t_2</math></text>
+  <text anchor="(4.2,-0.5)"><math>t_3</math></text>
+  <text anchor="($b,-0.5)"><math>t_4</math></text>
 </graph>
       </script>
 </div></div></body>
