@@ -33,20 +33,7 @@
   <p>
     If the function is a straight line, then the shape is a polygon whose area we can compute exactly. But when the function is curvy, how do we define the area? The idea is to rectangles, whose areas are easily computed, to approximate the true area under the curve. In Calculus I, the most common rectangle sums are the left and right hand Riemann sums. Those sums are useful because they are easy to draw and compute; we can tell a computer (human or machine) a simple algorithm to follow. But how good of an approximation is a left or right hand sum? If some of the rectangles are above the curve while others are below, this is a challenging question to answer. To develop the theory of integration, we will want to know without question whether a rectangle sum is an underestimate or overestimate. 
     
-    The way to guarantee this is to always stick rectangles below the curve for underestimates and above the curve for overesitmates. Consider a subinterval <m> [t_{i-1}, t_{i}] </m> of <m> [a,b] </m>. The quantity 
-    <me> m(f,[t_{i-1},t_{i}]):= \inf\{f(x): x\in [t_{i-1},t_{i}]\} </me>
-     is the greatest lower bound of all the function values <m> f(x) </m> for <m>x\in [t_{i-1},t_{i}] </m>, i.e. 
-    <me> \forall x\in  [t_{i-1},t_{i}], f(x)\leq m(f,[t_{i-1},t_{i}]).</me>
-    Thus if we make a rectangle with height <m> m(f,[t_{i-1},t_{i}]) </m> over the subinterval <m> [t_{i-1},t_{i}] </m>, that rectangles area, which is simply
-    <me> m(f,[t_{i-1},t_{i}]) (t_{i}-t_{i-1}), </me>
-    will be an underestimate of the true area under the curve on that subinterval. We then break up the entire interval <m> [a,b] </m> into smaller intervals using what's called a  <alert>partition</alert> 
-    <m>P</m> of the interval: a partition of <m>[a,b]</m> is a finite set of striclty increasing numbers <m>P=\{t_0,t_1,\ldots, t_n\} </m> such that <m> t_0=a </m> and <m> t_n=b </m>. Then on each subinterval <m> [t_{i-1},t_{i}] </m>, we produce a lower estimate as described above, then add together all the "lower rectangles" areas to arrive at an underestimate for the true area over the whole interval, called a <alert> lower sum </alert> of <m> f </m> over <m> [a,b] </m>:
-
-    <me>L(f,P) =\sum_{i=1}^n \inf\{f(x): x\in [t_{i-1}, t_{i}]\} (t_{i-1}-t_{i-1}).</me>
-
-    For overestimates, we use sups instead of infs, and with the notation <m> M(f,[t_{i-1},t_{i}])=\sup\{f(x): x\in [t_{i-1},t_{i}]\}</m>, the <alert> upper sum </alert> of <m> f </m> over <m> [a,b] </m> is
-
-    <me> U(f,P) =\sum_{i=1}^n \sup\{f(x): x\in [t_{i1}, t_{=+1}]\} (t_{i-1}-t_{i-1}),</me>
+    The way to guarantee this is to always stick rectangles below the curve for underestimates and above the curve for overesitmates, as in the graphic below.
 
     <figure xml:id="integration_graph-figure2">
     <caption>The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.</caption>
@@ -56,59 +43,51 @@
       </slate>
     </interactive>
   </figure>
-  </p>
-    
-    <p>
-    Since each lower sum is an underestimate of the true area, the supremum of all lower sums, called <alert> lower integral </alert> of <m> f </m> over <m>[a,b]</m>, will give us the "best underestimate"; in notation,
-    <me> L(f)=\sup\{L(f,P): P \text{is any partition of } [a,b]\}. </me>
-    To underestimate the area <m>A</m>, we place rectangles below the curve by first creating a <alert>partition</alert> 
-    <m>P</m> of the interval <m>[a,b]</m> as <m>P=\{a=t_0 \lt t_1 \lt \cdots \lt t_n=b\}</m>. Each subinterval <m>[t_{i-1}, t_i]</m> on the horizontal axis serves as the base of a rectangle, and to produce a rectangle below the curve, we take <m>\inf\{f(x): x\in [t_{i-1}, t_i]\}</m> to be the rectangles height. If instead we take <m>\sup \{f(x): x\in [t_{i-1}, t_i]\}</m>, we get a rectangle above the curve over that subinterval.
 
-    Adding up the areas of each lower rectangle gives us a <alert> lower sum </alert> over the partition <m>P</m>, which we denote by <m>L(f,P)</m>.
-
-    <me>L(f,P) =\sum_{i=1}^n \inf\{f(x): x\in [t_{i-1}, t_i]\} (t_i-t_{i-1}).</me>
-
-    Any lower sum is an underestimate of the true area <m>A</m>, so the supremum of all possible lower estimates gives us a sort of "best underestimate" of <m>A</m>, and we call it the <alert>lower integral</alert> of <m>f</m> over <m>[a,b]</m>:
-
-    <me> L(f)=\sup\{L(f,P): P \text{ is any partition of } [a,b]\}. </me>
-
-    Whatever the area <m>A</m> is, the geometric intuition is that
-    <me>L(f)\leq A.</me>
-    Similarly, the <alert>upper sum</alert> over <m>P</m> is given by
-
-    <me> U(f,P) =\sum_{i=1}^n \sup\{f(x): x\in [t_{i-1}, t_i]\} (t_i-t_{i-1}),</me>
-
-    and the infimum over all possible upper sums gives us a ``best overestimate" of <m>A</m>, called the <alert>upper integral</alert> of <m>f</m> over <m>[a,b]</m>:
-
-    <me>U(f)=\inf\{U(f,P): P \text{ is any partition of } [a,b]\}.</me>
   </p>
 
   <p>
-    Geometrically, we suspect <m>A\leq U(f)</m>, and so we should have <m>L(f)\leq A \leq U(f)</m>. When <m>L(f)=U(f)</m>, we say that <m>f</m> is <alert>integrable</alert> over <m>[a,b]</m>, and we define its area under the curve as <m>L(f)</m> (or <m>U(f)</m>, since they are equal), and we write
-    <me>\int f =\int_a^b f(x)\, dx = L(f)=U(f).</me>
-    You may find it surprising that there are functions <m>f</m> for which <m>L(f) \lt U(f)</m>, which is to say not every function is integrable. But fear not; we will show that every continuous function is integrable, ensuring that everything you did in Calculus was not for naught!
+  The set of subdivision points <m>P=\{t_0,t_1,\ldots,t_n\}</m> form what's called a <term>partition</term> of <m> [a,b] </m> - a finite set of strictly increasing values starting at <m> t_0=a </m> and ending with <m> t_n=b </m>. 
+  On a given subinterval <m> [t_{i-1}, t_{i}] </m>, the height of the "lower rectangle" is given by 
+  <me> m(f,[t_{i-1},t_{i}]):= \inf\{f(x): x\in [t_{i-1},t_{i}]\}, </me>
+  since this value is guaranteed to be less than or equal to any other <m> y </m>-value of the function on that subinterval. 
+  Hence the area of an individual "lower rectangle" is just 
+  <me> m(f,[t_{i-1},t_{i}]) (t_{i}-t_{i-1}), </me>
+  and if we sum the areas of each, we get the <term> lower sum </term> for <m> f </m> over <m> P </m>:
+ <me>L(f,P) =\sum_{i=1}^n m(f,[t_{i-1},t_{i}]) (t_{i-1}-t_{i-1}).</me>
+ Now each lower sum is an underestimate for the true area, so the <alert> supremum </alert> of all possible lower sums will give us a "best underestimate" for the area; we call this the <term> lower integral </term> of <m> f </m> over <m> P </m>:
+  <me> L(f)=\sup\{L(f,P): P \text{ is any partition of } [a,b]\}. </me>
 
-    It is worth checking that <m>L(f)</m> is in fact no greater than <m>U(f)</m>, and this fact follows from checking several details which themselves follow from our groundwork in sups and infs. We will leave the details of the following facts to the exercises.
-    
-    <!-- \begin{itemize} -->
-    <ul>
-      <li> If <m>P</m> and <m>Q</m> are partitions of <m>[a,b]</m> and <m>P\subseteq Q</m>, then
-      <m>L(f,P)\leq L(f,Q)\leq U(f,Q)\leq U(f,P)</m>.</li>
-      <li>For any partitions <m>P</m> and <m>Q</m> of <m>[a,b]</m>, <m>L(f,P)\leq U(f,Q)</m>.</li>
-      <li><m>L(f)\leq U(f)</m>.</li>
-    </ul>
-    <!-- \end{itemize} -->
+    </p>
 
-    The definition of being integrable was built upon intuitive geometric principles, but it is not the most practical definition to check; it requires computing both <m>L(f)</m> and <m>U(f)</m> exactly, which is typically a formidable task even for relatively tame functions, as we will see. Luckily, there is an easier to check <m>\epsilon</m>-criterion at our disposal.
-  </p>
+    <p>
+    Similarly, we take <m> M(f,[t_{i-1},t_k]):=\sup \{f(x): x\in [t_{i-1},t_{i}]\} </m> for the heights of the "upper rectangles", and get the <term> upper sum </term>
+    <me> U(f,P) =\sum_{i=1}^n M(f,[t_{i-1},t_k]) (t_{i-1}-t_{i-1}).</me>
+    Each upper sum is an overestimate for the true area, so the <alert> infimum </alert> of all possible upper sums will give us a "best overestimate" for the area; we call this the <term> upper integral </term>  of <m> f </m> over <m> P </m>:
+   <me>U(f)=\inf\{U(f,P): P \text{ is any partition of } [a,b]\}.</me>
+    As we will see in class, there are functions whose upper and lower integrals can differ! If the upper and lower integrals of <m> f </m> are the same, we say that <m> f </m> is <term> integrable </term> over <m> [a,b] </m>, and in this case, we introduce the following notation to represent the value of <m> U(f) </m> and <m> L(f) </m>;
+    <me> \displaystyle \int_a^b f := \int_a^b f(x)\, dx :=U(f)=L(f). </me>
+    </p>
 
-  <theorem>
+    <p>
+    Apparently not every function is integrable (as we shall see in class), so which functions are integrable? Can we classify them? As a start towards answering this question, we could use an easier to check criterion for integrability. Right now, given some function <m> f </m>, we would have to compute its upper and lower integrals, which can be a formidable task (without more powerful integration tools) even for a tame function like <m> f(x)=e^x </m>. Luckily, there is a criterion we can use to more easily check when a function is integrable; we will not prove this result.
+
+    <theorem>
     <statement>
       <p>
-        A function <m>f</m> is integrable on <m>[a,b]</m> if and only if for all <m>\epsilon \ge 0</m>, there exists a partition <m>P</m> such that <m>U(f,P)-L(f,P) \lt \epsilon</m>.
+        A function <m>f</m> is integrable on <m>[a,b]</m> if and only if for all <m>\epsilon \gt 0</m>, there exists a partition <m>P</m> such that <m>U(f,P)-L(f,P) \lt \epsilon</m>.
       </p>
     </statement>
   </theorem>
+
+  The benefit of the above theorem is that we need only find one partition <m> P </m> on which the upper <alert> sum </alert> and lower <alert> sum </alert> are close. The downside is that checking that <m>\epsilon </m> condition won't tell us what the value of the integral is, even though we will then know the function is integrable!
+
+
+  
+    
+  </p>
+    
+   
 
   <p>
     Let's put this theorem in action to see why discontinuous functions can still be integrable.

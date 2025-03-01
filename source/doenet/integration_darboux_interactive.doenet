@@ -1,8 +1,12 @@
-<title>Darboux Sum Interactive Graph</title>
+<title>Upper and Lower Sum Interactive Graph</title>
 
+A discontinuous function is graphed below. Create a partition where the upper sum and lower sum differ by less than <m> 0.1 </m>. To add another rectangle, click "add point" below the graph. Then you can drag the corners of the rectangles to change their widths. Happy hunting!
 <setup>
   <!-- Integrand -->
-  <function name="f">$userFunction</function>
+    <piecewiseFunction name="f" symbolic="false" styleNumber="5">
+    <function domain="(-infinity,4)">0.5*x+1</function>
+    <function domain="[4,infinity)">8-x</function>
+  </piecewiseFunction>
 
   <!-- Number of boxes of integration -->
   <number name="numBoxes">1</number>
@@ -57,8 +61,8 @@
 
 <sideBySide>
   <stack>
-    <p>Upper Darboux Sum: <m>$upperDarbox</m></p>
-    <p>Lower Darboux Sum: <m>$lowerDarbox</m></p>
+    <p>Upper Sum: <m>$upperDarbox</m></p>
+    <p>Lower Sum: <m>$lowerDarbox</m></p>
   </stack>
   <stack>
     <p>Difference: <math simplify>$upperDarbox-$lowerDarbox</math></p>
@@ -92,7 +96,7 @@
         
         <!-- f with domain restricted between adjacent points -->
         <function name="tempFunc" domain="[$sortedXs[$i], 
-          $sortedXs[$i+1]]">$userFunction</function>
+          $sortedXs[$i+1]]">$f</function>
 
         <!-- Max and min of function on restricted f -->
         <math name="tempFuncMax"><max>$$tempFunc($sortedXs[$i]) 
@@ -109,7 +113,7 @@
       </conditionalContent>
 
       <!-- Create a box for the upper and lower sums -->
-      <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMax) ($sortedXs[$i+1],$tempFuncMax) ($sortedXs[$i+1],0)" styleNumber="3" filled/>
+      <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMax) ($sortedXs[$i+1],$tempFuncMax) ($sortedXs[$i+1],0)" styleNumber="1" filled/>
       <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMin) ($sortedXs[$i+1],$tempFuncMin) ($sortedXs[$i+1],0)" styleNumber="2" filled/>
       <conditionalContent condition="$i>1">
         <m anchor="($sortedXs[$i],-0.5)">t_{<number>$i-1</number>}</m>
