@@ -85,7 +85,14 @@ window.MathJax = {
 <script type="text/doenetml">
         <title>Upper and Lower Sum Interactive Graph</title>
 
-A discontinuous function is graphed below. Create a partition where the upper sum and lower sum differ by less than <m> 0.1 </m>. To add another rectangle, click "add point" below the graph. Then you can drag the corners of the rectangles to change their widths. Happy hunting!
+The discontinuous function
+<me>f(x) =  
+ \begin{cases} 
+  1.3 & x \lt 4 \\
+  4.7 & x \ge 4 
+ \end{cases}
+</me>
+ is graphed below, but it's hard to see because the tops of the rectangles cover it up. Create a partition where the upper sum and lower sum differ by less than <m> 0.1 </m>. To add another rectangle, click "add point" below the graph. Then you can drag the corners of the rectangles to change their widths. Happy hunting!
 <setup>
   <!-- Integrand -->
     <piecewiseFunction name="f" symbolic="false" styleNumber="5">
