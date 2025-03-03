@@ -111,15 +111,15 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.4.0';
+eBookConfig.runestone_version = '7.5.6';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.4.0/prefix-runtime.00db6230172ad960.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.4.0/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.4.0/prefix-runestone.04737dc219c2d2eb.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.4.0/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.4.0/prefix-runestone.f64dcc3632d7a0c3.css">
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-runtime.82032a8574f6ce75.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-723.3e6434f80549315a.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.5.6/prefix-runestone.f6bda0c0ccce4835.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.5.6/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.5.6/prefix-runestone.6a985cbf816db5c7.css">
 <style>
 #rcE { counter-set: rcE 0; }
 #rcE > li::marker { content: ""counter(rcE,decimal)"."; }
@@ -129,10 +129,10 @@ eBookConfig.enable_chatcodes =  false;
 #sec_intro-intro-4-3-2-1 > li { counter-increment: sec_intro-intro-4-3-2-1; }
 </style>
 </head>
-<body id="dmoi" class="pretext book ignore-math">
+<body id="analysisbook" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" class="logo-link" target="_blank" href="http://discrete.openmathbooks.org/dmoi3.html"><img src="external/images/cover.png" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="dmoi.html"><span class="title">Real Analysis:</span> <span class="subtitle">An Open Introduction, 3rd edition</span></a></h1>
+<a id="logo-link" class="logo-link" target="_blank" href=""></a><div class="title-container">
+<h1 class="heading"><a href="dmoi.html"><span class="title">Real Analysis:</span> <span class="subtitle">An Open Primer</span></a></h1>
 <p class="byline">David Walmsley</p>
 </div>
 </div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-4.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
@@ -146,7 +146,7 @@ eBookConfig.enable_chatcodes =  false;
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-preimages.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec_intro-intro.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-quantifiers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec_intro-intro.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
 \newcommand{\N}{\mathbb N}
 \newcommand{\B}{\mathbf B}
 \newcommand{\Z}{\mathbb Z}
@@ -195,13 +195,14 @@ eBookConfig.enable_chatcodes =  false;
 <ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-set_notation.html" class="internal"><span class="codenumber">0.1</span> <span class="title">Set Notation</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-quantifiers.html" class="internal"><span class="codenumber">0.2</span> <span class="title">Quantifiers in Proofs</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-preimages.html" class="internal"><span class="codenumber">0.3</span> <span class="title">Pre-Images</span></a></div></li>
 <li class="toc-item toc-section active">
-<div class="toc-title-box"><a href="sec-1-2.html" class="internal"><span class="codenumber">0.4</span> <span class="title">Intervals</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-1-2.html#parsons-exercises" class="internal"><span class="codenumber">0.4</span> <span class="title">Parsons Problems</span></a></div></li></ul>
+<div class="toc-title-box"><a href="sec-1-2.html" class="internal"><span class="codenumber">0.3</span> <span class="title">Intervals</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-1-2.html#parsons-exercises" class="internal"><span class="codenumber">0.3</span> <span class="title">Parsons Problems</span></a></div></li></ul>
 </li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec_intro-intro.html" class="internal"><span class="codenumber">0.5</span> <span class="title">Example Formatting</span></a></div></li>
-<li class="toc-item toc-references"><div class="toc-title-box"><a href="ch_intro-8.html" class="internal"><span class="codenumber">0</span> <span class="title">References and Suggested Readings</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec_intro-intro.html" class="internal"><span class="codenumber">0.4</span> <span class="title">Example Formatting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-continuity.html" class="internal"><span class="codenumber">0.5</span> <span class="title">Continuity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-integration-intro.html" class="internal"><span class="codenumber">0.6</span> <span class="title">Integration</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="ch_intro-9.html" class="internal"><span class="codenumber">0</span> <span class="title">References and Suggested Readings</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-backmatter">
@@ -215,7 +216,7 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-1-2"><h2 class="heading hide-type">
-<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.4</span><span class="space"> </span><span class="title">Intervals</span>
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.3</span><span class="space"> </span><span class="title">Intervals</span>
 </h2>
 <section class="exercises" id="parsons-exercises"><h3 class="heading hide-type">
 <span class="type">Exercises</span><span class="space"> </span><span class="codenumber"></span><span class="space"> </span><span class="title">Parsons Problems</span>
@@ -224,34 +225,27 @@ eBookConfig.enable_chatcodes =  false;
 <span class="codenumber">1<span class="period">.</span></span><span class="space"> </span><span class="title">Parsons Problem.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone parsons_section" style="max-width: none;"><div data-component="parsons" class="parsons" id="first-parsons">
-<div class="parsons_question parsons-text"><div class="para" id="first-parsons-2-1">
-<span class="process-math">\(\xi=a^2+b\)</span> for <span class="process-math">\(a,b \in \mathbb{Z}\text{.}\)</span> Prove that if <span class="process-math">\(a\)</span> is even and <span class="process-math">\(b\)</span> is odd, then <span class="process-math">\(\xi\)</span> is odd.</div></div>
-<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-adaptive="true" data-grader="dag" data-noindent="false"><div class="para" id="first-parsons-3-1-1">Suppose <span class="process-math">\(a\)</span> is an even integer.</div> #tag:0; depends:;
+<div class="parsons_question parsons-text">
+<span class="process-math">\(\xi=a^2+b\)</span> for <span class="process-math">\(a,b \in \mathbb{Z}\text{.}\)</span> Prove that if <span class="process-math">\(a\)</span> is even and <span class="process-math">\(b\)</span> is odd, then <span class="process-math">\(\xi\)</span> is odd.</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-adaptive="true" data-grader="dag" data-noindent="false">Suppose <span class="process-math">\(a\)</span> is an even integer. #tag:0; depends:;
 ---
-<div class="para" id="first-parsons-3-2-1">Suppose <span class="process-math">\(b\)</span> is an odd integer.</div> #tag:1; depends:;
+Suppose <span class="process-math">\(b\)</span> is an odd integer. #tag:1; depends:;
 ---
-<div class="para" id="first-parsons-3-3-2-1">Since <span class="process-math">\(a\)</span> is even, then <span class="process-math">\(a=2n\)</span> for some <span class="process-math">\(n \in \mathbb{Z}\text{.}\)</span>
-</div> #tag:3; depends:0;
+Since <span class="process-math">\(a\)</span> is even, then <span class="process-math">\(a=2n\)</span> for some <span class="process-math">\(n \in \mathbb{Z}\text{.}\)</span> #tag:3; depends:0;
 ---
-<div class="para" id="first-parsons-3-3-1-1">Since <span class="process-math">\(a\)</span> is even, then <span class="process-math">\(a=2n+1\)</span> for some <span class="process-math">\(n \in \mathbb{Z}\text{.}\)</span>
-</div> #paired
+Since <span class="process-math">\(a\)</span> is even, then <span class="process-math">\(a=2n+1\)</span> for some <span class="process-math">\(n \in \mathbb{Z}\text{.}\)</span> #paired
 ---
-<div class="para" id="first-parsons-3-4-1-1">Since <span class="process-math">\(b\)</span> is odd, then <span class="process-math">\(b=2m+1\)</span> for some <span class="process-math">\(m \in \mathbb{Z}\text{.}\)</span>
-</div> #tag:4; depends:1;
+Since <span class="process-math">\(b\)</span> is odd, then <span class="process-math">\(b=2m+1\)</span> for some <span class="process-math">\(m \in \mathbb{Z}\text{.}\)</span> #tag:4; depends:1;
 ---
-<div class="para" id="first-parsons-3-4-2-1">Since <span class="process-math">\(b\)</span> is odd, then <span class="process-math">\(a=2m\)</span> for some <span class="process-math">\(m \in \mathbb{Z}\text{.}\)</span>
-</div> #paired
+Since <span class="process-math">\(b\)</span> is odd, then <span class="process-math">\(a=2m\)</span> for some <span class="process-math">\(m \in \mathbb{Z}\text{.}\)</span> #paired
 ---
-<div class="para" id="first-parsons-3-5-1">Let <span class="process-math">\(\xi=a^2+b\text{.}\)</span>
-</div> #tag:2; depends:0,1;
+Let \xi= a**2 + b. #tag:2; depends:0,1;
 ---
-<div class="para" id="first-parsons-3-6-1">Then <span class="process-math">\(\xi = 4n^2 + 2m + 1 = 2(2n^2 + m) + 1\text{.}\)</span>
-</div> #tag:5; depends:2,3,4;
+Then <span class="process-math">\(\xi = 4n^2 + 2m + 1 = 2(2n^2 + m) + 1\text{.}\)</span> #tag:5; depends:2,3,4;
 ---
-<div class="para" id="first-parsons-3-7-1">Since <span class="process-math">\(2n^2 + m\)</span> is an integer, <span class="process-math">\(\xi\)</span> is odd by definition.</div> #tag:6; depends:5;
+Since <span class="process-math">\(2n^2 + m\)</span> is an integer, <span class="process-math">\(\xi\)</span> is odd by definition. #tag:6; depends:5;
 ---
-<div class="para" id="first-parsons-3-8-1">
-<span class="process-math">\(\xi\)</span> is even.</div> #distractor</pre>
+<span class="process-math">\(\xi\)</span> is even. #distractor</pre>
 </div></div></div></article><article class="exercise exercise-like" id="parsons-with-partial-order"><h4 class="heading">
 <span class="codenumber">2<span class="period">.</span></span><span class="space"> </span><span class="title">Parsons Problem, Partial Ordering.</span>
 </h4>
@@ -336,9 +330,9 @@ print(c) #tag:; depends:c;</pre>
 N = p! + 1 = (p \cdot (p-1) \cdot \cdots 3\cdot 2 \cdot 1) + 1\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="YhP" data-permid="YhP">Now <span class="process-math">\(N\)</span> is certainly larger than <span class="process-math">\(p\text{.}\)</span> Also, <span class="process-math">\(N\)</span> is not divisible by any number less than or equal to <span class="process-math">\(p\text{,}\)</span> since every number less than or equal to <span class="process-math">\(p\)</span> divides <span class="process-math">\(p!\text{.}\)</span> Thus the prime factorization of <span class="process-math">\(N\)</span> contains prime numbers (possibly just <span class="process-math">\(N\)</span> itself) all greater than <span class="process-math">\(p\text{.}\)</span> So <span class="process-math">\(p\)</span> is not the largest prime, a contradiction. Therefore there are infinitely many primes.</div></article><div class="para" id="sec-1-2-5">A reference to the further reading is <a href="ch_intro-8.html#theory_of_groups" class="xref" data-knowl="./knowl/xref/theory_of_groups.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 0.1: Theory of Groups of Finite Order">[0.1]</a>.</div></section></div>
+</div> <div class="para" id="YhP" data-permid="YhP">Now <span class="process-math">\(N\)</span> is certainly larger than <span class="process-math">\(p\text{.}\)</span> Also, <span class="process-math">\(N\)</span> is not divisible by any number less than or equal to <span class="process-math">\(p\text{,}\)</span> since every number less than or equal to <span class="process-math">\(p\)</span> divides <span class="process-math">\(p!\text{.}\)</span> Thus the prime factorization of <span class="process-math">\(N\)</span> contains prime numbers (possibly just <span class="process-math">\(N\)</span> itself) all greater than <span class="process-math">\(p\text{.}\)</span> So <span class="process-math">\(p\)</span> is not the largest prime, a contradiction. Therefore there are infinitely many primes.</div></article><div class="para" id="sec-1-2-5">A reference to the further reading is <code class="code-inline tex2jax_ignore">[cross-reference to target(s) "theory_of_groups" missing or not unique]</code>.</div></section></div>
 <div class="ptx-content-footer">
-<a class="previous-button button" href="sec-preimages.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec_intro-intro.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="sec-quantifiers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec_intro-intro.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
