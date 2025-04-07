@@ -136,9 +136,36 @@ var ptx_lunr_docs = [
   "body": " This is a Doenet activity.   "
 },
 {
-  "id": "ch_intro-5",
+  "id": "sec-limits_of_functions",
   "level": "1",
-  "url": "ch_intro-5.html",
+  "url": "sec-limits_of_functions.html",
+  "type": "Section",
+  "number": "0.3",
+  "title": "Function Limits",
+  "body": " Function Limits  As you have seen in a Calculus class, the notation roughly means that is close to when is close to . But how close should be to ? And how close must be to ? We need quantifiers for a precise statement.  Let We say the limit of at is , and write , if s.t. .  Let's focus on the very last piece, namely . Here, is measuring how far away and can be; it is required that , meaning must lie in the horizontal strip between the horizontal lines and . And for what values of must this be true? We need to pick to guarantee it is true for any satisfying . Let's explore this with an activity.  This is a Doenet activity.     "
+},
+{
+  "id": "sec-limits_of_functions-2-10",
+  "level": "2",
+  "url": "sec-limits_of_functions.html#sec-limits_of_functions-2-10",
+  "type": "Definition",
+  "number": "0.3.1",
+  "title": "",
+  "body": "Let We say the limit of at is , and write , if s.t. . "
+},
+{
+  "id": "function_limits_activity",
+  "level": "2",
+  "url": "sec-limits_of_functions.html#function_limits_activity",
+  "type": "Figure",
+  "number": "0.3.2",
+  "title": "",
+  "body": " This is a Doenet activity.   "
+},
+{
+  "id": "ch_intro-6",
+  "level": "1",
+  "url": "ch_intro-6.html",
   "type": "References",
   "number": "0",
   "title": "References and Suggested Readings",
