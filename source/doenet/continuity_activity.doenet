@@ -1,12 +1,6 @@
-<p>We are going to graph a function <m> f</m> at a point <m> a </m> with a horizontal <m>\epsilon</m>-strip containing the point <m>(a,f(a))</m></p>
+A function <m> f </m> whose limit exists at each <m> a\in \mathbb{R} </m> is graphed below.
 
-<p> Enter a function whose graph will appear below.
- <m> f(x)= </m> <mathInput name="func" prefill="x^3+x^2-2x-1"/>
-  <setup>  
-   <function name="f">$func</function>
-  </setup>
-</p>
-
+<setup> <function name="f" symbolic> x^3+x^2-2x-1 </function> </setup>
 <!-- Pick x-value for point of interest -->
 <p>Choose a value for <m>a</m> (or adjust slider): <m>a = </m> <mathInput name="a" bindValueTo="$aSlider"/> 
 <slider from="-3" to="3" step="0.01" name="aSlider" initialValue="1" />
@@ -67,7 +61,7 @@
 <slider from="0" to="2" step="0.00001" name="deltaSlider" initialValue="1.4" />
 
 <problem>
-<p> Let <m> f(x)=$f</m> and  <m>a=$a,</m>. For each value of <m> \epsilon </m> given below, use the graph above to determine a value of <m> \delta </m> for which <me> |x-a|\lt\delta \implies  |f(x)-f(a)|\lt\epsilon. </me></p>
+<p> Set <m>a=1</m> and let <m> L </m> be the limit of <m> f </m> at <m> a </m>. The point <m> (a,L) </m> is plotted on the graph. For each value of <m> \epsilon </m> given below, use the graph above to determine a value of <m> \delta </m> for which <me> 0\lt |x-a|\lt\delta \implies  |f(x)-L|\lt\epsilon. </me></p>
 
   <setup>
    <number name="eps1">0.71 </number>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-limits_of_functions" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Function Limits</title>
+
+  <p> 
+    As you have seen in a Calculus class, the notation <m> \displaystyle \lim_{x\to a} f(x) = L </m> roughly means that <m> f(x) </m> is close to <m> L </m> when <m>x</m> is close to <m>a</m>.  But how close should <m>f(x)</m> be to <m>L</m>? And how close must <m>x</m> be to <m>a</m>? We need quantifiers for a precise statement.
+
+    <!-- \begin{definition} -->
+    <definition>
+      Let <m> a,L\in \R.</m> We say the <alert>limit of <m> f </m> at <m>a</m> is <m> L </m></alert>, and write <m> \displaystyle \lim_{x\to a} f(x)=L </m>, if <m>\forall \, \epsilon \gt 0 \, \exists \, \delta \gt 0</m> s.t. <m>0\lt |x-a| \lt \delta \implies |f(x)-L|\lt \epsilon</m>.
+    </definition>
+    <!-- \end{definition} -->
+    
+    Let's focus on the very last piece, namely <m> |f(x)-L|\lt \epsilon </m>. Here, <m>\epsilon</m> is measuring how far away <m>f(x)</m> and <m>L</m> can be; it is required that <m>L-\epsilon \lt f(x) \lt L+\epsilon </m>, meaning <m> f(x) </m> must lie in the horizontal strip between the horizontal lines <m>y=L+\epsilon</m> and <m>y=L-\epsilon</m>. And for what values of <m> x </m> must this be true? We need to pick <m> \delta </m> to guarantee it is true for any <m> x </m> satisfying <m> 0\lt |x-a| \lt \delta </m>. Let's explore this with an activity.
+
+
+  <figure xml:id="function_limits_activity">
+    <caption>This is a Doenet activity.</caption>
+    <interactive xml:id="continuity_activity" platform="doenetml" width="100%" aspect="1:1">
+      <slate surface="doenetml">
+        <xi:include href="doenet/continuity_activity.doenet" parse="text"/>
+      </slate>
+    </interactive>
+  </figure>
+
+</p>
+</section>
