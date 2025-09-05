@@ -3,13 +3,15 @@
 <section xml:id="sec-quantifiers" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Quantifiers in Proofs</title>
 
+  <subsection>
+    <title>Introduction to Quantifiers and their Negations</title>
   <p> A <alert> mathematical statement </alert> is a phrase or sentence that can reasonably be called true or false. For convenience, they are sometimes assigned a letter like <m> P </m> or <m> Q </m> to make them easier to refer to. Consider the following mathematical statement.
   <me> P: \text{there exists a real number } x \text{ such that } x^2-x>0. </me>
   Is this statement true? If it is, we should be able to produce a number <m> x</m>, compute <m> x^2-x </m>, and verify that the quantity <m> x^2-x </m> is positive. The number <m> x=3 </m> has this property, along with many other real numbers. For shorthand notation, we will write <m> \exists </m> to mean ``there exists" and s.t. to mean ``such that". The phrase "such that" will always follow a <m> \exists </m>; the "such that" phrase describes or defines the object that exists. In shorthand, <m> P </m> becomes
   <me> P: \exists x\in \R \text{ s.t. } x^2-x>0, </me>
   or equivalently,
   <me> P: \exists x\in \R \text{ s.t. } x^2-x\in (0,\infty). </me>
-  Now that we are convinced <m> P </m> is true, let's see our very first proof.     
+  Since we are convinced <m> P </m> is true, let's see our very first proof.     
   </p>
 
   <proof>
@@ -19,8 +21,13 @@
    </proof>
 
   <p>
-  While this proof might seem like too much effort to prove a simple statement, we will reap many benefits by developing some general proof principles in straightforward situations. First, we will use the overall structure of this existence proof for  almost every existence argument in this class. It is worth writing down a general ``proof outline" of an existence argument.
+      The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can draw out a situation which is uncomplicated. We could opt to replace the last line with something like "Since <m> x=6 </m>, then <m>x^2-x=6>0</m>, as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of (in)equalities outloud in our head: <m> x^2-x </m> equals <m> 6 </m>, and <m> 6 </m> is greater than <m> 0 </m>. We then conlcude <m> x^2-x </m> must be greater than <m> 0 </m>, which had to be shown. 
+  </p>
+  <p>
+    While this proof might seem like too much effort to prove a simple statement, we will reap many benefits by developing some general proof principles in straightforward situations. First, we will use the overall structure of this existence proof for  almost every existence argument in this class. It is worth writing down a general ``proof outline" of an existence argument.
+  </p>  
 
+  <p>
   <assemblage>
       <title>Proof Outline for "Existence" Proofs</title>
 
@@ -38,16 +45,15 @@
   Typically, our proofs will end with "as desired" to reiterate that we showed what we set out to show. This is a stylistic choice and not strictly necessary - proof writing does not have a strict set of rules. Our focus for the first several classes will be on constructing logical arguments; we will worry about some nuances of proof writing at a later day.
   </p>
 
-  <p>
-  The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can draw out a situation which is uncomplicated. We could opt to replace the last line with something like "Since <m> x=6 </m>, then <m>x^2-x=6>0</m>, as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of (in)equalities outloud in our head: <m> x^2-x </m> equals <m> 6 </m>, and <m> 6 </m> is greater than <m> 0 </m>. We then conlcude, by looking at the beginning and ending expressions in the string, that <m> x^2-x </m> is greater than <m> 0 </m>, which had to be shown. 
-  </p>
+  
 
   <p>
     Let's look at another mathematical statement.
-     <me> Q:  \text{ For all natural numbers} <m> n </m>, <m> n^2\geq n </m>. </me>
+     <me> Q:  \text{ For all natural numbers} n, n^2\geq n. </me>
       Is  <m> Q </m> true? Checking a few cases makes it seem so, but if it is, we cannot simply check cases, as there are infinitely many natural numbers we would have to check. Thus proving a "for all" statement will require a new strategy. We will need an abstract argument, and the idea is to introduce a <em> variable </em>, like <m> n </m>, to stand in place for some arbitrary natural number. Then we can simply check the statement for that one arbitrary natural number <m> n </m>, but all we know about <m> n </m> is where it came from. We do not know its exact value, but we do know that it is some positive integer.
   </p> 
 
+ 
     <proof>
   Let <m> n </m> be any natural number. We must show <m> n^2\geq n </m>. Since <m> n\geq 1 </m>, we know <m> n-1 \geq 0 </m>. Since both <m> n </m> and <m> n-1 </m> are non-negative, so is their product. Hence <m> n(n-1)\geq 0 </m>, which implies <m> n^2 - n\geq 0 </m>, which is equivalent to <m> n^2 \geq n </m>, as desired.
    </proof>
@@ -77,44 +83,17 @@
    <me> R: \forall x\in \R, x^2-x\ge 0 </me>.
     Equivalently, we could write 
     <me> R: \forall x\in \R, x^2-x\in [0,\infty).</me>
-     Is <m> R </m> true? A quick look at the graph of <m> x^2-x </m> will convince us that <m> R </m> is false.
+     Is <m> R </m> true? After a quick look at the graph of <m> x^2-x </m>,
 
      <figure>
       <interactive xml:id="quantifier_graph_1" platform="doenetml" width="100%" aspect="1.5:1.5">
         <slate surface="doenetml">
-          <xi:include href="quantifier_graph_1.doenet" parse="text"/>
+          <xi:include href="doenet/quantifier_graph_1.doenet" parse="text"/>
         </slate>
       </interactive>
     </figure>
 
-     <figure>
-  <image width="50%">
-      <latex-image>
-  \begin{tikzpicture}
-  \begin{axis}[grid=both, axis lines = middle, height = 3.5in, width = 3.5in, xmin=-3,xmax=3,ymin=-2,ymax=10,xlabel={\large{$x$}}, ylabel={\large{$y$}}, xtick={-6,-5,...,7}, ytick={-4,-3,...,10}, minor tick num =0, samples=101]
-  \addplot[domain=-5:5,black]{x^2-x};
-  \end{axis}
-  \end{tikzpicture}
-        </latex-image>
-  </image>
-</figure>
-
-<figure xml:id="fig-tikz">
-  <caption>A figure generated with TikZ in
-  <latex /></caption>
-  <image width="15%" xml:id="poset">
-
-<latex-image >
-  \begin{tikzpicture}
-  \begin{axis}[grid=both, axis lines = middle, height = 3.5in, width = 3.5in, xmin=-3,xmax=3,ymin=-2,ymax=10,xlabel={\large{$x$}}, ylabel={\large{$y$}}, xtick={-6,-5,...,7}, ytick={-4,-3,...,10}]
-  \addplot[domain=-5:5,black]{x^2-x};
-  \end{axis}
-  \end{tikzpicture}
-</latex-image>
-  </image>
-
-</figure>
-  It is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m>, because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The <alert> negation </alert> of a mathemical statement <m> R </m>,  is a new mathematical statement labeled <m> \text{not } R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
+    we can see that <m> R </m> is false; it is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m>, because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The <alert> negation </alert> of a mathemical statement <m> R </m>,  is a new mathematical statement labeled <m> \text{not } R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
 
   <me> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. </me>
   Equivalently,
@@ -137,7 +116,7 @@
   </assemblage>
   </p>
   <p>
-  If we're asked to decide whehter a statement is true or false and prove our claim, it is helpful to alert the reader of our proof to our strategy. Let's see a proof that <m> R </m> is false.
+  If we're asked to decide whether or not a statement is true and prove our claim, it is helpful to alert the reader of our proof to our strategy. Let's see a proof that <m> R </m> is false.
 
   <proof>
     <p>
@@ -168,5 +147,75 @@
   </assemblage>
   </p>
   
+</subsection>
+  <subsection>
+		<title>Multiple Quantifiers</title>
+    <p>
+    Most of the statments we will encounter throughout this course involve multiple quantifiers, like the following statement:
+
+    <me> P: \forall x\in \R \, \exists y\in \R \text{ s.t. } xy=1. </me>
+
+    Ultimately, this is a "for all" statement, so we could investigate its truth value by seeing if its true for a few values of <m> x </m>. When <m> x=3 </m>, is there a real number <m> y </m> such that <m>xy=1 </m>? Yes, <m> y=1/3 </m> does the trick. What about when <m> x=-7/9 </m>? Then <m> y = -9/7 </m> is a <m> y </m> we are looking for. After trying a few examples, <m> P </m> may seem true; given <m> x\in \R </m>, if we select <m> y </m> to be <m> 1/x </m>, then <m> xy=1</m>. We can write a proof outline for <m> P </m> by working through the quantifiers in order.
+
+    
+      <tabular halign="left">
+        <row header="yes" bottom="minor" >
+          <cell>Part of statement <m>P</m> </cell>
+          <cell>Sentence in our proof.</cell>
+        </row>
+        <row>
+          <cell><m> \forall \, x\in \R </m> </cell>
+          <cell> Let <m> x\in \R. </m> </cell>
+        </row>
+        <row>
+          <cell><m> \exists \, y\in \R</m> s.t. </cell>
+          <cell>Define <m> y </m>. </cell>
+        </row>
+        <row>
+          <cell><m> xy=1.</m></cell>
+          <cell> We must show <m> xy=1.</m></cell>
+        </row>
+      </tabular>
+    
+    Putting it together in a proof might look like this.
+    <proof>
+      Let <m> x\in \R </m> and define <m> y=1/x.</m> We must show <m> xy=1.</m> Starting from the left-hand side, we have <m> xy = x\cdot 1/x = 1 </m>, as desired.
+       </proof>
+  </p>
+
+  <p>
+    Unfortunately, <m> P </m> is false! Can you see why? There is one particular value of <m> x </m> for which <m> 1/x </m> is undefined, so the above proof isn't a proof at all! Let's look at the negation of <m> P </m> along with its proof outline and proof.
+
+    <me> \text{not } P: \exists \, x\in \R \text{ s.t. } \forall \, y\in \R, xy\neq 1. </me>
+
+    <tabular halign="left">
+      <row header="yes" bottom="minor" >
+        <cell>Part of statement not <m>P</m> </cell>
+        <cell>Sentence in our proof.</cell>
+      </row>
+      <row>
+        <cell><m> \exists \, x\in \R </m> s.t. </cell>
+        <cell> Define <m> x\in \R. </m> </cell>
+      </row>
+      <row>
+        <cell><m> \forall \, y\in \R</m> </cell>
+        <cell>Let <m> y\in \R </m>. </cell>
+      </row>
+      <row>
+        <cell><m> xy\neq 1.</m></cell>
+        <cell> We must show <m> xy\neq 1.</m></cell>
+      </row>
+    </tabular>
   
+
+  <proof>
+    Define <m> x=0 </m> and let <m> y\in \R.</m> We must show <m> xy\neq 1.</m> Since <m> x=0 </m>, then <m> xy=0 </m>, which shows <m> xy\neq 1 </m>.
+     </proof>
+    </p>
+      
+<p>
+  As a parting comment, the language we use in proofs isn't set in stone. The word "define" could have been "let" or "consider" or "imagine", as a student once creatively suggested. As we will see soon, sometimes the element that exists can't be written or expressed by an equation; it exists by virtue of some assumption that we made. But while our wording might change in the future, the basic structure of proving quantified statements will always remain the same. 
+</p>
+  
+  </subsection>
 </section>
