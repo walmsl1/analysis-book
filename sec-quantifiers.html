@@ -325,7 +325,28 @@ P: \forall x\in \R \, \exists y\in \R \text{ s.t. } xy=1.
 </div>
 </div>
 <div class="para logical" id="sec-quantifiers-3-3">
-<div class="para">Unfortunately, <span class="process-math">\(P \)</span> is false! Can you see why? There is one particular value of <span class="process-math">\(x \)</span> for which <span class="process-math">\(1/x \)</span> is undefined, so the above proof isn’t a proof at all! Let’s look at the negation of <span class="process-math">\(P \)</span> along with its proof outline and proof.</div>
+<div class="para">Unfortunately, <span class="process-math">\(P \)</span> is false! Can you see why? There is one particular value of <span class="process-math">\(x \)</span> for which <span class="process-math">\(1/x \)</span> is undefined, so the above proof isn’t a proof at all! Let’s think about the negation of <span class="process-math">\(P \)</span> one step at a time. <div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b1 r0 l0 t0 lines">Part of statement <span class="process-math">\(P\)</span>
+</th>
+<th scope="col" class="l m b1 r0 l0 t0 lines">Part of statement not <span class="process-math">\(P \)</span>
+</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\forall \, x\in \R \)</span></td>
+<td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\exists \, x\in \R \)</span> s.t.</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\exists \, y\in \R\)</span> s.t.</td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\forall \, y\in \R\)</span></td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(xy= 1.\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(xy\neq 1.\)</span></td>
+</tr>
+</table></div> Now we’re ready for its proof outline and proof.</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \text{not } P: \exists \, x\in \R \text{ s.t. } \forall \, y\in \R, xy\neq 1. 
@@ -354,10 +375,10 @@ P: \forall x\in \R \, \exists y\in \R \text{ s.t. } xy=1.
 <td class="l m b0 r0 l0 t0 lines">We must show <span class="process-math">\(xy\neq 1.\)</span>
 </td>
 </tr>
-</table></div> <article class="proof" id="sec-quantifiers-3-3-7"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4>Define <span class="process-math">\(x=0 \)</span> and let <span class="process-math">\(y\in \R.\)</span> We must show <span class="process-math">\(xy\neq 1.\)</span> Since <span class="process-math">\(x=0 \text{,}\)</span> then <span class="process-math">\(xy=0 \text{,}\)</span> which shows <span class="process-math">\(xy\neq 1 \text{.}\)</span></article>
+</table></div> <article class="proof" id="sec-quantifiers-3-3-8"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4>Define <span class="process-math">\(x=0 \)</span> and let <span class="process-math">\(y\in \R.\)</span> We must show <span class="process-math">\(xy\neq 1.\)</span> Since <span class="process-math">\(x=0 \text{,}\)</span> then <span class="process-math">\(xy=0 \text{,}\)</span> which shows <span class="process-math">\(xy\neq 1 \text{.}\)</span></article>
 </div>
 </div>
-<div class="para" id="sec-quantifiers-3-4">As a parting comment, the language we use in proofs isn’t set in stone. The word "define" could have been "let" or "consider" or "imagine", as a student suggested. As we will see soon, sometimes the element that exists can’t be written or expressed by an equation; it exists by virtue of some assumption that we made. But while our wording might change in the future, the basic structure of proving quantified statements will always remain the same.</div></section></section></div>
+<div class="para" id="sec-quantifiers-3-4">As a parting comment, the language we use in proofs isn’t set in stone. The word "define" could have been "let" or "consider" or "imagine", as a student once creatively suggested. As we will see soon, sometimes the element that exists can’t be written or expressed by an equation; it exists by virtue of some assumption that we made. But while our wording might change in the future, the basic structure of proving quantified statements will always remain the same.</div></section></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="ch_intro.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-integration-intro.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
