@@ -78,6 +78,16 @@
     Equivalently, we could write 
     <me> R: \forall x\in \R, x^2-x\in [0,\infty).</me>
      Is <m> R </m> true? A quick look at the graph of <m> x^2-x </m> will convince us that <m> R </m> is false.
+
+     <figure>
+      <interactive xml:id="quantifier_graph_1" platform="doenetml" width="100%" aspect="1.5:1.5">
+        <slate surface="doenetml">
+          <xi:include href="quantifier_graph_1.doenet" parse="text"/>
+        </slate>
+      </interactive>
+    </figure>
+
+     <figure>
   <image width="50%">
       <latex-image>
   \begin{tikzpicture}
@@ -87,6 +97,23 @@
   \end{tikzpicture}
         </latex-image>
   </image>
+</figure>
+
+<figure xml:id="fig-tikz">
+  <caption>A figure generated with TikZ in
+  <latex /></caption>
+  <image width="15%" xml:id="poset">
+
+<latex-image >
+  \begin{tikzpicture}
+  \begin{axis}[grid=both, axis lines = middle, height = 3.5in, width = 3.5in, xmin=-3,xmax=3,ymin=-2,ymax=10,xlabel={\large{$x$}}, ylabel={\large{$y$}}, xtick={-6,-5,...,7}, ytick={-4,-3,...,10}]
+  \addplot[domain=-5:5,black]{x^2-x};
+  \end{axis}
+  \end{tikzpicture}
+</latex-image>
+  </image>
+
+</figure>
   It is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m>, because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The <alert> negation </alert> of a mathemical statement <m> R </m>,  is a new mathematical statement labeled <m> \text{not } R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
 
   <me> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. </me>

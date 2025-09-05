@@ -1,0 +1,10 @@
+<setup>
+  <function name="f" styleNumber="1">x^2-x</function>
+</setup>
+
+<graph xmin="-2" xmax="4" ymin="-2" ymax="8">
+  $f
+  <math anchor="(2.5,1)">f(x)=$f</math>
+   <xLabel><m>x</m></xLabel>
+  <yLabel><m>y</m></yLabel>
+</graph>
