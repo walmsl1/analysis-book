@@ -184,7 +184,29 @@
   </p>
 
   <p>
-    Unfortunately, <m> P </m> is false! Can you see why? There is one particular value of <m> x </m> for which <m> 1/x </m> is undefined, so the above proof isn't a proof at all! Let's look at the negation of <m> P </m> along with its proof outline and proof.
+    Unfortunately, <m> P </m> is false! Can you see why? There is one particular value of <m> x </m> for which <m> 1/x </m> is undefined, so the above proof isn't a proof at all! 
+    Let's think about the negation of <m> P </m> one step at a time. 
+    
+    <tabular halign="left">
+      <row header="yes" bottom="minor" >
+        <cell>Part of statement <m>P</m> </cell>
+        <cell>Part of statement not <m> P </m> </cell>
+      </row>
+      <row>
+        <cell> <m> \forall \, x\in \R </m></cell>
+        <cell> <m> \exists \, x\in \R </m> s.t. </cell>
+      </row>
+      <row>
+        <cell><m> \exists \, y\in \R</m> s.t. </cell>
+        <cell><m> \forall \, y\in \R</m> </cell>
+      </row>
+      <row>
+        <cell><m> xy= 1.</m></cell>
+        <cell> <m> xy\neq 1.</m></cell>
+      </row>
+    </tabular>
+    
+   Now we're ready for its proof outline and proof.
 
     <me> \text{not } P: \exists \, x\in \R \text{ s.t. } \forall \, y\in \R, xy\neq 1. </me>
 
