@@ -3,8 +3,9 @@
 <section xml:id="sec-open_sets" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Open Sets</title>
  <p>
-  Just as a number can have many properties, like even, prime, rational, etc., so to can a subset of <m> \R </m>. Some of the most important subsets of <m> \R </m> belong to the family of <alert> open sets. </alert>
-
+  Just as a number can have many properties, like even, prime, rational, etc., so to can a subset of <m> \R </m>. 
+  Some of the most important subsets of <m> \R </m> belong to the family of <alert> open sets. </alert>
+ </p>
     <definition>
         <title>Open set</title>
         <statement>
@@ -15,7 +16,7 @@
         </p>
       </statement>
       </definition>
-    </p>
+    
       <p>
       Roughly speaking, a set <m> A </m> is open we can put every element in the set inside a tiny open interval which is contained completely inside <m> A </m>. Let's look at a general proof outline for showing <m> A </m> is open.
 
