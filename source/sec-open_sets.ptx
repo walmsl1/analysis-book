@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-open_sets" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Open Sets</title>
+ <p>
+  Just as a number can have many properties, like even, prime, rational, etc., so to can a subset of <m> \R </m>. Some of the most important subsets of <m> \R </m> belong to the family of <alert> open sets. </alert>
+
+    <definition>
+        <title>Open set</title>
+        <statement>
+        <p>
+          A subset <m> A </m> of <m> \R </m> is an <term>open set</term>
+          <idx> <h>open set</h> </idx>
+          if <m> \forall \, a\in A \, \exists \, \epsilon>0 </m> s.t. <m> (a-\epsilon,a+\epsilon) \subseteq A </m>. Or, spelling out the hidden quantifier in the <m> \subseteq </m> symbol, <m> A </m> is open if <m> \forall \, a\in A \, \exists \, \epsilon>0 </m> s.t. <m> \forall \, x\in (a-\epsilon,a+\epsilon), x\in A </m>.
+        </p>
+      </statement>
+      </definition>
+    </p>
+      <p>
+      Roughly speaking, a set <m> A </m> is open we can put every element in the set inside a tiny open interval which is contained completely inside <m> A </m>. Let's look at a general proof outline for showing <m> A </m> is open.
+
+      <tabular halign="left">
+        <row header="yes" bottom="minor" >
+          <cell><m> A </m> is open if...</cell>
+          <cell>Proof outline</cell>
+        </row>
+        <row>
+          <cell><m> \forall \, a\in A </m> </cell>
+          <cell> Let <m> a\in A. </m> </cell>
+        </row>
+        <row>
+          <cell><m> \exists \, \epsilon > 0</m> s.t. </cell>
+          <cell>Define <m> \epsilon. </m> </cell>
+        </row>
+        <row>
+          <cell><m> \forall \, x\in (a-\epsilon, a+\epsilon)</m></cell>
+          <cell> Let <m>x\in (a-\epsilon,a+\epsilon).</m> </cell>
+        </row>
+        <row>
+            <cell><m> x\in A </m></cell>
+            <cell> We must show <m>x\in A.</m> </cell>
+          </row>
+      </tabular>
+
+      For example, the interval <m> (c,\infty) </m> is open for any <m> c\in \R </m>. Let's see a proof.
+
+      <proof>
+        <p>
+            Let <m> c\in \R. </m> Let <m>a\in (c,\infty).</m> Define <m> \epsilon = c-a.</m> Let <m> x\in (a-\epsilon, a+\epsilon). </m> We must show <m> x\in (c,\infty).</m> 
+        </p>
+
+        <p>
+            Since <m>x\in (a-\epsilon, a+\epsilon),</m> we know <m> a-\epsilon\lt x.</m> And since <m> a-\epsilon = c,</m> we have <m> c\lt x, </m> which implies <m> x\in (c,\infty),</m> as desired.
+        </p>
+      </proof>
+    </p>
+    <p>
+      In the previous proof, <m>\epsilon </m> represented the distance from the element <m> a</m> to the left endpoint of <m> (c,\infty) </m>. The interval <m> (c,d) </m> is also open whenever <m>c\lt d </m>, but now there are two endpoints to consider for an element <m>a\in (c,d)</m>: the distance <m> a-c </m> to the left endpoint, and the distance <m> d-a </m> to the right endpoint. We will pick <m> \epsilon </m> to be the lesser of these two distances, which will ensure <m> (a-\epsilon,a+\epsilon) </m> is contained completely inside of <m> (c,d) </m>.
+
+        <proof>
+            <p>
+                Let <m>c\lt d</m> and let <m> a\in (c,d) </m>. Define <m> \epsilon=\min(a-c,d-a)</m> and let <m> x\in (a-\epsilon,a+\epsilon).</m> We must show <m> x\in (c,d),</m> or rather <m> c\lt x </m> and <m> x\lt d.</m>
+            </p>
+
+            <p>
+                By virtue of being the minimum of <m>a-c</m> and <m>d-a,</m>, we know <m> \epsilon \leq a-c.</m>. Rearranging yields <m> c\leq a-\epsilon, </m> and since <m> a-\epsilon \lt x,</m> we must have <m> c\lt x </m>.
+            </p>
+            <p>
+                Similarly, we know <m> \epsilon \leq d-a </m>, which yields <m> a+\epsilon \lt d </m> after rearranging. Hence <m> x\lt a+\epsilon\leq d,</m>, which implies <m> x\lt d</m>. Then since <m> c\lt x </m> and <m> x\lt c, </m> we know <m> x\in (c,d),</m> as desired.
+            </p>
+        </proof>
+    </p>
+    <p>
+    Observe that the only properties of <m> \epsilon </m> that are needed are that both <m> \epsilon \leq a-c</m> and <m> \epsilon \leq d-a. </m> There are certainly other numbers with those two properties that we could have chosen for <m> \epsilon, </m> such as <m> \displaystyle \frac{(a-c)(d-a)}{1+(a-c)+(d-a)}.</m> Using a minimum makes it clear what is important about <m>\epsilon </m>. 
+
+    </p>
+    <p>
+    Not every set of real numbers is open. Negating the definition of open gives us the following.
+    <definition>
+        <title> Not open set</title>
+        <statement>
+        <p>
+          A subset <m> A </m> of <m> \R </m> is <term>not an open set</term>
+          if <m> \exists \, a\in A </m> s.t. <m> \forall \,\epsilon\gt 0 \, \exists \, x\in (a-\epsilon,a+\epsilon)</m> s.t. <m> x\not\in A </m>.
+        </p>
+      </statement>
+      </definition>
+
+      For example, the interval <m> [c,d)</m> is not open because of the inclusion of the pesky left endpoint; no open interval <m> (c-\epsilon,c+\epsilon) </m> is contained completely within <m> [c,d) </m>.
+
+      <proof>
+        <p>
+            Let <m>c\lt d </m> and consider <m> a=c</m>. Let <m>\epsilon >0 </m> and let <m> x=a-\epsilon/2</m>. Observe <m> x\in (a-\epsilon,a+\epsilon)</m> because <m> x</m> is the midpoint of <m>a-\epsilon</m> and <m>a</m>. We must show <m>x\in [c,d)</m>. Since <m>\epsilon >0</m>, we have <m> x=a-\epsilon/2\lt a=c,</m> which shows <m> x\lt c</m> and <m>x\not \in [c,d),</m> as desired.
+        </p>
+      </proof>
+    </p>
+
+    <p> Get some practice with negations and proof outlines below! These should match the preview.
+    </p>
+    <exercises xml:id="parsons-exercises">
+        <title>Proof outline practice</title>
+            <exercise label="first-parsons" adaptive="yes" indentation="hide">
+                <title>Problem 1</title>
+                <statement><div> Let <m>A</m> be a subset of <m>\R</m> and let <m>x\in \R</m>. We say that <m>A</m> is <alert> bounded away from </alert> <m>x</m> if <m>\exists \delta >0</m> s.t. <m>\forall \, a\in A, |x-a|>\delta</m>. Put the given blocks in a correct proof outline order. Some blocks are not needed.</div></statement>
+                <blocks>
+                    <block name="1" order="1">
+                        <div>Restate what <m> A </m> and <m>x</m> are. (this is first)</div>
+                    </block>
+                    <block name="2" depends="1" order="4">
+                        <div>Define <m>\delta</m>.</div>
+                    </block>
+                    <block name="3" depends="2" order="3">
+                        <div>Let <m>a\in A.</m></div>
+                    </block>
+                    <block name="4" depends="3" order="7">
+                        <div> We must show <m> |x-a|>\delta.</m></div>
+                    </block>
+                    <block name="5" correct="no" order="5">
+                        <div>Let <m>\delta>0.</m></div>
+                    </block>
+                    <block name="6" correct="no" order="2">
+                        <div>Define <m>a\in A</m>.</div>
+                    </block>
+                    <block name="7" correct="no" order="6">
+                        <div>We must show <m> |x-a|\leq \delta.</m></div>
+                    </block>
+                </blocks>
+            </exercise>
+                    <exercise label="second-parsons" adaptive="yes" indentation="hide">
+                        <title>Problem 2</title>
+                        <statement><div>By negating the definition of "bounded away from" above, put the given blocks in a correct order to complete the sentence "<m>A</m> is not bounded away from <m>x</m> if..."</div></statement>
+                        <blocks>
+                            <block name="1" order="2">
+                                <div><m>\forall \, \delta>0</m></div>
+                            </block>
+                            <block name="2" depends="1" order="4">
+                                <div><m>\exists \, a\in A</m> s.t. </div>
+                            </block>
+                            <block name="3" depends="2" order="3">
+                                <div><m>|x-a|\leq \delta.</m></div>
+                            </block>
+                            <block name="4" correct="no" order="1">
+                                <div> <m>\exists \, \delta>0</m> s.t.</div>
+                            </block>
+                            <block name="5" correct="no" order="5">
+                                <div><m>\forall \, a\in A</m></div>
+                            </block>
+                            <block name="6" correct="no" order="6">
+                                <div><m> |x-a|> \delta.</m></div>
+                            </block>
+                        </blocks>
+                    </exercise>
+        </exercises>
+</section>
