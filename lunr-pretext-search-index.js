@@ -106,43 +106,43 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "0.2",
   "title": "Open Sets",
-  "body": " Open Sets Just as a number can have many properties, like even, prime, rational, etc., so to can a subset of . Some of the most important subsets of belong to the family of open sets.   Open set   A subset of is an open set   open set  if s.t. . Or, spelling out the hidden quantifier in the symbol, is open if s.t. .    Roughly speaking, a set is open we can put every element in the set inside a tiny open interval which is contained completely inside . Let's look at a general proof outline for showing is open.   is open if...  Proof outline      Let     s.t.  Define      Let      We must show    For example, the interval is open for any . Let's see a proof.  Let Let Define Let We must show   Since we know And since we have which implies as desired.    In the previous proof, represented the distance from the element to the left endpoint of . The interval is also open whenever , but now there are two endpoints to consider for an element : the distance to the left endpoint, and the distance to the right endpoint. We will pick to be the lesser of these two distances, which will ensure is contained completely inside of .  Let and let . Define and let We must show meaning and   By virtue of being the minimum of and , we know . Rearranging yields and since we must have .  Similarly, we know , which yields after rearranging. Hence , which implies . Then since and we know as desired.  Observe that the only properties of that are needed are that both and There are certainly other numbers with those two properties that we could have chosen for such as Using a minimum makes it clear what is important about .  Not every set of real numbers is open. Negating the definition of open gives us the following.  Open set   A subset of is not an open set if s.t. s.t. .   For example, the interval is not open because of the inclusion of the pesky left endpoint; no open interval is contained completely within .  Let and consider . Let and let . Observe We must show . Since , we have which shows and     Get some practice with negations and proof outlines below! These should match the preview.   Proof outline practice  Problem 1 Let be a subset of and let . We say that is bounded away from  if s.t. . Put the given blocks in a correct proof outline order. Some blocks are not needed.   Restate what and are. (this is first)    Define .    Let    We must show    Let    Define .    We must show    Problem 2 By negating the definition of \"bounded away from\" above, put the given blocks in a correct order to complete the sentence \" is not bounded away from if...\"      s.t.        s.t.           "
+  "body": " Open Sets  Just as a number can have many properties, like even, prime, rational, etc., so to can a subset of . Some of the most important subsets of belong to the family of open sets.    Open set   A subset of is an open set   open set  if s.t. . Or, spelling out the hidden quantifier in the symbol, is open if s.t. .    Roughly speaking, a set is open we can put every element in the set inside a tiny open interval which is contained completely inside . Let's look at a general proof outline for showing is open.   is open if...  Proof outline      Let     s.t.  Define      Let      We must show    For example, the interval is open for any . Let's see a proof.  Let Let Define Let We must show   Since we know And since we have which implies as desired.    In the previous proof, represented the distance from the element to the left endpoint of . The interval is also open whenever , but now there are two endpoints to consider for an element : the distance to the left endpoint, and the distance to the right endpoint. We will pick to be the lesser of these two distances, which will ensure is contained completely inside of .  Let and let . Define and let We must show or rather and   By virtue of being the minimum of and , we know . Rearranging yields and since we must have .  Similarly, we know , which yields after rearranging. Hence , which implies . Then since and we know as desired.    Observe that the only properties of that are needed are that both and There are certainly other numbers with those two properties that we could have chosen for such as Using a minimum makes it clear what is important about .  Not every set of real numbers is open. Negating the definition of open gives us the following.  Not open set   A subset of is not an open set if s.t. s.t. .   For example, the interval is not open because of the inclusion of the pesky left endpoint; no open interval is contained completely within .  Let and consider . Let and let . Observe because is the midpoint of and . We must show . Since , we have which shows and as desired.    Get some practice with negations and proof outlines below! These should match the preview.   Proof outline practice  Problem 1 Let be a subset of and let . We say that is bounded away from  if s.t. . Put the given blocks in a correct proof outline order. Some blocks are not needed.   Restate what and are. (this is first)    Define .    Let    We must show    Let    Define .    We must show    Problem 2 By negating the definition of \"bounded away from\" above, put the given blocks in a correct order to complete the sentence \" is not bounded away from if...\"      s.t.        s.t.           "
 },
 {
-  "id": "sec-open_sets-5",
+  "id": "sec-open_sets-3",
   "level": "2",
-  "url": "sec-open_sets.html#sec-open_sets-5",
+  "url": "sec-open_sets.html#sec-open_sets-3",
   "type": "Definition",
   "number": "0.2.1",
   "title": "Open set.",
   "body": " Open set   A subset of is an open set   open set  if s.t. . Or, spelling out the hidden quantifier in the symbol, is open if s.t. .   "
 },
 {
-  "id": "sec-open_sets-6-7",
+  "id": "sec-open_sets-4-7",
   "level": "2",
-  "url": "sec-open_sets.html#sec-open_sets-6-7",
+  "url": "sec-open_sets.html#sec-open_sets-4-7",
   "type": "Proof",
   "number": "1",
   "title": "",
   "body": " Let Let Define Let We must show   Since we know And since we have which implies as desired.  "
 },
 {
-  "id": "sec-open_sets-7-12",
+  "id": "sec-open_sets-5-12",
   "level": "2",
-  "url": "sec-open_sets.html#sec-open_sets-7-12",
+  "url": "sec-open_sets.html#sec-open_sets-5-12",
   "type": "Proof",
   "number": "1",
   "title": "",
-  "body": " Let and let . Define and let We must show meaning and   By virtue of being the minimum of and , we know . Rearranging yields and since we must have .  Similarly, we know , which yields after rearranging. Hence , which implies . Then since and we know as desired.  "
+  "body": " Let and let . Define and let We must show or rather and   By virtue of being the minimum of and , we know . Rearranging yields and since we must have .  Similarly, we know , which yields after rearranging. Hence , which implies . Then since and we know as desired.  "
 },
 {
-  "id": "sec-open_sets-8",
+  "id": "sec-open_sets-7",
   "level": "2",
-  "url": "sec-open_sets.html#sec-open_sets-8",
+  "url": "sec-open_sets.html#sec-open_sets-7",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
-  "body": "open set "
+  "body": "not an open set "
 },
 {
   "id": "first-parsons",
