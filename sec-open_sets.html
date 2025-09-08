@@ -8,7 +8,7 @@
 <html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Acknowledgements</title>
+<title>Open Sets</title>
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
@@ -140,7 +140,7 @@ eBookConfig.enable_chatcodes =  false;
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="frontmatter-3.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="frontmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="preface.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-quantifiers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-integration-intro.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
 \newcommand{\N}{\mathbb N}
 \newcommand{\B}{\mathbf B}
 \newcommand{\Z}{\mathbb Z}
@@ -175,18 +175,18 @@ eBookConfig.enable_chatcodes =  false;
 \)</span></div>
 <div class="ptx-page">
 <div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural contains-active toc-item-list">
-<li class="toc-item toc-frontmatter contains-active">
+<li class="toc-item toc-frontmatter">
 <div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
-<ul class="structural toc-item-list contains-active">
+<ul class="structural toc-item-list">
 <li class="toc-item toc-colophon"><div class="toc-title-box"><a href="frontmatter-2.html" class="internal"><span class="title">Colophon</span></a></div></li>
 <li class="toc-item toc-dedication"><div class="toc-title-box"><a href="frontmatter-3.html" class="internal"><span class="title">Dedication</span></a></div></li>
-<li class="toc-item toc-acknowledgement active"><div class="toc-title-box"><a href="frontmatter-4.html" class="internal"><span class="title">Acknowledgements</span></a></div></li>
+<li class="toc-item toc-acknowledgement"><div class="toc-title-box"><a href="frontmatter-4.html" class="internal"><span class="title">Acknowledgements</span></a></div></li>
 <li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-chapter">
+<li class="toc-item toc-chapter contains-active">
 <div class="toc-title-box"><a href="ch_intro.html" class="internal"><span class="codenumber">0</span> <span class="title">Introduction</span></a></div>
-<ul class="structural toc-item-list">
+<ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-quantifiers.html" class="internal"><span class="codenumber">0.1</span> <span class="title">Quantifiers in Proofs</span></a></div>
 <ul class="structural toc-item-list">
@@ -194,7 +194,7 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-quantifiers.html#sec-quantifiers-3" class="internal"><span class="title">Multiple Quantifiers</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-section">
+<li class="toc-item toc-section active">
 <div class="toc-title-box"><a href="sec-open_sets.html" class="internal"><span class="codenumber">0.2</span> <span class="title">Open Sets</span></a></div>
 <ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-open_sets.html#parsons-exercises" class="internal"><span class="codenumber">0.2</span> <span class="title">Proof outline practice</span></a></div></li></ul>
 </li>
@@ -213,12 +213,96 @@ eBookConfig.enable_chatcodes =  false;
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="acknowledgement" id="frontmatter-4"><h2 class="heading hide-type">
-<span class="type">Acknowledgements</span><span class="space"> </span><span class="codenumber"></span><span class="space"> </span><span class="title">Acknowledgements</span>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-open_sets"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.2</span><span class="space"> </span><span class="title">Open Sets</span>
 </h2>
-<div class="para" id="frontmatter-4-1">We are grateful to Layton Borst, whose work througout Summer 2024 got this book up and running.</div></section></div>
+<span class="process-math">\(\R \text{.}\)</span><span class="process-math">\(\R \)</span><em class="alert">open sets.</em><article class="definition definition-like" id="sec-open_sets-5"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">0.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Open set.</span>
+</h3> <div class="para" id="sec-open_sets-5-2-1">A subset <span class="process-math">\(A \)</span> of <span class="process-math">\(\R \)</span> is an <dfn class="terminology">open set</dfn>  if <span class="process-math">\(\forall \, a\in A \, \exists \, \epsilon&gt;0 \)</span> s.t. <span class="process-math">\((a-\epsilon,a+\epsilon) \subseteq A \text{.}\)</span> Or, spelling out the hidden quantifier in the <span class="process-math">\(\subseteq \)</span> symbol, <span class="process-math">\(A \)</span> is open if <span class="process-math">\(\forall \, a\in A \, \exists \, \epsilon&gt;0 \)</span> s.t. <span class="process-math">\(\forall \, x\in (a-\epsilon,a+\epsilon), x\in A \text{.}\)</span>
+</div></article><div class="para" id="sec-open_sets-6">Roughly speaking, a set <span class="process-math">\(A \)</span> is open we can put every element in the set inside a tiny open interval which is contained completely inside <span class="process-math">\(A \text{.}\)</span> Let’s look at a general proof outline for showing <span class="process-math">\(A \)</span> is open. <div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b1 r0 l0 t0 lines">
+<span class="process-math">\(A \)</span> is open if...</th>
+<th scope="col" class="l m b1 r0 l0 t0 lines">Proof outline</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\forall \, a\in A \)</span></td>
+<td class="l m b0 r0 l0 t0 lines">Let <span class="process-math">\(a\in A. \)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\exists \, \epsilon &gt; 0\)</span> s.t.</td>
+<td class="l m b0 r0 l0 t0 lines">Define <span class="process-math">\(\epsilon. \)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\forall \, x\in (a-\epsilon, a+\epsilon)\)</span></td>
+<td class="l m b0 r0 l0 t0 lines">Let <span class="process-math">\(x\in (a-\epsilon,a+\epsilon).\)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(x\in A \)</span></td>
+<td class="l m b0 r0 l0 t0 lines">We must show <span class="process-math">\(x\in A.\)</span>
+</td>
+</tr>
+</table></div> For example, the interval <span class="process-math">\((c,\infty) \)</span> is open for any <span class="process-math">\(c\in \R \text{.}\)</span> Let’s see a proof. <article class="proof" id="sec-open_sets-6-7"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3>
+<div class="para" id="sec-open_sets-6-7-1">Let <span class="process-math">\(c\in \R. \)</span> Let <span class="process-math">\(a\in (c,\infty).\)</span> Define <span class="process-math">\(\epsilon = c-a.\)</span> Let <span class="process-math">\(x\in (a-\epsilon, a+\epsilon). \)</span> We must show <span class="process-math">\(x\in (c,\infty).\)</span>
+</div> <div class="para" id="sec-open_sets-6-7-2">Since <span class="process-math">\(x\in (a-\epsilon, a+\epsilon),\)</span> we know <span class="process-math">\(a-\epsilon\lt x.\)</span> And since <span class="process-math">\(a-\epsilon = c,\)</span> we have <span class="process-math">\(c\lt x, \)</span> which implies <span class="process-math">\(x\in (c,\infty),\)</span> as desired.</div></article>
+</div>
+<div class="para" id="sec-open_sets-7">In the previous proof, <span class="process-math">\(\epsilon \)</span> represented the distance from the element <span class="process-math">\(a\)</span> to the left endpoint of <span class="process-math">\((c,\infty) \text{.}\)</span> The interval <span class="process-math">\((c,d) \)</span> is also open whenever <span class="process-math">\(c\lt d \text{,}\)</span> but now there are two endpoints to consider for an element <span class="process-math">\(a\in (c,d)\text{:}\)</span> the distance <span class="process-math">\(a-c \)</span> to the left endpoint, and the distance <span class="process-math">\(d-a \)</span> to the right endpoint. We will pick <span class="process-math">\(\epsilon \)</span> to be the lesser of these two distances, which will ensure <span class="process-math">\((a-\epsilon,a+\epsilon) \)</span> is contained completely inside of <span class="process-math">\((c,d) \text{.}\)</span> <article class="proof" id="sec-open_sets-7-12"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3>
+<div class="para" id="sec-open_sets-7-12-1">Let <span class="process-math">\(c\lt d\)</span> and let <span class="process-math">\(a\in (c,d) \text{.}\)</span> Define <span class="process-math">\(\epsilon=\min(a-c,d-a)\)</span> and let <span class="process-math">\(x\in (a-\epsilon,a+\epsilon).\)</span> We must show <span class="process-math">\(x\in (c,d),\)</span> meaning <span class="process-math">\(c\lt x \)</span> and <span class="process-math">\(x\lt d.\)</span>
+</div> <div class="para" id="sec-open_sets-7-12-2">By virtue of being the minimum of <span class="process-math">\(a-c\)</span> and <span class="process-math">\(d-a,\text{,}\)</span> we know <span class="process-math">\(\epsilon \leq a-c.\text{.}\)</span> Rearranging yields <span class="process-math">\(c\leq a-\epsilon, \)</span> and since <span class="process-math">\(a-\epsilon \lt x,\)</span> we must have <span class="process-math">\(c\lt x \text{.}\)</span>
+</div> <div class="para" id="sec-open_sets-7-12-3">Similarly, we know <span class="process-math">\(\epsilon \leq d-a \text{,}\)</span> which yields <span class="process-math">\(a+\epsilon \lt d \)</span> after rearranging. Hence <span class="process-math">\(x\lt a+\epsilon\leq d,\text{,}\)</span> which implies <span class="process-math">\(x\lt d\text{.}\)</span> Then since <span class="process-math">\(c\lt x \)</span> and <span class="process-math">\(x\lt c, \)</span> we know <span class="process-math">\(x\in (c,d),\)</span> as desired.</div></article> Observe that the only properties of <span class="process-math">\(\epsilon \)</span> that are needed are that both <span class="process-math">\(\epsilon \leq a-c\)</span> and <span class="process-math">\(\epsilon \leq d-a. \)</span> There are certainly other numbers with those two properties that we could have chosen for <span class="process-math">\(\epsilon, \)</span> such as <span class="process-math">\(\displaystyle \frac{(a-c)(d-a)}{1+(a-c)+(d-a)}.\)</span> Using a minimum makes it clear what is important about <span class="process-math">\(\epsilon \text{.}\)</span>
+</div>
+<div class="para" id="sec-open_sets-8">Not every set of real numbers is open. Negating the definition of open gives us the following. <article class="definition definition-like" id="sec-open_sets-8-1"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">0.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Open set.</span>
+</h3> <div class="para" id="sec-open_sets-8-1-2-1">A subset <span class="process-math">\(A \)</span> of <span class="process-math">\(\R \)</span> is not an <dfn class="terminology">open set</dfn> if <span class="process-math">\(\exists \, a\in A \)</span> s.t. <span class="process-math">\(\forall \,\epsilon\gt 0 \, \exists \, x\in (a-\epsilon,a+\epsilon)\)</span> s.t. <span class="process-math">\(x\not\in A \text{.}\)</span>
+</div></article> For example, the interval <span class="process-math">\([c,d)\)</span> is not open because of the inclusion of the pesky left endpoint; no open interval <span class="process-math">\((c-\epsilon,c+\epsilon) \)</span> is contained completely within <span class="process-math">\([c,d) \text{.}\)</span> <article class="proof" id="sec-open_sets-8-5"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3>
+<div class="para" id="sec-open_sets-8-5-1">Let <span class="process-math">\(c\lt d \)</span> and consider <span class="process-math">\(a=c\text{.}\)</span> Let <span class="process-math">\(\epsilon &gt;0 \)</span> and let <span class="process-math">\(x=a-\epsilon/2\text{.}\)</span> Observe <span class="process-math">\(x\in (a-\epsilon,a+\epsilon).\)</span> We must show <span class="process-math">\(x\in [c,d)\text{.}\)</span> Since <span class="process-math">\(\epsilon &gt;0\text{,}\)</span> we have <span class="process-math">\(x=a-\epsilon/2\lt a=c,\)</span> which shows <span class="process-math">\(x\lt c\)</span> and <span class="process-math">\(x\not \in [c,d).\)</span>
+</div></article>
+</div>
+<div class="para" id="sec-open_sets-9">Get some practice with negations and proof outlines below! These should match the preview.</div>
+<section class="exercises" id="parsons-exercises"><h3 class="heading hide-type">
+<span class="type">Exercises</span><span class="space"> </span><span class="codenumber"></span><span class="space"> </span><span class="title">Proof outline practice</span>
+</h3>
+<article class="exercise exercise-like" id="first-parsons"><h4 class="heading">
+<span class="codenumber">1<span class="period">.</span></span><span class="space"> </span><span class="title">Problem 1.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone parsons_section" style="max-width: none;"><div data-component="parsons" class="parsons" id="first-parsons">
+<div class="parsons_question parsons-text">Let <span class="process-math">\(A\)</span> be a subset of <span class="process-math">\(\R\)</span> and let <span class="process-math">\(x\in \R\text{.}\)</span> We say that <span class="process-math">\(A\)</span> is <em class="alert">bounded away from</em> <span class="process-math">\(x\)</span> if <span class="process-math">\(\exists \delta &gt;0\)</span> s.t. <span class="process-math">\(\forall \, a\in A, |x-a|&gt;\delta\text{.}\)</span> Put the given blocks in a correct proof outline order. Some blocks are not needed.</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-adaptive="true" data-grader="dag" data-noindent="false">Restate what <span class="process-math">\(A \)</span> and <span class="process-math">\(x\)</span> are. (this is first) #tag:1; depends:;
+---
+Define <span class="process-math">\(\delta\text{.}\)</span> #tag:2; depends:1;
+---
+Let <span class="process-math">\(a\in A.\)</span> #tag:3; depends:2;
+---
+We must show <span class="process-math">\(|x-a|&gt;\delta.\)</span> #tag:4; depends:3;
+---
+Let <span class="process-math">\(\delta&gt;0.\)</span> #distractor #tag:5; depends:;
+---
+Define <span class="process-math">\(a\in A\text{.}\)</span> #distractor #tag:6; depends:;
+---
+We must show <span class="process-math">\(|x-a|\leq \delta.\)</span> #distractor #tag:7; depends:;</pre>
+</div></div></div></article><article class="exercise exercise-like" id="second-parsons"><h4 class="heading">
+<span class="codenumber">2<span class="period">.</span></span><span class="space"> </span><span class="title">Problem 2.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone parsons_section" style="max-width: none;"><div data-component="parsons" class="parsons" id="second-parsons">
+<div class="parsons_question parsons-text">By negating the definition of "bounded away from" above, put the given blocks in a correct order to complete the sentence "<span class="process-math">\(A\)</span> is not bounded away from <span class="process-math">\(x\)</span> if..."</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-adaptive="true" data-grader="dag" data-noindent="false"><span class="process-math">\(\forall \, \delta&gt;0\)</span> #tag:1; depends:;
+---
+<span class="process-math">\(\exists \, a\in A\)</span> s.t. #tag:2; depends:1;
+---
+<span class="process-math">\(|x-a|\leq \delta.\)</span> #tag:3; depends:2;
+---
+<span class="process-math">\(\exists \, \delta&gt;0\)</span> s.t. #distractor #tag:4; depends:;
+---
+<span class="process-math">\(\forall \, a\in A\)</span> #distractor #tag:5; depends:;
+---
+<span class="process-math">\(|x-a|&gt; \delta.\)</span> #distractor #tag:6; depends:;</pre>
+</div></div></div></article></section></section></div>
 <div class="ptx-content-footer">
-<a class="previous-button button" href="frontmatter-3.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="preface.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="sec-quantifiers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-integration-intro.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">

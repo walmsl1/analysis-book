@@ -100,11 +100,74 @@ var ptx_lunr_docs = [
   "body": "Define and let We must show Since , then , which shows . "
 },
 {
+  "id": "sec-open_sets",
+  "level": "1",
+  "url": "sec-open_sets.html",
+  "type": "Section",
+  "number": "0.2",
+  "title": "Open Sets",
+  "body": " Open Sets Just as a number can have many properties, like even, prime, rational, etc., so to can a subset of . Some of the most important subsets of belong to the family of open sets.   Open set   A subset of is an open set   open set  if s.t. . Or, spelling out the hidden quantifier in the symbol, is open if s.t. .    Roughly speaking, a set is open we can put every element in the set inside a tiny open interval which is contained completely inside . Let's look at a general proof outline for showing is open.   is open if...  Proof outline      Let     s.t.  Define      Let      We must show    For example, the interval is open for any . Let's see a proof.  Let Let Define Let We must show   Since we know And since we have which implies as desired.    In the previous proof, represented the distance from the element to the left endpoint of . The interval is also open whenever , but now there are two endpoints to consider for an element : the distance to the left endpoint, and the distance to the right endpoint. We will pick to be the lesser of these two distances, which will ensure is contained completely inside of .  Let and let . Define and let We must show meaning and   By virtue of being the minimum of and , we know . Rearranging yields and since we must have .  Similarly, we know , which yields after rearranging. Hence , which implies . Then since and we know as desired.  Observe that the only properties of that are needed are that both and There are certainly other numbers with those two properties that we could have chosen for such as Using a minimum makes it clear what is important about .  Not every set of real numbers is open. Negating the definition of open gives us the following.  Open set   A subset of is not an open set if s.t. s.t. .   For example, the interval is not open because of the inclusion of the pesky left endpoint; no open interval is contained completely within .  Let and consider . Let and let . Observe We must show . Since , we have which shows and     Get some practice with negations and proof outlines below! These should match the preview.   Proof outline practice  Problem 1 Let be a subset of and let . We say that is bounded away from  if s.t. . Put the given blocks in a correct proof outline order. Some blocks are not needed.   Restate what and are. (this is first)    Define .    Let    We must show    Let    Define .    We must show    Problem 2 By negating the definition of \"bounded away from\" above, put the given blocks in a correct order to complete the sentence \" is not bounded away from if...\"      s.t.        s.t.           "
+},
+{
+  "id": "sec-open_sets-5",
+  "level": "2",
+  "url": "sec-open_sets.html#sec-open_sets-5",
+  "type": "Definition",
+  "number": "0.2.1",
+  "title": "Open set.",
+  "body": " Open set   A subset of is an open set   open set  if s.t. . Or, spelling out the hidden quantifier in the symbol, is open if s.t. .   "
+},
+{
+  "id": "sec-open_sets-6-7",
+  "level": "2",
+  "url": "sec-open_sets.html#sec-open_sets-6-7",
+  "type": "Proof",
+  "number": "1",
+  "title": "",
+  "body": " Let Let Define Let We must show   Since we know And since we have which implies as desired.  "
+},
+{
+  "id": "sec-open_sets-7-12",
+  "level": "2",
+  "url": "sec-open_sets.html#sec-open_sets-7-12",
+  "type": "Proof",
+  "number": "1",
+  "title": "",
+  "body": " Let and let . Define and let We must show meaning and   By virtue of being the minimum of and , we know . Rearranging yields and since we must have .  Similarly, we know , which yields after rearranging. Hence , which implies . Then since and we know as desired.  "
+},
+{
+  "id": "sec-open_sets-8",
+  "level": "2",
+  "url": "sec-open_sets.html#sec-open_sets-8",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "open set "
+},
+{
+  "id": "first-parsons",
+  "level": "2",
+  "url": "sec-open_sets.html#first-parsons",
+  "type": "Exercise",
+  "number": "0.2.1",
+  "title": "Problem 1.",
+  "body": "Problem 1 Let be a subset of and let . We say that is bounded away from  if s.t. . Put the given blocks in a correct proof outline order. Some blocks are not needed.   Restate what and are. (this is first)    Define .    Let    We must show    Let    Define .    We must show   "
+},
+{
+  "id": "second-parsons",
+  "level": "2",
+  "url": "sec-open_sets.html#second-parsons",
+  "type": "Exercise",
+  "number": "0.2.2",
+  "title": "Problem 2.",
+  "body": "Problem 2 By negating the definition of \"bounded away from\" above, put the given blocks in a correct order to complete the sentence \" is not bounded away from if...\"      s.t.        s.t.         "
+},
+{
   "id": "sec-integration-intro",
   "level": "1",
   "url": "sec-integration-intro.html",
   "type": "Section",
-  "number": "0.2",
+  "number": "0.3",
   "title": "Integration",
   "body": " Integration  As we learned in Calculus, a definite integral geometrically represents the area between a curve and the horizontal axis over an interval .    The area between the curve and the horizontal axis is the definite integral of over the interval .    If the function is a straight line, then the shape is a polygon whose area we can compute exactly. But when the function is curvy, how do we define the area? The idea is to rectangles, whose areas are easily computed, to approximate the true area under the curve. In Calculus I, the most common rectangle sums are the left and right hand Riemann sums. Those sums are useful because they are easy to draw and compute; we can tell a computer (human or machine) a simple algorithm to follow. But how good of an approximation is a left or right hand sum? If some of the rectangles are above the curve while others are below, this is a challenging question to answer. To develop the theory of integration, we will want to know without question whether a rectangle sum is an underestimate or overestimate. The way to guarantee this is to always stick rectangles below the curve for underestimates and above the curve for overesitmates, as in the graphic below.  The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.     The set of subdivision points form what's called a partition of - a finite set of strictly increasing values starting at and ending with . On a given subinterval , the height of the \"lower rectangle\" is given by since this value is guaranteed to be less than or equal to any other -value of the function on that subinterval. Hence the area of an individual \"lower rectangle\" is just and if we sum the areas of each, we get the lower sum for over : Now each lower sum is an underestimate for the true area, so the supremum of all possible lower sums will give us a \"best underestimate\" for the area; we call this the lower integral of over :   Similarly, we take for the heights of the \"upper rectangles\", and get the upper sum  Each upper sum is an overestimate for the true area, so the infimum of all possible upper sums will give us a \"best overestimate\" for the area; we call this the upper integral of over : As we will see in class, there are functions whose upper and lower integrals can differ! If the upper and lower integrals of are the same, we say that is integrable over , and in this case, we introduce the following notation to represent the value of and ;   Apparently not every function is integrable (as we shall see in class), so which functions are integrable? Can we classify them? As a start towards answering this question, we could use an easier to check criterion for integrability. Right now, given some function , we would have to compute its upper and lower integrals, which can be a formidable task (without more powerful integration tools) even for a tame function like . Luckily, there is a criterion we can use to more easily check when a function is integrable; we will not prove this result.   A function is integrable on if and only if for all , there exists a partition such that .   The benefit of the above theorem is that we need only find one partition on which the upper sum and lower sum are close. The downside is that checking that condition won't tell us what the value of the integral is, even though we will then know the function is integrable!  Let's put this theorem in action to see why discontinuous functions can still be integrable.   This is a Doenet activity.    "
 },
@@ -113,7 +176,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-integration-intro.html#integration_graph-figure",
   "type": "Figure",
-  "number": "0.2.1",
+  "number": "0.3.1",
   "title": "",
   "body": " The area between the curve and the horizontal axis is the definite integral of over the interval .   "
 },
@@ -122,7 +185,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-integration-intro.html#integration_graph-figure2",
   "type": "Figure",
-  "number": "0.2.2",
+  "number": "0.3.2",
   "title": "",
   "body": " The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.   "
 },
@@ -149,7 +212,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-integration-intro.html#sec-integration-intro-7-3",
   "type": "Theorem",
-  "number": "0.2.3",
+  "number": "0.3.3",
   "title": "",
   "body": "  A function is integrable on if and only if for all , there exists a partition such that .   "
 },
@@ -158,7 +221,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-integration-intro.html#darboux_interactive",
   "type": "Figure",
-  "number": "0.2.4",
+  "number": "0.3.4",
   "title": "",
   "body": " This is a Doenet activity.   "
 },
@@ -167,7 +230,7 @@ var ptx_lunr_docs = [
   "level": "1",
   "url": "sec-limits_of_functions.html",
   "type": "Section",
-  "number": "0.3",
+  "number": "0.4",
   "title": "Function Limits",
   "body": " Function Limits  As you have seen in a Calculus class, the notation roughly means that is close to when is close to . But how close should be to ? And how close must be to ? We need quantifiers for a precise statement.  Let We say the limit of at is , and write , if s.t. .  Let's focus on the very last piece, namely . Here, is measuring how far away and can be; it is required that , meaning must lie in the horizontal strip between the horizontal lines and . And for what values of must this be true? We need to pick to guarantee it is true for any satisfying . Let's explore this with an activity.  This is a Doenet activity.     "
 },
@@ -176,7 +239,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-limits_of_functions.html#sec-limits_of_functions-2-10",
   "type": "Definition",
-  "number": "0.3.1",
+  "number": "0.4.1",
   "title": "",
   "body": "Let We say the limit of at is , and write , if s.t. . "
 },
@@ -185,14 +248,14 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-limits_of_functions.html#function_limits_activity",
   "type": "Figure",
-  "number": "0.3.2",
+  "number": "0.4.2",
   "title": "",
   "body": " This is a Doenet activity.   "
 },
 {
-  "id": "ch_intro-6",
+  "id": "ch_intro-7",
   "level": "1",
-  "url": "ch_intro-6.html",
+  "url": "ch_intro-7.html",
   "type": "References",
   "number": "0",
   "title": "References and Suggested Readings",

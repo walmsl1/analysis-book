@@ -89,6 +89,37 @@ window.MathJax = {
 <link href="_static/pretext/css/colors_default.css" rel="stylesheet" type="text/css">
 <link href="_static/pretext/css/setcolors.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="external/custom-styles.css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.9.10';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.9.10/prefix-runtime.fea5c754ab3e056b.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.9.10/prefix-723.3e6434f80549315a.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.9.10/prefix-runestone.b37c97cbe7a5455b.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.9.10/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.9.10/prefix-runestone.8141ae22fd347e48.css">
 <style>
 </style>
 </head>
@@ -109,7 +140,7 @@ window.MathJax = {
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-quantifiers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-limits_of_functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="sec-open_sets.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch_intro.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-limits_of_functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\renewcommand{\d}{\displaystyle}
 \newcommand{\N}{\mathbb N}
 \newcommand{\B}{\mathbf B}
 \newcommand{\Z}{\mathbb Z}
@@ -163,9 +194,13 @@ window.MathJax = {
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-quantifiers.html#sec-quantifiers-3" class="internal"><span class="title">Multiple Quantifiers</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-integration-intro.html" class="internal"><span class="codenumber">0.2</span> <span class="title">Integration</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-limits_of_functions.html" class="internal"><span class="codenumber">0.3</span> <span class="title">Function Limits</span></a></div></li>
-<li class="toc-item toc-references"><div class="toc-title-box"><a href="ch_intro-6.html" class="internal"><span class="codenumber">0</span> <span class="title">References and Suggested Readings</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-open_sets.html" class="internal"><span class="codenumber">0.2</span> <span class="title">Open Sets</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-open_sets.html#parsons-exercises" class="internal"><span class="codenumber">0.2</span> <span class="title">Proof outline practice</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-integration-intro.html" class="internal"><span class="codenumber">0.3</span> <span class="title">Integration</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-limits_of_functions.html" class="internal"><span class="codenumber">0.4</span> <span class="title">Function Limits</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="ch_intro-7.html" class="internal"><span class="codenumber">0</span> <span class="title">References and Suggested Readings</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-backmatter">
@@ -179,11 +214,11 @@ window.MathJax = {
 </li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-integration-intro"><h2 class="heading hide-type">
-<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.2</span><span class="space"> </span><span class="title">Integration</span>
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">0.3</span><span class="space"> </span><span class="title">Integration</span>
 </h2>
 <div class="para" id="sec-integration-intro-2">As we learned in Calculus, a definite integral geometrically represents the area <span class="process-math">\(A\)</span> between a curve <span class="process-math">\(f\)</span> and the horizontal axis over an interval <span class="process-math">\([a,b]\text{.}\)</span>
 </div>
-<figure class="figure figure-like" id="integration_graph-figure"><iframe id="integration_graph-interactive" width="600" height="480" src="integration_graph-interactive-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.2.1<span class="period">.</span></span><span class="space"> </span>The area between the curve and the horizontal axis is the definite integral of <span class="process-math">\(f\)</span> over the interval <span class="process-math">\([a,b]\text{.}\)</span></figcaption></figure><div class="para" id="sec-integration-intro-4">If the function is a straight line, then the shape is a polygon whose area we can compute exactly. But when the function is curvy, how do we define the area? The idea is to rectangles, whose areas are easily computed, to approximate the true area under the curve. In Calculus I, the most common rectangle sums are the left and right hand Riemann sums. Those sums are useful because they are easy to draw and compute; we can tell a computer (human or machine) a simple algorithm to follow. But how good of an approximation is a left or right hand sum? If some of the rectangles are above the curve while others are below, this is a challenging question to answer. To develop the theory of integration, we will want to know without question whether a rectangle sum is an underestimate or overestimate. The way to guarantee this is to always stick rectangles below the curve for underestimates and above the curve for overesitmates, as in the graphic below. <figure class="figure figure-like" id="integration_graph-figure2"><iframe id="integration_graph-interactive2" width="600" height="480" src="integration_graph-interactive2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.2.2<span class="period">.</span></span><span class="space"> </span>The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.</figcaption></figure>
+<figure class="figure figure-like" id="integration_graph-figure"><iframe id="integration_graph-interactive" width="600" height="480" src="integration_graph-interactive-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.3.1<span class="period">.</span></span><span class="space"> </span>The area between the curve and the horizontal axis is the definite integral of <span class="process-math">\(f\)</span> over the interval <span class="process-math">\([a,b]\text{.}\)</span></figcaption></figure><div class="para" id="sec-integration-intro-4">If the function is a straight line, then the shape is a polygon whose area we can compute exactly. But when the function is curvy, how do we define the area? The idea is to rectangles, whose areas are easily computed, to approximate the true area under the curve. In Calculus I, the most common rectangle sums are the left and right hand Riemann sums. Those sums are useful because they are easy to draw and compute; we can tell a computer (human or machine) a simple algorithm to follow. But how good of an approximation is a left or right hand sum? If some of the rectangles are above the curve while others are below, this is a challenging question to answer. To develop the theory of integration, we will want to know without question whether a rectangle sum is an underestimate or overestimate. The way to guarantee this is to always stick rectangles below the curve for underestimates and above the curve for overesitmates, as in the graphic below. <figure class="figure figure-like" id="integration_graph-figure2"><iframe id="integration_graph-interactive2" width="600" height="480" src="integration_graph-interactive2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.3.2<span class="period">.</span></span><span class="space"> </span>The lower sum rectangles are shaded in red, while the upper sum rectangles are shaded in blue.</figcaption></figure>
 </div>
 <div class="para logical" id="sec-integration-intro-5">
 <div class="para">The set of subdivision points <span class="process-math">\(P=\{t_0,t_1,\ldots,t_n\}\)</span> form what’s called a <dfn class="terminology">partition</dfn> of <span class="process-math">\([a,b] \)</span> - a finite set of strictly increasing values starting at <span class="process-math">\(t_0=a \)</span> and ending with <span class="process-math">\(t_n=b \text{.}\)</span> On a given subinterval <span class="process-math">\([t_{i-1}, t_{i}] \text{,}\)</span> the height of the "lower rectangle" is given by</div>
@@ -237,14 +272,14 @@ U(f)=\inf\{U(f,P): P \text{ is any partition of } [a,b]\}.
 </div>
 </div>
 <div class="para" id="sec-integration-intro-7">Apparently not every function is integrable (as we shall see in class), so which functions are integrable? Can we classify them? As a start towards answering this question, we could use an easier to check criterion for integrability. Right now, given some function <span class="process-math">\(f \text{,}\)</span> we would have to compute its upper and lower integrals, which can be a formidable task (without more powerful integration tools) even for a tame function like <span class="process-math">\(f(x)=e^x \text{.}\)</span> Luckily, there is a criterion we can use to more easily check when a function is integrable; we will not prove this result. <article class="theorem theorem-like" id="sec-integration-intro-7-3"><h3 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">0.2.3</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">0.3.3</span><span class="period">.</span>
 </h3>
 <div class="para" id="sec-integration-intro-7-3-1-1">A function <span class="process-math">\(f\)</span> is integrable on <span class="process-math">\([a,b]\)</span> if and only if for all <span class="process-math">\(\epsilon \gt 0\text{,}\)</span> there exists a partition <span class="process-math">\(P\)</span> such that <span class="process-math">\(U(f,P)-L(f,P) \lt \epsilon\text{.}\)</span>
 </div></article> The benefit of the above theorem is that we need only find one partition <span class="process-math">\(P \)</span> on which the upper <em class="alert">sum</em> and lower <em class="alert">sum</em> are close. The downside is that checking that <span class="process-math">\(\epsilon \)</span> condition won’t tell us what the value of the integral is, even though we will then know the function is integrable!</div>
 <div class="para" id="sec-integration-intro-8">Let’s put this theorem in action to see why discontinuous functions can still be integrable.</div>
-<figure class="figure figure-like" id="darboux_interactive"><iframe id="darboux-display" width="600" height="600" src="darboux-display-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.2.4<span class="period">.</span></span><span class="space"> </span>This is a Doenet activity.</figcaption></figure></section></div>
+<figure class="figure figure-like" id="darboux_interactive"><iframe id="darboux-display" width="600" height="600" src="darboux-display-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">0.3.4<span class="period">.</span></span><span class="space"> </span>This is a Doenet activity.</figcaption></figure></section></div>
 <div class="ptx-content-footer">
-<a class="previous-button button" href="sec-quantifiers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-limits_of_functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="sec-open_sets.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-limits_of_functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
