@@ -3,7 +3,7 @@
 <p>2. Fill in the following table. If a max or min doesn’t exist, or if a set has no upper or lower bounds, write DNE.</p>
 
 <table suppressTableNameInTitle="true">
-  <tabular top="medium" bottom="medium" left="medium" right="medium">
+  <tabular topBorder="medium" bottomBorder="medium" startBorder="medium" endBorder="medium">
     <row valign="center" header>
       <cell colSpan="$r1" halign="center">Set <m>S</m></cell>
       <cell colSpan="2" halign="center">max <m>S</m></cell>
