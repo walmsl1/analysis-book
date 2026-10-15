@@ -40,12 +40,12 @@ A function <m> f </m> whose limit exists at each <m> a\in \mathbb{R} </m> is gra
 <sideBySide>
  <subsection>
     <title>Initial graph</title>
-    <graph copySource="g" name="zoomedOut" >
+    <graph extend="$g" name="zoomedOut" >
     </graph>
   </subsection>
   <subsection>
     <title>Zoomed graph</title>
-    <graph copySource="g"
+    <graph extend="$g"
       xmin="$a-2*$delta"
       xmax="$a+2*$delta"
       ymin="$$f($a)-2*$eps"
@@ -69,7 +69,7 @@ A function <m> f </m> whose limit exists at each <m> a\in \mathbb{R} </m> is gra
     <number name="eps3">0.001 </number>
   </setup>
 
- <tabular top="minor" bottom="minor">
+ <tabular topBorder="minor" bottomBorder="minor">
     <row>
       <cell> <m>\epsilon=$eps1</m> </cell>
       <cell><m> \delta = </m><mathInput name="delta1" /></cell>

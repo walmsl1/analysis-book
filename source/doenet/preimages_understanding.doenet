@@ -33,7 +33,7 @@
 
 <!-- Table for formatting Questions -->
 <table suppressTableNameInTitle><title>Let <m>f(x) = x^2</m>. For each set <m>A</m> below, determine its pre-image <m>f^{−1}(A)</m></title>
-  <tabular top="major" bottom="minor" left="minor" right="minor">
+  <tabular topBorder="major" bottomBorder="minor" startBorder="minor" endBorder="minor">
     <row header>
       <cell><m>A</m></cell>
       <cell><m>f^{-1}(A)</m></cell>
@@ -152,11 +152,11 @@
 </graph>
 
 <sideBySide margins="13%">
-  <callAction actionName="addChildren" target="g">
+  <callAction actionName="addChildren" target="$g">
     <line through="(1,0) (1,1)" styleNumber="3"/>
     <label>Add Vertical Line</label>
   </callAction>
-  <callAction actionName="deleteChildren" target="g" number="1">
+  <callAction actionName="deleteChildren" target="$g" number="1">
     <line through="(1,0) (1,1)" styleNumber="3"/>
     <label>Remove Vertical Line</label>
   </callAction>
