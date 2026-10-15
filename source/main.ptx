@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The top of the book. Chapters are listed here, in order. -->
+<pretext xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
+  <xi:include href="./docinfo.ptx"/>
+
+  <book xml:id="analysis-book">
+    <title>Real Analysis</title>
+    <subtitle>An Open Primer</subtitle>
+
+    <xi:include href="./frontmatter.ptx"/>
+
+    <!-- Chapters -->
+    <xi:include href="./ch-intro.ptx"/>
+
+    <xi:include href="./backmatter.ptx"/>
+  </book>
+</pretext>

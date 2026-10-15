@@ -13,7 +13,7 @@
     <!-- <figure xml:id="sup_inf_activity">
         <interactive xml:id="sup_inf_activity-doenetml" platform="doenetml" width="150%" aspect="1:1">
             <slate surface="doenetml">
-                <xi:include href="doenet_files/sup_and_inf.doenet" parse="text"/>
+                <xi:include href="doenet/sup_and_inf.doenet" parse="text"/>
             </slate>
         </interactive>
     </figure> -->
@@ -229,18 +229,18 @@
         </sidebyside>
     </sbsgroup>
 
-    <proof permid="qGS">
-      <p permid="saG">
+    <proof>
+      <p>
         Suppose this were not the case.
         That is, suppose there are only finitely many primes.
         Then there must be a last, largest prime, call it <m>p</m>.
         Consider the number
-        <me permid="JIL">
+        <md>
           N = p! + 1 = (p \cdot (p-1) \cdot \cdots 3\cdot 2 \cdot 1) + 1
-        </me>.
+        </md>.
       </p>
 
-      <p permid="YhP">
+      <p>
         Now <m>N</m> is certainly larger than <m>p</m>.
         Also, <m>N</m> is not divisible by any number less than or equal to <m>p</m>,
         since every number less than or equal to <m>p</m> divides <m>p!</m>.

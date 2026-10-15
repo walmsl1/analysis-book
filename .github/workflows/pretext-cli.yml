@@ -1,93 +1,63 @@
-# <!-- Managed automatically by PreTeXt authoring tools -->
-# (delete the above line to manage this file manually)
-
-name: PreTeXt-CLI Actions
+# Check that the book builds whenever a pull request is opened or updated.
+# The built website is attached to the run as a downloadable "deploy" artifact.
+# (Adapted from the PreTeXt CLI template; managed by hand.)
+name: Check build
 on:
-    # Runs on pull requests
     pull_request:
         branches: ["*"]
-    # Runs on pushes to main
-    push:
-        branches: ["main"]
-    # Runs on demand
     workflow_dispatch:
 
 jobs:
     build:
         runs-on: ubuntu-latest
-        container: oscarlevin/pretext:full
+        container: oscarlevin/pretext-full
 
         steps:
             - name: Checkout source
               uses: actions/checkout@v4
 
             - name: install deps
-              run: pip install -r requirements.txt
+              run: pip install -r requirements.txt --break-system-packages
 
-            - name: build deploy targets
-              run: pretext build --deploys
-            - name: stage deployment
+            - name: set up node
+              uses: actions/setup-node@v4
+              with:
+                node-version: '22'
+
+            - name: show PreTeXt version
+              run: pretext --version
+
+            - name: build website
+              shell: bash
+              run: |
+                set -o pipefail
+                pretext build web 2>&1 | tee web.log
+
+            - name: build PDF
+              shell: bash
+              run: |
+                set -o pipefail
+                pretext build print 2>&1 | tee print.log
+
+            - name: summarize build problems
+              if: always()
+              shell: bash
+              run: |
+                for f in web.log print.log; do
+                  [ -f "$f" ] || continue
+                  msg=$(grep -iE 'error|critical|warning|fatal|traceback|!' "$f" | grep -v 'Node.js 20' | tail -40 | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
+                  [ -n "$msg" ] && echo "::warning title=$f::$msg"
+                  echo "::notice title=$f tail::$(tail -25 "$f" | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
+                done
+
+            - name: stage website
               run: pretext deploy --stage-only
+
+            - name: copy PDF into the staged website
+              run: cp output/print/real-analysis.pdf output/stage/
 
             - name: Bundle output/stage as artifact
               uses: actions/upload-artifact@v4
               with:
                   name: deploy
                   path: output/stage
-
-    deploy-cloudflare:
-        runs-on: ubuntu-latest
-        needs: build
-        if: vars.CLOUDFLARE_PROJECT_NAME != ''
-        permissions:
-          contents: read
-          deployments: write
-
-        steps:
-            - name: Download artifact
-              uses: actions/download-artifact@v4
-              with:
-                  name: deploy
-                  path: deploy
-            - name: Create 404.html
-              run: echo "404 page not found" >> deploy/404.html
-            - name: Publish to Cloudflare
-              uses: cloudflare/pages-action@v1
-              with:
-                  apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-                  accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-                  projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
-                  gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-                  branch:  ${{ github.head_ref || github.ref_name }}
-                  directory: deploy
-
-    deploy-ghpages:
-        runs-on: ubuntu-latest
-        needs: build
-        if: vars.PTX_ENABLE_DEPLOY_GHPAGES == 'yes' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        permissions:
-            contents: read
-            pages: write
-            id-token: write
-        concurrency:
-            group: "page"
-            cancel-in-progress: false
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        steps:
-            - name: Download website artifact
-              uses: actions/download-artifact@v4
-              with:
-                  name: deploy
-                  path: deploy
-            - name: Setup GitHub Pages
-              id: check
-              uses: actions/configure-pages@v4
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
-              with:
-                  path: deploy
-            - name: Deploy to Github Pages
-              id: deployment
-              uses: actions/deploy-pages@v4

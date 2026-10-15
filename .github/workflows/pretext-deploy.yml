@@ -1,0 +1,53 @@
+# Publish the website whenever main changes (e.g. when a pull request is merged).
+# Builds the book and pushes the result to the gh-pages branch, which GitHub Pages serves.
+# (Adapted from the PreTeXt CLI template; managed by hand.)
+name: Build and Deploy
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    container: oscarlevin/pretext-full
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: add gh-cli
+        run: |
+          apt-get update
+          apt-get install gh jq -y
+
+      - name: setup git config
+        run: |
+          git config --global --add safe.directory $(pwd)
+          git config user.name "${{ github.actor }} via GitHub Actions"
+          git config user.email "${{ github.actor }}@github_actions.no_reply"
+
+      - name: install deps
+        run: pip install -r requirements.txt --break-system-packages
+
+      - name: show PreTeXt version
+        run: pretext --version
+
+      - name: build website
+        run: pretext build web
+
+      - name: run deploy
+        run: pretext deploy --no-push
+
+      - name: push gh-pages branch
+        run: git push origin gh-pages --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

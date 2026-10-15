@@ -6,11 +6,11 @@
   <subsection>
     <title>Introduction to Quantifiers and their Negations</title>
   <p> A <alert> mathematical statement </alert> is a phrase or sentence that can reasonably be called true or false. For convenience, they are sometimes assigned a letter like <m> P </m> or <m> Q </m> to make them easier to refer to. Consider the following mathematical statement.
-  <me> P: \text{there exists a real number } x \text{ such that } x^2-x>0. </me>
+  <md> P: \text{there exists a real number } x \text{ such that } x^2-x>0. </md>
   Is this statement true? If it is, we should be able to produce a number <m> x</m>, compute <m> x^2-x </m>, and verify that the quantity <m> x^2-x </m> is positive. The number <m> x=3 </m> has this property, along with many other real numbers. For shorthand notation, we will write <m> \exists </m> to mean ``there exists" and s.t. to mean ``such that". The phrase "such that" will always follow a <m> \exists </m>; the "such that" phrase describes or defines the object that exists. In shorthand, <m> P </m> becomes
-  <me> P: \exists x\in \R \text{ s.t. } x^2-x>0, </me>
+  <md> P: \exists x\in \R \text{ s.t. } x^2-x>0, </md>
   or equivalently,
-  <me> P: \exists x\in \R \text{ s.t. } x^2-x\in (0,\infty). </me>
+  <md> P: \exists x\in \R \text{ s.t. } x^2-x\in (0,\infty). </md>
   Since we are convinced <m> P </m> is true, let's see our very first proof.     
   </p>
 
@@ -31,7 +31,7 @@
   <assemblage>
       <title>Proof Outline for "Existence" Proofs</title>
 
-      <p permid="QJU">
+      <p>
         To prove: <m> \exists x \in \mathcal{S} </m> s.t. these things about <m> x</m> happen.
       </p>
 
@@ -49,7 +49,7 @@
 
   <p>
     Let's look at another mathematical statement.
-     <me> Q:  \text{ For all natural numbers} n, n^2\geq n. </me>
+     <md> Q:  \text{ For all natural numbers} n, n^2\geq n. </md>
       Is  <m> Q </m> true? Checking a few cases makes it seem so, but if it is, we cannot simply check cases, as there are infinitely many natural numbers we would have to check. Thus proving a "for all" statement will require a new strategy. We will need an abstract argument, and the idea is to introduce a <em> variable </em>, like <m> n </m>, to stand in place for some arbitrary natural number. Then we can simply check the statement for that one arbitrary natural number <m> n </m>, but all we know about <m> n </m> is where it came from. We do not know its exact value, but we do know that it is some positive integer.
   </p> 
 
@@ -59,13 +59,13 @@
    </proof>
 
   <p> The mathematical shorthand for "for all" is <m> \forall </m>, which allows us to more concisely write <m> Q </m> in the following way:
-  <me> Q: \forall n\in \N, n^2\geq n.</me> 
+  <md> Q: \forall n\in \N, n^2\geq n.</md> 
   The last example shows our general strategy for proving "for all" statements. 
 
 <assemblage>
       <title>Proof Outline for "For All" Proofs</title>
 
-      <p permid="QJU">
+      <p>
         To prove: <m> \forall x \in \mathcal{S} </m>, this thing about <m> x</m> happens.
       </p>
 
@@ -80,9 +80,9 @@
 
   <title> Negations </title>
   Consider the following statement.
-   <me> R: \forall x\in \R, x^2-x\ge 0 </me>.
+   <md> R: \forall x\in \R, x^2-x\ge 0 </md>.
     Equivalently, we could write 
-    <me> R: \forall x\in \R, x^2-x\in [0,\infty).</me>
+    <md> R: \forall x\in \R, x^2-x\in [0,\infty).</md>
      Is <m> R </m> true? After a quick look at the graph of <m> x^2-x </m>,
 
      <figure>
@@ -95,9 +95,9 @@
 
     we can see that <m> R </m> is false; it is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m>, because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The <alert> negation </alert> of a mathemical statement <m> R </m>,  is a new mathematical statement labeled <m> \text{not } R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
 
-  <me> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. </me>
+  <md> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. </md>
   Equivalently,
-  <me> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x \not \in [0,\infty). </me>
+  <md> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x \not \in [0,\infty). </md>
   The benefit of the second version of not <m> R </m> above is that it avoids inequalities, which can make writing the negation easier because one is not tempted to just reverse every inequality without thinking. 
   </p> 
 
@@ -106,7 +106,7 @@
   <assemblage>
       <title>Negation of "For All" Statements</title>
 
-      <p permid="QJU">
+      <p>
         <m> P: \forall x \in \mathcal{S} </m>, this thing about <m> x</m> happens.
       </p>
 
@@ -127,17 +127,17 @@
 
   <p>
   To prove a statement false, we will almost always try to prove its negation true. Only in rare instances in this course will we employ a different strategy. Let's see one more example. Consider the statement 
-  <me> T: \exists x\in \R  \text{ s.t. } x^2=-1. </me>
+  <md> T: \exists x\in \R  \text{ s.t. } x^2=-1. </md>
    Is <m> T </m> true? If it were, we could produce a real number <m> x </m> whose square is a negative number. This is not possible, because <em> every </em> real number has a non-negative square. In this case, the negation of <m> T </m> is
   
-  <me> \text{not } T: \forall x\in \R, x^2\neq -1. </me>
+  <md> \text{not } T: \forall x\in \R, x^2\neq -1. </md>
 
   This example highlights the fact that the negation of a "for all" statement is a "there exists" statement, a fact worth remembering.
 
   <assemblage>
       <title>Negation of "There Exists" Statements</title>
 
-      <p permid="QJU">
+      <p>
         <m> P: \exists x \in \mathcal{S} </m> s.t. this thing about <m> x</m> happens.
       </p>
 
@@ -153,7 +153,7 @@
     <p>
     Most of the statments we will encounter throughout this course involve multiple quantifiers, like the following statement:
 
-    <me> P: \forall x\in \R \, \exists y\in \R \text{ s.t. } xy=1. </me>
+    <md> P: \forall x\in \R \, \exists y\in \R \text{ s.t. } xy=1. </md>
 
     Ultimately, this is a "for all" statement, so we could investigate its truth value by seeing if its true for a few values of <m> x </m>. When <m> x=3 </m>, is there a real number <m> y </m> such that <m>xy=1 </m>? Yes, <m> y=1/3 </m> does the trick. What about when <m> x=-7/9 </m>? Then <m> y = -9/7 </m> is a <m> y </m> we are looking for. After trying a few examples, <m> P </m> may seem true; given <m> x\in \R </m>, if we select <m> y </m> to be <m> 1/x </m>, then <m> xy=1</m>. We can write a proof outline for <m> P </m> by working through the quantifiers in order.
 
@@ -208,7 +208,7 @@
     
    Now we're ready for its proof outline and proof.
 
-    <me> \text{not } P: \exists \, x\in \R \text{ s.t. } \forall \, y\in \R, xy\neq 1. </me>
+    <md> \text{not } P: \exists \, x\in \R \text{ s.t. } \forall \, y\in \R, xy\neq 1. </md>
 
     <tabular halign="left">
       <row header="yes" bottom="minor" >

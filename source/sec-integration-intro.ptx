@@ -49,24 +49,24 @@
   <p>
   The set of subdivision points <m>P=\{t_0,t_1,\ldots,t_n\}</m> form what's called a <term>partition</term> of <m> [a,b] </m> - a finite set of strictly increasing values starting at <m> t_0=a </m> and ending with <m> t_n=b </m>. 
   On a given subinterval <m> [t_{i-1}, t_{i}] </m>, the height of the "lower rectangle" is given by 
-  <me> m(f,[t_{i-1},t_{i}]):= \inf\{f(x): x\in [t_{i-1},t_{i}]\}, </me>
+  <md> m(f,[t_{i-1},t_{i}]):= \inf\{f(x): x\in [t_{i-1},t_{i}]\}, </md>
   since this value is guaranteed to be less than or equal to any other <m> y </m>-value of the function on that subinterval. 
   Hence the area of an individual "lower rectangle" is just 
-  <me> m(f,[t_{i-1},t_{i}]) (t_{i}-t_{i-1}), </me>
+  <md> m(f,[t_{i-1},t_{i}]) (t_{i}-t_{i-1}), </md>
   and if we sum the areas of each, we get the <term> lower sum </term> for <m> f </m> over <m> P </m>:
- <me>L(f,P) =\sum_{i=1}^n m(f,[t_{i-1},t_{i}]) (t_{i-1}-t_{i-1}).</me>
+ <md>L(f,P) =\sum_{i=1}^n m(f,[t_{i-1},t_{i}]) (t_{i-1}-t_{i-1}).</md>
  Now each lower sum is an underestimate for the true area, so the <alert> supremum </alert> of all possible lower sums will give us a "best underestimate" for the area; we call this the <term> lower integral </term> of <m> f </m> over <m> P </m>:
-  <me> L(f)=\sup\{L(f,P): P \text{ is any partition of } [a,b]\}. </me>
+  <md> L(f)=\sup\{L(f,P): P \text{ is any partition of } [a,b]\}. </md>
 
     </p>
 
     <p>
     Similarly, we take <m> M(f,[t_{i-1},t_k]):=\sup \{f(x): x\in [t_{i-1},t_{i}]\} </m> for the heights of the "upper rectangles", and get the <term> upper sum </term>
-    <me> U(f,P) =\sum_{i=1}^n M(f,[t_{i-1},t_k]) (t_{i-1}-t_{i-1}).</me>
+    <md> U(f,P) =\sum_{i=1}^n M(f,[t_{i-1},t_k]) (t_{i-1}-t_{i-1}).</md>
     Each upper sum is an overestimate for the true area, so the <alert> infimum </alert> of all possible upper sums will give us a "best overestimate" for the area; we call this the <term> upper integral </term>  of <m> f </m> over <m> P </m>:
-   <me>U(f)=\inf\{U(f,P): P \text{ is any partition of } [a,b]\}.</me>
+   <md>U(f)=\inf\{U(f,P): P \text{ is any partition of } [a,b]\}.</md>
     As we will see in class, there are functions whose upper and lower integrals can differ! If the upper and lower integrals of <m> f </m> are the same, we say that <m> f </m> is <term> integrable </term> over <m> [a,b] </m>, and in this case, we introduce the following notation to represent the value of <m> U(f) </m> and <m> L(f) </m>;
-    <me> \displaystyle \int_a^b f := \int_a^b f(x)\, dx :=U(f)=L(f). </me>
+    <md> \displaystyle \int_a^b f := \int_a^b f(x)\, dx :=U(f)=L(f). </md>
     </p>
 
     <p>
