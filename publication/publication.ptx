@@ -1,79 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- Output settings: how the book is numbered and how it looks. -->
+<!-- Changing these never changes the book's content.            -->
 <publication>
-    <!-- directories are relative to the main source PreTeXt file -->
-    <source>
-        <directories external="../assets" generated="../generated-assets"/>
-    </source>
-    <webwork 
-        server="https://webwork-ptx.aimath.org"  
-        />
-    <!-- <webwork 
-        server="https://webwork.runestone.academy"
-        course="unco-levin-development" 
-        coursepassword="anonymous"
-        user="anonymous"
-        userpassword="anonymous"    
-        /> -->
-    <numbering>
-        <!-- the divisions element describes the numbering of divisions.  -->
-        <!-- @part-structure should be "decorative" or "structural",      -->
-        <!-- were the latter would restart numbering chapters within each -->
-        <!-- part (this only matters if your book has parts).             -->
-        <!-- The attribute @chapter-start give the number of the first    -->
-        <!-- chapter.  @level says how deep (chapter->section->subsection)-->
-        <!-- numbering should appear.                                     -->
-        <!-- For use with a book organized by parts                       -->
-        <divisions chapter-start="0" level="2"/>
-        <!-- The next elements say how the levels deep to break up the    -->
-        <!-- numbering of the respective elements. Can't be more than the -->
-        <!-- @level on divisions above.                                   -->
-        <blocks level="2"/>
-        <projects level="1"/>
-        <equations level="1"/>
-        <footnotes level="1"/>
-    </numbering>
+  <source>
+    <directories generated="../generated-assets"/>
+  </source>
 
-    <common>
-        <!-- <exercise-inline hint="yes"/> -->
-        <exercise-divisional hint="yes" answer="no" solution="yes"/>
-    </common>
+  <numbering>
+    <!-- Chapters start at 0; sections are numbered like 0.2.     -->
+    <divisions chapter-start="0" level="2"/>
+    <!-- Theorems, definitions, etc. are numbered like 0.2.1.     -->
+    <blocks level="2"/>
+    <projects level="1"/>
+    <equations level="1"/>
+    <footnotes level="1"/>
+  </numbering>
 
-    <!-- LaTeX specific options: set @print="yes" to get pdf set up   -->
-    <!-- for printing; set @sides="two" if the printing woudl be two- -->
-    <!-- sided.  The asymptote/@links set to "yes" would produce      -->
-    <!-- links the html version of asymptote graphics.                -->
-    <latex print="no" sides="one">
-        <asymptote links="no"/>
-    </latex>
+  <common>
+    <!-- End-of-section exercises: show hints and solutions, hide answers. -->
+    <exercise-divisional hint="yes" answer="no" solution="yes"/>
+  </common>
 
-    <!-- HTML-Specific Options -->
-    <html>
-        <!-- Set platform; @host="web" is default, @host="runestone" also possible -->
-        <platform host="web"/>
-        <!-- Whether to knowl a particular elements is set here    -->
-        <!-- Lots of elements have this possibility; see the guide -->
-        <knowl 
-            theorem="no" 
-            definition="no" 
-            remark="no" 
-            example="no"
-            figure="no"
-            table="no"
-            listing="no"
-            exercise-inline="no"
-            exercise-divisional="no"
-            project="no" 
-            proof="no"
-        />
-        <!-- specify the style of the html by giving names to      -->
-        <!-- override defaults.  Ex: to use "style_oscarlevin.css" -->
-        <!-- put <css style="oscarlevin"/>                         -->
-        <!-- @colors currently unimplementd.                       -->
-        <css style="oscarlevin"/>
-        <!-- Magic IDs identify HTML pages to analytics services   -->
-        <!-- Presence implies relevant Javascript will be added    -->
-        <analytics google-gst="UA-66485406-1"/>
+  <latex print="no" sides="one"/>
 
-        <search variant="default"/>
-    </html>
+  <html>
+    <!-- Website theme. "denver" draws colored boxes around theorems,   -->
+    <!-- definitions, examples, etc. Other built-in themes to try:      -->
+    <!-- "salem", "greeley", "boulder", "tacoma", "default-modern".     -->
+    <!-- Denver/Salem accept palette="bold|bold2|primaries|primaries2|  -->
+    <!-- ice-fire|earth-sea|leaves|slate" and colors via color-main,    -->
+    <!-- color-fact (theorems), color-do (exercises), color-meta.       -->
+    <css theme="denver"/>
+
+    <!-- Show proofs, examples, etc. in full rather than as             -->
+    <!-- click-to-expand links.                                         -->
+    <knowl
+      theorem="no"
+      definition="no"
+      remark="no"
+      example="no"
+      figure="no"
+      table="no"
+      listing="no"
+      exercise-inline="no"
+      exercise-divisional="no"
+      project="no"
+      proof="no"
+    />
+
+    <search variant="default"/>
+  </html>
 </publication>

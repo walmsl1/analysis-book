@@ -13,7 +13,7 @@
     <!-- <figure xml:id="sup_inf_activity">
         <interactive xml:id="sup_inf_activity-doenetml" platform="doenetml" width="150%" aspect="1:1">
             <slate surface="doenetml">
-                <xi:include href="doenet_files/sup_and_inf.doenet" parse="text"/>
+                <xi:include href="doenet/sup_and_inf.doenet" parse="text"/>
             </slate>
         </interactive>
     </figure> -->

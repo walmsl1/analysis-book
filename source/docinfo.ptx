@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Book-wide settings: the PreTeXt analogue of a LaTeX preamble. -->
+<docinfo xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <document-id>analysisbook</document-id>
+
+  <!-- Images and other files live in the assets folder. -->
+  <directories external="../assets" />
+
+  <!-- Math shortcuts, usable inside <m> and <me>. Add your own here. -->
+  <macros>
+    \newcommand{\N}{\mathbb N}
+    \newcommand{\Z}{\mathbb Z}
+    \newcommand{\Q}{\mathbb Q}
+    \newcommand{\R}{\mathbb R}
+    \newcommand{\C}{\mathbb C}
+    \newcommand{\inv}{^{-1}}
+    \newcommand{\card}[1]{\left| #1 \right|}
+  </macros>
+
+  <!-- Preamble for TikZ pictures drawn with <latex-image>. -->
+  <latex-image-preamble>
+    \usepackage{tikz, pgfplots}
+    \pgfplotsset{compat=1.18}
+    \usetikzlibrary{positioning,arrows,decorations.markings}
+  </latex-image-preamble>
+
+  <!-- Display names for a few block types. -->
+  <rename element="investigation" xml:lang="en-US">Investigate!</rename>
+  <rename element="assemblage" xml:lang="en-US">Summary</rename>
+
+  <!-- Cross-references read like "Definition 0.2.1". -->
+  <cross-references text="type-global" />
+
+</docinfo>
