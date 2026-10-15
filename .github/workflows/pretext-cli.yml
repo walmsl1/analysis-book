@@ -28,11 +28,13 @@ jobs:
               run: pretext --version
 
             - name: build website
+              shell: bash
               run: |
                 set -o pipefail
                 pretext build web 2>&1 | tee web.log
 
             - name: build PDF
+              shell: bash
               run: |
                 set -o pipefail
                 pretext build print 2>&1 | tee print.log
