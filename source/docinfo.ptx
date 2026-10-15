@@ -8,7 +8,7 @@
   <!-- Images and other files live in the assets folder. -->
   <directories external="../assets" />
 
-  <!-- Math shortcuts, usable inside <m> and <me>. Add your own here. -->
+  <!-- Math shortcuts, usable inside <m> and <md>. Add your own here. -->
   <macros>
     \newcommand{\N}{\mathbb N}
     \newcommand{\Z}{\mathbb Z}
@@ -30,7 +30,9 @@
   <rename element="investigation" xml:lang="en-US">Investigate!</rename>
   <rename element="assemblage" xml:lang="en-US">Summary</rename>
 
-  <!-- Cross-references read like "Definition 0.2.1". -->
-  <cross-references text="type-global" />
+  <defaults>
+    <!-- Cross-references read like "Definition 0.2.1". -->
+    <xrefs text="type-global"/>
+  </defaults>
 
 </docinfo>

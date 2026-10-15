@@ -229,18 +229,18 @@
         </sidebyside>
     </sbsgroup>
 
-    <proof permid="qGS">
-      <p permid="saG">
+    <proof>
+      <p>
         Suppose this were not the case.
         That is, suppose there are only finitely many primes.
         Then there must be a last, largest prime, call it <m>p</m>.
         Consider the number
-        <me permid="JIL">
+        <md>
           N = p! + 1 = (p \cdot (p-1) \cdot \cdots 3\cdot 2 \cdot 1) + 1
-        </me>.
+        </md>.
       </p>
 
-      <p permid="YhP">
+      <p>
         Now <m>N</m> is certainly larger than <m>p</m>.
         Also, <m>N</m> is not divisible by any number less than or equal to <m>p</m>,
         since every number less than or equal to <m>p</m> divides <m>p!</m>.

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<frontmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="frontmatter" permid="RGW">
-  <titlepage>
+<frontmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="frontmatter">
+  <!-- Author, date, and copyright; used on the title page and colophon. -->
+  <bibinfo>
     <author>
       <personname>David Walmsley</personname>
       <department>Department of Mathematics, Statistics, and Computer Science</department>
       <institution>St. Olaf College</institution>
     </author>
     <date><today/></date>
-  </titlepage>
 
-  <colophon>
     <copyright>
       <year>20xx<ndash/>20xx</year>
       <holder>David Walmsley</holder>
@@ -18,6 +17,14 @@
         This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit <url href="http://creativecommons.org/licenses/by-sa/4.0/" visual="creativecommons.org/licenses/by-sa/4.0"/>
       </shortlicense>
     </copyright>
+  </bibinfo>
+
+  <titlepage>
+    <titlepage-items/>
+  </titlepage>
+
+  <colophon xml:id="front-colophon">
+    <colophon-items/>
   </colophon>
 
   <acknowledgement>
@@ -26,7 +33,7 @@
     </p>
   </acknowledgement>
 
-  <preface xml:id="preface" permid="xOf">
+  <preface xml:id="preface">
     <attribution>
       <line>David Walmsley, Ph.D.</line>
       <line>St. Olaf College, 2019</line>

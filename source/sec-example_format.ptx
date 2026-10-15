@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sec_intro-intro" permid="hPw">
+<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sec_intro-intro">
     <title>Example Formatting</title>   
 
     <investigation>
@@ -32,21 +32,21 @@
     <example>
         <title>Example with Hint and Solution</title>
         <statement>
-        <p permid="wwr">
+        <p>
             Find recursive definitions and closed formulas for the arithmetic sequences below.
             Assume the first term listed is <m>a_0</m>.
         </p>
 
-        <p permid="cDA">
-            <ol permid="rcE">
-            <li permid="jyf"><m>2, 5, 8, 11, 14, \ldots</m>.</li>
+        <p>
+            <ol>
+            <li><m>2, 5, 8, 11, 14, \ldots</m>.</li>
 
-            <li permid="PFo"><m>50, 43, 36, 29, \ldots</m>.</li>
+            <li><m>50, 43, 36, 29, \ldots</m>.</li>
             </ol>
         </p>
         </statement>
-        <solution permid="hIS">
-            <p permid="pXl">
+        <solution>
+            <p>
                 First we should check that these sequences really are arithmetic by taking differences of successive terms.
                 Doing so will reveal the common difference <m>d</m>.
             </p>
@@ -73,8 +73,8 @@
                 </ol>
             </p>
         </solution>
-        <hint permid="abc">
-            <p permid="GMH">Insert hint here!</p>
+        <hint>
+            <p>Insert hint here!</p>
         </hint>
   </example>
 
@@ -83,9 +83,9 @@
         <p>
             Here is some text inside a sample aside.
             I'm going to put the Pythagorean identity below:
-            <me>
+            <md>
             \sin^2(x) + \cos^2(x) = 1
-            </me>.
+            </md>.
         </p>
 
         <p>

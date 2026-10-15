@@ -24,6 +24,9 @@
   <latex print="no" sides="one"/>
 
   <html>
+    <!-- Where the website lives (used for QR codes and links). -->
+    <baseurl href="https://walmsl1.github.io/analysis-book/"/>
+
     <!-- Website theme. "denver" draws colored boxes around theorems,   -->
     <!-- definitions, examples, etc. Other built-in themes to try:      -->
     <!-- "salem", "greeley", "boulder", "tacoma", "default-modern".     -->

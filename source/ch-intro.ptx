@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch_intro" permid="DYQ">
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch_intro">
   <title>Introduction</title>
-  <introduction permid="kfZ">
-    <p permid="Qni">
+  <introduction>
+    <p>
       Welcome to Real Analysis!
     </p>
   </introduction>
@@ -17,8 +17,12 @@
   <xi:include href="sec-limits_of_functions.ptx"/>
   <!--<xi:include href="sec-testing.ptx"/>-->
 
+  <!-- References: un-comment this block once it has at least one entry  -->
+  <!-- (an empty references list breaks the PDF build).                   -->
+  <!--
   <references>
     <title>References and Suggested Readings</title>
-    <!-- <biblio xml:id="theory_of_groups" type="raw">Burnside, W. <title>Theory of Groups of Finite Order</title>. 2nd ed. Cambridge University Press, Cambridge, 1911; Dover, New York, 1953.  A classic.  Also available at books.google.com.</biblio> -->
+     <biblio xml:id="theory_of_groups" type="raw">Burnside, W. <title>Theory of Groups of Finite Order</title>. 2nd ed. Cambridge University Press, Cambridge, 1911; Dover, New York, 1953.  A classic.  Also available at books.google.com.</biblio> 
   </references>
+  -->
 </chapter>
