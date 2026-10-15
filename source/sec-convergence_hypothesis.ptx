@@ -28,7 +28,7 @@
           <div>Because <m>x_n\to 0</m> and <m>\sqrt{\epsilon}\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\sqrt{\epsilon}</m>.</div>
         </block>
         <block name="4" depends="3" order="9">
-          <div>We show that this <m>N</m> works for <m>x_n^2\to 0</m>.</div>
+          <div>With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>|x_n^2-0|\lt\epsilon</m>.</div>
         </block>
         <block name="5" depends="4" order="5">
           <div>Let <m>n\in\N</m> with <m>n\gt N</m>.</div>
@@ -60,19 +60,19 @@
           <div>First, suppose <m>x_n\to 0</m>. We will prove that <m>|x_n|\to 0</m>. Let <m>\epsilon\gt 0</m>.</div>
         </block>
         <block name="2" depends="1" order="8">
-          <div>Because <m>x_n\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>.</div>
+          <div>Because <m>x_n\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>. With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>.</div>
         </block>
         <block name="3" depends="2" order="2">
-          <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>\bigl||x_n|-0\bigr|=|x_n|=|x_n-0|\lt\epsilon</m>. By definition, <m>|x_n|\to 0</m>.</div>
+          <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>\bigl||x_n|-0\bigr|=|x_n|=|x_n-0|\lt\epsilon</m>. Thus for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>. By definition, <m>|x_n|\to 0</m>.</div>
         </block>
         <block name="4" depends="3" order="9">
           <div>Conversely, suppose <m>|x_n|\to 0</m>. We will prove that <m>x_n\to 0</m>. Let <m>\epsilon\gt 0</m>.</div>
         </block>
         <block name="5" depends="4" order="1">
-          <div>Because <m>|x_n|\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>.</div>
+          <div>Because <m>|x_n|\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>. With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>.</div>
         </block>
         <block name="6" depends="5" order="6">
-          <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>|x_n-0|=|x_n|=\bigl||x_n|-0\bigr|\lt\epsilon</m>. By definition, <m>x_n\to 0</m>.</div>
+          <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>|x_n-0|=|x_n|=\bigl||x_n|-0\bigr|\lt\epsilon</m>. Thus for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>. By definition, <m>x_n\to 0</m>.</div>
         </block>
         <block name="7" correct="no" order="3">
           <div>Choose <m>N=\dfrac{1}{\epsilon}</m>.</div>
@@ -98,7 +98,7 @@
           <div>Because <m>x_n\to L</m> and <m>L-a\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-L|\lt L-a</m>.</div>
         </block>
         <block name="3" depends="2" order="1">
-          <div>We show that this <m>N</m> works.</div>
+          <div>With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>x_n\gt a</m>.</div>
         </block>
         <block name="4" depends="3" order="9">
           <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>|x_n-L|\lt L-a</m>, so <m>-(L-a)\lt x_n-L</m>.</div>
