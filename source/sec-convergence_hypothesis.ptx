@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Convergence as a hypothesis: Parsons problems only, for now.          -->
-<!-- Each proof applies a convergence hypothesis at a tolerance it chooses. -->
+<!-- Each proof applies a convergence hypothesis to a positive number it chooses. -->
 <section xml:id="sec-convergence_hypothesis" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Convergence as a Hypothesis</title>
 
   <p>
     Recall that <m>x_n\to L</m> if <m>\forall \, \epsilon\gt 0 \, \exists \, N\in\R</m> s.t. <m>\forall \, n\gt N, |x_n-L|\lt\epsilon</m>.
-    In each problem below, a convergence statement is something we <em>know</em>, and the proof applies it with a tolerance of its own choosing.
+    In each problem below, a convergence statement is something we <em>know</em>, and the proof applies it to a positive number of its own choosing.
   </p>
 
   <exercises xml:id="parsons-convergence-hypothesis">
     <title>Proof practice: using convergence</title>
 
-    <!-- #5: tolerance sqrt(epsilon) -->
+    <!-- #5: apply the hypothesis to sqrt(epsilon) -->
     <exercise label="parsons-squares-null" adaptive="yes" indentation="hide">
       <title>Squaring a sequence that converges to 0</title>
       <statement><div>Suppose <m>x_n\to 0</m>. Put the given blocks in a correct order to prove that <m>x_n^2\to 0</m>. Some blocks are not needed.</div></statement>
       <blocks>
         <block name="1" order="4">
-          <div>We assume that <m>x_n\to 0</m>. We will prove that <m>x_n^2\to 0</m>.</div>
+          <div>Assume <m>x_n\to 0</m>. We must prove that <m>x_n^2\to 0</m>.</div>
         </block>
         <block name="2" depends="1" order="7">
           <div>Let <m>\epsilon\gt 0</m>.</div>
@@ -51,13 +51,13 @@
       </blocks>
     </exercise>
 
-    <!-- #7: Ross 8.6(a), tolerance epsilon in both directions -->
+    <!-- #7: Ross 8.6(a), apply the hypothesis to epsilon in both directions -->
     <exercise label="parsons-abs-null" adaptive="yes" indentation="hide">
       <title>A sequence and its absolute values</title>
       <statement><div>Put the given blocks in a correct order to prove that <m>x_n\to 0</m> if and only if <m>|x_n|\to 0</m>. Some blocks are not needed.</div></statement>
       <blocks>
         <block name="1" order="5">
-          <div>First, suppose <m>x_n\to 0</m>. We will prove that <m>|x_n|\to 0</m>. Let <m>\epsilon\gt 0</m>.</div>
+          <div>First, assume <m>x_n\to 0</m>. We must prove that <m>|x_n|\to 0</m>. Let <m>\epsilon\gt 0</m>.</div>
         </block>
         <block name="2" depends="1" order="8">
           <div>Because <m>x_n\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>. With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>.</div>
@@ -66,7 +66,7 @@
           <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>\bigl||x_n|-0\bigr|=|x_n|=|x_n-0|\lt\epsilon</m>. Thus for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>. By definition, <m>|x_n|\to 0</m>.</div>
         </block>
         <block name="4" depends="3" order="9">
-          <div>Conversely, suppose <m>|x_n|\to 0</m>. We will prove that <m>x_n\to 0</m>. Let <m>\epsilon\gt 0</m>.</div>
+          <div>Conversely, assume <m>|x_n|\to 0</m>. We must prove that <m>x_n\to 0</m>. Let <m>\epsilon\gt 0</m>.</div>
         </block>
         <block name="5" depends="4" order="1">
           <div>Because <m>|x_n|\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>. With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>.</div>
@@ -86,13 +86,13 @@
       </blocks>
     </exercise>
 
-    <!-- #11: Ross 8.10, a fixed tolerance L - a -->
+    <!-- #11: Ross 8.10, apply the hypothesis to the fixed number L - a -->
     <exercise label="parsons-stay-above" adaptive="yes" indentation="hide">
       <title>Terms that stay above <m>a</m></title>
       <statement><div>Suppose <m>x_n\to L</m> and <m>L\gt a</m>. Put the given blocks in a correct order to prove that there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>x_n\gt a</m>. Some blocks are not needed.</div></statement>
       <blocks>
         <block name="1" order="3">
-          <div>We assume that <m>x_n\to L</m> and <m>L\gt a</m>. We will prove that there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>x_n\gt a</m>.</div>
+          <div>Assume <m>x_n\to L</m> and <m>L\gt a</m>. We must prove that there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>x_n\gt a</m>.</div>
         </block>
         <block name="2" depends="1" order="7">
           <div>Because <m>x_n\to L</m> and <m>L-a\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-L|\lt L-a</m>.</div>
