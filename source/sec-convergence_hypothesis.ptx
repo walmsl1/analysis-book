@@ -2,6 +2,7 @@
 
 <!-- Convergence as a hypothesis: Parsons problems only, for now.          -->
 <!-- Each proof applies a convergence hypothesis to a positive number it chooses. -->
+<!-- One sentence per block.                                                -->
 <section xml:id="sec-convergence_hypothesis" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Convergence as a Hypothesis</title>
 
@@ -19,33 +20,42 @@
       <statement><div>Suppose <m>x_n\to 0</m>. Put the given blocks in a correct order to prove that <m>x_n^2\to 0</m>. Some blocks are not needed.</div></statement>
       <blocks>
         <block name="1" order="4">
-          <div>Assume <m>x_n\to 0</m>. We must prove that <m>x_n^2\to 0</m>.</div>
+          <div>Assume <m>x_n\to 0</m>.</div>
         </block>
-        <block name="2" depends="1" order="7">
+        <block name="2" depends="1" order="11">
+          <div>We must prove that <m>x_n^2\to 0</m>.</div>
+        </block>
+        <block name="3" depends="2" order="7">
           <div>Let <m>\epsilon\gt 0</m>.</div>
         </block>
-        <block name="3" depends="2" order="2">
+        <block name="4" depends="3" order="2">
           <div>Because <m>x_n\to 0</m> and <m>\sqrt{\epsilon}\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\sqrt{\epsilon}</m>.</div>
         </block>
-        <block name="4" depends="3" order="9">
+        <block name="5" depends="4" order="9">
           <div>With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>|x_n^2-0|\lt\epsilon</m>.</div>
         </block>
-        <block name="5" depends="4" order="5">
+        <block name="6" depends="5" order="5">
           <div>Let <m>n\in\N</m> with <m>n\gt N</m>.</div>
         </block>
-        <block name="6" depends="5" order="10">
-          <div>Since <m>n\gt N</m>, we have <m>0\leq |x_n|\lt\sqrt{\epsilon}</m>. Squaring nonnegative numbers preserves the inequality, so <m>|x_n^2-0|=|x_n|^2\lt\epsilon</m>.</div>
+        <block name="7" depends="6" order="10">
+          <div>Since <m>n\gt N</m>, we have <m>0\leq |x_n|\lt\sqrt{\epsilon}</m>.</div>
         </block>
-        <block name="7" depends="6" order="1">
-          <div>Thus for all <m>n\gt N</m>, <m>|x_n^2-0|\lt\epsilon</m>. By definition, <m>x_n^2\to 0</m>.</div>
+        <block name="8" depends="7" order="12">
+          <div>Squaring nonnegative numbers preserves the inequality, so <m>|x_n^2-0|=|x_n|^2\lt\epsilon</m>.</div>
         </block>
-        <block name="8" correct="no" order="6">
+        <block name="9" depends="8" order="1">
+          <div>Thus for all <m>n\gt N</m>, <m>|x_n^2-0|\lt\epsilon</m>.</div>
+        </block>
+        <block name="10" depends="9" order="13">
+          <div>By definition, <m>x_n^2\to 0</m>.</div>
+        </block>
+        <block name="11" correct="no" order="6">
           <div>Because <m>x_n\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>.</div>
         </block>
-        <block name="9" correct="no" order="3">
+        <block name="12" correct="no" order="3">
           <div>Choose <m>N=\dfrac{1}{\sqrt{\epsilon}}</m>.</div>
         </block>
-        <block name="10" correct="no" order="8">
+        <block name="13" correct="no" order="8">
           <div>Because <m>x_n\to 0</m> and <m>\epsilon^2\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon^2</m>.</div>
         </block>
       </blocks>
@@ -54,34 +64,55 @@
     <!-- #7: Ross 8.6(a), apply the hypothesis to epsilon in both directions -->
     <exercise label="parsons-abs-null" adaptive="yes" indentation="hide">
       <title>A sequence and its absolute values</title>
-      <statement><div>Put the given blocks in a correct order to prove that <m>x_n\to 0</m> if and only if <m>|x_n|\to 0</m>. Some blocks are not needed.</div></statement>
+      <statement><div>Put the given blocks in a correct order to prove that <m>x_n\to 0</m> if and only if <m>|x_n|\to 0</m>.</div></statement>
       <blocks>
         <block name="1" order="5">
-          <div>First, assume <m>x_n\to 0</m>. We must prove that <m>|x_n|\to 0</m>. Let <m>\epsilon\gt 0</m>.</div>
+          <div>First, assume <m>x_n\to 0</m>.</div>
         </block>
-        <block name="2" depends="1" order="8">
-          <div>Because <m>x_n\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>. With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>.</div>
+        <block name="2" depends="1" order="12">
+          <div>We must prove that <m>|x_n|\to 0</m>.</div>
         </block>
-        <block name="3" depends="2" order="2">
-          <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>\bigl||x_n|-0\bigr|=|x_n|=|x_n-0|\lt\epsilon</m>. Thus for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>. By definition, <m>|x_n|\to 0</m>.</div>
+        <block name="3" depends="2" order="14">
+          <div>Let <m>\epsilon\gt 0</m>.</div>
         </block>
-        <block name="4" depends="3" order="9">
-          <div>Conversely, assume <m>|x_n|\to 0</m>. We must prove that <m>x_n\to 0</m>. Let <m>\epsilon\gt 0</m>.</div>
+        <block name="4" depends="3" order="8">
+          <div>Because <m>x_n\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>.</div>
         </block>
-        <block name="5" depends="4" order="1">
-          <div>Because <m>|x_n|\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>. With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>.</div>
+        <block name="5" depends="4" order="10">
+          <div>With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>.</div>
         </block>
-        <block name="6" depends="5" order="6">
-          <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>|x_n-0|=|x_n|=\bigl||x_n|-0\bigr|\lt\epsilon</m>. Thus for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>. By definition, <m>x_n\to 0</m>.</div>
+        <block name="6" depends="5" order="2">
+          <div>Let <m>n\in\N</m> with <m>n\gt N</m>.</div>
         </block>
-        <block name="7" correct="no" order="3">
-          <div>Choose <m>N=\dfrac{1}{\epsilon}</m>.</div>
+        <block name="7" depends="6" order="16">
+          <div>Then <m>\bigl||x_n|-0\bigr|=|x_n|=|x_n-0|\lt\epsilon</m>.</div>
         </block>
-        <block name="8" correct="no" order="7">
-          <div>Because <m>x_n\to 0</m>, for every <m>n\in\N</m> we have <m>|x_n-0|\lt\epsilon</m>.</div>
+        <block name="8" depends="7" order="4">
+          <div>Thus for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>, so by definition <m>|x_n|\to 0</m>.</div>
         </block>
-        <block name="9" correct="no" order="4">
-          <div>Since for every <m>n\in\N</m>, <m>|x_n|=x_n</m>, the two statements say the same thing.</div>
+        <block name="9" depends="8" order="9">
+          <div>Conversely, assume <m>|x_n|\to 0</m>.</div>
+        </block>
+        <block name="10" depends="9" order="13">
+          <div>We must prove that <m>x_n\to 0</m>.</div>
+        </block>
+        <block name="11" depends="10" order="7">
+          <div>Let <m>\epsilon\gt 0</m>.</div>
+        </block>
+        <block name="12" depends="11" order="1">
+          <div>Because <m>|x_n|\to 0</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>\bigl||x_n|-0\bigr|\lt\epsilon</m>.</div>
+        </block>
+        <block name="13" depends="12" order="15">
+          <div>With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>.</div>
+        </block>
+        <block name="14" depends="13" order="6">
+          <div>Let <m>n\in\N</m> with <m>n\gt N</m>.</div>
+        </block>
+        <block name="15" depends="14" order="11">
+          <div>Then <m>|x_n-0|=|x_n|=\bigl||x_n|-0\bigr|\lt\epsilon</m>.</div>
+        </block>
+        <block name="16" depends="15" order="3">
+          <div>Thus for all <m>n\gt N</m>, <m>|x_n-0|\lt\epsilon</m>, so by definition <m>x_n\to 0</m>.</div>
         </block>
       </blocks>
     </exercise>
@@ -92,30 +123,36 @@
       <statement><div>Suppose <m>x_n\to L</m> and <m>L\gt a</m>. Put the given blocks in a correct order to prove that there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>x_n\gt a</m>. Some blocks are not needed.</div></statement>
       <blocks>
         <block name="1" order="3">
-          <div>Assume <m>x_n\to L</m> and <m>L\gt a</m>. We must prove that there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>x_n\gt a</m>.</div>
+          <div>Assume <m>x_n\to L</m> and <m>L\gt a</m>.</div>
         </block>
-        <block name="2" depends="1" order="7">
+        <block name="2" depends="1" order="10">
+          <div>We must prove that there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>x_n\gt a</m>.</div>
+        </block>
+        <block name="3" depends="2" order="7">
           <div>Because <m>x_n\to L</m> and <m>L-a\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-L|\lt L-a</m>.</div>
         </block>
-        <block name="3" depends="2" order="1">
+        <block name="4" depends="3" order="1">
           <div>With this <m>N</m>, we will show that for all <m>n\gt N</m>, <m>x_n\gt a</m>.</div>
         </block>
-        <block name="4" depends="3" order="9">
-          <div>Let <m>n\in\N</m> with <m>n\gt N</m>. Then <m>|x_n-L|\lt L-a</m>, so <m>-(L-a)\lt x_n-L</m>.</div>
+        <block name="5" depends="4" order="9">
+          <div>Let <m>n\in\N</m> with <m>n\gt N</m>.</div>
         </block>
-        <block name="5" depends="4" order="5">
+        <block name="6" depends="5" order="11">
+          <div>Then <m>|x_n-L|\lt L-a</m>, so <m>-(L-a)\lt x_n-L</m>.</div>
+        </block>
+        <block name="7" depends="6" order="5">
           <div>Adding <m>L</m> to both sides gives <m>x_n\gt L-(L-a)=a</m>.</div>
         </block>
-        <block name="6" depends="5" order="2">
+        <block name="8" depends="7" order="2">
           <div>Thus for all <m>n\gt N</m>, <m>x_n\gt a</m>, as desired.</div>
         </block>
-        <block name="7" correct="no" order="6">
+        <block name="9" correct="no" order="6">
           <div>Let <m>\epsilon\gt 0</m>.</div>
         </block>
-        <block name="8" correct="no" order="8">
+        <block name="10" correct="no" order="8">
           <div>Choose <m>N=L-a</m>.</div>
         </block>
-        <block name="9" correct="no" order="4">
+        <block name="11" correct="no" order="4">
           <div>Because <m>x_n\to L</m> and <m>\epsilon\gt 0</m>, by definition there exists <m>N\in\R</m> such that for all <m>n\gt N</m>, <m>|x_n-L|\lt\epsilon</m>.</div>
         </block>
       </blocks>
