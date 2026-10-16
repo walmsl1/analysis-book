@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="_static/pretext/fonts/material-symbols-outlined.css">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+lang: "en-US",
+});
+</script><script defer data-pretext-mathjax="true" onerror="this.dataset.loadFailed = 'true';" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@doenet/standalone@latest/style.css">
+<script onload="onLoad()" type="module" src="https://cdn.jsdelivr.net/npm/@doenet/standalone@latest/doenet-standalone.js"></script><script>function onLoad() {window.renderDoenetViewerToContainer(document.querySelector(".doenetml-applet"))}</script>
+</head>
+<body class="ptx-content ignore-math" id="analysisbook">
+<div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\inv}{^{-1}}
+\newcommand{\card}[1]{\left| #1 \right|}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div style="aspect-ratio: 1;"><div class="doenetml-applet" data-doenet-add-virtual-keyboard="false" data-doenet-send-resize-events="true">
+<div class="doenetml-loading" style="text-align:center">
+<p><img src="https://www.doenet.org/Doenet_Logo_Frontpage.png"></p>
+<p>Waiting on the page to load...</p>
+</div>
+<script type="text/doenetml">
+        <title>Upper and Lower Sum Interactive Graph</title>
+
+The discontinuous function <m>f(x)=</m>
+<piecewiseFunction name="f" symbolic="false" styleNumber="5">
+    <function domain="(-infinity,4)">1.3</function>
+    <function domain="[4,infinity)">4.7</function>
+  </piecewiseFunction>
+
+ is graphed below, but it's hard to see because the tops of the rectangles cover it up. Create a partition where the upper sum and lower sum differ by less than <m> 0.1 </m>. To add another rectangle, click "add point" below the graph. Then you can drag the corners of the rectangles to change their widths. Happy hunting!
+<setup>
+  <!-- Number of boxes of integration -->
+  <number name="numBoxes">1</number>
+
+  <!-- Helper function to constrain to x-axis -->
+  <function name="h">0</function>
+
+  <!-- Endpoints of the interval [a,b] -->
+  <number name="a">pi/4</number>
+  <number name="b">2*pi</number>
+
+  <!-- The partition points the user adds (they live inside the "boxes" repeat) -->
+  <collect name="addedPoints" componentType="point" from="$boxes"/>
+
+  <!-- The partition: a, b, and the added points, sorted -->
+  <sort name="sortedXs">$aEndpoint.x $bEndpoint.x $addedPoints.x</sort>
+
+  <!-- Upper and lower Darboux sums: add up the box areas computed in "boxes" -->
+  <number name="upperDarbox"><sum>
+    <repeatForSequence from="1" to="$numBoxes" valueName="j">
+      <number>$boxes[$j].upperArea</number>
+    </repeatForSequence>
+  </sum></number>
+
+  <number name="lowerDarbox"><sum>
+    <repeatForSequence from="1" to="$numBoxes" valueName="j">
+      <number>$boxes[$j].lowerArea</number>
+    </repeatForSequence>
+  </sum></number>
+</setup>
+
+<sideBySide>
+  <stack>
+    <p>Upper Sum: <m>$upperDarbox</m></p>
+    <p>Lower Sum: <m>$lowerDarbox</m></p>
+  </stack>
+  <stack>
+    <p>Difference: <math simplify>$upperDarbox-$lowerDarbox</math></p>
+  </stack>
+</sideBySide>
+
+<graph name="g" xmin="-2" xmax="10" ymin="-2" ymax="10" displayXAxisTickLabels="false" displayYAxisTickLabels="false">
+  $f
+
+  <!-- Endpoints -->
+  <endpoint name="aEndpoint" coords="($a,0)" styleNumber="5" draggable="false">
+    <constrainTo>$h</constrainTo>
+  </endpoint>
+
+  <endpoint name="bEndpoint" coords="($b,0)" styleNumber="5" draggable="false">
+    <constrainTo>$h</constrainTo>
+  </endpoint>
+
+  <!-- Line segment to represent the interval -->
+  <lineSegment name="interval" endpoints="$aEndpoint.coords
+    $bEndpoint.coords" draggable="false" styleNumber="4"/>
+
+  <!-- One upper box and one lower box for each subinterval [t_(i-1), t_i] -->
+  <repeatForSequence name="boxes" from="1" to="$numBoxes" valueName="i">
+    <setup>
+      <!-- Random number in interval -->
+      <sampleRandomNumbers name="rand" from="$a" to="$b" step="0.01"/>
+
+      <!-- f with domain restricted between adjacent points -->
+      <function name="tempFunc" domain="[$sortedXs[$i],
+        $sortedXs[$i+1]]">$f</function>
+
+      <!-- Max and min of function on restricted f -->
+      <math name="tempFuncMax"><max>$$tempFunc($sortedXs[$i])
+        $tempFunc.maximumValues $$tempFunc($sortedXs[$i+1])</max>
+      </math>
+      <math name="tempFuncMin"><min>$$tempFunc($sortedXs[$i]) $tempFunc.minimumValues $$tempFunc($sortedXs[$i+1])</min></math>
+
+      <!-- Areas of this subinterval's upper and lower boxes -->
+      <number name="upperArea">($sortedXs[$i+1] - $sortedXs[$i]) * $tempFuncMax</number>
+      <number name="lowerArea">($sortedXs[$i+1] - $sortedXs[$i]) * $tempFuncMin</number>
+    </setup>
+
+    <!-- Adds a point when numBoxes increases -->
+    <conditionalContent condition="$i>1">
+      <point styleNumber="6" coords="($rand, 0)">
+        <constrainTo>$interval</constrainTo>
+      </point>
+    </conditionalContent>
+
+    <!-- Create a box for the upper and lower sums -->
+    <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMax) ($sortedXs[$i+1],$tempFuncMax) ($sortedXs[$i+1],0)" styleNumber="1" filled/>
+    <polygon vertices="($sortedXs[$i],0) ($sortedXs[$i],$tempFuncMin) ($sortedXs[$i+1],$tempFuncMin) ($sortedXs[$i+1],0)" styleNumber="2" filled/>
+    <conditionalContent condition="$i>1">
+      <m anchor="($sortedXs[$i],-0.5)">t_{<number>$i-1</number>}</m>
+    </conditionalContent>
+  </repeatForSequence>
+</graph>
+
+<!-- Button to add random point in interval -->
+<updateValue target="$numBoxes" newValue="$numBoxes + 1">
+  <label>Add Point</label></updateValue>
+
+<!-- Button to remove point -->
+<updateValue target="$numBoxes" newValue="$numBoxes - 1" disabled="$numBoxes=1">
+  <label>Remove Point</label></updateValue>
+
+      </script>
+</div></div>
+</body>
+</html>

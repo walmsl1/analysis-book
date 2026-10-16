@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="_static/pretext/fonts/material-symbols-outlined.css">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+lang: "en-US",
+});
+</script><script defer data-pretext-mathjax="true" onerror="this.dataset.loadFailed = 'true';" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@doenet/standalone@latest/style.css">
+<script onload="onLoad()" type="module" src="https://cdn.jsdelivr.net/npm/@doenet/standalone@latest/doenet-standalone.js"></script><script>function onLoad() {window.renderDoenetViewerToContainer(document.querySelector(".doenetml-applet"))}</script>
+</head>
+<body class="ptx-content ignore-math" id="analysisbook">
+<div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\inv}{^{-1}}
+\newcommand{\card}[1]{\left| #1 \right|}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div style="aspect-ratio: 1;"><div class="doenetml-applet" data-doenet-add-virtual-keyboard="false" data-doenet-send-resize-events="true">
+<div class="doenetml-loading" style="text-align:center">
+<p><img src="https://www.doenet.org/Doenet_Logo_Frontpage.png"></p>
+<p>Waiting on the page to load...</p>
+</div>
+<script type="text/doenetml">
+        A function <m> f </m> whose limit exists at each <m> a\in \mathbb{R} </m> is graphed below.
+
+<setup> <function name="f" symbolic> x^3+x^2-2x-1 </function> </setup>
+<!-- Pick x-value for point of interest -->
+<p>Choose a value for <m>a</m> (or adjust slider): <m>a = </m> <mathInput name="a" bindValueTo="$aSlider"/> 
+<slider from="-3" to="3" step="0.01" name="aSlider" initialValue="1" />
+</p>
+<!-- Pick value for epsilon -->
+<p>Choose a value of <m>\epsilon</m> (or adjust slider): <m>\epsilon = </m> <mathInput name="eps" bindValueTo="$epsSlider"/></p>
+
+<slider from="0" to="2" step="0.001" name="epsSlider" initialValue="0.71" />
+
+<!-- Defining the point on which to focus -->
+<setup>
+  <point name="P">($a,$$f($a))</point>
+  <number name="Py" fixed > $P.y </number>
+  <number name="Px" fixed > $P.x </number>
+</setup>
+
+<!-- Graphing f and the epsilon-delta "window" -->
+<setup>
+ <graph name ="g" xmin="-3" xmax="3" ymin="-3" ymax="3">
+ $f
+ $P
+ <line styleNumber="4" through="(1,$Py+$eps) (2,$Py+$eps)" />
+ <line styleNumber="4" through="(1,$Py-$eps) (2,$Py-$eps)" />
+ <line styleNumber="6" through="($Px-$delta,1) ($Px-$delta,2)" />
+ <line styleNumber="6" through="($Px+$delta,1) ($Px+$delta,2)" />
+ </graph>
+
+  <point name="V1">($a-$delta,$$f($a)-$eps)</point>
+  <number name="V1y" fixed > $V1.y </number>
+  <number name="V1x" fixed > $V1.x </number>
+
+  <point name="V2">($a+$delta,$$f($a)+$eps)</point>
+  <number name="V2y" fixed > $V2.y </number>
+  <number name="V2x" fixed > $V2.x </number>
+</setup>
+
+<sideBySide>
+ <subsection>
+    <title>Initial graph</title>
+    <graph extend="$g" name="zoomedOut" >
+    </graph>
+  </subsection>
+  <subsection>
+    <title>Zoomed graph</title>
+    <graph extend="$g"
+      xmin="$a-2*$delta"
+      xmax="$a+2*$delta"
+      ymin="$$f($a)-2*$eps"
+      ymax="$$f($a)+2*$eps"
+      >
+      </graph>
+  </subsection>
+</sideBySide>
+
+
+<p>Choose a value of <m>\delta</m> (or adjust slider):<m>\delta = </m> <mathInput name="delta" bindValueTo="$deltaSlider"/></p>
+
+<slider from="0" to="2" step="0.00001" name="deltaSlider" initialValue="1.4" />
+
+<problem>
+<p> Set <m>a=1</m> and let <m> L </m> be the limit of <m> f </m> at <m> a </m>. The point <m> (a,L) </m> is plotted on the graph. For each value of <m> \epsilon </m> given below, use the graph above to determine a value of <m> \delta </m> for which <me> 0\lt |x-a|\lt\delta \implies  |f(x)-L|\lt\epsilon. </me></p>
+
+  <setup>
+   <number name="eps1">0.71 </number>
+    <number name="eps2">0.1 </number>
+    <number name="eps3">0.001 </number>
+  </setup>
+
+ <tabular topBorder="minor" bottomBorder="minor">
+    <row>
+      <cell> <m>\epsilon=$eps1</m> </cell>
+      <cell><m> \delta = </m><mathInput name="delta1" /></cell>
+      <answer>
+  <award>
+    <when>
+      $max1<=$eps1
+    </when>
+  </award>
+</answer>
+    </row>
+    <row>
+      <cell> <m>\epsilon=$eps2</m> </cell>
+      <cell><m> \delta = </m><mathInput name="delta2" /></cell>
+      <answer>
+  <award>
+    <when>
+      $max2<=$eps2
+    </when>
+  </award>
+</answer>
+    </row>
+    <row>
+      <cell> <m>\epsilon=$eps3</m> </cell>
+      <cell><m> \delta = </m><mathInput name="delta3" /></cell>
+      <answer>
+  <award>
+    <when>
+      $max3<=$eps3
+    </when>
+  </award>
+</answer>
+    </row>
+  </tabular>
+
+<setup>
+ <function name="check1" domain="[$a-$delta1,$a+$delta1]"><abs> 
+ $f-$$f($a) </abs> </function>
+  <number name="max1"><max>$$check1($a-$delta1) $check1.maximumValues $$check1($a+$delta1)</max></number>
+
+  <function name="check2" domain="[$a-$delta2,$a+$delta2]"><abs> 
+ $f-$$f($a) </abs> </function>
+  <number name="max2"><max>$$check2($a-$delta2) $check2.maximumValues $$check2($a+$delta2)</max></number>
+
+  <function name="check3" domain="[$a-$delta3,$a+$delta3]"><abs> 
+ $f-$$f($a) </abs> </function>
+  <number name="max3"><max>$$check3($a-$delta3) $check3.maximumValues $$check3($a+$delta3)</max></number>
+</setup>
+
+
+</problem>
+      </script>
+</div></div>
+</body>
+</html>
