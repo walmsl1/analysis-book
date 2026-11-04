@@ -39,7 +39,7 @@
       <md>|x^2-4|\le 5|x-2|.</md>
       Now <m>|x-2|\lt\epsilon/5</m> would finish the job. To get both <m>\delta\le 1</m> and <m>\delta\le\epsilon/5</m>, choose
       <md>\delta=\min\{1,\epsilon/5\}.</md>
-      The first problem at the end of this section turns this into a proof. First, explore the graph.
+      The first problem at the end of this section turns this into a proof that works at every point <m>a</m>; at <m>a=2</m> its <m>\delta</m> is exactly this one. First, explore the graph.
     </p>
 
     <figure xml:id="fig-x-squared-activity">
@@ -69,24 +69,6 @@
       </answer>
     </exercise>
 
-    <exercise xml:id="ex-slope-guess-x2">
-      <statement>
-        <p>
-          The slope of <m>y=x^2</m> at <m>x=2</m> is <m>4</m>, which suggests trying <m>\delta=\epsilon/4</m>. With <m>\epsilon=1</m>, find an <m>x</m> with <m>|x-2|\lt 1/4</m> but <m>|x^2-4|\ge 1</m>.
-        </p>
-      </statement>
-      <hint>
-        <p>
-          Look just to the right of <m>\sqrt5\approx 2.236</m>.
-        </p>
-      </hint>
-      <answer>
-        <p>
-          <m>x=2.24</m> works: <m>|2.24-2|=0.24\lt 0.25</m>, but <m>2.24^2=5.0176</m>, so <m>|x^2-4|=1.0176\ge 1</m>. In fact <m>\delta=\epsilon/4</m> fails for every <m>\epsilon\gt 0</m>, because <m>(2+\epsilon/4)^2=4+\epsilon+\epsilon^2/16\gt 4+\epsilon</m>.
-        </p>
-      </answer>
-    </exercise>
-
     <exercise xml:id="ex-why-the-one">
       <statement>
         <p>
@@ -110,32 +92,6 @@
       so <m>\delta=\min\{1,\epsilon/(2|a|+1)\}</m> works. This <m>\delta</m> depends on <m>a</m> as well as on <m>\epsilon</m>. Is that just a feature of our formula, or is it forced?
     </p>
 
-    <exercise xml:id="ex-delta-shrinks">
-      <statement>
-        <p>
-          For <m>f(x)=x^2</m> and <m>\epsilon=1</m>, the largest <m>\delta</m> that works at a point <m>a\gt 0</m> is <m>\sqrt{a^2+1}-a</m>. Compute it for <m>a=1, 2, 10, 100</m>. What happens as <m>a</m> grows?
-        </p>
-      </statement>
-      <answer>
-        <p>
-          About <m>0.414</m>, <m>0.236</m>, <m>0.0499</m> and <m>0.0050</m>. It shrinks toward <m>0</m>; for large <m>a</m> it is about <m>1/(2a)</m>.
-        </p>
-      </answer>
-    </exercise>
-
-    <exercise xml:id="ex-one-delta">
-      <statement>
-        <p>
-          For <m>f(x)=3x+5</m>, what is the largest <m>\delta</m> that works for <m>\epsilon=1</m> at <m>a=1, 2, 10, 100</m>? Is there a single <m>\delta\gt 0</m> that works for <m>\epsilon=1</m> at every <m>a\in\R</m>? Answer the same question for <m>f(x)=x^2</m>.
-        </p>
-      </statement>
-      <answer>
-        <p>
-          For <m>3x+5</m> the largest <m>\delta</m> is <m>1/3</m> at every <m>a</m>, so <m>\delta=1/3</m> works everywhere. For <m>x^2</m>, no single <m>\delta</m> works. Given any <m>\delta\gt 0</m>, take <m>a=1/\delta</m> and <m>x=a+\delta/2</m>. Then <m>|x-a|\lt\delta</m>, but <m>x^2-a^2=a\delta+\delta^2/4=1+\delta^2/4\gt 1</m>.
-        </p>
-      </answer>
-    </exercise>
-
     <p>
       The next topic, uniform continuity, asks exactly this question: when can one <m>\delta</m> serve every point <m>a</m> at once?
     </p>
@@ -144,37 +100,37 @@
   <exercises xml:id="parsons-epsilon-delta">
     <title>Proof practice: choosing <m>\delta</m></title>
 
-    <!-- x^2 at 2 (Ross 17.9(a)): delta = min{1, eps/5} -->
-    <exercise label="parsons-x-squared-at-2" adaptive="yes" indentation="hide">
-      <title>The square function at <m>2</m></title>
-      <statement><div>Let <m>f(x)=x^2</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at <m>2</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed.</div></statement>
+    <!-- x^2 at any a: delta = min{1, eps/(2|a|+1)} depends on a -->
+    <exercise label="parsons-x-squared-anywhere" adaptive="yes" indentation="hide">
+      <title>The square function at every point</title>
+      <statement><div>Let <m>f(x)=x^2</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at every <m>a\in\R</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed. Notice that your <m>\delta</m> depends on <m>a</m>.</div></statement>
       <blocks>
-        <block name="1" order="5">
-          <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\R</m> with <m>|x-2|\lt\delta</m>, <m>|x^2-4|\lt\epsilon</m>.</div>
+        <block name="1" order="4">
+          <div>Let <m>a\in\R</m>.</div>
         </block>
-        <block name="2" depends="1" order="8">
-          <div>Let <m>\epsilon\gt 0</m>.</div>
+        <block name="2" depends="1" order="9">
+          <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\R</m> with <m>|x-a|\lt\delta</m>, <m>|x^2-a^2|\lt\epsilon</m>.</div>
         </block>
         <block name="3" depends="2" order="2">
-          <div>Choose <m>\delta=\min\{1,\epsilon/5\}</m>.</div>
+          <div>Let <m>\epsilon\gt 0</m>.</div>
         </block>
-        <block name="4" depends="3" order="9">
-          <div>Let <m>x\in\R</m> with <m>|x-2|\lt\delta</m>.</div>
+        <block name="4" depends="3" order="6">
+          <div>Choose <m>\delta=\min\left\{1,\dfrac{\epsilon}{2|a|+1}\right\}</m>.</div>
         </block>
-        <block name="5" depends="4" order="1">
-          <div>We must show that <m>|x^2-4|\lt\epsilon</m>.</div>
+        <block name="5" depends="4" order="8">
+          <div>Let <m>x\in\R</m> with <m>|x-a|\lt\delta</m>.</div>
         </block>
-        <block name="6" depends="5" order="7">
-          <div>Since <m>|x-2|\lt\delta\le 1</m>, we have <m>1\lt x\lt 3</m>, so <m>3\lt x+2\lt 5</m> and <m>|x+2|\lt 5</m>.</div>
+        <block name="6" depends="5" order="1">
+          <div>We must show that <m>|x^2-a^2|\lt\epsilon</m>.</div>
         </block>
-        <block name="7" depends="6" order="3">
-          <div>Since also <m>|x-2|\lt\delta\le\epsilon/5</m>, we get <m>|x^2-4|=|x-2|\cdot|x+2|\le 5|x-2|\lt 5\cdot\epsilon/5=\epsilon</m>, as desired.</div>
+        <block name="7" depends="6" order="5">
+          <div>Since <m>|x-a|\lt\delta\le 1</m>, the triangle inequality gives <m>|x+a|\le|x-a|+2|a|\lt 2|a|+1</m>.</div>
         </block>
-        <block name="8" correct="no" order="6">
-          <div>Choose <m>\delta=\epsilon/4</m>.</div>
+        <block name="8" depends="7" order="3">
+          <div>Since also <m>|x-a|\lt\delta\le\dfrac{\epsilon}{2|a|+1}</m>, we get <m>|x^2-a^2|=|x-a|\cdot|x+a|\le(2|a|+1)|x-a|\lt\epsilon</m>, as desired.</div>
         </block>
-        <block name="9" correct="no" order="4">
-          <div>Choose <m>\delta=\epsilon/|x+2|</m>.</div>
+        <block name="9" correct="no" order="7">
+          <div>Choose <m>\delta=\min\left\{1,\dfrac{\epsilon}{2|x|+1}\right\}</m>.</div>
         </block>
       </blocks>
     </exercise>
@@ -211,39 +167,5 @@
       </blocks>
     </exercise>
 
-    <!-- x^2 at any a: delta = min{1, eps/(2|a|+1)} depends on a -->
-    <exercise label="parsons-x-squared-anywhere" adaptive="yes" indentation="hide">
-      <title>The square function at every point</title>
-      <statement><div>Let <m>f(x)=x^2</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at every <m>a\in\R</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed. Notice that your <m>\delta</m> depends on <m>a</m>.</div></statement>
-      <blocks>
-        <block name="1" order="4">
-          <div>Let <m>a\in\R</m>.</div>
-        </block>
-        <block name="2" depends="1" order="9">
-          <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\R</m> with <m>|x-a|\lt\delta</m>, <m>|x^2-a^2|\lt\epsilon</m>.</div>
-        </block>
-        <block name="3" depends="2" order="2">
-          <div>Let <m>\epsilon\gt 0</m>.</div>
-        </block>
-        <block name="4" depends="3" order="6">
-          <div>Choose <m>\delta=\min\left\{1,\dfrac{\epsilon}{2|a|+1}\right\}</m>.</div>
-        </block>
-        <block name="5" depends="4" order="8">
-          <div>Let <m>x\in\R</m> with <m>|x-a|\lt\delta</m>.</div>
-        </block>
-        <block name="6" depends="5" order="1">
-          <div>We must show that <m>|x^2-a^2|\lt\epsilon</m>.</div>
-        </block>
-        <block name="7" depends="6" order="5">
-          <div>Since <m>|x-a|\lt\delta\le 1</m>, the triangle inequality gives <m>|x+a|\le|x-a|+2|a|\lt 2|a|+1</m>.</div>
-        </block>
-        <block name="8" depends="7" order="3">
-          <div>Since also <m>|x-a|\lt\delta\le\dfrac{\epsilon}{2|a|+1}</m>, we get <m>|x^2-a^2|=|x-a|\cdot|x+a|\le(2|a|+1)|x-a|\lt\epsilon</m>, as desired.</div>
-        </block>
-        <block name="9" correct="no" order="7">
-          <div>Choose <m>\delta=\min\left\{1,\dfrac{\epsilon}{2|x|+1}\right\}</m>.</div>
-        </block>
-      </blocks>
-    </exercise>
   </exercises>
 </section>
