@@ -4,7 +4,7 @@
   <title>Quantifiers in Proofs</title>
 
   <subsection>
-    <title>Introduction to Quantifiers and their Negations</title>
+    <title>Introduction to Quantifiers</title>
   <p> A <alert> mathematical statement </alert> is a phrase or sentence that can reasonably be called true or false. For convenience, they are sometimes assigned a letter like <m> P </m> or <m> Q </m> to make them easier to refer to. Consider the following mathematical statement.
   <md> P: \text{there exists a real number } x \text{ such that } x^2-x>0. </md>
   Is this statement true? If it is, we should be able to produce a number <m> x</m>, compute <m> x^2-x </m>, and verify that the quantity <m> x^2-x </m> is positive. The number <m> x=3 </m> has this property, along with many other real numbers. For shorthand notation, we will write <m> \exists </m> to mean ``there exists" and s.t. to mean ``such that". The phrase "such that" will always follow a <m> \exists </m>; the "such that" phrase describes or defines the object that exists. In shorthand, <m> P </m> becomes
@@ -21,7 +21,7 @@
    </proof>
 
   <p>
-      The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can draw out a situation which is uncomplicated. We could opt to replace the last line with something like "Since <m> x=6 </m>, then <m>x^2-x=6>0</m>, as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of (in)equalities outloud in our head: <m> x^2-x </m> equals <m> 6 </m>, and <m> 6 </m> is greater than <m> 0 </m>. We then conlcude <m> x^2-x </m> must be greater than <m> 0 </m>, which had to be shown. 
+      The last sentence in the above proof is quite wordy. Being wordy can make it more clear, but it also can draw out a situation which is uncomplicated. We could opt to replace the last line with something like "Since <m> x=3 </m>, then <m>x^2-x=6>0</m>, as desired."  This concise formatting will often be preferred due to how compact it is, but it requires us to read a string of (in)equalities out loud in our head: <m> x^2-x </m> equals <m> 6 </m>, and <m> 6 </m> is greater than <m> 0 </m>. We then conclude <m> x^2-x </m> must be greater than <m> 0 </m>, which had to be shown. 
   </p>
   <p>
     While this proof might seem like too much effort to prove a simple statement, we will reap many benefits by developing some general proof principles in straightforward situations. First, we will use the overall structure of this existence proof for  almost every existence argument in this class. It is worth writing down a general ``proof outline" of an existence argument.
@@ -50,8 +50,11 @@
   <p>
     Let's look at another mathematical statement.
      <md> Q:  \text{ For all natural numbers} n, n^2\geq n. </md>
-      Is  <m> Q </m> true? Checking a few cases makes it seem so, but if it is, we cannot simply check cases, as there are infinitely many natural numbers we would have to check. Thus proving a "for all" statement will require a new strategy. We will need an abstract argument, and the idea is to introduce a <em> variable </em>, like <m> n </m>, to stand in place for some arbitrary natural number. Then we can simply check the statement for that one arbitrary natural number <m> n </m>, but all we know about <m> n </m> is where it came from. We do not know its exact value, but we do know that it is some positive integer.
-  </p> 
+      Is  <m> Q </m> true? Checking a few cases makes it seem so: <m> 1^2\geq 1 </m>, <m> 2^2\geq 2 </m>, <m> 3^2\geq 3 </m>. But checking cases can never finish the job. The statement <m> Q </m> is really infinitely many statements bundled together, one for each natural number, and a proof is a finite list of sentences. We cannot prove infinitely many statements one at a time, so proving a "for all" statement requires a new strategy.
+  </p>
+  <p>
+      Instead of many arguments, we write <em>one</em> argument that serves as a <alert>template</alert> for all of them. We introduce a <em> variable </em>, like <m> n </m>, to stand for a natural number, and we argue about <m> n </m> using only the fact that <m> n </m> is a natural number. We do not know the exact value of <m> n </m>; all we know about <m> n </m> is where it came from. Because the argument never uses anything else about <m> n </m>, we could erase <m> n </m> everywhere and write in any specific natural number, like <m> 5 </m> or <m> 1000 </m>, and every sentence of the argument would still be true. This is how one finite argument proves infinitely many statements.
+  </p>
 
  
     <proof>
@@ -60,7 +63,8 @@
 
   <p> The mathematical shorthand for "for all" is <m> \forall </m>, which allows us to more concisely write <m> Q </m> in the following way:
   <md> Q: \forall n\in \N, n^2\geq n.</md> 
-  The last example shows our general strategy for proving "for all" statements. 
+  The last example shows our general strategy for proving "for all" statements.
+  </p>
 
 <assemblage>
       <title>Proof Outline for "For All" Proofs</title>
@@ -76,9 +80,56 @@
       <p> Thus this thing about <m> x </m> happens, as desired. </p>
   </assemblage>
 
-  While the proof outlines for existence and for all statements share many similarities, the philosophies are quite different. To prove existence, we need only produce one element that exists with the requisite properties. To prove a for all statement, we have to show <em> every element </em> has the requisite properties. 
+  <p>
+  While the proof outlines for existence and for all statements share many similarities, the philosophies are quite different. To prove existence, we need only produce one element that exists with the requisite properties. To prove a for all statement, we have to show <em> every element </em> has the requisite properties, and we do that with one argument about an <em>arbitrary</em> element.
+  </p>
 
-  <title> Negations </title>
+  <p>
+  The word <alert>arbitrary</alert> is easy to misread. An arbitrary natural number is not a random natural number, and it is not every natural number at once. After the sentence <q>Let <m> n </m> be any natural number,</q> the letter <m> n </m> names <em>one</em> natural number. We just don't know which one, and the argument must not depend on which one it is. It may help to imagine that someone else picked the number and kept it hidden from us; our argument has to work no matter what they picked. Once the argument is finished, the <q>for all</q> has been established. No single sentence in the proof establishes it. It is established by the fact that the whole argument works for every possible value of <m> n </m>.
+  </p>
+
+  <warning xml:id="warning-requantify">
+    <title>Don't put the <q>for all</q> back</title>
+    <p>
+      A common slip is to write something like this:
+    </p>
+    <blockquote>
+      <p>
+        Let <m> n\in \N </m>. We must show that for all <m> n\in \N </m>, <m> n^2\geq n </m>.
+      </p>
+    </blockquote>
+    <p>
+      After <q>Let <m> n\in \N </m>,</q> the letter <m> n </m> names one natural number, and the <q>for all</q> has been taken care of. What is left to show is <m> n^2\geq n </m> for that one <m> n </m>. Writing <q>for all <m> n\in\N </m></q> again causes two problems.
+    <ul>
+      <li>
+        <p>
+          <em>It undoes the previous sentence.</em> The goal <q>for all <m> n\in\N </m>, <m> n^2\geq n </m></q> is exactly the statement we started with, so the sentence <q>Let <m> n\in\N </m></q> made no progress. The <m> n </m> inside <q>for all <m> n\in\N </m></q> is not the <m> n </m> we just introduced. It is a placeholder that ranges over every natural number: the statement <q>for all <m> n\in\N </m>, <m> n^2\geq n </m></q> means exactly the same thing as <q>for all <m> k\in\N </m>, <m> k^2\geq k </m>.</q>
+        </p>
+      </li>
+      <li>
+        <p>
+          <em>It gives one letter two meanings.</em> From then on, the reader cannot tell whether <m> n </m> means the one natural number we introduced or every natural number.
+        </p>
+      </li>
+    </ul>
+    </p>
+    <p>
+      There is also a mismatch at the end. The argument shows <m> n^2\geq n </m> for one arbitrary <m> n </m> and then says <q>as desired.</q> But the stated goal was a claim about every natural number, and no sentence about a single <m> n </m> can establish that. As described above, the <q>for all</q> comes from the argument as a whole.
+    </p>
+    <p>
+      The fix is to state the full goal <em>before</em> the <q>Let</q> sentence, if you want to state it at all, and to state only what is left <em>after</em> it:
+    </p>
+    <blockquote>
+      <p>
+        We must show that for all <m> n\in \N </m>, <m> n^2\geq n </m>. Let <m> n\in \N </m>. We must show <m> n^2\geq n </m>.
+      </p>
+    </blockquote>
+  </warning>
+</subsection>
+
+<subsection>
+  <title>Negations</title>
+  <p>
   Consider the following statement.
    <md> R: \forall x\in \R, x^2-x\ge 0 </md>.
     Equivalently, we could write 
@@ -93,7 +144,7 @@
       </interactive>
     </figure>
 
-    we can see that <m> R </m> is false; it is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m>, because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The <alert> negation </alert> of a mathemical statement <m> R </m>,  is a new mathematical statement labeled <m> \text{not } R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
+    we can see that <m> R </m> is false; it is not true that for every real number <m> x </m>, <m> x^2-x\ge 0 </m>, because <em> there exists </em> a real number <m> x </m> for which the opposite conclusion, namely <m> x^2-x \lt 0 </m>, holds. For example, <m> x=0.5 </m>, <m> x=0.25, </m> or any <m>x\in (0,1) </m> has the opposite property that <m> x^2-x\lt 0 </m>. The <alert> negation </alert> of a mathematical statement <m> R </m>,  is a new mathematical statement labeled <m> \text{not } R </m>, whose truth value is opposite that of <m> R </m>. For the specific statement <m> R </m> above, we have
 
   <md> \text{not } R: \exists x\in \R \text{ s.t. } x^2-x\lt 0. </md>
   Equivalently,
@@ -132,7 +183,7 @@
   
   <md> \text{not } T: \forall x\in \R, x^2\neq -1. </md>
 
-  This example highlights the fact that the negation of a "for all" statement is a "there exists" statement, a fact worth remembering.
+  This example highlights the fact that the negation of a "there exists" statement is a "for all" statement, a fact worth remembering.
 
   <assemblage>
       <title>Negation of "There Exists" Statements</title>
@@ -151,7 +202,7 @@
   <subsection>
 		<title>Multiple Quantifiers</title>
     <p>
-    Most of the statments we will encounter throughout this course involve multiple quantifiers, like the following statement:
+    Most of the statements we will encounter throughout this course involve multiple quantifiers, like the following statement:
 
     <md> P: \forall x\in \R \, \exists y\in \R \text{ s.t. } xy=1. </md>
 
@@ -235,6 +286,53 @@
      </proof>
     </p>
       
+<p>
+  Notice what each sentence of these proofs does to the goal. Each <q>Let</q> or <q>Define</q> sentence takes care of the first quantifier that remains, and the next <q>We must show</q> sentence states what is left. The goal shrinks by one quantifier at a time. Here is that bookkeeping for the true statement
+  <md> S: \forall \, x\in (0,\infty) \, \exists \, y\in (0,\infty) \text{ s.t. } y\lt x. </md>
+</p>
+
+<tabular halign="left">
+  <row header="yes" bottom="minor">
+    <cell>Sentence in our proof</cell>
+    <cell>What we still must show</cell>
+  </row>
+  <row>
+    <cell>(before the proof begins)</cell>
+    <cell><m> \forall \, x\in (0,\infty) \, \exists \, y\in (0,\infty) \text{ s.t. } y\lt x </m></cell>
+  </row>
+  <row>
+    <cell>Let <m> x\in (0,\infty) </m>.</cell>
+    <cell><m> \exists \, y\in (0,\infty) \text{ s.t. } y\lt x </m></cell>
+  </row>
+  <row>
+    <cell>Define <m> y=x/2 </m>.</cell>
+    <cell><m> y\in (0,\infty) </m> and <m> y\lt x </m></cell>
+  </row>
+</tabular>
+
+<proof>
+  <p>
+    Let <m> x\in (0,\infty) </m>. We must show there exists <m> y\in (0,\infty) </m> such that <m> y\lt x </m>. Define <m> y=x/2 </m>. We must show <m> y\in (0,\infty) </m> and <m> y\lt x </m>. Since <m> x\gt 0 </m>, we have <m> y=x/2\gt 0 </m>, so <m> y\in(0,\infty) </m>. Also, since <m> x/2\gt 0 </m>, we have <m> x = x/2+x/2 \gt x/2 = y </m>, as desired.
+  </p>
+</proof>
+
+<warning xml:id="warning-requantify-swap">
+  <title>Putting the <q>for all</q> back can change the statement</title>
+  <p>
+    With several quantifiers, re-quantifying a variable after a <q>Let</q> sentence can do more than confuse the reader. It can make the proof claim something false. Suppose the proof of <m> S </m> began like this:
+  </p>
+  <blockquote>
+    <p>
+      Let <m> x\in (0,\infty) </m>. We must show that for all <m> x\in (0,\infty) </m>, there exists <m> y\in(0,\infty) </m> such that <m> y\lt x </m>. Define <m> y=x/2 </m>.
+    </p>
+  </blockquote>
+  <p>
+    The number <m> y </m> was built from the <m> x </m> we introduced, which is one fixed number. But the stated goal now begins with <q>for all <m> x </m>,</q> so this one <m> y </m> would have to work for every positive <m> x </m>. To see the problem concretely, replace the <m> x </m> we introduced with a specific number, say <m> 6 </m>. Then <m> y=3 </m>, and the goal demands that for all <m> x\in(0,\infty) </m>, <m> 3\lt x </m>. That is false: <m> x=1 </m> is a counterexample. Read literally, the proof is now attempting
+    <md> \exists \, y\in(0,\infty) \text{ s.t. } \forall \, x\in (0,\infty), \ y\lt x, </md>
+    which is a false statement: it is <m> S </m> with its quantifiers in the opposite order. In <m> S </m> itself, each <m> x </m> gets its own <m> y </m>, and that is exactly why <m> y </m> is allowed to depend on <m> x </m>. Stating the goal one quantifier at a time, as in the table above, keeps that order straight.
+  </p>
+</warning>
+
 <p>
   As a parting comment, the language we use in proofs isn't set in stone. The word "define" could have been "let" or "consider" or "imagine", as a student once creatively suggested. As we will see soon, sometimes the element that exists can't be written or expressed by an equation; it exists by virtue of some assumption that we made. But while our wording might change in the future, the basic structure of proving quantified statements will always remain the same. 
 </p>
