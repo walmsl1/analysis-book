@@ -1,45 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- The epsilon-delta property: reading before the epsilon-delta proofs day. -->
-<!-- Builds on the easy examples done in class (delta from a bound in |x-a| alone). -->
-<!-- New here: a minimum in delta, and how delta depends on the point a.            -->
-<!-- Parsons problems: one sentence per block.                                     -->
+<!-- The epsilon-delta property: reading before the epsilon-delta proofs day.          -->
+<!-- Three subsections, each ending with Parsons problems:                             -->
+<!--   1. A first proof, 3x+5: a proof follows the quantifiers; the Doenet problem     -->
+<!--      hands students epsilon first; then outline, scratch work, proof.            -->
+<!--   2. x^2: the bound depends on x, so delta = min{1, ...}; delta depends on a.    -->
+<!--   3. Continuity as a hypothesis (was its own section): the positive number the   -->
+<!--      property is applied to goes in the box.                                     -->
+<!-- Parsons problems: one sentence per block.                                         -->
 <section xml:id="sec-epsilon_delta" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The <m>\epsilon</m>–<m>\delta</m> Property</title>
 
-  <subsection xml:id="subsec-epsilon-delta-property">
-    <title>The property</title>
+  <introduction>
+    <p>
+      Continuity at a point can be described without sequences. The description is equivalent to the sequential definition; in Ross this is Theorem 17.2.
+    </p>
 
-  <p>
-    In class we found a description of continuity that uses no sequences. It is equivalent to the sequential definition; in Ross this is Theorem 17.2.
-  </p>
+    <theorem xml:id="thm-epsilon-delta">
+      <title>The <m>\epsilon</m>–<m>\delta</m> property</title>
+      <statement>
+        <p>
+          Let <m>a\in\operatorname{dom}(f)</m>. The function <m>f</m> is continuous at <m>a</m> if and only if <m>\forall\,\epsilon\gt 0\ \exists\,\delta\gt 0</m> s.t. <m>\forall\, x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon</m>.
+        </p>
+      </statement>
+    </theorem>
 
-  <theorem xml:id="thm-epsilon-delta">
-    <title>The <m>\epsilon</m>–<m>\delta</m> property</title>
-    <statement>
+    <p>
+      This section uses the theorem in two ways. In <xref ref="subsec-first-proof" text="title"/> and <xref ref="subsec-bound-depends-on-x" text="title"/>, it proves that a function is continuous. In <xref ref="subsec-continuity-hypothesis" text="title"/>, continuity is a hypothesis, and the theorem tells us what that hypothesis gives us. Each part ends with Parsons problems for practice.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-first-proof">
+    <title>A first proof: <m>f(x)=3x+5</m></title>
+
+    <p>
+      By <xref ref="thm-epsilon-delta"/>, to prove that <m>f</m> is continuous at <m>a</m> it is enough to prove
+      <md>\forall\,\epsilon\gt 0\ \exists\,\delta\gt 0 \text{ s.t. } \forall\, x\in\operatorname{dom}(f) \text{ with } |x-a|\lt\delta,\ |f(x)-f(a)|\lt\epsilon.</md>
+      A proof follows the quantifiers in order:
+    </p>
+    <ul>
+      <li>
+        <p>
+          <m>\forall\,\epsilon\gt 0</m>: begin with <q>Let <m>\epsilon\gt 0</m>.</q> You do not get to pick <m>\epsilon</m>; it is arbitrary.
+        </p>
+      </li>
+      <li>
+        <p>
+          <m>\exists\,\delta\gt 0</m>: say <q>Choose <m>\delta=\dots</m>.</q> You pick <m>\delta</m>, and it may depend on <m>\epsilon</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <m>\forall\, x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>: say <q>Let <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>.</q> Again, <m>x</m> is arbitrary.
+        </p>
+      </li>
+      <li>
+        <p>
+          Finally, show that <m>|f(x)-f(a)|\lt\epsilon</m>.
+        </p>
+      </li>
+    </ul>
+    <p>
+      The hard part is finding <m>\delta</m>. That is done in scratch work, which is not part of the proof.
+    </p>
+    <p>
+      The order of the quantifiers matters. Because <m>\epsilon</m> comes first, <m>\delta</m> is chosen after <m>\epsilon</m> is known, so <m>\delta</m> may depend on <m>\epsilon</m>. Problem 1 in the activity below works the same way: each row gives you <m>\epsilon</m>, and you find <m>\delta</m>.
+    </p>
+
+    <figure xml:id="fig-linear-activity">
+      <caption>A Doenet activity for <m>f(x)=3x+5</m>.</caption>
+      <interactive xml:id="linear_activity" platform="doenetml" width="100%" aspect="1:1">
+        <slate surface="doenetml">
+          <xi:include href="doenet/linear_activity.doenet" parse="text"/>
+        </slate>
+      </interactive>
+    </figure>
+
+    <exercise xml:id="ex-one-delta-every-epsilon">
+      <statement>
+        <p>
+          Use your three answers to Problem 1 in the activity.
+          <ol marker="(a)">
+            <li>
+              <p>
+                Find one <m>\delta\gt 0</m> that works for all three values of <m>\epsilon</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                Is there one <m>\delta\gt 0</m> such that for all <m>\epsilon\gt 0</m> and all <m>x</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon</m>?
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      <answer>
+        <p>
+          (a) Any <m>\delta</m> with <m>0\lt\delta\le 1/300</m> works, such as <m>\delta=0.003</m>. A <m>\delta</m> that works for <m>\epsilon=0.01</m> also works for <m>\epsilon=0.1</m> and <m>\epsilon=1</m>.
+        </p>
+        <p>
+          (b) No. Given any <m>\delta\gt 0</m>, take <m>\epsilon=\delta</m> and <m>x=a+\delta/2</m>. Then <m>|x-a|\lt\delta</m>, but <m>|f(x)-f(a)|=3\delta/2\gt\epsilon</m>. So <m>\delta</m> must depend on <m>\epsilon</m>. That is why the <m>\epsilon</m>–<m>\delta</m> property puts <q>for all <m>\epsilon\gt 0</m></q> before <q>there exists <m>\delta\gt 0</m>.</q>
+        </p>
+      </answer>
+    </exercise>
+
+    <p>
+      Your answers to Problem 1 suggest a rule for choosing <m>\delta</m> from <m>\epsilon</m>. Here is how to find that rule and turn it into a proof.
+    </p>
+
+    <proposition xml:id="prop-linear-continuous">
+      <statement>
+        <p>
+          Let <m>f(x)=3x+5</m>. Then <m>f</m> is continuous at every <m>a\in\R</m>.
+        </p>
+      </statement>
+    </proposition>
+
+    <paragraphs xml:id="par-linear-outline">
+      <title>Proof outline</title>
       <p>
-        Let <m>a\in\operatorname{dom}(f)</m>. The function <m>f</m> is continuous at <m>a</m> if and only if <m>\forall\,\epsilon\gt 0\ \exists\,\delta\gt 0</m> s.t. <m>\forall\, x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon</m>.
+        First write the parts of the proof that the quantifiers dictate. Leave holes, in brackets, for the rest.
       </p>
-    </statement>
-  </theorem>
+      <blockquote>
+        <p>
+          Let <m>a\in\R</m>. By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\R</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon</m>.
+        </p>
+        <p>
+          Let <m>\epsilon\gt 0</m>. [Choose <m>\delta</m>.] Let <m>x\in\R</m> with <m>|x-a|\lt\delta</m>. We must show that <m>|f(x)-f(a)|\lt\epsilon</m>.
+        </p>
+        <p>
+          [Use <m>|x-a|\lt\delta</m> to show that <m>|f(x)-f(a)|\lt\epsilon</m>.]
+        </p>
+      </blockquote>
+      <p>
+        The outline has two holes: the choice of <m>\delta</m>, and the argument at the end. Scratch work fills in both.
+      </p>
+    </paragraphs>
 
-  <p>
-    The examples from class had something in common: <m>|f(x)-f(a)|</m> was bounded by an expression in <m>|x-a|</m> alone, so <m>\delta</m> came straight from solving for <m>|x-a|</m>. For <m>f(x)=3x+5</m>, for instance, <m>|f(x)-f(a)|=3|x-a|</m>, so <m>\delta=\epsilon/3</m> works. This section is about what to do when the bound also depends on <m>x</m>, and about how <m>\delta</m> can depend on the point <m>a</m>.
-  </p>
+    <paragraphs xml:id="par-linear-scratch">
+      <title>Scratch work</title>
+      <p>
+        We need <m>|f(x)-f(a)|\lt\epsilon</m> for every <m>x</m> with <m>|x-a|\lt\delta</m>. Simplify the left side:
+        <md>|f(x)-f(a)|=|(3x+5)-(3a+5)|=|3x-3a|=3|x-a|.</md>
+        So we need <m>3|x-a|\lt\epsilon</m>, which is the same as <m>|x-a|\lt\epsilon/3</m>. If <m>\delta=\epsilon/3</m>, then every <m>x</m> with <m>|x-a|\lt\delta</m> satisfies <m>|x-a|\lt\epsilon/3</m>, which is what we need. This reasoning starts from the goal and works backward, so it is not a proof. The proof below runs the same steps forward.
+      </p>
+      <p>
+        This matches Problem 1: for <m>\epsilon=1</m>, <m>0.1</m> and <m>0.01</m>, the largest <m>\delta</m> that works is <m>1/3</m>, <m>1/30</m> and <m>1/300</m>. Any smaller positive <m>\delta</m>, such as <m>\epsilon/4</m>, works too, and a proof needs only one. Notice also that <m>\delta=\epsilon/3</m> does not depend on <m>a</m>.
+      </p>
+    </paragraphs>
 
+    <proof ref="prop-linear-continuous">
+      <p>
+        Let <m>a\in\R</m>. By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\R</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon</m>.
+      </p>
+      <p>
+        Let <m>\epsilon\gt 0</m>. Choose <m>\delta=\epsilon/3</m>, which is positive since <m>\epsilon\gt 0</m>. Let <m>x\in\R</m> with <m>|x-a|\lt\delta</m>. We must show that <m>|f(x)-f(a)|\lt\epsilon</m>.
+      </p>
+      <p>
+        Since <m>|x-a|\lt\delta=\epsilon/3</m>, we have
+        <md>|f(x)-f(a)|=|(3x+5)-(3a+5)|=3|x-a|\lt 3\cdot\frac{\epsilon}{3}=\epsilon,</md>
+        as desired.
+      </p>
+    </proof>
+
+    <p>
+      The proof is the outline with its two holes filled in: the choice <m>\delta=\epsilon/3</m>, and a last paragraph that runs the scratch work forward.
+    </p>
+
+    <exercises xml:id="parsons-first-proofs">
+      <title>Proof practice: solving for <m>\delta</m></title>
+
+      <!-- a decreasing line: delta = eps/4; distractors 4 eps and the negative -eps/4 -->
+      <exercise label="parsons-linear-decreasing" adaptive="yes" indentation="hide">
+        <title>A decreasing linear function</title>
+        <statement><div>Let <m>f(x)=1-4x</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at every <m>a\in\R</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed.</div></statement>
+        <blocks>
+          <block name="1" order="6">
+            <div>Let <m>a\in\R</m>.</div>
+          </block>
+          <block name="2" depends="1" order="3">
+            <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\R</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon</m>.</div>
+          </block>
+          <block name="3" depends="2" order="8">
+            <div>Let <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="4" depends="3" order="1">
+            <div>Choose <m>\delta=\epsilon/4</m>, which is positive since <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="5" depends="4" order="9">
+            <div>Let <m>x\in\R</m> with <m>|x-a|\lt\delta</m>.</div>
+          </block>
+          <block name="6" depends="5" order="4">
+            <div>We must show that <m>|f(x)-f(a)|\lt\epsilon</m>.</div>
+          </block>
+          <block name="7" depends="6" order="7">
+            <div>Since <m>|x-a|\lt\delta=\epsilon/4</m>, we get <m>|f(x)-f(a)|=|(1-4x)-(1-4a)|=|-4(x-a)|=4|x-a|\lt 4\cdot(\epsilon/4)=\epsilon</m>, as desired.</div>
+          </block>
+          <block name="8" correct="no" order="2">
+            <div>Choose <m>\delta=4\epsilon</m>, which is positive since <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="9" correct="no" order="5">
+            <div>Choose <m>\delta=-\epsilon/4</m>.</div>
+          </block>
+        </blocks>
+      </exercise>
+
+      <!-- sqrt at 0: delta = eps^2, not a multiple of eps; distractor sqrt(eps) -->
+      <exercise label="parsons-sqrt-at-0" adaptive="yes" indentation="hide">
+        <title>The square root function at <m>0</m></title>
+        <statement><div>Let <m>f(x)=\sqrt{x}</m>, with <m>\operatorname{dom}(f)=[0,\infty)</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at <m>0</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed.</div></statement>
+        <blocks>
+          <block name="1" order="4">
+            <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-0|\lt\delta</m>, <m>|\sqrt{x}-\sqrt{0}|\lt\epsilon</m>.</div>
+          </block>
+          <block name="2" depends="1" order="7">
+            <div>Let <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="3" depends="2" order="2">
+            <div>Choose <m>\delta=\epsilon^2</m>, which is positive since <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="4" depends="3" order="9">
+            <div>Let <m>x\in\operatorname{dom}(f)</m> with <m>|x-0|\lt\delta</m>.</div>
+          </block>
+          <block name="5" depends="4" order="1">
+            <div>We must show that <m>|\sqrt{x}-\sqrt{0}|\lt\epsilon</m>.</div>
+          </block>
+          <block name="6" depends="5" order="8">
+            <div>Since <m>x\in[0,\infty)</m> and <m>|x-0|\lt\delta=\epsilon^2</m>, we have <m>0\le x\lt\epsilon^2</m>.</div>
+          </block>
+          <block name="7" depends="6" order="3">
+            <div>Taking square roots of nonnegative numbers preserves the inequality, so <m>\sqrt{x}\lt\sqrt{\epsilon^2}=\epsilon</m>.</div>
+          </block>
+          <block name="8" depends="7" order="6">
+            <div>Thus <m>|\sqrt{x}-\sqrt{0}|=\sqrt{x}\lt\epsilon</m>, as desired.</div>
+          </block>
+          <block name="9" correct="no" order="5">
+            <div>Choose <m>\delta=\sqrt{\epsilon}</m>, which is positive since <m>\epsilon\gt 0</m>.</div>
+          </block>
+        </blocks>
+      </exercise>
+    </exercises>
   </subsection>
 
   <subsection xml:id="subsec-bound-depends-on-x">
-    <title>When the bound depends on <m>x</m></title>
+    <title>When the bound depends on <m>x</m>: <m>f(x)=x^2</m></title>
 
     <p>
-      Take <m>f(x)=x^2</m> and <m>a=2</m>. Factoring gives
+      For <m>f(x)=3x+5</m>, <m>|f(x)-f(a)|</m> was a constant times <m>|x-a|</m>, so <m>\delta</m> came straight from solving for <m>|x-a|</m>. For most functions, the factor multiplying <m>|x-a|</m> changes with <m>x</m>. Take <m>f(x)=x^2</m> and <m>a=2</m>. Factoring gives
       <md>|x^2-4|=|x-2|\cdot|x+2|.</md>
       The factor <m>|x-2|</m> is the one that <m>\delta</m> controls, but the factor <m>|x+2|</m> changes with <m>x</m>. The fix is to decide in advance that <m>\delta\le 1</m>. Then <m>|x-2|\lt 1</m> gives <m>1\lt x\lt 3</m>, so <m>|x+2|\lt 5</m> and
       <md>|x^2-4|\le 5|x-2|.</md>
       Now <m>|x-2|\lt\epsilon/5</m> would finish the job. To get both <m>\delta\le 1</m> and <m>\delta\le\epsilon/5</m>, choose
       <md>\delta=\min\{1,\epsilon/5\}.</md>
-      The first problem at the end of this section turns this into a proof that works at every point <m>a</m>; at <m>a=2</m> its <m>\delta</m> is exactly this one. First, explore the graph.
+      The first problem at the end of this subsection turns this into a proof that works at every point <m>a</m>; at <m>a=2</m> its <m>\delta</m> is exactly this one. First, explore the graph.
     </p>
 
     <figure xml:id="fig-x-squared-activity">
@@ -81,91 +294,201 @@
         </p>
       </answer>
     </exercise>
+
+    <paragraphs xml:id="par-delta-depends-on-a">
+      <title>How <m>\delta</m> depends on <m>a</m></title>
+      <p>
+        The same idea works at any <m>a\in\R</m>. If <m>|x-a|\lt 1</m>, the triangle inequality gives
+        <md>|x+a|=|(x-a)+2a|\le|x-a|+2|a|\lt 2|a|+1,</md>
+        so <m>\delta=\min\{1,\epsilon/(2|a|+1)\}</m> works. This <m>\delta</m> depends on <m>a</m> as well as on <m>\epsilon</m>, while for <m>3x+5</m> the same <m>\delta=\epsilon/3</m> worked at every <m>a</m>. Is the dependence on <m>a</m> just a feature of our formula, or is it forced?
+      </p>
+      <p>
+        The next topic, uniform continuity, asks exactly this question: when can one <m>\delta</m> serve every point <m>a</m> at once?
+      </p>
+    </paragraphs>
+
+    <exercises xml:id="parsons-epsilon-delta">
+      <title>Proof practice: a minimum in <m>\delta</m></title>
+
+      <!-- x^2 at any a: delta = min{1, eps/(2|a|+1)} depends on a -->
+      <exercise label="parsons-x-squared-anywhere" adaptive="yes" indentation="hide">
+        <title>The square function at every point</title>
+        <statement><div>Let <m>f(x)=x^2</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at every <m>a\in\R</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed. Notice that your <m>\delta</m> depends on <m>a</m>.</div></statement>
+        <blocks>
+          <block name="1" order="4">
+            <div>Let <m>a\in\R</m>.</div>
+          </block>
+          <block name="2" depends="1" order="9">
+            <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\R</m> with <m>|x-a|\lt\delta</m>, <m>|x^2-a^2|\lt\epsilon</m>.</div>
+          </block>
+          <block name="3" depends="2" order="2">
+            <div>Let <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="4" depends="3" order="6">
+            <div>Choose <m>\delta=\min\left\{1,\dfrac{\epsilon}{2|a|+1}\right\}</m>.</div>
+          </block>
+          <block name="5" depends="4" order="8">
+            <div>Let <m>x\in\R</m> with <m>|x-a|\lt\delta</m>.</div>
+          </block>
+          <block name="6" depends="5" order="1">
+            <div>We must show that <m>|x^2-a^2|\lt\epsilon</m>.</div>
+          </block>
+          <block name="7" depends="6" order="5">
+            <div>Since <m>|x-a|\lt\delta\le 1</m>, the triangle inequality gives <m>|x+a|\le|x-a|+2|a|\lt 2|a|+1</m>.</div>
+          </block>
+          <block name="8" depends="7" order="3">
+            <div>Since also <m>|x-a|\lt\delta\le\dfrac{\epsilon}{2|a|+1}</m>, we get <m>|x^2-a^2|=|x-a|\cdot|x+a|\le(2|a|+1)|x-a|\lt\epsilon</m>, as desired.</div>
+          </block>
+          <block name="9" correct="no" order="7">
+            <div>Choose <m>\delta=\min\left\{1,\dfrac{\epsilon}{2|x|+1}\right\}</m>.</div>
+          </block>
+        </blocks>
+      </exercise>
+
+      <!-- 1/x at 1: delta = min{1/2, eps/2}; the 1/2 keeps x away from 0 -->
+      <exercise label="parsons-reciprocal-at-1" adaptive="yes" indentation="hide">
+        <title>The reciprocal function at <m>1</m></title>
+        <statement><div>Let <m>f(x)=1/x</m>, with <m>\operatorname{dom}(f)=\R\setminus\{0\}</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at <m>1</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed.</div></statement>
+        <blocks>
+          <block name="1" order="3">
+            <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-1|\lt\delta</m>, <m>\left|\frac1x-1\right|\lt\epsilon</m>.</div>
+          </block>
+          <block name="2" depends="1" order="6">
+            <div>Let <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="3" depends="2" order="8">
+            <div>Choose <m>\delta=\min\{1/2,\epsilon/2\}</m>.</div>
+          </block>
+          <block name="4" depends="3" order="1">
+            <div>Let <m>x\in\operatorname{dom}(f)</m> with <m>|x-1|\lt\delta</m>.</div>
+          </block>
+          <block name="5" depends="4" order="7">
+            <div>We must show that <m>\left|\frac1x-1\right|\lt\epsilon</m>.</div>
+          </block>
+          <block name="6" depends="5" order="2">
+            <div>Since <m>|x-1|\lt\delta\le 1/2</m>, we have <m>x\gt 1/2</m>, so <m>0\lt\frac1x\lt 2</m>.</div>
+          </block>
+          <block name="7" depends="6" order="5">
+            <div>Since also <m>|x-1|\lt\delta\le\epsilon/2</m>, we get <m>\left|\frac1x-1\right|=\frac{|x-1|}{x}\le 2|x-1|\lt 2\cdot\epsilon/2=\epsilon</m>, as desired.</div>
+          </block>
+          <block name="8" correct="no" order="4">
+            <div>Choose <m>\delta=\min\{1,\epsilon/2\}</m>.</div>
+          </block>
+        </blocks>
+      </exercise>
+    </exercises>
   </subsection>
 
-  <subsection xml:id="subsec-delta-depends-on-a">
-    <title>How <m>\delta</m> depends on <m>a</m></title>
+  <subsection xml:id="subsec-continuity-hypothesis">
+    <title>Continuity as a hypothesis</title>
 
     <p>
-      The same idea works at any <m>a\in\R</m>. If <m>|x-a|\lt 1</m>, the triangle inequality gives
-      <md>|x+a|=|(x-a)+2a|\le|x-a|+2|a|\lt 2|a|+1,</md>
-      so <m>\delta=\min\{1,\epsilon/(2|a|+1)\}</m> works. This <m>\delta</m> depends on <m>a</m> as well as on <m>\epsilon</m>. Is that just a feature of our formula, or is it forced?
+      In <xref ref="sec-convergence_hypothesis"/>, a convergence statement was something we <em>knew</em>, and each proof applied it to a positive number of its own choosing. Continuity works the same way. If <m>f</m> is continuous at <m>a</m>, then the <m>\epsilon</m>–<m>\delta</m> property (<xref ref="thm-epsilon-delta"/>) holds for <em>every</em> positive number, so a proof may apply it to whichever positive number it needs: <m>\epsilon</m>, <m>\epsilon/2</m>, or a fixed number such as <m>1</m> or <m>f(a)</m>. The sentence has the chosen number in both places:
     </p>
+    <blockquote>
+      <p>
+        Because <m>f</m> is continuous at <m>a</m> and <m>\square\gt 0</m>, by the <m>\epsilon</m>–<m>\delta</m> property there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\square</m>.
+      </p>
+    </blockquote>
 
-    <p>
-      The next topic, uniform continuity, asks exactly this question: when can one <m>\delta</m> serve every point <m>a</m> at once?
-    </p>
+    <theorem xml:id="thm-sign-preservation">
+      <title>Continuous functions keep their sign nearby</title>
+      <statement>
+        <p>
+          Suppose <m>f</m> is continuous at <m>a</m> and <m>f(a)\gt 0</m>. Then there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>f(x)\gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Assume <m>f</m> is continuous at <m>a</m> and <m>f(a)\gt 0</m>. We must prove that there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>f(x)\gt 0</m>.
+        </p>
+        <p>
+          Because <m>f</m> is continuous at <m>a</m> and <m>f(a)\gt 0</m>, by the <m>\epsilon</m>–<m>\delta</m> property there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt f(a)</m>. With this <m>\delta</m>, we will show that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>f(x)\gt 0</m>.
+        </p>
+        <p>
+          Let <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>. Then <m>|f(x)-f(a)|\lt f(a)</m>, so <m>-f(a)\lt f(x)-f(a)</m>. Adding <m>f(a)</m> to both sides gives <m>f(x)\gt 0</m>, as desired.
+        </p>
+      </proof>
+    </theorem>
+
+    <remark>
+      <p>
+        The goal has no <m>\epsilon</m> in it, so the proof never says <q>Let <m>\epsilon\gt 0</m>.</q> The number in the box is <m>f(a)</m>, the distance from <m>f(a)</m> down to <m>0</m>. This is the function version of the third problem in <xref ref="sec-convergence_hypothesis"/>, where <m>L-a</m> went in the box. A proof with the sequential definition is possible too, but it needs a proof by contradiction.
+      </p>
+    </remark>
+
+    <exercises xml:id="parsons-continuity-hypothesis">
+      <title>Proof practice: using continuity</title>
+
+      <!-- box: eps/|c| (the function version of Ross Theorem 9.2) -->
+      <exercise label="parsons-constant-multiple-continuous" adaptive="yes" indentation="hide">
+        <title>Constant multiples of a continuous function</title>
+        <statement><div>Let <m>c\in\R</m> with <m>c\ne 0</m>, and suppose <m>f</m> is continuous at <m>a</m>. The function <m>cf</m> has the same domain as <m>f</m>, and <m>(cf)(x)=c\cdot f(x)</m>. Put the given blocks in a correct order to prove that <m>cf</m> is continuous at <m>a</m>. Some blocks are not needed.</div></statement>
+        <blocks>
+          <block name="1" order="5">
+            <div>Assume <m>f</m> is continuous at <m>a</m>.</div>
+          </block>
+          <block name="2" depends="1" order="8">
+            <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|cf(x)-cf(a)|\lt\epsilon</m>.</div>
+          </block>
+          <block name="3" depends="2" order="2">
+            <div>Let <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="4" depends="3" order="9">
+            <div>Because <m>f</m> is continuous at <m>a</m> and <m>\epsilon/|c|\gt 0</m>, by the <m>\epsilon</m>–<m>\delta</m> property there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon/|c|</m>.</div>
+          </block>
+          <block name="5" depends="4" order="1">
+            <div>With this <m>\delta</m>, we will show that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|cf(x)-cf(a)|\lt\epsilon</m>.</div>
+          </block>
+          <block name="6" depends="5" order="7">
+            <div>Let <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>.</div>
+          </block>
+          <block name="7" depends="6" order="3">
+            <div>Then <m>|cf(x)-cf(a)|=|c|\cdot|f(x)-f(a)|\lt|c|\cdot(\epsilon/|c|)=\epsilon</m>, as desired.</div>
+          </block>
+          <block name="8" correct="no" order="6">
+            <div>Because <m>f</m> is continuous at <m>a</m> and <m>\epsilon\gt 0</m>, by the <m>\epsilon</m>–<m>\delta</m> property there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon</m>.</div>
+          </block>
+          <block name="9" correct="no" order="4">
+            <div>Choose <m>\delta=\epsilon/|c|</m>.</div>
+          </block>
+        </blocks>
+      </exercise>
+
+      <!-- box: the fixed number 1 (compare Theorem 9.1) -->
+      <exercise label="parsons-locally-bounded" adaptive="yes" indentation="hide">
+        <title>Continuous functions are bounded nearby</title>
+        <statement><div>Suppose <m>f</m> is continuous at <m>a</m>. Put the given blocks in a correct order to prove that there exist <m>\delta\gt 0</m> and <m>M\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)|\le M</m>. Some blocks are not needed.</div></statement>
+        <blocks>
+          <block name="1" order="6">
+            <div>Assume <m>f</m> is continuous at <m>a</m>.</div>
+          </block>
+          <block name="2" depends="1" order="3">
+            <div>We must prove that there exist <m>\delta\gt 0</m> and <m>M\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)|\le M</m>.</div>
+          </block>
+          <block name="3" depends="2" order="9">
+            <div>Because <m>f</m> is continuous at <m>a</m> and <m>1\gt 0</m>, by the <m>\epsilon</m>–<m>\delta</m> property there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt 1</m>.</div>
+          </block>
+          <block name="4" depends="2" order="1">
+            <div>Choose <m>M=|f(a)|+1</m>, which is positive.</div>
+          </block>
+          <block name="5" depends="3 4" order="7">
+            <div>With this <m>\delta</m> and this <m>M</m>, we will show that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)|\le M</m>.</div>
+          </block>
+          <block name="6" depends="5" order="4">
+            <div>Let <m>x\in\operatorname{dom}(f)</m> with <m>|x-a|\lt\delta</m>.</div>
+          </block>
+          <block name="7" depends="6" order="8">
+            <div>By the triangle inequality, <m>|f(x)|\le|f(x)-f(a)|+|f(a)|\lt 1+|f(a)|=M</m>, as desired.</div>
+          </block>
+          <block name="8" correct="no" order="2">
+            <div>Let <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="9" correct="no" order="5">
+            <div>Choose <m>M=1</m>.</div>
+          </block>
+        </blocks>
+      </exercise>
+    </exercises>
   </subsection>
-
-  <exercises xml:id="parsons-epsilon-delta">
-    <title>Proof practice: choosing <m>\delta</m></title>
-
-    <!-- x^2 at any a: delta = min{1, eps/(2|a|+1)} depends on a -->
-    <exercise label="parsons-x-squared-anywhere" adaptive="yes" indentation="hide">
-      <title>The square function at every point</title>
-      <statement><div>Let <m>f(x)=x^2</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at every <m>a\in\R</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed. Notice that your <m>\delta</m> depends on <m>a</m>.</div></statement>
-      <blocks>
-        <block name="1" order="4">
-          <div>Let <m>a\in\R</m>.</div>
-        </block>
-        <block name="2" depends="1" order="9">
-          <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\R</m> with <m>|x-a|\lt\delta</m>, <m>|x^2-a^2|\lt\epsilon</m>.</div>
-        </block>
-        <block name="3" depends="2" order="2">
-          <div>Let <m>\epsilon\gt 0</m>.</div>
-        </block>
-        <block name="4" depends="3" order="6">
-          <div>Choose <m>\delta=\min\left\{1,\dfrac{\epsilon}{2|a|+1}\right\}</m>.</div>
-        </block>
-        <block name="5" depends="4" order="8">
-          <div>Let <m>x\in\R</m> with <m>|x-a|\lt\delta</m>.</div>
-        </block>
-        <block name="6" depends="5" order="1">
-          <div>We must show that <m>|x^2-a^2|\lt\epsilon</m>.</div>
-        </block>
-        <block name="7" depends="6" order="5">
-          <div>Since <m>|x-a|\lt\delta\le 1</m>, the triangle inequality gives <m>|x+a|\le|x-a|+2|a|\lt 2|a|+1</m>.</div>
-        </block>
-        <block name="8" depends="7" order="3">
-          <div>Since also <m>|x-a|\lt\delta\le\dfrac{\epsilon}{2|a|+1}</m>, we get <m>|x^2-a^2|=|x-a|\cdot|x+a|\le(2|a|+1)|x-a|\lt\epsilon</m>, as desired.</div>
-        </block>
-        <block name="9" correct="no" order="7">
-          <div>Choose <m>\delta=\min\left\{1,\dfrac{\epsilon}{2|x|+1}\right\}</m>.</div>
-        </block>
-      </blocks>
-    </exercise>
-
-    <!-- 1/x at 1: delta = min{1/2, eps/2}; the 1/2 keeps x away from 0 -->
-    <exercise label="parsons-reciprocal-at-1" adaptive="yes" indentation="hide">
-      <title>The reciprocal function at <m>1</m></title>
-      <statement><div>Let <m>f(x)=1/x</m>, with <m>\operatorname{dom}(f)=\R\setminus\{0\}</m>. Put the given blocks in a correct order to prove that <m>f</m> is continuous at <m>1</m> by verifying the <m>\epsilon</m>–<m>\delta</m> property. Some blocks are not needed.</div></statement>
-      <blocks>
-        <block name="1" order="3">
-          <div>By the <m>\epsilon</m>–<m>\delta</m> property, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>x\in\operatorname{dom}(f)</m> with <m>|x-1|\lt\delta</m>, <m>\left|\frac1x-1\right|\lt\epsilon</m>.</div>
-        </block>
-        <block name="2" depends="1" order="6">
-          <div>Let <m>\epsilon\gt 0</m>.</div>
-        </block>
-        <block name="3" depends="2" order="8">
-          <div>Choose <m>\delta=\min\{1/2,\epsilon/2\}</m>.</div>
-        </block>
-        <block name="4" depends="3" order="1">
-          <div>Let <m>x\in\operatorname{dom}(f)</m> with <m>|x-1|\lt\delta</m>.</div>
-        </block>
-        <block name="5" depends="4" order="7">
-          <div>We must show that <m>\left|\frac1x-1\right|\lt\epsilon</m>.</div>
-        </block>
-        <block name="6" depends="5" order="2">
-          <div>Since <m>|x-1|\lt\delta\le 1/2</m>, we have <m>x\gt 1/2</m>, so <m>0\lt\frac1x\lt 2</m>.</div>
-        </block>
-        <block name="7" depends="6" order="5">
-          <div>Since also <m>|x-1|\lt\delta\le\epsilon/2</m>, we get <m>\left|\frac1x-1\right|=\frac{|x-1|}{x}\le 2|x-1|\lt 2\cdot\epsilon/2=\epsilon</m>, as desired.</div>
-        </block>
-        <block name="8" correct="no" order="4">
-          <div>Choose <m>\delta=\min\{1,\epsilon/2\}</m>.</div>
-        </block>
-      </blocks>
-    </exercise>
-
-  </exercises>
 </section>

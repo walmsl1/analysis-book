@@ -17,7 +17,6 @@
   <xi:include href="sec-limits_of_functions.ptx"/>
   <xi:include href="sec-convergence_hypothesis.ptx"/>
   <xi:include href="sec-epsilon_delta.ptx"/>
-  <xi:include href="sec-continuity_hypothesis.ptx"/>
   <!--<xi:include href="sec-testing.ptx"/>-->
 
   <!-- References: un-comment this block once it has at least one entry  -->
