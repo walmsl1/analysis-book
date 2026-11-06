@@ -6,7 +6,13 @@
 <!-- numbering, which solutions to show) are in publication/publication.ptx. -->
 <project ptx-version="2">
   <targets>
-    <target name="web" format="html" />
+    <target name="web" format="html">
+      <!-- Temporary (Nov 2026): Runestone 8.4.0's services file breaks PreTeXt 2.55-2.56.1  -->
+      <!-- ("Unicode strings with encoding declaration are not supported"). This pins the    -->
+      <!-- Runestone components (Parsons problems etc.) to 8.3.0, the version that worked     -->
+      <!-- before. Delete this line once a PreTeXt update fixes it.                           -->
+      <stringparams debug.rs.version="8.3.0"/>
+    </target>
     <target name="print" format="pdf" output-filename="real-analysis.pdf" />
   </targets>
 </project>
