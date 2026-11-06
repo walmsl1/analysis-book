@@ -1,0 +1,2148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ε–δ Continuity Explorer</title>
+<!-- The book's copy of the Math 244 ε–δ explorer. Differences from the stand-alone copy:   -->
+<!--   * the set is called A (as in the book), not S;                                      -->
+<!--   * #embed=1 in the address gives a compact layout for an iframe about 600px wide.    -->
+<!-- Everything after # in the address sets the explorer up, for example                   -->
+<!--   epsilon_delta_explorer.html#embed=1&f=x%5E2&S=2,5&a=3.5&eps=1&auto=1&graph=1&onlyS=1 -->
+<!-- f = formula, S = the set A as "left,right", a, eps, delta, auto=1 (Auto δ),           -->
+<!-- graph=1 (graph the largest δ at every a), onlyS=1 (use only x in A),                   -->
+<!-- follow=0 (don't keep the point in view), view = xmin,xmax,ymin,ymax.                   -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>
+  [hidden] { display: none !important; }
+  /* Encodings use the Okabe–Ito palette. Inside vs. outside the ε-band also differ
+     in line style (solid vs. dashed), so color never carries information alone. */
+  :root {
+    --bg: #f5f6f9;
+    --card: #ffffff;
+    --ink: #1c2434;
+    --muted: #5a6478;
+    --faint: #98a1b3;
+    --accent: #2f5fd0;
+    --accent-soft: rgba(47, 95, 208, .13);
+    --grid: #e2e5ec;
+    --grid2: #f1f3f7;
+    --axis: #5a6478;
+    --border: #d8dce5;
+    --in: #0072B2;
+    --out: #D55E00;
+    --eps: #E69F00;
+    --del: #CC79A7;
+    --epsfill: rgba(230, 159, 0, .17);
+    --delfill: rgba(204, 121, 167, .16);
+    --font-math: 'STIX Two Text', Georgia, 'Times New Roman', serif;
+    --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--font-ui); font-size: 15px; line-height: 1.45;
+    padding: 18px 16px 32px;
+  }
+  .wrap { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  header h1 { font-family: var(--font-math); font-weight: 600; font-size: 1.7rem; margin: 0; letter-spacing: .01em; }
+  header p.sub { margin: 2px 0 0; color: var(--muted); font-size: .92rem; max-width: 92ch; }
+  .m { font-family: var(--font-math); }
+  main { display: grid; grid-template-columns: 1fr; gap: 14px; align-items: start; }
+  @media (min-width: 980px) { main { grid-template-columns: 350px minmax(0, 1fr); } }
+  .rail, .col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .col { gap: 14px; }
+  .step {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .eyebrow { font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow .g { text-transform: none; letter-spacing: 0; font-size: .9rem; }
+  .mathrow { display: flex; align-items: center; gap: 8px; }
+  .lhs { font-family: var(--font-math); font-size: 1.1rem; white-space: nowrap; }
+  input[type="text"] {
+    font-family: var(--font-mono); font-size: .95rem; padding: 7px 9px; min-width: 0;
+    border: 1px solid var(--border); border-radius: 7px; background: var(--bg); color: var(--ink);
+  }
+  #fx { width: 100%; }
+  input.num { width: 100%; font-size: .88rem; padding: 4px 6px; }
+  input.tiny { width: 4.8em; font-size: .85rem; padding: 3px 5px; }
+  input.bad { border-color: var(--out); box-shadow: inset 0 0 0 1px var(--out); }
+  input[readonly] { color: var(--muted); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .syntax { color: var(--faint); font-size: .8rem; }
+  .err { color: var(--out); font-size: .85rem; }
+  .peek { color: var(--muted); font-size: .85rem; }
+  .readas { font-family: var(--font-math); font-size: 1.02rem; color: var(--ink); overflow-wrap: anywhere; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  button.chip {
+    font-family: var(--font-mono); font-size: .76rem; padding: 3px 8px; cursor: pointer;
+    border: 1px solid var(--border); border-radius: 999px; background: var(--bg); color: var(--muted);
+  }
+  button.chip:hover { border-color: var(--accent); color: var(--accent); }
+  .srow { display: grid; grid-template-columns: 1.3em minmax(0, 1fr) 6.6em; align-items: center; gap: 8px; }
+  .srow.wplay { grid-template-columns: 1.3em minmax(0, 1fr) 6.6em 2.3em; }
+  .srow .sym { font-family: var(--font-math); font-style: italic; font-size: 1.2rem; text-align: center; }
+  input[type="range"] { width: 100%; margin: 0; accent-color: var(--accent); }
+  input[type="range"]:disabled { opacity: .5; }
+  .setrow { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; color: var(--muted); font-size: .88rem; }
+  button.mini {
+    font-family: var(--font-ui); font-size: .8rem; padding: 3px 9px; cursor: pointer;
+    border: 1px solid var(--border); border-radius: 7px; background: var(--bg); color: var(--muted);
+  }
+  button.mini:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  button.mini:disabled { opacity: .5; cursor: default; }
+  button.play { font-size: .9rem; padding: 0; width: 2.3em; height: 1.95em; }
+  button.play[data-on="1"] { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  label.check { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+  label.check input { margin: 3px 0 0; accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+  label.check.big { font-weight: 600; }
+  .note { color: var(--muted); font-size: .84rem; }
+  .tracker {
+    font-size: .88rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 9px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .tracker .btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .num { font-variant-numeric: tabular-nums; font-family: var(--font-mono); font-size: .9em; }
+  .plotcard {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0;
+  }
+  canvas { display: block; width: 100%; touch-action: none; border-radius: 6px; }
+  .plotwrap { position: relative; }
+  .zoomctl { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .zoomctl button {
+    width: 34px; height: 34px; padding: 0; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--border); background: rgba(255, 255, 255, .94); color: var(--ink);
+    font-family: var(--font-ui); font-size: 1.2rem; line-height: 1; box-shadow: 0 1px 3px rgba(28, 36, 52, .14);
+  }
+  .zoomctl button:hover { border-color: var(--accent); color: var(--accent); }
+  #graph { height: clamp(340px, 62vh, 660px); cursor: grab; }
+  #profile { height: 230px; cursor: crosshair; }
+  .viewbtns { display: flex; gap: 8px 10px; flex-wrap: wrap; align-items: center; }
+  .viewbtns label.check input { margin-top: 0; }
+  .viewbtns .hint { color: var(--faint); font-size: .8rem; margin-left: auto; }
+  .legend { display: flex; flex-wrap: wrap; gap: 5px 16px; color: var(--muted); font-size: .82rem; align-items: center; }
+  .legend .key { display: inline-flex; align-items: center; gap: 6px; }
+  .legend svg { width: 26px; height: 14px; flex: none; }
+  .status { border-radius: 8px; padding: 9px 11px; font-size: .95rem; background: var(--accent-soft); border: 1px solid var(--border); }
+  .status[data-kind="win"] { background: rgba(0, 114, 178, .07); border-color: var(--in); }
+  .status[data-kind="lose"] { background: rgba(213, 94, 0, .07); border-color: var(--out); }
+  .status b.win { color: var(--in); }
+  .status b.lose { color: var(--out); }
+  .status .head { color: var(--muted); font-size: .86rem; display: block; margin-bottom: 2px; }
+  .status .sub2 { color: var(--muted); font-size: .86rem; margin-top: 4px; }
+  details.howto { border: 1px solid var(--border); border-radius: 10px; background: var(--card); padding: 10px 14px; }
+  details.howto summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+  details.howto p { margin: 8px 0 2px; color: var(--muted); font-size: .9rem; }
+  footer { color: var(--faint); font-size: .78rem; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  #linkbox { width: 30em; max-width: 100%; font-size: .74rem; padding: 3px 6px; }
+
+  /* ---- Embedded in the book (#embed=1): a compact layout for an iframe about 600px wide. ---- */
+  /* The controls sit in a grid above the graphs; the title, help text and footer are hidden.   */
+  body.embed { padding: 8px 8px 10px; font-size: 14px; }
+  body.embed header, body.embed footer, body.embed details.howto,
+  body.embed .rail .eyebrow, body.embed #stepF .peek, body.embed #stepF .syntax, body.embed #stepF .chips,
+  body.embed #stepED .note, body.embed #profNote, body.embed .viewbtns .hint,
+  body.embed .long, body.embed .status .sub2 { display: none !important; }
+  body.embed .wrap { gap: 8px; }
+  body.embed main { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  body.embed .col { gap: 8px; }
+  body.embed .rail { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 6px; }
+  body.embed .step { padding: 6px 10px; gap: 4px; border-radius: 8px; }
+  /* row 1: f(x) and A = [ , ] (moved here by the script) | the point a */
+  body.embed #stepF { grid-column: 1; flex-direction: row; align-items: center; gap: 10px; }
+  body.embed #stepF .mathrow { flex: 1 1 auto; min-width: 0; }
+  body.embed #stepF .setrow { flex: none; flex-wrap: nowrap; }
+  body.embed #fx { padding: 5px 8px; }
+  body.embed input.tiny { width: 3.3em; }
+  body.embed #stepA { grid-column: 2; justify-content: center; }
+  /* row 2: ε and δ side by side */
+  body.embed #stepED { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 4px 16px; }
+  body.embed #stepED .srow { flex: 1 1 240px; }
+  /* row 3: Auto δ (with its tracker) | the two uniform-continuity checkboxes */
+  body.embed #stepAuto { grid-column: 1; }
+  body.embed #stepUC { grid-column: 2; }
+  body.embed .tracker { padding: 5px 8px; gap: 4px; font-size: .82rem; }
+  @media (max-width: 540px) {
+    body.embed .rail { grid-template-columns: minmax(0, 1fr); }
+    body.embed .rail > * { grid-column: 1 !important; }
+  }
+  body.embed .plotcard { padding: 8px 10px 10px; gap: 6px; }
+  body.embed #graph { height: 280px; }
+  body.embed #profile { height: 145px; }
+  body.embed .legend { font-size: .72rem; gap: 1px 12px; }
+  body.embed .legend svg { width: 22px; height: 12px; }
+  body.embed .status { font-size: .86rem; padding: 6px 9px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ε–δ Continuity Explorer</h1>
+    <p class="sub">Given ε&nbsp;&gt;&nbsp;0, look for δ&nbsp;&gt;&nbsp;0 such that for all
+      <i class="m">x</i>&nbsp;∈&nbsp;dom(<i class="m">f</i>) with |<i class="m">x</i>&nbsp;−&nbsp;<i class="m">a</i>|&nbsp;&lt;&nbsp;δ,
+      |<i class="m">f</i>(<i class="m">x</i>)&nbsp;−&nbsp;<i class="m">f</i>(<i class="m">a</i>)|&nbsp;&lt;&nbsp;ε.
+      <strong>Auto δ</strong> uses the largest δ that works; slide <i class="m">a</i> to see how that δ depends on <i class="m">a</i>.</p>
+  </header>
+
+  <main>
+    <div class="rail">
+      <section class="step" id="stepF">
+        <div class="eyebrow">function</div>
+        <div class="mathrow"><span class="lhs"><i>f</i>(<i>x</i>)&nbsp;=</span>
+          <input type="text" id="fx" value="x^2" autocomplete="off" spellcheck="false" aria-label="formula for f of x">
+        </div>
+        <div class="err" id="fxerr" hidden></div>
+        <div class="peek">read as <span class="readas" id="readas"></span></div>
+        <div class="syntax">Use <span class="num">x</span> · <span class="num">2x</span> · <span class="num">x^2</span> ·
+          <span class="num">sqrt, |x|, ln, e^x, sin, arctan, floor</span> · piecewise
+          <span class="num">{x&lt;0: -x, x}</span></div>
+        <div class="chips" id="chips" aria-label="example functions"></div>
+      </section>
+
+      <section class="step" id="stepA">
+        <div class="eyebrow">the point <span class="g m"><i>a</i></span></div>
+        <div class="srow wplay">
+          <span class="sym">a</span>
+          <input type="range" id="aSlider" aria-label="the point a">
+          <input type="text" class="num" id="aBox" aria-label="value of a" autocomplete="off" spellcheck="false">
+          <button type="button" class="mini play" id="play" title="Sweep a back and forth across A" aria-label="sweep a across A">▶</button>
+        </div>
+        <div class="setrow"><span><span class="long"><i class="m">a</i> ranges over </span><i class="m">A</i> = [</span>
+          <input type="text" class="tiny" id="sMin" aria-label="left endpoint of A" autocomplete="off" spellcheck="false">
+          <span>,</span>
+          <input type="text" class="tiny" id="sMax" aria-label="right endpoint of A" autocomplete="off" spellcheck="false">
+          <span>]</span>
+        </div>
+      </section>
+
+      <section class="step" id="stepED">
+        <div class="eyebrow"><span class="g">ε</span> and <span class="g">δ</span></div>
+        <div class="srow"><span class="sym">ε</span>
+          <input type="range" id="eSlider" min="1" max="1000" step="1" aria-label="epsilon">
+          <input type="text" class="num" id="eBox" aria-label="value of epsilon" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="srow"><span class="sym">δ</span>
+          <input type="range" id="dSlider" min="1" max="1000" step="1" aria-label="delta">
+          <input type="text" class="num" id="dBox" aria-label="value of delta" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="note">The sliders are finer near 0. You can also type a value (1/3 and sqrt(2)/10 work), or drag the dashed edges on the graph.</div>
+      </section>
+
+      <section class="step" id="stepAuto">
+        <div class="eyebrow">largest <span class="g">δ</span></div>
+        <label class="check big"><input type="checkbox" id="auto"> <span>Auto δ: use the largest δ that works</span></label>
+        <div class="tracker" id="tracker" hidden>
+          <div id="trackText"></div>
+          <div class="btns">
+            <button type="button" class="mini" id="trackReset">Reset</button>
+            <button type="button" class="mini" id="trackUse">Fix δ at this value</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" id="stepUC">
+        <div class="eyebrow">uniform continuity on <span class="g m"><i>A</i></span></div>
+        <label class="check"><input type="checkbox" id="profileOn"> <span>Graph the largest δ at every <i class="m">a</i><span class="long"> in <i class="m">A</i></span></span></label>
+        <label class="check"><input type="checkbox" id="onlyS"> <span>Use only <i class="m">x</i> in <i class="m">A</i><span class="long"> (as in the definition of uniform continuity on <i class="m">A</i>)</span></span></label>
+      </section>
+
+      <details class="howto">
+        <summary>How the explorer finds the largest δ</summary>
+        <p>Fix ε. The δ's that work at <i class="m">a</i> are exactly the numbers in (0,&nbsp;δ*], where
+          δ* = inf{ |<i class="m">x</i> − <i class="m">a</i>| : <i class="m">x</i> ∈ dom(<i class="m">f</i>) and |<i class="m">f</i>(<i class="m">x</i>) − <i class="m">f</i>(<i class="m">a</i>)| ≥ ε },
+          the distance from <i class="m">a</i> to the <i class="m">x</i>'s where the graph is outside the ε-band or on its edge.
+          If there are no such <i class="m">x</i>, every δ works. So the explorer looks for where those <i class="m">x</i>'s begin on each side of <i class="m">a</i>.</p>
+        <p>It never solves an equation. It uses <em>interval arithmetic</em>: for a whole interval of <i class="m">x</i>-values at once,
+          it computes guaranteed lower and upper bounds for <i class="m">f</i>(<i class="m">x</i>). When the bounds fit inside the ε-band,
+          the whole interval is cleared. Otherwise the interval is split in half, and the halves are checked in order, moving outward
+          from <i class="m">a</i>. The result is accurate to about nine significant digits, and the δ shown is rounded down, so it works.
+          Because whole intervals are checked, the search does not miss narrow spikes the way checking a few hundred points can.</p>
+        <p>With <strong>Use only <i class="m">x</i> in <i class="m">A</i></strong> checked, only <i class="m">x</i> ∈ <i class="m">A</i> count, as in the definition:
+          <i class="m">f</i> is uniformly continuous on <i class="m">A</i> if for all ε &gt; 0, there exists δ &gt; 0 such that for all
+          <i class="m">a</i>, <i class="m">x</i> ∈ <i class="m">A</i> with |<i class="m">x</i> − <i class="m">a</i>| &lt; δ, |<i class="m">f</i>(<i class="m">x</i>) − <i class="m">f</i>(<i class="m">a</i>)| &lt; ε.</p>
+        <p>Zooming: scroll on the graph (or pinch on a trackpad). Hold Shift to zoom only the <i class="m">x</i>-axis,
+          or Alt/Option to zoom only the <i class="m">y</i>-axis; the + and − buttons work the same way. Shift-drag stretches the
+          graph away from where you grab it; start the drag on an axis to stretch just that axis. ⌂ returns to the starting view.</p>
+        <p>Drawing the graph: <i class="m">f</i> is sampled four times per pixel, and peaks and jumps are pinned down by bisection.
+          Where the graph turns around more than once inside one pixel column (like sin(1/<i class="m">x</i>) near 0), that column
+          is filled from the guaranteed minimum to the guaranteed maximum of <i class="m">f</i> over it, using the same interval arithmetic.</p>
+        <p>Functions: <span class="num">ln</span> is the natural log and <span class="num">log</span> is base 10.
+          <span class="num">x^(1/3)</span> is the real cube root, also for <i class="m">x</i> &lt; 0. Multiplication can be implied:
+          <span class="num">2x</span>, <span class="num">x sin(1/x)</span>, and <span class="num">1/2x</span> means 1/(2<i class="m">x</i>).
+          Check the “read as” line to see how a formula was understood.</p>
+      </details>
+    </div>
+
+    <div class="col">
+      <section class="plotcard">
+        <div class="plotwrap">
+          <canvas id="graph" aria-label="graph of f with the epsilon-band and the delta-window"></canvas>
+          <div class="zoomctl" role="group" aria-label="zoom">
+            <button type="button" id="zIn" title="Zoom in (hold Shift: x-axis only; Alt/Option: y-axis only)" aria-label="zoom in">+</button>
+            <button type="button" id="zOut" title="Zoom out (hold Shift: x-axis only; Alt/Option: y-axis only)" aria-label="zoom out">−</button>
+            <button type="button" id="zHome" title="Back to the starting view" aria-label="back to the starting view">⌂</button>
+          </div>
+        </div>
+        <div class="viewbtns">
+          <button type="button" class="mini" id="zoomBox">Zoom to the box</button>
+          <button type="button" class="mini" id="showS">Show all of A</button>
+          <label class="check"><input type="checkbox" id="follow" checked> <span class="note">keep the point in view</span></label>
+          <span class="hint">scroll to zoom (Shift: x only · Alt/Option: y only) · Shift-drag to stretch · drag to pan</span>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="status" id="status" aria-live="polite"></div>
+      </section>
+
+      <section class="plotcard" id="profileCard" hidden>
+        <div class="eyebrow">largest <span class="g">δ</span> at each <span class="g m"><i>a</i></span> in
+          <span class="g m"><i>A</i></span>, for <span class="g">ε</span> = <span class="num" id="profEps"></span></div>
+        <canvas id="profile" aria-label="graph of the largest delta as a function of a"></canvas>
+        <div class="peek" id="profInfo"></div>
+        <div class="note" id="profNote"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <span>Math 244 · continuity and uniform continuity (Ross §§17–19)</span>
+    <button type="button" class="mini" id="copyLink">Copy a link to this setup</button>
+    <input type="text" id="linkbox" readonly hidden aria-label="link to this setup">
+  </footer>
+</div>
+
+<script>
+/* CORE-BEGIN — ε–δ engine: parser, point and interval evaluation, largest-δ search.
+   Pure functions, no DOM. The Node test suite loads exactly this block. */
+var EDCore = (function () {
+  'use strict';
+
+  // ---------- names ----------
+  var UNARY = ['sin', 'cos', 'tan', 'sec', 'csc', 'cot', 'arcsin', 'arccos', 'arctan', 'asin', 'acos', 'atan',
+    'sinh', 'cosh', 'tanh', 'exp', 'ln', 'log', 'sqrt', 'cbrt', 'abs', 'floor', 'ceil', 'round', 'sign', 'sgn'];
+  var NARY = ['min', 'max'];
+  var ALIAS = { asin: 'arcsin', acos: 'arccos', atan: 'arctan', sgn: 'sign' };
+  var FUNC = {};
+  UNARY.concat(NARY).forEach(function (n) { FUNC[n] = true; });
+  // longest first, so a letter run like "xsinx" splits as x · sin · x and "exp" beats "e"
+  var NAMES = UNARY.concat(NARY, ['pi', 'e', 'x']).sort(function (p, q) { return q.length - p.length; });
+
+  function perr(msg) { var e = new Error(msg); e.isParse = true; throw e; }
+
+  // ---------- tokenizer ----------
+  function normalize(src) {
+    return String(src)
+      .replace(/^\s*(?:f\s*\(\s*x\s*\)|y)\s*=/i, '')
+      .replace(/\*\*/g, '^')
+      .replace(/[−–—]/g, '-')
+      .replace(/[×⋅·∙]/g, '*')
+      .replace(/÷/g, '/')
+      .replace(/π/g, ' pi ')
+      .replace(/√/g, ' sqrt ')
+      .replace(/∛/g, ' cbrt ')
+      .replace(/≤/g, '<=').replace(/≥/g, '>=')
+      .replace(/²/g, '^2').replace(/³/g, '^3')
+      .replace(/ε/g, ' epsilon ').replace(/δ/g, ' delta ');
+  }
+
+  function splitName(run) {
+    var low = run.toLowerCase(), out = [], i = 0;
+    if (low === 'epsilon' || low === 'delta' || low === 'eps') perr('ε and δ are set with the sliders; the formula for f should use only x.');
+    if (low === 'a') perr('The point a is set with the slider; write f in terms of x only.');
+    while (i < low.length) {
+      var hit = null;
+      for (var k = 0; k < NAMES.length; k++) {
+        if (low.substr(i, NAMES[k].length) === NAMES[k]) { hit = NAMES[k]; break; }
+      }
+      if (!hit) perr('I don’t recognize “' + run + '”. Use x as the variable (for example: x^2 - 3x or sin(1/x)).');
+      out.push(hit); i += hit.length;
+    }
+    return out;
+  }
+
+  function tokenize(s) {
+    var toks = [], j = 0, m;
+    while (j < s.length) {
+      var c = s[j];
+      if (/\s/.test(c)) { j++; continue; }
+      if (/[0-9.]/.test(c)) {
+        m = /^(\d+\.?\d*|\.\d+)/.exec(s.slice(j));
+        if (!m) perr('I don’t understand “' + c + '” there.');
+        toks.push({ t: 'num', v: parseFloat(m[0]), raw: m[0] }); j += m[0].length; continue;
+      }
+      if (/[a-zA-Z]/.test(c)) {
+        m = /^[a-zA-Z]+/.exec(s.slice(j));
+        splitName(m[0]).forEach(function (nm) {
+          toks.push({ t: 'name', v: nm, kind: FUNC[nm] ? 'func' : (nm === 'x' ? 'var' : 'const') });
+        });
+        j += m[0].length; continue;
+      }
+      var two = s.substr(j, 2);
+      if (two === '<=' || two === '>=') { toks.push({ t: 'rel', v: two }); j += 2; continue; }
+      if (c === '<' || c === '>' || c === '=') { toks.push({ t: 'rel', v: c }); j++; continue; }
+      if ('+-*/^(),|{}:[]'.indexOf(c) >= 0) { toks.push({ t: c === '[' ? '(' : c === ']' ? ')' : c }); j++; continue; }
+      perr('I don’t understand the symbol “' + c + '”.');
+    }
+    toks.push({ t: 'end' });
+    return toks;
+  }
+
+  // ---------- parser (recursive descent -> AST) ----------
+  // Precedence, loosest first: + -,  * /,  unary -,  implied multiplication,  ^ (right-assoc).
+  // Implied multiplication binds tighter than /, so 1/2x = 1/(2x) (as when typing it in Desmos).
+  function parse(src) {
+    var s = normalize(src);
+    if (!s.trim()) perr('Type a formula for f(x), for example x^2 or sin(1/x).');
+    var toks = tokenize(s), pos = 0, absDepth = 0;
+    function is(t) { return toks[pos].t === t; }
+    function next() { return toks[pos++]; }
+    function expect(t, msg) { if (!is(t)) perr(msg); return next(); }
+    function startsAtom() {
+      var tk = toks[pos];
+      if (tk.t === 'num' || tk.t === 'name' || tk.t === '(' || tk.t === '{') return true;
+      return tk.t === '|' && absDepth === 0;
+    }
+    function inner(fn) { var saved = absDepth; absDepth = 0; var r = fn(); absDepth = saved; return r; }
+
+    function expr() {
+      var n = term();
+      for (;;) {
+        if (is('+')) { next(); n = { k: 'add', a: n, b: term() }; }
+        else if (is('-')) { next(); n = { k: 'sub', a: n, b: term() }; }
+        else return n;
+      }
+    }
+    function term() {
+      var n = unary();
+      for (;;) {
+        if (is('*')) { next(); n = { k: 'mul', a: n, b: unary() }; }
+        else if (is('/')) { next(); n = { k: 'div', a: n, b: unary() }; }
+        else return n;
+      }
+    }
+    function unary() {
+      if (is('-')) { next(); return { k: 'neg', a: unary() }; }
+      if (is('+')) { next(); return unary(); }
+      return implicit();
+    }
+    function implicit() {
+      var n = power();
+      while (startsAtom()) n = { k: 'mul', a: n, b: power(), imp: true };
+      return n;
+    }
+    function power() {
+      var base = atom();
+      if (is('^')) { next(); return { k: 'pow', a: base, b: exponent() }; }
+      return base;
+    }
+    function exponent() {
+      if (is('-')) { next(); return { k: 'neg', a: exponent() }; }
+      if (is('+')) { next(); return exponent(); }
+      return power();
+    }
+    function atom() {
+      var tk = next();
+      switch (tk.t) {
+        case 'num': return { k: 'num', v: tk.v, raw: tk.raw };
+        case 'name':
+          if (tk.kind === 'var') return { k: 'x' };
+          if (tk.kind === 'const') return { k: 'num', v: tk.v === 'pi' ? Math.PI : Math.E, name: tk.v };
+          return call(tk.v);
+        case '(': {
+          var e = inner(expr);
+          expect(')', 'Missing a closing parenthesis “)”.');
+          return e;
+        }
+        case '|': {
+          absDepth++;
+          var e2 = expr();
+          absDepth--;
+          expect('|', 'Missing a closing bar “|”.');
+          return { k: 'call', f: 'abs', args: [e2] };
+        }
+        case '{': return inner(piecewise);
+        case 'end': perr('The formula ends too soon; something is missing at the end.');
+        // falls through (perr throws)
+        case 'rel': perr('Comparisons like “' + tk.v + '” can only appear inside { } (a piecewise definition).');
+        // falls through
+        default: perr('I wasn’t expecting “' + tk.t + '” there.');
+      }
+    }
+    function call(name) {
+      var fname = ALIAS[name] || name, pw = null, args;
+      if (is('^')) { next(); pw = exponent(); }            // sin^2(x) means (sin x)^2
+      if (is('(')) {
+        next();
+        args = inner(function () {
+          var list = [expr()];
+          while (is(',')) { next(); list.push(expr()); }
+          return list;
+        });
+        expect(')', 'Missing a closing parenthesis “)” after ' + name + '(…');
+      } else {                                              // sin x, sin 2x, sqrt x
+        if (!startsAtom()) perr(name + ' needs an input, for example ' + name + '(x).');
+        var arg = power();
+        while (startsAtom() && toks[pos].kind !== 'func') arg = { k: 'mul', a: arg, b: power(), imp: true };
+        args = [arg];
+      }
+      var nary = fname === 'min' || fname === 'max';
+      if (nary && args.length < 2) perr(fname + ' needs at least two inputs, for example ' + fname + '(x, 0).');
+      if (!nary && args.length !== 1) perr(name + ' takes one input.');
+      var node = { k: 'call', f: fname, args: args };
+      if (pw) {
+        var inv = pw.k === 'neg' && pw.a.k === 'num' && pw.a.v === 1 &&
+          (fname === 'sin' || fname === 'cos' || fname === 'tan');
+        node = inv ? { k: 'call', f: 'arc' + fname, args: args } : { k: 'pow', a: node, b: pw };
+      }
+      return node;
+    }
+    function piecewise() {
+      var pieces = [], other = null;
+      if (is('}')) perr('Empty braces. Write a piecewise definition like {x<0: -x, x}.');
+      for (;;) {
+        var first = expr();
+        if (is('rel')) {
+          var terms = [first], ops = [], val;
+          while (is('rel')) { ops.push(next().v); terms.push(expr()); }
+          if (is(':')) { next(); val = expr(); } else val = { k: 'num', v: 1, raw: '1' };
+          pieces.push({ cond: { terms: terms, ops: ops }, value: val });
+        } else {
+          if (is(':')) perr('Put a condition before “:”, for example {x<0: -x, x}.');
+          other = first;
+        }
+        if (is(',')) {
+          if (other) perr('The value with no condition (“otherwise”) must come last in { }.');
+          next(); continue;
+        }
+        break;
+      }
+      expect('}', 'Missing a closing brace “}”.');
+      if (!pieces.length) perr('A piecewise definition needs a condition, for example {x<0: -x, x}.');
+      return { k: 'pw', pieces: pieces, other: other };
+    }
+
+    var ast = expr();
+    if (!is('end')) {
+      var tk = toks[pos];
+      if (tk.t === 'rel') perr('Comparisons like “' + tk.v + '” can only appear inside { } (a piecewise definition).');
+      if (tk.t === ')') perr('There is an extra closing parenthesis “)”.');
+      if (tk.t === '|') perr('There is an extra bar “|”.');
+      perr('I got confused near “' + (tk.v || tk.t) + '”.');
+    }
+    return ast;
+  }
+
+  function hasX(n) {
+    if (!n || typeof n !== 'object') return false;
+    if (n.k === 'x') return true;
+    for (var key in n) {
+      if (!Object.prototype.hasOwnProperty.call(n, key)) continue;
+      var v = n[key];
+      if (Array.isArray(v)) { for (var i = 0; i < v.length; i++) if (hasX(v[i])) return true; }
+      else if (v && typeof v === 'object' && hasX(v)) return true;
+    }
+    return false;
+  }
+
+  // ---------- interval arithmetic ----------
+  // An interval is [lo, hi] (endpoints may be ±Infinity). null means "no point of the domain",
+  // so points outside dom(f) never count against a δ, as in Ross's Theorem 17.2.
+  // (Floating-point rounding is not directed outward; the sampled fallback below covers the
+  // last few digits.)
+  var ENTIRE = [-Infinity, Infinity];
+  var TWO_PI = 2 * Math.PI, HALF_PI = Math.PI / 2;
+  function nz(lo, hi) { return [lo !== lo ? -Infinity : lo, hi !== hi ? Infinity : hi]; }
+  function iadd(A, B) { return nz(A[0] + B[0], A[1] + B[1]); }
+  function isub(A, B) { return nz(A[0] - B[1], A[1] - B[0]); }
+  function m0(u, v) { return (u === 0 || v === 0) ? 0 : u * v; }     // 0·∞ = 0 for interval ends
+  function imul(A, B) {
+    var p = m0(A[0], B[0]), q = m0(A[0], B[1]), r = m0(A[1], B[0]), s = m0(A[1], B[1]);
+    return [Math.min(p, q, r, s), Math.max(p, q, r, s)];
+  }
+  function irecip(B) {
+    var c = B[0], d = B[1];
+    if (c > 0 || d < 0) return [1 / d, 1 / c];
+    if (c === 0 && d === 0) return null;
+    if (c === 0) return [1 / d, Infinity];
+    if (d === 0) return [-Infinity, 1 / c];
+    return ENTIRE;
+  }
+  function idiv(A, B) {
+    if (A[0] === 0 && A[1] === 0) return (B[0] === 0 && B[1] === 0) ? null : [0, 0];
+    var R = irecip(B);
+    return R && imul(A, R);
+  }
+  function hull(A, B) { if (!A) return B; if (!B) return A; return [Math.min(A[0], B[0]), Math.max(A[1], B[1])]; }
+  function inc(f) { return function (A) { return [f(A[0]), f(A[1])]; }; }
+  function isin(A) {
+    var lo = A[0], hi = A[1];
+    if (!(isFinite(lo) && isFinite(hi)) || hi - lo >= TWO_PI) return [-1, 1];
+    var s0 = Math.sin(lo), s1 = Math.sin(hi), mn = Math.min(s0, s1), mx = Math.max(s0, s1);
+    if (HALF_PI + Math.ceil((lo - HALF_PI) / TWO_PI) * TWO_PI <= hi) mx = 1;
+    if (-HALF_PI + Math.ceil((lo + HALF_PI) / TWO_PI) * TWO_PI <= hi) mn = -1;
+    return [mn, mx];
+  }
+  function icos(A) {
+    var lo = A[0], hi = A[1];
+    if (!(isFinite(lo) && isFinite(hi)) || hi - lo >= TWO_PI) return [-1, 1];
+    var c0 = Math.cos(lo), c1 = Math.cos(hi), mn = Math.min(c0, c1), mx = Math.max(c0, c1);
+    if (Math.ceil(lo / TWO_PI) * TWO_PI <= hi) mx = 1;
+    if (Math.PI + Math.ceil((lo - Math.PI) / TWO_PI) * TWO_PI <= hi) mn = -1;
+    return [mn, mx];
+  }
+  function itan(A) {
+    var lo = A[0], hi = A[1];
+    if (!(isFinite(lo) && isFinite(hi)) || hi - lo >= Math.PI) return ENTIRE;
+    if (HALF_PI + Math.ceil((lo - HALF_PI) / Math.PI) * Math.PI <= hi) return ENTIRE;   // a pole inside
+    return [Math.tan(lo), Math.tan(hi)];
+  }
+  function icot(A) {
+    var lo = A[0], hi = A[1];
+    if (!(isFinite(lo) && isFinite(hi)) || hi - lo >= Math.PI) return ENTIRE;
+    if (Math.ceil(lo / Math.PI) * Math.PI <= hi) return ENTIRE;
+    return [1 / Math.tan(hi), 1 / Math.tan(lo)];
+  }
+  function ipowInt(A, n) {
+    if (n === 0) return [1, 1];
+    if (n < 0) { var P = ipowInt(A, -n); return irecip(P); }
+    var lo = A[0], hi = A[1];
+    if (n % 2 === 1 || lo >= 0) return [Math.pow(lo, n), Math.pow(hi, n)];
+    if (hi <= 0) return [Math.pow(hi, n), Math.pow(lo, n)];
+    return [0, Math.max(Math.pow(lo, n), Math.pow(hi, n))];
+  }
+  // x^(m/q) with q odd: the real root, defined for x < 0 too (as in Desmos)
+  function powOddP(u, c, odd) {
+    if (u === 0) return c > 0 ? 0 : NaN;
+    var r = Math.pow(Math.abs(u), c);
+    return (odd && u < 0) ? -r : r;
+  }
+  function ipowOdd(A, c, odd) {
+    if (c < 0) { var P = ipowOdd(A, -c, odd); return irecip(P); }
+    var lo = A[0], hi = A[1];
+    if (odd) return [powOddP(lo, c, true), powOddP(hi, c, true)];
+    if (lo >= 0) return [Math.pow(lo, c), Math.pow(hi, c)];
+    if (hi <= 0) return [Math.pow(-hi, c), Math.pow(-lo, c)];
+    return [0, Math.max(Math.pow(-lo, c), Math.pow(hi, c))];
+  }
+  function powRealP(u, c) { if (u < 0 || (u === 0 && c < 0)) return NaN; return Math.pow(u, c); }
+  function ipowReal(A, c) {
+    var lo = A[0], hi = A[1];
+    if (hi < 0) return null;
+    if (lo < 0) lo = 0;
+    if (c > 0) return [Math.pow(lo, c), Math.pow(hi, c)];
+    if (hi === 0) return null;
+    return [Math.pow(hi, c), lo === 0 ? Infinity : Math.pow(lo, c)];
+  }
+  function powAnyP(u, v) { if (u === 0 && v < 0) return NaN; return Math.pow(u, v); }
+  function ipowGen(U, V) {
+    if (U[0] < 0) return ENTIRE;                     // negative bases with a variable exponent
+    if (U[1] === 0) return V[0] > 0 ? [0, 0] : ENTIRE;
+    var P = imul(V, [U[0] === 0 ? -Infinity : Math.log(U[0]), Math.log(U[1])]);
+    return [Math.exp(P[0]), Math.exp(P[1])];
+  }
+  function gcd(p, q) { while (q) { var t = p % q; p = q; q = t; } return p; }
+  function oddRational(c) {
+    for (var q = 3; q <= 99; q += 2) {
+      var m = Math.round(c * q);
+      if (Math.abs(c - m / q) <= 1e-12 * Math.max(1, Math.abs(c)) && gcd(Math.abs(m), q) === 1) return [m, q];
+    }
+    return null;
+  }
+
+  // point versions: NaN means "undefined here"
+  var P = {
+    sin: Math.sin, cos: Math.cos, tan: Math.tan,
+    sec: function (u) { var c = Math.cos(u); return c === 0 ? NaN : 1 / c; },
+    csc: function (u) { var s = Math.sin(u); return s === 0 ? NaN : 1 / s; },
+    cot: function (u) { var s = Math.sin(u); return s === 0 ? NaN : Math.cos(u) / s; },
+    arcsin: Math.asin, arccos: Math.acos, arctan: Math.atan,
+    sinh: Math.sinh, cosh: Math.cosh, tanh: Math.tanh, exp: Math.exp,
+    ln: function (u) { return u > 0 ? Math.log(u) : NaN; },
+    log: function (u) { return u > 0 ? Math.log10(u) : NaN; },
+    sqrt: function (u) { return u >= 0 ? Math.sqrt(u) : NaN; },
+    cbrt: Math.cbrt, abs: Math.abs, floor: Math.floor, ceil: Math.ceil, round: Math.round, sign: Math.sign
+  };
+  var I = {
+    sin: isin, cos: icos, tan: itan, cot: icot,
+    sec: function (A) { return irecip(icos(A)); },
+    csc: function (A) { return irecip(isin(A)); },
+    arcsin: function (A) { var lo = Math.max(A[0], -1), hi = Math.min(A[1], 1); return lo > hi ? null : [Math.asin(lo), Math.asin(hi)]; },
+    arccos: function (A) { var lo = Math.max(A[0], -1), hi = Math.min(A[1], 1); return lo > hi ? null : [Math.acos(hi), Math.acos(lo)]; },
+    arctan: inc(Math.atan), sinh: inc(Math.sinh), tanh: inc(Math.tanh), exp: inc(Math.exp),
+    cosh: function (A) {
+      if (A[0] >= 0) return [Math.cosh(A[0]), Math.cosh(A[1])];
+      if (A[1] <= 0) return [Math.cosh(A[1]), Math.cosh(A[0])];
+      return [1, Math.max(Math.cosh(A[0]), Math.cosh(A[1]))];
+    },
+    ln: function (A) { return A[1] <= 0 ? null : [A[0] <= 0 ? -Infinity : Math.log(A[0]), Math.log(A[1])]; },
+    log: function (A) { return A[1] <= 0 ? null : [A[0] <= 0 ? -Infinity : Math.log10(A[0]), Math.log10(A[1])]; },
+    sqrt: function (A) { return A[1] < 0 ? null : [Math.sqrt(Math.max(A[0], 0)), Math.sqrt(A[1])]; },
+    cbrt: inc(Math.cbrt),
+    abs: function (A) {
+      if (A[0] >= 0) return [A[0], A[1]];
+      if (A[1] <= 0) return [-A[1], -A[0]];
+      return [0, Math.max(-A[0], A[1])];
+    },
+    floor: inc(Math.floor), ceil: inc(Math.ceil), round: inc(Math.round), sign: inc(Math.sign)
+  };
+  var PARTIAL = { tan: 1, sec: 1, csc: 1, cot: 1, arcsin: 1, arccos: 1, ln: 1, log: 1, sqrt: 1 };
+
+  // ---------- compiler: AST -> { p: x -> number, i: (lo, hi) -> interval } ----------
+  function K(c) {
+    var ok = isFinite(c), iv = ok ? [c, c] : null, v = ok ? c : NaN;
+    return { isConst: true, c: v, partial: !ok, p: function () { return v; }, i: function () { return iv; } };
+  }
+  function un(A, pf, ifn, partial) {
+    if (A.isConst) return K(pf(A.c));
+    return {
+      isConst: false, partial: !!partial || A.partial,
+      p: function (x) { return pf(A.p(x)); },
+      i: function (lo, hi) { var U = A.i(lo, hi); return U ? ifn(U) : null; }
+    };
+  }
+  function bin(A, B, pf, ifn, partial) {
+    if (A.isConst && B.isConst) return K(pf(A.c, B.c));
+    return {
+      isConst: false, partial: !!partial || A.partial || B.partial,
+      p: function (x) { return pf(A.p(x), B.p(x)); },
+      i: function (lo, hi) {
+        var U = A.i(lo, hi); if (!U) return null;
+        var V = B.i(lo, hi); return V ? ifn(U, V) : null;
+      }
+    };
+  }
+  function padd(u, v) { return u + v; }
+  function psub(u, v) { return u - v; }
+  function pmul(u, v) { return u * v; }
+  function pdiv(u, v) { return v === 0 ? NaN : u / v; }
+
+  function compile(n) {
+    switch (n.k) {
+      case 'num': return K(n.v);
+      case 'x': return { isConst: false, partial: false, p: function (x) { return x; }, i: function (lo, hi) { return [lo, hi]; } };
+      case 'neg': return un(compile(n.a), function (u) { return -u; }, function (A) { return [-A[1], -A[0]]; }, false);
+      case 'add': return bin(compile(n.a), compile(n.b), padd, iadd, false);
+      case 'sub': return bin(compile(n.a), compile(n.b), psub, isub, false);
+      case 'mul': return bin(compile(n.a), compile(n.b), pmul, imul, false);
+      case 'div': { var B = compile(n.b); return bin(compile(n.a), B, pdiv, idiv, !(B.isConst && B.c !== 0)); }
+      case 'pow': return compilePow(n);
+      case 'call': return compileCall(n);
+      case 'pw': return compilePw(n);
+    }
+    throw new Error('unknown node ' + n.k);
+  }
+  function compileCall(n) {
+    if (n.f === 'min' || n.f === 'max') {
+      var mn = n.f === 'min', acc = compile(n.args[0]);
+      for (var j = 1; j < n.args.length; j++) {
+        acc = bin(acc, compile(n.args[j]), mn ? Math.min : Math.max,
+          mn ? function (A, B) { return [Math.min(A[0], B[0]), Math.min(A[1], B[1])]; }
+             : function (A, B) { return [Math.max(A[0], B[0]), Math.max(A[1], B[1])]; }, false);
+      }
+      return acc;
+    }
+    return un(compile(n.args[0]), P[n.f], I[n.f], !!PARTIAL[n.f]);
+  }
+  function compilePow(n) {
+    var A = compile(n.a), B = compile(n.b);
+    if (B.isConst) {
+      var c = B.c;
+      if (!isFinite(c)) return K(NaN);
+      var rc = Math.round(c);
+      if (Math.abs(c - rc) <= 1e-12 * Math.max(1, Math.abs(c))) {
+        return un(A, function (u) { return (u === 0 && rc < 0) ? NaN : Math.pow(u, rc); },
+          function (U) { return ipowInt(U, rc); }, rc < 0);
+      }
+      var r = oddRational(c);
+      if (r) {
+        var odd = Math.abs(r[0]) % 2 === 1;
+        return un(A, function (u) { return powOddP(u, c, odd); }, function (U) { return ipowOdd(U, c, odd); }, c < 0);
+      }
+      return un(A, function (u) { return powRealP(u, c); }, function (U) { return ipowReal(U, c); }, true);
+    }
+    if (A.isConst) {
+      var b = A.c;
+      if (b > 0) {
+        var L = Math.log(b);
+        return un(B, function (v) { return Math.exp(L * v); },
+          function (V) { var Q = imul(V, [L, L]); return [Math.exp(Q[0]), Math.exp(Q[1])]; }, false);
+      }
+      if (b === 0) return un(B, function (v) { return v > 0 ? 0 : (v === 0 ? 1 : NaN); },
+        function (V) { return V[1] < 0 ? null : (V[0] > 0 ? [0, 0] : [0, 1]); }, true);
+      return un(B, function (v) { return Math.pow(b, v); }, function () { return ENTIRE; }, true);
+    }
+    return bin(A, B, powAnyP, ipowGen, true);
+  }
+  function hull3(res, V) { return hull(res, V); }
+  function compilePw(n) {
+    var pieces = n.pieces.map(function (pc) { return { c: compileCond(pc.cond), v: compile(pc.value) }; });
+    var other = n.other ? compile(n.other) : null;
+    return {
+      isConst: false, partial: true,
+      p: function (x) {
+        for (var j = 0; j < pieces.length; j++) if (pieces[j].c.p(x)) return pieces[j].v.p(x);
+        return other ? other.p(x) : NaN;
+      },
+      i: function (lo, hi) {
+        var res = null, settled = false;
+        for (var j = 0; j < pieces.length; j++) {
+          var st = pieces[j].c.i(lo, hi);            // 0 false on all of [lo,hi], 1 true on all, 2 maybe
+          if (st === 0) continue;
+          res = hull3(res, pieces[j].v.i(lo, hi));
+          if (st === 1) { settled = true; break; }
+        }
+        if (!settled && other) res = hull3(res, other.i(lo, hi));
+        return res;
+      }
+    };
+  }
+  function cmpP(u, op, v) {
+    switch (op) { case '<': return u < v; case '<=': return u <= v; case '>': return u > v; case '>=': return u >= v; default: return u === v; }
+  }
+  function cmpI(A, op, B) {
+    switch (op) {
+      case '<': return A[1] < B[0] ? 1 : (A[0] >= B[1] ? 0 : 2);
+      case '<=': return A[1] <= B[0] ? 1 : (A[0] > B[1] ? 0 : 2);
+      case '>': return A[0] > B[1] ? 1 : (A[1] <= B[0] ? 0 : 2);
+      case '>=': return A[0] >= B[1] ? 1 : (A[1] < B[0] ? 0 : 2);
+      default: return (A[0] === A[1] && B[0] === B[1] && A[0] === B[0]) ? 1 : ((A[1] < B[0] || B[1] < A[0]) ? 0 : 2);
+    }
+  }
+  function compileCond(cn) {
+    var T = cn.terms.map(compile), ops = cn.ops;
+    var partial = T.some(function (t) { return t.partial; });
+    return {
+      p: function (x) {
+        var prev = T[0].p(x);
+        for (var j = 0; j < ops.length; j++) {
+          var cur = T[j + 1].p(x);
+          if (!cmpP(prev, ops[j], cur)) return false;
+          prev = cur;
+        }
+        return true;
+      },
+      i: function (lo, hi) {
+        var prev = T[0].i(lo, hi), all = 1;
+        if (!prev) return 0;
+        for (var j = 0; j < ops.length; j++) {
+          var cur = T[j + 1].i(lo, hi);
+          if (!cur) return 0;
+          var st = cmpI(prev, ops[j], cur);
+          if (st === 0) return 0;
+          if (st === 2) all = 2;
+          prev = cur;
+        }
+        // if a term can be undefined, "true on all of [lo,hi]" can't be certified
+        return (all === 1 && partial) ? 2 : all;
+      }
+    };
+  }
+
+  function compileFunction(src) {
+    var ast = parse(src), C = compile(ast);
+    return {
+      ast: ast, src: String(src), isConst: C.isConst,
+      f: function (x) { var y = C.p(x); return (y === y && y !== Infinity && y !== -Infinity) ? y : NaN; },
+      F: function (lo, hi) { return C.i(lo, hi); }
+    };
+  }
+  function evalConstant(src) {
+    var ast = parse(src);
+    if (hasX(ast)) perr('Type a number (pi, sqrt and fractions are fine), not a formula in x.');
+    var v = compile(ast).p(0);
+    if (!isFinite(v)) perr('That isn’t a finite number.');
+    return v;
+  }
+
+  // ---------- the largest δ ----------
+  // δ* = inf{ |x − a| : x ∈ dom(f) (∩ S), |f(x) − f(a)| ≥ ε }. The δ's that work are exactly (0, δ*].
+  // Each side is a branch-and-bound search moving outward from a: an interval of x-values is
+  // cleared when its enclosure of f lies inside (f(a) − ε, f(a) + ε); otherwise it is halved,
+  // left (nearer) half first. The first piece that can't be cleared, once it is tiny, contains
+  // the first bad point.
+  // One side of a. Distances are t = |x − a|; [0, pos] is cleared so far.
+  function Side(fn, a, fa, eps, dir, limit) {
+    this.fn = fn; this.a = a; this.fa = fa; this.eps = eps; this.dir = dir;
+    this.limit = limit > 0 ? limit : 0;
+    this.lo = fa - eps; this.hi = fa + eps; this.scale = Math.max(1, Math.abs(a));
+    this.pos = 0; this.found = false; this.t = Infinity; this.tBad = undefined;
+    this.trunc = false; this.far = false; this.evals = 0;
+  }
+  Side.prototype.clear = function (t0, t1) {
+    this.evals++;
+    var a = this.a, dir = this.dir;
+    var x0 = a + dir * t0, x1 = t1 === Infinity ? dir * Infinity : a + dir * t1;
+    var J = dir > 0 ? this.fn.F(x0, x1) : this.fn.F(x1, x0);
+    return !J || (J[0] > this.lo && J[1] < this.hi);
+  };
+  Side.prototype.badAt = function (t) {
+    var y = this.fn.f(this.a + this.dir * t);
+    return y === y && Math.abs(y - this.fa) >= this.eps;
+  };
+  // search [pos, min(upTo, limit)], nearer pieces first; stop at the first bad x
+  Side.prototype.run = function (upTo, budget) {
+    var end = Math.min(upTo, this.limit);
+    if (!(end > this.pos)) return;
+    var st = [this.pos, end];
+    while (st.length) {
+      var t1 = st.pop(), t0 = st.pop();
+      if (this.clear(t0, t1)) continue;
+      var w = t1 - t0;
+      if (w <= 1e-9 * t0 + 1e-14 * this.scale) {
+        // A tiny piece the bounds can't clear (e.g. at a removable singularity): sample it.
+        var q = [t0 + 0.25 * w, t0 + 0.5 * w, t0 + 0.75 * w, t1];
+        for (var k = 0; k < 4; k++) {
+          if (this.badAt(q[k])) {
+            // Bisect between the last good sample and this bad one, so a crossing at a round
+            // number (like δ = 0.2) comes out as 0.2 rather than 0.19999999995.
+            var g = k ? q[k - 1] : t0, b = q[k];
+            for (var it = 0; it < 64; it++) {
+              var mid = 0.5 * (g + b);
+              if (mid <= g || mid >= b) break;
+              if (this.badAt(mid)) b = mid; else g = mid;
+            }
+            this.found = true; this.t = g; this.tBad = b; this.pos = g; return;
+          }
+        }
+        continue;
+      }
+      if (this.evals > budget) { this.trunc = true; this.pos = t0; return; }
+      var tm = t0 + 0.5 * w;
+      st.push(tm, t1, t0, tm);                             // the nearer half is popped first
+    }
+    this.pos = end;
+  };
+  Side.prototype.val = function () {
+    if (this.found) return this.t;
+    if (this.far || this.pos >= this.limit) return Infinity;
+    return this.pos;                                        // a lower bound (search stopped early)
+  };
+  function largestDelta(fn, a, eps, o) {
+    o = o || {};
+    var fa = fn.f(a);
+    if (fa !== fa || !(eps > 0)) return { ok: false, fa: fa };
+    var budget = o.budget || 60000, scale = Math.max(1, Math.abs(a)), cap = scale, i, s;
+    var R = new Side(fn, a, fa, eps, 1, o.S ? o.S[1] - a : Infinity);
+    var L = new Side(fn, a, fa, eps, -1, o.S ? a - o.S[0] : Infinity);
+    var sides = [L, R];
+    function best() { return Math.min(L.found ? L.t : Infinity, R.found ? R.t : Infinity); }
+    function done(sd) { return sd.found || sd.trunc || sd.far || sd.pos >= sd.limit || sd.pos >= best(); }
+    // Both sides grow outward together (distance 1, 10, 100, … times max(1,|a|)). Once one side
+    // finds a bad x at distance t, the other side only needs to be searched out to t.
+    for (;;) {
+      for (i = 0; i < 2; i++) { s = sides[i]; if (!done(s)) s.run(Math.min(cap, best()), budget); }
+      for (i = 0; i < 2; i++) {                             // try to clear the rest in one piece
+        s = sides[i];
+        if (!done(s)) { var end = Math.min(s.limit, best()); if (s.clear(s.pos, end)) s.pos = end; }
+      }
+      if (done(L) && done(R)) break;
+      if (cap > 1e15 * scale) { for (i = 0; i < 2; i++) if (!done(sides[i])) sides[i].far = true; break; }
+      cap *= 10;
+    }
+    var vl = L.val(), vr = R.val(), d = Math.min(vl, vr), zero = d <= 1e-12 * scale;
+    function summary(sd, v) {
+      return { t: v, found: sd.found, tBad: sd.tBad, trunc: sd.trunc, far: sd.far && !sd.found,
+               limited: !sd.found && !sd.far && sd.limit < Infinity && sd.pos >= sd.limit };
+    }
+    return {
+      ok: true, fa: fa, delta: zero ? 0 : d, zero: zero, left: summary(L, vl), right: summary(R, vr),
+      truncated: (L.trunc && !L.found && vl <= d) || (R.trunc && !R.found && vr <= d),
+      far: d === Infinity && (L.far || R.far)
+    };
+  }
+
+  // ---------- "read as": the parsed formula as HTML ----------
+  var PREC = { add: 1, sub: 1, mul: 2, div: 2, neg: 3, pow: 5 };
+  var REL = { '<': '&lt;', '<=': '≤', '>': '&gt;', '>=': '≥', '=': '=' };
+  function pr(n) { return PREC[n.k] || 9; }
+  function par(s) { return '(' + s + ')'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function toHTML(n) {
+    var sa, sb;
+    switch (n.k) {
+      case 'num': return n.name === 'pi' ? 'π' : n.name === 'e' ? '<i>e</i>' : esc(n.raw != null ? n.raw : String(n.v));
+      case 'x': return '<i>x</i>';
+      case 'add': case 'sub':
+        sa = toHTML(n.a); sb = toHTML(n.b);
+        if (n.b.k === 'neg' || (n.k === 'sub' && pr(n.b) === 1)) sb = par(sb);
+        return sa + (n.k === 'add' ? ' + ' : ' − ') + sb;
+      case 'mul': {
+        sa = toHTML(n.a); sb = toHTML(n.b);
+        if (pr(n.a) < 2 || n.a.k === 'div') sa = par(sa);
+        if (pr(n.b) <= 2 || n.b.k === 'neg') sb = par(sb);
+        var juxt = n.a.k === 'num' && !n.a.name && n.b.k !== 'num' && (pr(n.b) >= 5 || sb.charAt(0) === '(');
+        return sa + (juxt ? '' : '·') + sb;
+      }
+      case 'div':
+        sa = toHTML(n.a); sb = toHTML(n.b);
+        if (pr(n.a) < 2) sa = par(sa);
+        if (pr(n.b) <= 2 || n.b.k === 'neg') sb = par(sb);
+        return sa + '/' + sb;
+      case 'neg':
+        sa = toHTML(n.a);
+        return '−' + ((pr(n.a) < 2 || n.a.k === 'neg') ? par(sa) : sa);
+      case 'pow':
+        sa = toHTML(n.a);
+        if (pr(n.a) < 9) sa = par(sa);
+        return sa + '<sup>' + toHTML(n.b) + '</sup>';
+      case 'call': {
+        var args = n.args.map(toHTML).join(', ');
+        if (n.f === 'abs') return '|' + args + '|';
+        if (n.f === 'sqrt') return '√(' + args + ')';
+        if (n.f === 'cbrt') return '∛(' + args + ')';
+        return n.f + '(' + args + ')';
+      }
+      case 'pw': {
+        var parts = n.pieces.map(function (pc) {
+          var c = toHTML(pc.cond.terms[0]);
+          for (var i = 0; i < pc.cond.ops.length; i++) c += ' ' + REL[pc.cond.ops[i]] + ' ' + toHTML(pc.cond.terms[i + 1]);
+          return c + ': ' + toHTML(pc.value);
+        });
+        if (n.other) parts.push('otherwise ' + toHTML(n.other));
+        return '{ ' + parts.join(', ') + ' }';
+      }
+    }
+    return '?';
+  }
+
+  return {
+    parse: parse, compileFunction: compileFunction, evalConstant: evalConstant,
+    largestDelta: largestDelta, toHTML: toHTML
+  };
+})();
+if (typeof module !== 'undefined' && module.exports) module.exports = EDCore;
+/* CORE-END */
+</script>
+
+<script>
+(function () {
+  'use strict';
+  var E = EDCore;
+  function $(id) { return document.getElementById(id); }
+
+  // #embed=1 in the address: the compact layout used inside the book (set before the first render)
+  var EMBED = false;
+  try { EMBED = /(?:^#|&)embed=1(?:&|$)/.test(location.hash); } catch (e) { /* ignore */ }
+  if (EMBED) {
+    document.body.classList.add('embed');
+    var setRow = document.querySelector('#stepA .setrow');     // A = [ , ] sits next to f(x)
+    if (setRow) document.getElementById('stepF').appendChild(setRow);
+  }
+
+  var EXAMPLES = [
+    { f: '3x+5', S: [-3, 3], a: 1, eps: 1, delta: 0.5, view: [-1.5, 3.5, 1, 15] },
+    { f: 'x^2', S: [0, 10], a: 1, eps: 0.5, delta: 0.25, view: [-2, 4, -1.5, 6] },
+    { f: 'sqrt(x)', S: [0, 10], a: 1, eps: 0.5, delta: 0.5, view: [-1, 5, -0.75, 2.75] },
+    { f: '1/x', S: [0, 2], a: 1, eps: 0.25, delta: 0.25, view: [-0.5, 3, -0.5, 3] },
+    { f: '{x>0: 1, 0}', S: [-1, 1], a: 0, eps: 0.5, delta: 0.25, view: [-2, 2, -1, 2] },
+    { f: '{x=0: 0, x sin(1/x)}', S: [-0.5, 0.5], a: 0, eps: 0.1, delta: 0.1, view: [-0.5, 0.5, -0.4, 0.4] },
+    { f: 'sin(1/x)', S: [0, 1], a: 0.5, eps: 0.25, delta: 0.05, view: [-0.1, 1.1, -1.4, 1.4] },
+    { f: 'sin(x^2)', S: [0, 6], a: 1, eps: 0.25, delta: 0.1, view: [-0.5, 6.5, -1.6, 1.6] },
+    { f: 'x^(1/3)', S: [-1, 1], a: 0.5, eps: 0.25, delta: 0.25, view: [-1.5, 1.5, -1.4, 1.4] },
+    { f: 'floor(x)', S: [-2, 2], a: 0.5, eps: 0.25, delta: 0.25, view: [-2.5, 2.5, -2.5, 2.5] }
+  ];
+  var EPS_MAX = 5, DEL_MAX = 5, SL = 1000;
+  var MATH = "'STIX Two Text', Georgia, 'Times New Roman', serif";
+  var MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace";
+  var UI = "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+
+  var S = {
+    src: '', fn: null, err: null,
+    a: 1, sMin: 0, sMax: 10, step: 0.01,
+    eps: 0.5, delta: 0.25,
+    auto: false, profile: false, onlyS: false, follow: true,
+    view: { x0: -2, x1: 4, y0: -1.5, y1: 6 }, home: null,
+    res: null, witness: null,
+    track: { min: Infinity, at: NaN },
+    playing: false
+  };
+  var el = {};
+  ['fx', 'fxerr', 'readas', 'chips', 'aSlider', 'aBox', 'play', 'sMin', 'sMax', 'eSlider', 'eBox', 'dSlider', 'dBox',
+    'auto', 'tracker', 'trackText', 'trackReset', 'trackUse', 'profileOn', 'onlyS', 'graph', 'zoomBox', 'showS', 'follow',
+    'legend', 'status', 'profileCard', 'profEps', 'profile', 'profInfo', 'profNote', 'copyLink', 'linkbox',
+    'zIn', 'zOut', 'zHome'
+  ].forEach(function (k) { el[k] = $(k); });
+
+  // ---------- number formatting ----------
+  var SUPS = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+  function sup(n) { return String(n).split('').map(function (ch) { return SUPS[ch] || ch; }).join(''); }
+  // sig significant digits; down = round toward 0 (used for δ, so the number shown always works)
+  function fmt(v, sig, down) {
+    if (v === Infinity) return '∞';
+    if (v === -Infinity) return '−∞';
+    if (v !== v) return '—';
+    if (v === 0) return '0';
+    sig = sig || 4;
+    var neg = v < 0, av = Math.abs(v), e = Math.floor(Math.log10(av));
+    var scale = Math.pow(10, sig - 1 - e);
+    var m = down ? Math.floor(av * scale * (1 + 1e-12)) : Math.round(av * scale);
+    if (m >= Math.pow(10, sig)) { e += 1; scale /= 10; m = down ? Math.floor(av * scale * (1 + 1e-12)) : Math.round(av * scale); }
+    var s;
+    if (e >= -4 && e < 6) {
+      s = (m / scale).toFixed(Math.max(0, sig - 1 - e));
+      if (s.indexOf('.') >= 0) s = s.replace(/0+$/, '').replace(/\.$/, '');
+    } else {
+      s = (m / Math.pow(10, sig - 1)).toFixed(sig - 1).replace(/0+$/, '').replace(/\.$/, '') + '×10' + sup(e);
+    }
+    return (neg ? '−' : '') + s;
+  }
+  // δ for display: rounded down (so the number shown works), but shown exactly when it has at
+  // most 5 significant digits (0.2, 0.75, 0.015625). Returns [text, isExact].
+  function fmtDelta(v) {
+    if (!(v > 0) || !isFinite(v)) return [fmt(v), true];
+    var s6 = fmt(v, 6, true), digits = s6.replace(/×10.*$/, '').replace(/[^0-9]/g, '').replace(/^0+/, '');
+    var s = digits.length <= 5 ? s6 : fmt(v, 4, true);
+    return [s, s === fmt(v, 9, true)];
+  }
+  function fD(v) { return fmtDelta(v)[0]; }
+  function stepDecimals() { return Math.max(0, Math.ceil(-Math.log10(S.step) - 1e-9)); }
+  function fmtA(v) {
+    if (v !== v) return '—';
+    var s = (+v).toFixed(stepDecimals());
+    if (/^-0(\.0*)?$/.test(s)) s = s.slice(1);
+    return s.replace(/^-/, '−');
+  }
+  function fmtIn(v) { return String(+(+v).toPrecision(6)).replace(/^-/, '−'); }
+  function tickLabel(t, step) {
+    if (Math.abs(t) < step * 1e-9) return '0';
+    if (Math.abs(t) >= 1e6 || step < 1e-5) return fmt(t, 3);
+    return t.toFixed(Math.max(0, Math.ceil(-Math.log10(step) - 1e-9))).replace('-', '−');
+  }
+  function niceStep(span, target) {
+    var raw = span / target;
+    if (!(raw > 0) || !isFinite(raw)) return 1;
+    var mag = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / mag;
+    return (n < 1.5 ? 1 : n < 3.5 ? 2 : n < 7.5 ? 5 : 10) * mag;
+  }
+  function mant(s) { return Math.round(s / Math.pow(10, Math.floor(Math.log10(s)))); }
+
+  // cubic sliders: finer near 0
+  function toCubic(v, max) { return Math.round(SL * Math.cbrt(Math.min(Math.max(v / max, 0), 1))); }
+  function fromCubic(s, max) { var t = s / SL; return +(max * t * t * t).toPrecision(3); }
+
+  // ---------- state changes ----------
+  function setFunction(src) {
+    var fn;
+    try { fn = E.compileFunction(src); }
+    catch (e) { S.err = e.isParse ? e.message : 'Something went wrong reading that formula.'; return false; }
+    S.fn = fn; S.src = String(src); S.err = null;
+    el.readas.innerHTML = E.toHTML(fn.ast);
+    resetTrack();
+    return true;
+  }
+  function setS(lo, hi) {
+    if (!(hi > lo) || !isFinite(lo) || !isFinite(hi)) return false;
+    S.sMin = lo; S.sMax = hi; S.step = niceStep(hi - lo, 1000);
+    if (S.a < lo) S.a = lo;
+    if (S.a > hi) S.a = hi;
+    return true;
+  }
+  function snapA(v) {
+    var r = S.sMin + Math.round((v - S.sMin) / S.step) * S.step;
+    r = +r.toFixed(stepDecimals());
+    return Math.min(Math.max(r, S.sMin), S.sMax);
+  }
+  function opts(budget) { return { S: S.onlyS ? [S.sMin, S.sMax] : null, budget: budget || 60000 }; }
+  function works() { var r = S.res; return !!(r && r.ok && S.delta <= r.delta * (1 + 1e-8)); }
+  function resetTrack() { S.track.min = Infinity; S.track.at = NaN; }
+
+  function recompute() {
+    S.res = S.fn ? E.largestDelta(S.fn, S.a, S.eps, opts()) : null;
+    var r = S.res;
+    if (S.auto && r && r.ok) {
+      S.delta = r.delta;
+      if (r.delta < S.track.min || S.track.at !== S.track.at) { S.track.min = r.delta; S.track.at = S.a; }
+    }
+    S.witness = (!S.auto && r && r.ok && !works()) ? findWitness() : null;
+  }
+  // a point x with |x − a| < δ where |f(x) − f(a)| ≥ ε: the worst sampled point, else the search's exit point
+  function findWitness() {
+    var r = S.res, a = S.a, d = S.delta, fa = r.fa, f = S.fn.f;
+    var lo = a - d, hi = a + d, best = NaN, bestDev = -1, i;
+    if (S.onlyS) { lo = Math.max(lo, S.sMin); hi = Math.min(hi, S.sMax); }
+    if (isFinite(lo) && isFinite(hi) && hi > lo) {
+      for (i = 1; i < 1200; i++) {
+        var x = lo + (hi - lo) * i / 1200, y = f(x);
+        if (y === y) { var dv = Math.abs(y - fa); if (dv > bestDev) { bestDev = dv; best = x; } }
+      }
+    }
+    if (bestDev >= S.eps) return { x: best, y: f(best), dev: bestDev };
+    var cands = [];
+    if (r.right.tBad !== undefined && r.right.tBad < d) cands.push(a + r.right.tBad);
+    if (r.left.tBad !== undefined && r.left.tBad < d) cands.push(a - r.left.tBad);
+    for (i = 0; i < cands.length; i++) {
+      var yy = f(cands[i]);
+      if (yy === yy && Math.abs(yy - fa) >= S.eps) return { x: cands[i], y: yy, dev: Math.abs(yy - fa) };
+    }
+    return null;
+  }
+  function setA(v) { S.a = v; recompute(); keepInView(); requestRender(); saveHashSoon(); }
+  function setEps(v) {
+    if (!(v > 0) || !isFinite(v)) return;
+    S.eps = v; resetTrack(); recompute(); keepInView(); requestRender(); saveHashSoon();
+  }
+  function setDelta(v) {
+    if (!(v > 0) || !isFinite(v) || S.auto) return;
+    S.delta = v; recompute(); requestRender(); saveHashSoon();
+  }
+
+  // ---------- view ----------
+  var W = 600, H = 400;
+  function X(x) { return (x - S.view.x0) / (S.view.x1 - S.view.x0) * W; }
+  function Y(y) { return (S.view.y1 - y) / (S.view.y1 - S.view.y0) * H; }
+  function invX(px) { return S.view.x0 + px / W * (S.view.x1 - S.view.x0); }
+  function invY(py) { return S.view.y1 - py / H * (S.view.y1 - S.view.y0); }
+  function clampPx(p) { return p < -1e5 ? -1e5 : p > 1e5 ? 1e5 : p; }
+  function keepInView() {
+    if (!S.follow) return;
+    var r = S.res; if (!r || !r.ok) return;
+    var v = S.view, w = v.x1 - v.x0, h = v.y1 - v.y0, d = S.delta;
+    function shift(lo, hi, c0, c1, m) {
+      if (lo < c0 + m) return lo - (c0 + m);
+      if (hi > c1 - m) return hi - (c1 - m);
+      return 0;
+    }
+    var bx0 = S.a, bx1 = S.a, by0 = r.fa, by1 = r.fa;
+    if (d > 0 && isFinite(d) && 2 * d < 0.7 * w) { bx0 = S.a - d; bx1 = S.a + d; }
+    if (2 * S.eps < 0.7 * h) { by0 = r.fa - S.eps; by1 = r.fa + S.eps; }
+    var dx = shift(bx0, bx1, v.x0, v.x1, 0.06 * w), dy = shift(by0, by1, v.y0, v.y1, 0.06 * h);
+    if (dx || dy) S.view = { x0: v.x0 + dx, x1: v.x1 + dx, y0: v.y0 + dy, y1: v.y1 + dy };
+  }
+  function zoomToBox() {
+    var r = S.res; if (!r || !r.ok) return;
+    var d = S.delta, w = S.view.x1 - S.view.x0;
+    var hx = (d > 0 && isFinite(d)) ? 3 * d : (d === Infinity ? w / 2 : w / 20);
+    S.view = { x0: S.a - hx, x1: S.a + hx, y0: r.fa - 3 * S.eps, y1: r.fa + 3 * S.eps };
+  }
+  function showAllS() {
+    var lo = S.sMin, hi = S.sMax, pad = 0.08 * (hi - lo), x0 = lo - pad, x1 = hi + pad, ys = [], i;
+    if (S.fn) for (i = 0; i <= 600; i++) { var y = S.fn.f(x0 + (x1 - x0) * i / 600); if (y === y) ys.push(y); }
+    var y0 = -1, y1 = 1;
+    if (ys.length) {
+      ys.sort(function (p, q) { return p - q; });
+      y0 = ys[Math.floor(0.05 * (ys.length - 1))]; y1 = ys[Math.ceil(0.95 * (ys.length - 1))];
+    }
+    var r = S.res;
+    if (r && r.ok) { y0 = Math.min(y0, r.fa - 1.3 * S.eps); y1 = Math.max(y1, r.fa + 1.3 * S.eps); }
+    if (!(y1 > y0)) { y0 -= 1; y1 += 1; }
+    var py = 0.1 * (y1 - y0);
+    S.view = { x0: x0, x1: x1, y0: y0 - py, y1: y1 + py };
+  }
+  // zoom about the pixel (px, py): kx, ky < 1 zoom in, > 1 zoom out (one of them may be 1)
+  function zoomAt(px, py, kx, ky) {
+    var cx = invX(px), cy = invY(py), v = S.view;
+    var nv = { x0: cx + (v.x0 - cx) * kx, x1: cx + (v.x1 - cx) * kx, y0: cy + (v.y0 - cy) * ky, y1: cy + (v.y1 - cy) * ky };
+    if (nv.x1 - nv.x0 < 1e-11 * Math.max(1, Math.abs(cx)) || nv.y1 - nv.y0 < 1e-11 * Math.max(1, Math.abs(cy))) return;
+    if (nv.x1 - nv.x0 > 1e9 || nv.y1 - nv.y0 > 1e9) return;
+    S.view = nv;
+  }
+  function copyView(v) { return { x0: v.x0, x1: v.x1, y0: v.y0, y1: v.y1 }; }
+
+  // ---------- colors ----------
+  var COL = {};
+  function readColors() {
+    var cs = getComputedStyle(document.documentElement);
+    ['ink', 'muted', 'faint', 'card', 'bg', 'grid', 'grid2', 'axis', 'in', 'out', 'eps', 'del', 'epsfill', 'delfill']
+      .forEach(function (k) { COL[k] = cs.getPropertyValue('--' + k).trim(); });
+  }
+
+  // ---------- canvas helpers ----------
+  function sizeCanvas(cv) {
+    var r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    var w = Math.max(50, r.width), h = Math.max(50, r.height);
+    var pw = Math.round(w * dpr), ph = Math.round(h * dpr);
+    if (cv.width !== pw || cv.height !== ph) { cv.width = pw; cv.height = ph; }
+    return { w: w, h: h, dpr: dpr };
+  }
+  function line(c, x1, y1, x2, y2) { c.beginPath(); c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke(); }
+  function rrect(c, x, y, w, h, r) {
+    c.beginPath(); c.moveTo(x + r, y); c.lineTo(x + w - r, y); c.quadraticCurveTo(x + w, y, x + w, y + r);
+    c.lineTo(x + w, y + h - r); c.quadraticCurveTo(x + w, y + h, x + w - r, y + h); c.lineTo(x + r, y + h);
+    c.quadraticCurveTo(x, y + h, x, y + h - r); c.lineTo(x, y + r); c.quadraticCurveTo(x, y, x + r, y); c.closePath();
+  }
+  // a label on a translucent pill, so it stays readable over the bands and the curve
+  function tag(c, text, x, y, align, font) {
+    c.font = font || ('italic 14px ' + MATH);
+    var w = c.measureText(text).width + 10, h = 19;
+    var bx = align === 'center' ? x - w / 2 : align === 'right' ? x - w : x;
+    bx = Math.min(Math.max(bx, 2), (c.canvas.width / (window.devicePixelRatio || 1)) - w - 2);
+    c.save(); c.globalAlpha = 0.9; c.fillStyle = COL.card; rrect(c, bx, y - h / 2, w, h, 5); c.fill(); c.restore();
+    c.fillStyle = COL.ink; c.textAlign = 'left'; c.textBaseline = 'middle'; c.fillText(text, bx + 5, y + 0.5);
+  }
+  function halo(c, text, x, y) {
+    c.save(); c.strokeStyle = COL.card; c.lineWidth = 3; c.lineJoin = 'round'; c.strokeText(text, x, y); c.restore();
+    c.fillText(text, x, y);
+  }
+  function dot(c, x, y, r) {
+    c.beginPath(); c.arc(x, y, r, 0, 2 * Math.PI); c.fillStyle = COL.ink; c.fill();
+    c.lineWidth = 2; c.strokeStyle = COL.card; c.stroke();
+  }
+  function ring(c, x, y, r, color) {
+    c.beginPath(); c.arc(x, y, r, 0, 2 * Math.PI); c.fillStyle = COL.card; c.fill();
+    c.lineWidth = 2; c.strokeStyle = color || COL.ink; c.stroke();
+  }
+  function cross(c, x, y, s, color) {
+    c.save(); c.strokeStyle = COL.card; c.lineWidth = 5.5; c.lineCap = 'round';
+    line(c, x - s, y - s, x + s, y + s); line(c, x - s, y + s, x + s, y - s);
+    c.strokeStyle = color || COL.out; c.lineWidth = 2.6;
+    line(c, x - s, y - s, x + s, y + s); line(c, x - s, y + s, x + s, y - s); c.restore();
+  }
+
+  // ---------- main graph ----------
+  var ctx = el.graph.getContext('2d');
+  function drawGrid(c) {
+    var v = S.view, spanX = v.x1 - v.x0, spanY = v.y1 - v.y0;
+    var sx = niceStep(spanX, Math.max(3, W / 95)), sy = niceStep(spanY, Math.max(3, H / 75));
+    function gridV(st) {
+      var k0 = Math.ceil(v.x0 / st), k1 = Math.floor(v.x1 / st);
+      if (k1 - k0 > 3000) return;
+      c.beginPath();
+      for (var k = k0; k <= k1; k++) { var p = Math.round(X(k * st)) + 0.5; c.moveTo(p, 0); c.lineTo(p, H); }
+      c.stroke();
+    }
+    function gridH(st) {
+      var k0 = Math.ceil(v.y0 / st), k1 = Math.floor(v.y1 / st);
+      if (k1 - k0 > 3000) return;
+      c.beginPath();
+      for (var k = k0; k <= k1; k++) { var p = Math.round(Y(k * st)) + 0.5; c.moveTo(0, p); c.lineTo(W, p); }
+      c.stroke();
+    }
+    c.lineWidth = 1;
+    var mx = sx / (mant(sx) === 2 ? 4 : 5), my = sy / (mant(sy) === 2 ? 4 : 5);
+    c.strokeStyle = COL.grid2;
+    if (mx / spanX * W >= 7) gridV(mx);
+    if (my / spanY * H >= 7) gridH(my);
+    c.strokeStyle = COL.grid; gridV(sx); gridH(sy);
+    var ox = X(0), oy = Y(0);
+    c.strokeStyle = COL.axis; c.lineWidth = 1.3;
+    if (oy >= 0 && oy <= H) line(c, 0, Math.round(oy) + 0.5, W, Math.round(oy) + 0.5);
+    if (ox >= 0 && ox <= W) line(c, Math.round(ox) + 0.5, 0, Math.round(ox) + 0.5, H);
+    c.font = '11px ' + MONO; c.fillStyle = COL.muted;
+    var ly = Math.min(Math.max(oy + 4, 4), H - 16), k, t;
+    c.textAlign = 'center'; c.textBaseline = 'top';
+    for (k = Math.ceil(v.x0 / sx); k <= Math.floor(v.x1 / sx); k++) {
+      t = k * sx; if (k === 0) continue;
+      var px = X(t); if (px < 14 || px > W - 14) continue;
+      halo(c, tickLabel(t, sx), px, ly);
+    }
+    var lx = ox - 5;
+    if (lx < 40) { lx = 4; c.textAlign = 'left'; } else { c.textAlign = 'right'; if (lx > W - 4) lx = W - 4; }
+    c.textBaseline = 'middle';
+    for (k = Math.ceil(v.y0 / sy); k <= Math.floor(v.y1 / sy); k++) {
+      t = k * sy; if (k === 0) continue;
+      var py = Y(t); if (py < 10 || py > H - 10) continue;
+      halo(c, tickLabel(t, sy), lx, py);
+    }
+    if (ox >= 0 && ox <= W && oy >= 0 && oy <= H - 14) { c.textAlign = 'right'; c.textBaseline = 'top'; halo(c, '0', ox - 4, oy + 4); }
+  }
+
+  // Adaptive plot: 2 samples per pixel; a big jump between neighbors is bisected to tell a
+  // steep piece of graph (connect) from a jump or a pole (break the line).
+  function edge(f, xd, yd, xu) {
+    for (var k = 0; k < 52; k++) {
+      var xm = 0.5 * (xd + xu);
+      if (xm === xd || xm === xu) break;
+      var ym = f(xm);
+      if (ym === ym) { xd = xm; yd = ym; } else xu = xm;
+    }
+    return [xd, yd];
+  }
+  function jump(f, xl, yl, xr, yr) {
+    for (var k = 0; k < 64; k++) {
+      var xm = 0.5 * (xl + xr);
+      if (xm === xl || xm === xr) break;
+      var ym = f(xm);
+      if (ym !== ym) return [xl, yl, xr, yr];
+      if (Math.abs(ym - yl) >= Math.abs(yr - ym)) { xr = xm; yr = ym; } else { xl = xm; yl = ym; }
+      if (Math.abs(Y(yr) - Y(yl)) < 1.5) return null;
+    }
+    return [xl, yl, xr, yr];
+  }
+  // Desmos's engineering notes describe its function plotter as evenly spaced samples, plus
+  // bisection to pin down zero crossings, local extrema and jumps. This does the same, and adds
+  // one idea from interval-arithmetic graphers (Tupper's GrafEq): where the graph turns around
+  // more than once inside a single pixel column (sin(1/x) near 0), that column is filled from the
+  // guaranteed minimum to the guaranteed maximum of f over it, so the band is solid, not aliased.
+  function golden(f, lo, hi, isMax) {
+    var g = 0.6180339887498949, s = isMax ? 1 : -1;
+    var c = hi - g * (hi - lo), d = lo + g * (hi - lo), fc = f(c), fd = f(d);
+    for (var it = 0; it < 30; it++) {
+      if (fc !== fc || fd !== fd) return null;
+      if (s * fc > s * fd) { hi = d; d = c; fd = fc; c = hi - g * (hi - lo); fc = f(c); }
+      else { lo = c; c = d; fc = fd; d = lo + g * (hi - lo); fd = f(d); }
+    }
+    var xm = 0.5 * (lo + hi), ym = f(xm);
+    return ym === ym ? [xm, ym] : null;
+  }
+  // do 33 jittered samples across [xa, xb] turn around at least 3 times, by a visible amount?
+  function wiggly(f, xa, xb, pxY) {
+    var prev = 0, turns = 0, lo = Infinity, hi = -Infinity, yp = NaN;
+    for (var q = 0; q <= 32; q++) {
+      var t = q === 0 ? 0 : q === 32 ? 1 : (q + 0.37 * Math.sin(q * 12.9898)) / 32;
+      var y = f(xa + (xb - xa) * t);
+      if (y !== y) { yp = NaN; prev = 0; continue; }
+      if (y < lo) lo = y;
+      if (y > hi) hi = y;
+      if (yp === yp) { var dd = y - yp; if (dd !== 0) { if (prev !== 0 && (dd > 0) !== (prev > 0)) turns++; prev = dd; } }
+      yp = y;
+    }
+    return turns >= 3 && (hi - lo) * pxY > 2;
+  }
+  function drawCurve(c) {
+    var fn = S.fn; if (!fn) return;
+    var v = S.view, f = fn.f, F = fn.F, i, j, k;
+    var r = S.res, ok = !!(r && r.ok), fa = ok ? r.fa : NaN, a = S.a, d = S.delta, eps = S.eps;
+    var hasWin = ok && d > 0;
+    var SUB = 4, cols = Math.max(100, Math.ceil(W)), n = cols * SUB;
+    var dx = (v.x1 - v.x0) / n, pxY = H / (v.y1 - v.y0);
+    var xs = new Float64Array(n + 1), ys = new Float64Array(n + 1);
+    for (i = 0; i <= n; i++) { xs[i] = v.x0 + i * dx; ys[i] = f(xs[i]); }
+
+    // 1. "dense" pixel columns: the graph turns around more than once inside the column
+    var dense = new Uint8Array(cols);
+    for (j = 0; j < cols; j++) {
+      var i0 = j * SUB, turns = 0, prev = 0, lo = Infinity, hi = -Infinity, y;
+      for (k = 0; k <= SUB; k++) { y = ys[i0 + k]; if (y === y) { if (y < lo) lo = y; if (y > hi) hi = y; } }
+      for (k = 1; k <= SUB; k++) {
+        var ya = ys[i0 + k - 1], yb = ys[i0 + k];
+        if (ya !== ya || yb !== yb) { prev = 0; continue; }
+        var dd = yb - ya;
+        if (dd !== 0) { if (prev !== 0 && (dd > 0) !== (prev > 0)) turns++; prev = dd; }
+      }
+      var rng = hi > lo ? (hi - lo) * pxY : 0;
+      if (turns >= 2 && rng > 2) { dense[j] = 1; continue; }
+      // the samples may be aliased: if the guaranteed bounds say far more is going on, look closer
+      var J = F(xs[i0], xs[i0 + SUB]);
+      if (J && isFinite(J[0]) && isFinite(J[1]) && (J[1] - J[0]) * pxY > Math.max(6, 3 * rng + 4) &&
+          wiggly(f, xs[i0], xs[i0 + SUB], pxY)) dense[j] = 1;
+    }
+
+    // 2. local maxima and minima between samples, located by golden-section search
+    var exX = new Float64Array(n), exY = new Float64Array(n);
+    exX.fill(NaN);
+    for (i = 1; i < n; i++) {
+      if (dense[(i / SUB) | 0] || dense[((i - 1) / SUB) | 0]) continue;
+      var y0 = ys[i - 1], y1 = ys[i], y2 = ys[i + 1];
+      if (y0 !== y0 || y1 !== y1 || y2 !== y2) continue;
+      var isMax = y1 > y0 && y1 >= y2, isMin = y1 < y0 && y1 <= y2;
+      if (!isMax && !isMin) continue;
+      if (Math.max(Math.abs(y1 - y0), Math.abs(y1 - y2)) * pxY < 0.3) continue;
+      var e = golden(f, xs[i - 1], xs[i + 1], isMax);
+      if (!e || !(isMax ? e[1] > y1 : e[1] < y1) || e[0] === xs[i]) continue;
+      var ki = e[0] < xs[i] ? i - 1 : i;
+      if (exX[ki] !== exX[ki]) { exX[ki] = e[0]; exY[ki] = e[1]; }
+    }
+
+    // 3. strokes for ordinary columns, filled bars for dense ones
+    var paths = { base: new Path2D(), dim: new Path2D(), inn: new Path2D(), out: new Path2D() };
+    var fills = { base: new Path2D(), dim: new Path2D(), inn: new Path2D(), out: new Path2D() };
+    var pen = { k: null, x: 0, y: 0 };
+    function cls(x1, y1, x2, y2) {
+      var xm = 0.5 * (x1 + x2);
+      if (S.onlyS && (xm < S.sMin || xm > S.sMax)) return 'dim';
+      if (hasWin && Math.abs(xm - a) < d) return (Math.abs(y1 - fa) < eps && Math.abs(y2 - fa) < eps) ? 'inn' : 'out';
+      return 'base';
+    }
+    function seg(x1, y1, x2, y2) {
+      var kk = cls(x1, y1, x2, y2), P = paths[kk];
+      var p1x = X(x1), p1y = clampPx(Y(y1)), p2x = X(x2), p2y = clampPx(Y(y2));
+      if (pen.k !== kk || pen.x !== p1x || pen.y !== p1y) P.moveTo(p1x, p1y);
+      P.lineTo(p2x, p2y);
+      pen.k = kk; pen.x = p2x; pen.y = p2y;
+    }
+    function lift() { pen.k = null; }
+    // one piece of graph between two defined samples: refine where it bends (midpoint more than
+    // half a pixel off the chord); break the line at jumps and poles
+    function piece(x1, y1, x2, y2, depth) {
+      var p1 = Y(y1), p2 = Y(y2);
+      if ((p1 < -40 && p2 < -40) || (p1 > H + 40 && p2 > H + 40)) { lift(); return; }
+      if (depth < 7 && Math.abs(p2 - p1) > 1) {
+        var xm = 0.5 * (x1 + x2), ym = f(xm);
+        if (ym !== ym) {                               // an undefined point inside: stop at each side
+          var eL = edge(f, x1, y1, xm); piece(x1, y1, eL[0], eL[1], depth + 1); lift();
+          var eR = edge(f, x2, y2, xm); piece(eR[0], eR[1], x2, y2, depth + 1);
+          return;
+        }
+        if (Math.abs(Y(ym) - 0.5 * (p1 + p2)) > 0.5) { piece(x1, y1, xm, ym, depth + 1); piece(xm, ym, x2, y2, depth + 1); return; }
+      }
+      if (Math.abs(p2 - p1) > 10) {
+        var jp = jump(f, x1, y1, x2, y2);
+        if (jp) { seg(x1, y1, jp[0], jp[1]); lift(); seg(jp[2], jp[3], x2, y2); return; }
+      }
+      seg(x1, y1, x2, y2);
+    }
+    function bar(jj) {
+      var xa = xs[jj * SUB], xb = xs[jj * SUB + SUB], w4 = (xb - xa) / 4, blo = Infinity, bhi = -Infinity, q, Jq, yq;
+      for (q = 0; q < 4; q++) {
+        Jq = F(xa + q * w4, xa + (q + 1) * w4);
+        if (Jq) { if (Jq[0] < blo) blo = Jq[0]; if (Jq[1] > bhi) bhi = Jq[1]; }
+      }
+      for (q = 0; q <= SUB; q++) { yq = ys[jj * SUB + q]; if (yq === yq) { if (yq < blo) blo = yq; if (yq > bhi) bhi = yq; } }
+      if (!(bhi >= blo)) return;
+      var xm = 0.5 * (xa + xb), px0 = X(xa) - 0.5, pw = X(xb) - X(xa) + 1;
+      var win = !(S.onlyS && (xm < S.sMin || xm > S.sMax)) && hasWin && Math.abs(xm - a) < d;
+      var ext = win ? 2 : 1.1;                          // match the stroke widths of the lines
+      var top = Math.max(clampPx(Y(bhi)) - ext, -10), bot = Math.min(clampPx(Y(blo)) + ext, H + 10);
+      if (!(bot > top)) return;
+      if (S.onlyS && (xm < S.sMin || xm > S.sMax)) { fills.dim.rect(px0, top, pw, bot - top); return; }
+      if (!win) { fills.base.rect(px0, top, pw, bot - top); return; }
+      var bt = Y(fa + eps), bb = Y(fa - eps);           // the ε-band in pixels (bt above bb)
+      var s1 = Math.max(top, bt), s2 = Math.min(bot, bb);
+      if (s2 > s1) fills.inn.rect(px0, s1, pw, s2 - s1);
+      if (top < bt) fills.out.rect(px0, top, pw, Math.min(bt, bot) - top);
+      if (bot > bb) fills.out.rect(px0, Math.max(bb, top), pw, bot - Math.max(bb, top));
+    }
+    for (j = 0; j < cols; j++) {
+      if (dense[j]) { lift(); bar(j); lift(); continue; }
+      for (k = 0; k < SUB; k++) {
+        i = j * SUB + k;
+        var xA = xs[i], xB = xs[i + 1], yA = ys[i], yB = ys[i + 1], dA = yA === yA, dB = yB === yB, ee;
+        if (!dA && !dB) { lift(); continue; }
+        if (!dA || !dB) {                                // an end of the domain lies between the samples
+          if (dA) { ee = edge(f, xA, yA, xB); piece(xA, yA, ee[0], ee[1], 0); lift(); }
+          else { ee = edge(f, xB, yB, xA); lift(); piece(ee[0], ee[1], xB, yB, 0); }
+          continue;
+        }
+        if (exX[i] === exX[i]) { piece(xA, yA, exX[i], exY[i], 0); piece(exX[i], exY[i], xB, yB, 0); }
+        else piece(xA, yA, xB, yB, 0);
+      }
+    }
+    c.save(); c.lineJoin = 'round';
+    c.fillStyle = COL.faint; c.fill(fills.dim);
+    c.strokeStyle = COL.faint; c.lineWidth = 1.6; c.setLineDash([3, 4]); c.stroke(paths.dim);
+    c.setLineDash([]);
+    c.fillStyle = COL.ink; c.fill(fills.base);
+    c.strokeStyle = COL.ink; c.lineWidth = 2.2; c.lineCap = 'round'; c.stroke(paths.base);
+    c.fillStyle = COL.in; c.fill(fills.inn);
+    c.strokeStyle = COL.in; c.lineWidth = 4; c.stroke(paths.inn);
+    c.fillStyle = COL.out; c.fill(fills.out);
+    c.strokeStyle = COL.out; c.lineWidth = 4; c.lineCap = 'butt'; c.setLineDash([7, 5]); c.stroke(paths.out);
+    c.restore();
+  }
+
+  function drawGraph() {
+    var dim = sizeCanvas(el.graph), c = ctx;
+    W = dim.w; H = dim.h;
+    c.setTransform(dim.dpr, 0, 0, dim.dpr, 0, 0);
+    c.fillStyle = COL.card; c.fillRect(0, 0, W, H);
+    var r = S.res, ok = !!(r && r.ok), a = S.a, d = S.delta, eps = S.eps, fa = ok ? r.fa : NaN;
+    var xl = 0, xr = 0, yt = 0, yb = 0, ax = clampPx(X(a));
+    if (ok) {
+      yt = clampPx(Y(fa + eps)); yb = clampPx(Y(fa - eps));
+      c.fillStyle = COL.epsfill; c.fillRect(0, yt, W, yb - yt);
+      if (d === Infinity) { c.fillStyle = COL.delfill; c.fillRect(0, 0, W, H); }
+      else if (d > 0) { xl = clampPx(X(a - d)); xr = clampPx(X(a + d)); c.fillStyle = COL.delfill; c.fillRect(xl, 0, Math.max(1, xr - xl), H); }
+    }
+    drawGrid(c);
+    if (S.onlyS) {                             // x outside A doesn't count: wash it out
+      var s0 = X(S.sMin), s1 = X(S.sMax);
+      c.fillStyle = 'rgba(245, 246, 249, 0.62)';
+      if (s0 > 0) c.fillRect(0, 0, Math.min(s0, W), H);
+      if (s1 < W) c.fillRect(Math.max(s1, 0), 0, W - Math.max(s1, 0), H);
+    }
+    c.save(); c.setLineDash([2, 3]); c.strokeStyle = COL.faint; c.lineWidth = 1;
+    if (S.fn) line(c, ax, 0, ax, H);
+    if (ok) line(c, 0, Y(fa), W, Y(fa));
+    c.restore();
+    if (ok) {
+      c.save(); c.setLineDash([6, 4]); c.lineWidth = 1.8;
+      c.strokeStyle = COL.eps; line(c, 0, yt, W, yt); line(c, 0, yb, W, yb);
+      if (d > 0 && isFinite(d)) { c.strokeStyle = COL.del; line(c, xl, 0, xl, H); line(c, xr, 0, xr, H); }
+      c.restore();
+      if (d === 0) { c.strokeStyle = COL.del; c.lineWidth = 1.6; line(c, ax, 0, ax, H); }
+    }
+    drawCurve(c);
+    if (!ok) { if (S.fn) tag(c, 'a', ax, 14, 'center'); return; }
+    if (d > 0 && isFinite(d)) {
+      var good = S.auto || works();
+      c.save(); c.lineWidth = 2; c.strokeStyle = good ? COL.in : COL.out;
+      if (!good) c.setLineDash([7, 5]);
+      c.strokeRect(xl, yt, xr - xl, yb - yt); c.restore();
+    }
+    if (S.auto && d > 0 && isFinite(d)) {      // where the bad x's begin, on each side
+      [['left', -1], ['right', 1]].forEach(function (sd) {
+        var s = r[sd[0]];
+        if (s.tBad === undefined) return;
+        var xb = a + sd[1] * s.tBad, yv = S.fn.f(xb);
+        if (yv === yv) ring(c, X(xb), clampPx(Y(yv)), 5.5);
+      });
+    }
+    if (!S.auto && S.witness) cross(c, X(S.witness.x), clampPx(Y(S.witness.y)), 6.5);
+    dot(c, ax, clampPx(Y(fa)), 5.5);
+    // labels: x-positions along the top edge, y-levels along the right edge
+    // (labels step around the zoom buttons in the top-right corner)
+    function topY(x) { return x > W - 70 ? 142 : 14; }
+    function rightX(y) { return y < 138 ? W - 56 : W - 6; }
+    if (ax >= 0 && ax <= W) tag(c, 'a', ax, topY(ax), 'center');
+    if (d > 0 && isFinite(d) && xr - xl >= 100) {
+      if (xl >= 24) tag(c, 'a − δ', xl, topY(xl), 'center');
+      if (xr <= W - 24) tag(c, 'a + δ', xr, topY(xr), 'center');
+    }
+    var fy = Y(fa);
+    if (fy >= 0 && fy <= H) tag(c, 'f(a)', rightX(fy), fy, 'right');
+    if (yb - yt >= 50) {
+      if (yt >= 10) tag(c, 'f(a) + ε', rightX(yt), yt, 'right');
+      if (yb <= H - 10) tag(c, 'f(a) − ε', rightX(yb), yb, 'right');
+    }
+    var msgs = [];
+    if (d > 0 && isFinite(d) && xr - xl < 3) msgs.push('The δ-window is narrower than 3 pixels.');
+    if (yb - yt < 3) msgs.push('The ε-band is thinner than 3 pixels.');
+    if (msgs.length) tag(c, msgs.join(' ') + ' Try “Zoom to the box”.', W / 2, H - 34, 'center', '13px ' + UI);
+  }
+
+  // ---------- largest δ as a function of a ----------
+  var prof = { key: '', N: 241, xs: [], data: new Float64Array(241), trunc: new Uint8Array(241), next: 0, done: false, raf: 0, layout: null, hover: -1 };
+  function profKey() { return S.src + '|' + S.eps + '|' + S.sMin + '|' + S.sMax + '|' + (S.onlyS ? 1 : 0); }
+  function ensureProfile() {
+    if (!S.fn) return;
+    var k = profKey();
+    if (k === prof.key) return;
+    prof.key = k; prof.xs = []; prof.data = new Float64Array(prof.N); prof.trunc = new Uint8Array(prof.N);
+    prof.next = 0; prof.done = false; prof.hover = -1;
+    for (var i = 0; i < prof.N; i++) prof.xs.push(S.sMin + (S.sMax - S.sMin) * i / (prof.N - 1));
+    cancelAnimationFrame(prof.raf);
+    prof.raf = requestAnimationFrame(profWork);
+  }
+  function profWork() {
+    var t0 = performance.now(), o = opts(15000);
+    while (prof.next < prof.N && performance.now() - t0 < 12) {
+      var rr = E.largestDelta(S.fn, prof.xs[prof.next], S.eps, o);
+      prof.data[prof.next] = rr.ok ? rr.delta : NaN;
+      prof.trunc[prof.next] = rr.ok && rr.truncated ? 1 : 0;
+      prof.next++;
+    }
+    if (prof.next < prof.N) prof.raf = requestAnimationFrame(profWork); else prof.done = true;
+    requestRender();
+  }
+  var hatchPat = null;
+  function hatch(c) {
+    if (hatchPat) return hatchPat;
+    var t = document.createElement('canvas'); t.width = t.height = 8;
+    var g = t.getContext('2d'); g.strokeStyle = COL.out; g.globalAlpha = 0.6; g.lineWidth = 1.4;
+    g.beginPath(); g.moveTo(0, 8); g.lineTo(8, 0); g.moveTo(-2, 2); g.lineTo(2, -2); g.moveTo(6, 10); g.lineTo(10, 6); g.stroke();
+    hatchPat = c.createPattern(t, 'repeat');
+    return hatchPat;
+  }
+  function profMin() {
+    var minV = Infinity, minA = NaN, cnt = 0;
+    for (var i = 0; i < prof.next; i++) {
+      var v = prof.data[i];
+      if (v === v) { cnt++; if (v < minV || minA !== minA) { minV = v; minA = prof.xs[i]; } }
+    }
+    return { v: minV, a: minA, cnt: cnt };
+  }
+  function drawProfile() {
+    var cv = el.profile, c = cv.getContext('2d'), dim = sizeCanvas(cv), w = dim.w, h = dim.h, i, v;
+    c.setTransform(dim.dpr, 0, 0, dim.dpr, 0, 0);
+    c.fillStyle = COL.card; c.fillRect(0, 0, w, h);
+    var m = { l: 62, r: 22, t: 26, b: 30 }, pw = Math.max(10, w - m.l - m.r), ph = Math.max(10, h - m.t - m.b);
+    var lo = S.sMin, hi = S.sMax, n = prof.next, xs = prof.xs, D = prof.data;
+    var top = 0, anyInf = false;
+    for (i = 0; i < n; i++) { v = D[i]; if (v === Infinity) anyInf = true; else if (v === v && v > top) top = v; }
+    var cur = (S.res && S.res.ok) ? S.res.delta : NaN;
+    if (cur === cur && cur !== Infinity && cur > top) top = cur;
+    if (!S.auto && isFinite(S.delta) && S.delta > top) top = S.delta;
+    if (!(top > 0)) top = 1;
+    var ystep = niceStep(top * 1.08, 4), ytop = Math.ceil(top * 1.08 / ystep) * ystep;
+    function PX(aa) { return m.l + (aa - lo) / (hi - lo) * pw; }
+    function PY(dd) { return m.t + ph * (1 - Math.min(dd, ytop) / ytop); }
+    prof.layout = { l: m.l, pw: pw, lo: lo, hi: hi };
+    c.lineWidth = 1; c.font = '11px ' + MONO; c.fillStyle = COL.muted;
+    c.textAlign = 'right'; c.textBaseline = 'middle';
+    for (var k = 0; k * ystep <= ytop * (1 + 1e-9); k++) {
+      var yy = Math.round(PY(k * ystep)) + 0.5;
+      c.strokeStyle = COL.grid; line(c, m.l, yy, m.l + pw, yy);
+      c.fillText(tickLabel(k * ystep, ystep), m.l - 6, yy);
+    }
+    var xstep = niceStep(hi - lo, Math.max(3, pw / 90));
+    c.textAlign = 'center'; c.textBaseline = 'top';
+    for (k = Math.ceil(lo / xstep - 1e-9); k * xstep <= hi + xstep * 1e-9; k++) {
+      var xx = Math.round(PX(k * xstep)) + 0.5;
+      c.strokeStyle = COL.grid; line(c, xx, m.t, xx, m.t + ph);
+      c.fillText(tickLabel(k * xstep, xstep), xx, m.t + ph + 6);
+    }
+    c.strokeStyle = COL.axis; c.lineWidth = 1.2;
+    line(c, m.l, m.t + ph + 0.5, m.l + pw, m.t + ph + 0.5); line(c, m.l - 0.5, m.t, m.l - 0.5, m.t + ph);
+    c.font = 'italic 14px ' + MATH; c.fillStyle = COL.ink; c.textAlign = 'left'; c.textBaseline = 'top';
+    c.fillText('largest δ', 6, 4);
+    c.textBaseline = 'bottom'; c.fillText('a', m.l + pw + 6, m.t + ph + 2);
+    // where a fixed δ fails: shaded and hatched
+    if (!S.auto && S.delta > 0) {
+      var hw = pw / (prof.N - 1) / 2 + 0.6;
+      for (var pass = 0; pass < 2; pass++) {
+        c.fillStyle = pass ? hatch(c) : 'rgba(213, 94, 0, 0.07)';
+        for (i = 0; i < n; i++) { v = D[i]; if (v === v && v < S.delta * (1 - 1e-8)) c.fillRect(PX(xs[i]) - hw, m.t, 2 * hw, ph); }
+      }
+    }
+    c.beginPath();
+    var on = false;
+    for (i = 0; i < n; i++) {
+      v = D[i];
+      if (v !== v) { on = false; continue; }
+      var X1 = PX(xs[i]), Y1 = PY(v);
+      if (!on) { c.moveTo(X1, Y1); on = true; } else c.lineTo(X1, Y1);
+    }
+    c.strokeStyle = COL.ink; c.lineWidth = 2; c.lineJoin = 'round'; c.stroke();
+    for (i = 0; i < n; i++) {
+      if (D[i] === 0) cross(c, PX(xs[i]), PY(0), 3.2);
+      else if (prof.trunc[i]) ring(c, PX(xs[i]), PY(D[i]), 2.6, COL.muted);   // a lower bound only
+    }
+    if (anyInf) tag(c, '∞ = every δ works', m.l + 4, m.t - 12, 'left', '12px ' + UI);
+    if (!S.auto && isFinite(S.delta) && S.delta > 0) {
+      var yd = PY(S.delta);
+      c.save(); c.setLineDash([6, 4]); c.strokeStyle = COL.del; c.lineWidth = 2; line(c, m.l, yd, m.l + pw, yd); c.restore();
+      tag(c, 'your δ = ' + fmt(S.delta, 3), m.l + pw - 4, yd - 12, 'right', 'italic 13px ' + MATH);
+    }
+    if (prof.done) {
+      var mn = profMin();
+      if (mn.cnt && isFinite(mn.v)) ring(c, PX(mn.a), PY(mn.v), 6, COL.in);
+    }
+    if (S.a >= lo && S.a <= hi) {
+      var xa = PX(S.a);
+      c.save(); c.setLineDash([2, 3]); c.strokeStyle = COL.muted; c.lineWidth = 1; line(c, xa, m.t, xa, m.t + ph); c.restore();
+      if (cur === cur) dot(c, xa, PY(cur === Infinity ? ytop : cur), 5);
+    }
+    if (prof.hover >= 0 && prof.hover < n) {
+      var hx = PX(xs[prof.hover]);
+      c.save(); c.strokeStyle = COL.faint; c.lineWidth = 1; line(c, hx, m.t, hx, m.t + ph); c.restore();
+    }
+  }
+  function profileText() {
+    el.profEps.textContent = fmt(S.eps, 4);
+    var info;
+    if (!prof.done) info = 'Computing… ' + Math.round(100 * prof.next / prof.N) + '%';
+    else if (prof.hover >= 0) {
+      var hv = prof.data[prof.hover];
+      info = 'At <i class="m">a</i> = <span class="num">' + fmtA(prof.xs[prof.hover]) + '</span>: ' +
+        (hv !== hv ? '<i class="m">f</i>(<i class="m">a</i>) is undefined.'
+          : 'largest δ ' + (prof.trunc[prof.hover] ? '≥ ' : '= ') + '<span class="num">' + fD(hv) + '</span>. Click to move <i class="m">a</i> here.');
+    } else {
+      var mn = profMin(), nt = 0;
+      for (var j = 0; j < prof.N; j++) nt += prof.trunc[j];
+      if (!mn.cnt) info = '<i class="m">f</i>(<i class="m">a</i>) is undefined at every <i class="m">a</i> on this grid.';
+      else if (mn.v === Infinity) info = 'Every δ works at every <i class="m">a</i> on this grid, for this ε.';
+      else info = 'Smallest value on this grid of ' + prof.N + ' values of <i class="m">a</i>: <span class="num">' +
+        fD(mn.v) + '</span>, at <i class="m">a</i> ≈ <span class="num">' + fmtA(mn.a) + '</span> (ringed).';
+      if (nt) info += ' At the ' + nt + ' small open circles the search stopped early; the largest δ there is at least the value shown.';
+    }
+    el.profInfo.innerHTML = info;
+    el.profNote.innerHTML = 'A single δ works at every <i class="m">a</i> ∈ <i class="m">A</i> exactly when δ is at most the largest δ at every <i class="m">a</i> ∈ <i class="m">A</i>. ' +
+      'Such a δ exists exactly when these values have a positive lower bound. If they get arbitrarily close to 0, no single δ works for this ε' +
+      (S.onlyS ? ', and <i class="m">f</i> is not uniformly continuous on <i class="m">A</i>.'
+               : '. (Here <i class="m">x</i> ranges over dom(<i class="m">f</i>). With “Use only <i class="m">x</i> in <i class="m">A</i>” checked, this matches the definition of uniform continuity on <i class="m">A</i> exactly.)') +
+      (S.auto ? '' : ' Hatching marks the <i class="m">a</i>-values where your fixed δ fails.');
+  }
+
+  // ---------- panel text ----------
+  var XA = '|<i class="m">x</i> − <i class="m">a</i>|';
+  var FXA = '|<i class="m">f</i>(<i class="m">x</i>) − <i class="m">f</i>(<i class="m">a</i>)|';
+  function domTxt() { return S.onlyS ? '<i class="m">x</i> ∈ dom(<i class="m">f</i>) ∩ <i class="m">A</i>' : '<i class="m">x</i> ∈ dom(<i class="m">f</i>)'; }
+  function sub2(t) { return '<div class="sub2">' + t + '</div>'; }
+  function sideTxt(sd, word) {
+    if (sd.found) {
+      var x = S.a + (word === 'right' ? 1 : -1) * sd.t;
+      return 'On the ' + word + ', they start at <i class="m">x</i> ≈ <span class="num">' + fmt(x, 6) + '</span>, a distance <span class="num">' +
+        fD(sd.t) + '</span> from <i class="m">a</i>.';
+    }
+    if (sd.t === Infinity) {
+      return 'On the ' + word + ', there are no such <i class="m">x</i>' +
+        (sd.far ? ' within 10¹⁵ of <i class="m">a</i>' : sd.limited ? ' in <i class="m">A</i>' : '') + '.';
+    }
+    return 'On the ' + word + ', there are none within a distance <span class="num">' + fD(sd.t) + '</span> of <i class="m">a</i>' +
+      (sd.trunc ? ' (the search stopped early)' : '') + '.';
+  }
+  function exitTxt(r) {
+    var leftFirst = r.left.t <= r.right.t;
+    return 'The <i class="m">x</i>\'s with ' + FXA + ' ≥ ε are marked ○ where they begin. ' +
+      sideTxt(leftFirst ? r.left : r.right, leftFirst ? 'left' : 'right') + ' ' +
+      sideTxt(leftFirst ? r.right : r.left, leftFirst ? 'right' : 'left') + ' The largest δ is the smaller distance.';
+  }
+  function setStatus() {
+    var st = el.status; st.dataset.kind = '';
+    if (!S.fn) { st.textContent = 'Type a formula for f(x) to start.'; return; }
+    var r = S.res;
+    if (!r || !r.ok) {
+      st.innerHTML = '<i class="m">f</i>(<i class="m">a</i>) is undefined at <i class="m">a</i> = <span class="num">' + fmtA(S.a) +
+        '</span>, so <i class="m">a</i> ∉ dom(<i class="m">f</i>). Move <i class="m">a</i> to a point of the domain.';
+      return;
+    }
+    var head = '<span class="head"><i class="m">a</i> = <span class="num">' + fmtA(S.a) + '</span>, &nbsp;<i class="m">f</i>(<i class="m">a</i>) = <span class="num">' +
+      fmt(r.fa, 5) + '</span>, &nbsp;ε = <span class="num">' + fmt(S.eps, 4) + '</span></span>';
+    if (S.auto) {
+      if (r.delta === Infinity) {
+        st.dataset.kind = 'win';
+        st.innerHTML = head + '<b class="win">Every δ &gt; 0 works for this ε:</b> for all ' + domTxt() + ', ' + FXA + ' &lt; ε.' +
+          (r.far ? sub2('(Checked out to a distance of 10¹⁵·max(1, |<i class="m">a</i>|) from <i class="m">a</i>.)') : '');
+      } else if (r.delta === 0) {
+        st.dataset.kind = 'lose';
+        st.innerHTML = head + '<b class="lose">No δ &gt; 0 works for this ε:</b> for every δ &gt; 0, there is an ' + domTxt() +
+          ' with ' + XA + ' &lt; δ and ' + FXA + ' ≥ ε. So <i class="m">f</i>' + (S.onlyS ? ' restricted to <i class="m">A</i>' : '') +
+          ' is not continuous at <i class="m">a</i>.';
+      } else {
+        st.dataset.kind = 'win';
+        var fd = fmtDelta(r.delta), dt = fd[0];
+        st.innerHTML = head + (r.truncated
+          ? '<b class="win">δ = ' + dt + ' works</b> for this ε (the search stopped early, so a larger δ may also work): for all '
+          : '<b class="win">The largest δ that works is ' + dt + '</b>' + (fd[1] ? '' : ' (rounded down)') + ': for all ') +
+          domTxt() + ' with ' + XA + ' &lt; ' + dt + ', ' + FXA + ' &lt; ε.' + (r.truncated ? '' : ' No larger δ works.') + sub2(exitTxt(r));
+      }
+      return;
+    }
+    if (works()) {
+      st.dataset.kind = 'win';
+      st.innerHTML = head + '<b class="win">✓ δ = ' + fmt(S.delta, 4) + ' works for this ε:</b> for all ' + domTxt() + ' with ' + XA + ' &lt; δ, ' + FXA + ' &lt; ε.';
+    } else {
+      st.dataset.kind = 'lose';
+      var wt = S.witness;
+      var why = wt
+        ? '<i class="m">x</i> = <span class="num">' + fmt(wt.x, 5) + '</span> (marked ×) is in dom(<i class="m">f</i>)' + (S.onlyS ? ' ∩ <i class="m">A</i>' : '') +
+          ' with ' + XA + ' &lt; δ, but ' + FXA + ' ≈ <span class="num">' + fmt(wt.dev, 4) + '</span> ≥ ε.'
+        : 'some ' + domTxt() + ' with ' + XA + ' &lt; δ has ' + FXA + ' ≥ ε.';
+      st.innerHTML = head + '<b class="lose">✗ δ = ' + fmt(S.delta, 4) + ' does not work for this ε:</b> ' + why +
+        sub2('Shrink δ, or turn on Auto δ to see the largest δ that works.');
+    }
+  }
+  function key(svg, label) { return '<span class="key"><svg viewBox="0 0 26 14" aria-hidden="true">' + svg + '</svg><span>' + label + '</span></span>'; }
+  var legendCache = '';
+  function legend() {
+    var k = [];
+    k.push(key('<line x1="1" y1="7" x2="25" y2="7" stroke="var(--ink)" stroke-width="2.2"/>', 'graph of <i class="m">f</i>'));
+    k.push(key('<line x1="2" y1="7" x2="24" y2="7" stroke="var(--in)" stroke-width="4" stroke-linecap="round"/>', 'over the δ-window, inside the ε-band'));
+    k.push(key('<line x1="1" y1="7" x2="25" y2="7" stroke="var(--out)" stroke-width="4" stroke-dasharray="7 4"/>', 'over the δ-window, outside the ε-band'));
+    k.push(key('<rect x="1" y="3" width="24" height="8" fill="var(--epsfill)" stroke="var(--eps)" stroke-dasharray="3 2"/>', 'ε-band: |<i class="m">y</i> − <i class="m">f</i>(<i class="m">a</i>)| &lt; ε'));
+    k.push(key('<rect x="8" y="0.5" width="10" height="13" fill="var(--delfill)" stroke="var(--del)" stroke-dasharray="3 2"/>', 'δ-window: ' + XA + ' &lt; δ'));
+    if (S.auto) k.push(key('<circle cx="13" cy="7" r="4.6" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>', 'where the <i class="m">x</i>\'s with ' + FXA + ' ≥ ε begin'));
+    if (!S.auto && S.witness) k.push(key('<path d="M9 3 L17 11 M17 3 L9 11" stroke="var(--out)" stroke-width="2.6" stroke-linecap="round"/>', 'a point that breaks this δ'));
+    if (S.onlyS) k.push(key('<line x1="1" y1="7" x2="25" y2="7" stroke="var(--faint)" stroke-width="1.6" stroke-dasharray="3 4"/>', 'outside <i class="m">A</i> (not counted)'));
+    var html = k.join('');
+    if (html !== legendCache) { legendCache = html; el.legend.innerHTML = html; }
+  }
+  function trackTxt() {
+    if (S.track.at !== S.track.at) return 'Move <i class="m">a</i> (or press ▶): this records the smallest of the largest δ\'s so far.';
+    var at = ' (at <i class="m">a</i> = <span class="num">' + fmtA(S.track.at) + '</span>)';
+    if (S.track.min === 0) return 'Smallest auto δ so far: <span class="num">0</span>' + at + '. At that <i class="m">a</i>, no δ &gt; 0 works, so no single δ works at every <i class="m">a</i> visited.';
+    if (S.track.min === Infinity) return 'Every δ &gt; 0 has worked at every <i class="m">a</i> visited since the last reset.';
+    return 'Smallest auto δ so far: <span class="num">' + fD(S.track.min) + '</span>' + at + '. That δ works at every <i class="m">a</i> visited since the last reset.';
+  }
+  function setBox(box, text) {
+    if (document.activeElement === box) return;
+    box.value = text;
+    if (box.classList.contains('bad')) { box.classList.remove('bad'); box.title = ''; }
+  }
+  function updatePanel() {
+    el.fxerr.hidden = !S.err; el.fxerr.textContent = S.err || '';
+    el.aSlider.min = S.sMin; el.aSlider.max = S.sMax; el.aSlider.step = S.step; el.aSlider.value = S.a;
+    setBox(el.aBox, fmtA(S.a)); setBox(el.sMin, fmtIn(S.sMin)); setBox(el.sMax, fmtIn(S.sMax));
+    el.play.textContent = S.playing ? '❚❚' : '▶'; el.play.dataset.on = S.playing ? '1' : '0';
+    el.eSlider.value = toCubic(S.eps, EPS_MAX); setBox(el.eBox, fmtIn(S.eps));
+    el.dSlider.disabled = S.auto; el.dBox.readOnly = S.auto;
+    el.dSlider.value = isFinite(S.delta) ? toCubic(S.delta, DEL_MAX) : SL;
+    if (S.auto) { var r = S.res; el.dBox.value = (r && r.ok) ? fD(r.delta).replace('×10', 'e').replace(/[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]/g, function (ch) { return '-0123456789'['⁻⁰¹²³⁴⁵⁶⁷⁸⁹'.indexOf(ch)]; }) : '—'; }
+    else setBox(el.dBox, fmtIn(S.delta));
+    el.auto.checked = S.auto; el.profileOn.checked = S.profile; el.onlyS.checked = S.onlyS; el.follow.checked = S.follow;
+    el.tracker.hidden = !S.auto;
+    if (S.auto) el.trackText.innerHTML = trackTxt();
+    el.trackUse.disabled = !(S.track.min > 0 && isFinite(S.track.min));
+    el.profileCard.hidden = !S.profile;
+    legend(); setStatus();
+  }
+
+  // ---------- render loop ----------
+  var rafPending = false;
+  function requestRender() {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(function () { rafPending = false; render(); });
+  }
+  function render() {
+    var t0 = performance.now();
+    updatePanel();
+    drawGraph();
+    if (S.profile && S.fn) { ensureProfile(); drawProfile(); profileText(); }
+    el.graph.dataset.ms = (performance.now() - t0).toFixed(1);   // render time, for testing
+  }
+
+  // ---------- link to this setup (stored in the URL hash) ----------
+  var hashTimer = 0;
+  function saveHashSoon() { clearTimeout(hashTimer); hashTimer = setTimeout(saveHash, 400); }
+  function stateParams() {
+    var p = new URLSearchParams(), v = S.view;
+    if (EMBED) p.set('embed', '1');
+    p.set('f', S.src); p.set('a', String(+S.a.toPrecision(10))); p.set('S', S.sMin + ',' + S.sMax);
+    p.set('eps', String(+S.eps.toPrecision(8)));
+    if (!S.auto && isFinite(S.delta) && S.delta > 0) p.set('delta', String(+S.delta.toPrecision(8)));
+    if (S.auto) p.set('auto', '1');
+    if (S.profile) p.set('graph', '1');
+    if (S.onlyS) p.set('onlyS', '1');
+    if (!S.follow) p.set('follow', '0');
+    p.set('view', [v.x0, v.x1, v.y0, v.y1].map(function (q) { return +q.toPrecision(6); }).join(','));
+    return p;
+  }
+  function saveHash() { try { history.replaceState(null, '', '#' + stateParams().toString()); } catch (e) { /* sandboxed */ } }
+  function loadHash() {
+    var h = '';
+    try { h = location.hash.slice(1); } catch (e) { return false; }
+    if (!h) return false;
+    var p = new URLSearchParams(h), src = p.get('f');
+    if (!src || !setFunction(src)) return false;
+    el.fx.value = src;
+    var sv = (p.get('S') || '').split(',').map(Number);
+    if (sv.length === 2) setS(sv[0], sv[1]);
+    if (p.has('a') && isFinite(+p.get('a'))) S.a = Math.min(Math.max(+p.get('a'), S.sMin), S.sMax);
+    if (+p.get('eps') > 0) S.eps = +p.get('eps');
+    if (+p.get('delta') > 0) S.delta = +p.get('delta');
+    S.auto = p.get('auto') === '1'; S.profile = p.get('graph') === '1';
+    S.onlyS = p.get('onlyS') === '1'; S.follow = p.get('follow') !== '0';
+    var vv = (p.get('view') || '').split(',').map(Number);
+    if (vv.length === 4 && vv.every(isFinite) && vv[1] > vv[0] && vv[3] > vv[2]) S.view = { x0: vv[0], x1: vv[1], y0: vv[2], y1: vv[3] };
+    S.home = copyView(S.view);
+    return true;
+  }
+
+  // ---------- events ----------
+  function loadExample(ex) {
+    stopPlay();
+    el.fx.value = ex.f;
+    setFunction(ex.f);
+    setS(ex.S[0], ex.S[1]);
+    S.a = snapA(ex.a); S.eps = ex.eps;
+    if (!S.auto) S.delta = ex.delta;
+    S.view = { x0: ex.view[0], x1: ex.view[1], y0: ex.view[2], y1: ex.view[3] };
+    S.home = copyView(S.view);
+    resetTrack(); recompute(); requestRender(); saveHashSoon();
+  }
+  EXAMPLES.forEach(function (ex) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = ex.f;
+    b.addEventListener('click', function () { loadExample(ex); });
+    el.chips.appendChild(b);
+  });
+  var fxTimer = 0;
+  el.fx.addEventListener('input', function () {
+    clearTimeout(fxTimer);
+    fxTimer = setTimeout(function () {
+      if (setFunction(el.fx.value)) recompute();
+      requestRender(); saveHashSoon();
+    }, 220);
+  });
+  function markBad(box, msg) { box.classList.add('bad'); box.title = msg; }
+  function readBox(box, ok) {
+    var v;
+    try { v = E.evalConstant(box.value); } catch (e) { markBad(box, e.message); return; }
+    box.classList.remove('bad'); box.title = '';
+    ok(v);
+  }
+  el.aSlider.addEventListener('input', function () { stopPlay(); setA(snapA(parseFloat(el.aSlider.value))); });
+  el.aBox.addEventListener('change', function () {
+    readBox(el.aBox, function (v) {
+      stopPlay();
+      if (v < S.sMin || v > S.sMax) { setS(Math.min(S.sMin, v), Math.max(S.sMax, v)); resetTrack(); }
+      setA(v);
+    });
+  });
+  function onS() {
+    var lo, hi;
+    try { lo = E.evalConstant(el.sMin.value); hi = E.evalConstant(el.sMax.value); }
+    catch (e) { markBad(el.sMin, e.message); markBad(el.sMax, e.message); return; }
+    if (!(hi > lo)) { markBad(el.sMin, 'The left endpoint must be less than the right endpoint.'); markBad(el.sMax, 'The left endpoint must be less than the right endpoint.'); return; }
+    el.sMin.classList.remove('bad'); el.sMax.classList.remove('bad');
+    setS(lo, hi); resetTrack(); recompute(); keepInView(); requestRender(); saveHashSoon();
+  }
+  el.sMin.addEventListener('change', onS);
+  el.sMax.addEventListener('change', onS);
+  el.eSlider.addEventListener('input', function () { setEps(fromCubic(+el.eSlider.value, EPS_MAX)); });
+  el.eBox.addEventListener('change', function () { readBox(el.eBox, function (v) { if (v > 0) setEps(v); else markBad(el.eBox, 'ε must be positive.'); }); });
+  el.dSlider.addEventListener('input', function () { setDelta(fromCubic(+el.dSlider.value, DEL_MAX)); });
+  el.dBox.addEventListener('change', function () {
+    if (S.auto) return;
+    readBox(el.dBox, function (v) { if (v > 0) setDelta(v); else markBad(el.dBox, 'δ must be positive.'); });
+  });
+  el.auto.addEventListener('change', function () {
+    S.auto = el.auto.checked;
+    if (S.auto) { resetTrack(); }
+    else {
+      var r = S.res;
+      if (r && r.ok) {
+        if (r.delta > 0 && isFinite(r.delta)) S.delta = r.delta;
+        else if (r.delta === 0) S.delta = +((S.view.x1 - S.view.x0) / 20).toPrecision(2);
+        else S.delta = DEL_MAX;
+      }
+    }
+    recompute(); requestRender(); saveHashSoon();
+  });
+  el.trackReset.addEventListener('click', function () { resetTrack(); recompute(); requestRender(); });
+  el.trackUse.addEventListener('click', function () {
+    var mv = S.track.min;
+    if (!(mv > 0) || !isFinite(mv)) return;
+    S.auto = false; S.delta = mv; recompute(); requestRender(); saveHashSoon();
+  });
+  el.profileOn.addEventListener('change', function () { S.profile = el.profileOn.checked; requestRender(); saveHashSoon(); });
+  el.onlyS.addEventListener('change', function () { S.onlyS = el.onlyS.checked; resetTrack(); recompute(); requestRender(); saveHashSoon(); });
+  el.follow.addEventListener('change', function () { S.follow = el.follow.checked; keepInView(); requestRender(); saveHashSoon(); });
+  el.zoomBox.addEventListener('click', function () { zoomToBox(); requestRender(); saveHashSoon(); });
+  el.showS.addEventListener('click', function () { showAllS(); requestRender(); saveHashSoon(); });
+
+  // play: sweep a back and forth across A (about 7 seconds per pass)
+  var playRaf = 0, playDir = 1, playT = 0;
+  function stopPlay() { if (S.playing) { S.playing = false; cancelAnimationFrame(playRaf); requestRender(); } }
+  el.play.addEventListener('click', function () {
+    if (S.playing) { stopPlay(); return; }
+    S.playing = true; playT = performance.now();
+    if (S.a >= S.sMax) playDir = -1; else if (S.a <= S.sMin) playDir = 1;
+    playRaf = requestAnimationFrame(playTick);
+    requestRender();
+  });
+  function playTick(t) {
+    if (!S.playing) return;
+    var dt = Math.min(0.05, Math.max(0, (t - playT) / 1000));
+    playT = t;
+    var a = S.a + playDir * (S.sMax - S.sMin) / 7 * dt;
+    if (a >= S.sMax) { a = S.sMax; playDir = -1; } else if (a <= S.sMin) { a = S.sMin; playDir = 1; }
+    setA(a);
+    playRaf = requestAnimationFrame(playTick);
+  }
+
+  // graph: drag the point (a), a dashed ε-edge, a dashed δ-edge, or the background (pan)
+  var pointers = {}, npt = 0, drag = null, pinch = null;
+  function pos(ev, cv) { var b = cv.getBoundingClientRect(); return { x: ev.clientX - b.left, y: ev.clientY - b.top }; }
+  function hitTest(px, py) {
+    var r = S.res;
+    if (!r || !r.ok) return 'pan';
+    if (Math.hypot(px - X(S.a), py - Y(r.fa)) <= 12) return 'point';
+    if (!S.auto && S.delta > 0 && isFinite(S.delta) &&
+        (Math.abs(px - X(S.a - S.delta)) <= 6 || Math.abs(px - X(S.a + S.delta)) <= 6)) return 'delta';
+    if (Math.abs(py - Y(r.fa + S.eps)) <= 6 || Math.abs(py - Y(r.fa - S.eps)) <= 6) return 'eps';
+    return 'pan';
+  }
+  var CURSOR = { point: 'ew-resize', delta: 'ew-resize', eps: 'ns-resize', pan: 'grab' };
+  function startPinch() {
+    var ids = Object.keys(pointers), p1 = pointers[ids[0]], p2 = pointers[ids[1]];
+    pinch = { d: Math.hypot(p2.x - p1.x, p2.y - p1.y) || 1, view: { x0: S.view.x0, x1: S.view.x1, y0: S.view.y0, y1: S.view.y1 },
+      cx: (p1.x + p2.x) / 2, cy: (p1.y + p2.y) / 2 };
+  }
+  function doPinch() {
+    var ids = Object.keys(pointers), p1 = pointers[ids[0]], p2 = pointers[ids[1]];
+    var k = pinch.d / (Math.hypot(p2.x - p1.x, p2.y - p1.y) || 1), v = pinch.view;
+    var cx = v.x0 + pinch.cx / W * (v.x1 - v.x0), cy = v.y1 - pinch.cy / H * (v.y1 - v.y0);
+    S.view = { x0: cx + (v.x0 - cx) * k, x1: cx + (v.x1 - cx) * k, y0: cy + (v.y0 - cy) * k, y1: cy + (v.y1 - cy) * k };
+    requestRender(); saveHashSoon();
+  }
+  el.graph.addEventListener('pointerdown', function (ev) {
+    try { el.graph.setPointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
+    var p = pos(ev, el.graph);
+    if (!pointers[ev.pointerId]) npt++;
+    pointers[ev.pointerId] = p;
+    if (npt === 2) { drag = null; startPinch(); return; }
+    var kind = hitTest(p.x, p.y);
+    if (kind === 'point') stopPlay();
+    if (ev.shiftKey && kind === 'pan') {          // Shift-drag stretches; on an axis, just that axis
+      var nearX = Math.abs(p.y - Math.min(Math.max(Y(0), 0), H)) < 16;
+      var nearY = Math.abs(p.x - Math.min(Math.max(X(0), 0), W)) < 16;
+      kind = nearX && !nearY ? 'stretchX' : nearY && !nearX ? 'stretchY' : 'stretch';
+    }
+    drag = { kind: kind, x: p.x, y: p.y, view: copyView(S.view), ax: invX(p.x), ay: invY(p.y) };
+    el.graph.style.cursor = kind === 'pan' ? 'grabbing' : kind === 'stretchX' ? 'col-resize' :
+      kind === 'stretchY' ? 'row-resize' : kind === 'stretch' ? 'move' : CURSOR[kind];
+    ev.preventDefault();
+  });
+  el.graph.addEventListener('pointermove', function (ev) {
+    var p = pos(ev, el.graph);
+    if (pointers[ev.pointerId]) pointers[ev.pointerId] = p;
+    if (pinch && npt >= 2) { doPinch(); return; }
+    if (!drag) { el.graph.style.cursor = CURSOR[hitTest(p.x, p.y)]; return; }
+    var r = S.res;
+    if (drag.kind === 'point') setA(snapA(invX(p.x)));
+    else if (drag.kind === 'eps') { if (r && r.ok) setEps(+Math.max(1e-9, Math.abs(invY(p.y) - r.fa)).toPrecision(3)); }
+    else if (drag.kind === 'delta') setDelta(+Math.max(1e-9, Math.abs(invX(p.x) - S.a)).toPrecision(3));
+    else if (drag.kind.indexOf('stretch') === 0) {
+      var v0 = drag.view;
+      var kx = drag.kind === 'stretchY' ? 1 : Math.exp(-(p.x - drag.x) / 160);
+      var ky = drag.kind === 'stretchX' ? 1 : Math.exp((p.y - drag.y) / 160);
+      var nv = { x0: drag.ax + (v0.x0 - drag.ax) * kx, x1: drag.ax + (v0.x1 - drag.ax) * kx,
+                 y0: drag.ay + (v0.y0 - drag.ay) * ky, y1: drag.ay + (v0.y1 - drag.ay) * ky };
+      if (nv.x1 - nv.x0 > 1e-11 * Math.max(1, Math.abs(drag.ax)) && nv.y1 - nv.y0 > 1e-11 * Math.max(1, Math.abs(drag.ay)) &&
+          nv.x1 - nv.x0 < 1e9 && nv.y1 - nv.y0 < 1e9) S.view = nv;
+      requestRender(); saveHashSoon();
+    }
+    else {
+      var v = drag.view, dx = (p.x - drag.x) / W * (v.x1 - v.x0), dy = (p.y - drag.y) / H * (v.y1 - v.y0);
+      S.view = { x0: v.x0 - dx, x1: v.x1 - dx, y0: v.y0 + dy, y1: v.y1 + dy };
+      requestRender(); saveHashSoon();
+    }
+  });
+  function endPointer(ev) {
+    if (pointers[ev.pointerId]) { delete pointers[ev.pointerId]; npt--; }
+    if (npt < 2) pinch = null;
+    if (npt <= 0) { npt = 0; drag = null; el.graph.style.cursor = 'grab'; }
+  }
+  el.graph.addEventListener('pointerup', endPointer);
+  el.graph.addEventListener('pointercancel', endPointer);
+  // Scroll to zoom about the cursor. Shift: x-axis only. Alt/Option: y-axis only.
+  el.graph.addEventListener('wheel', function (ev) {
+    ev.preventDefault();
+    var p = pos(ev, el.graph);
+    var unit = ev.deltaMode === 1 ? 33 : ev.deltaMode === 2 ? H : 1;  // Firefox reports lines, not pixels
+    var amt = ev.deltaY * unit, side = ev.deltaX * unit;
+    if (ev.shiftKey && Math.abs(side) > Math.abs(amt)) amt = side;     // many browsers turn Shift+wheel sideways
+    if (ev.ctrlKey && Math.abs(amt) < 50) amt *= 6;                    // trackpad pinch: small deltas, ctrlKey set
+    var k = Math.exp(Math.max(-1, Math.min(1, amt * 0.0015)));
+    zoomAt(p.x, p.y, ev.altKey && !ev.shiftKey ? 1 : k, ev.shiftKey && !ev.altKey ? 1 : k);
+    requestRender(); saveHashSoon();
+  }, { passive: false });
+  function zoomButton(k, ev) {
+    zoomAt(W / 2, H / 2, ev.altKey && !ev.shiftKey ? 1 : k, ev.shiftKey && !ev.altKey ? 1 : k);
+    requestRender(); saveHashSoon();
+  }
+  el.zIn.addEventListener('click', function (ev) { zoomButton(1 / 1.6, ev); });
+  el.zOut.addEventListener('click', function (ev) { zoomButton(1.6, ev); });
+  el.zHome.addEventListener('click', function () { if (S.home) { S.view = copyView(S.home); requestRender(); saveHashSoon(); } });
+
+  // δ-graph: click or drag to move a; hover to read a value
+  var profDrag = false;
+  function profIndex(ev) {
+    var L = prof.layout; if (!L) return -1;
+    var p = pos(ev, el.profile), t = (p.x - L.l) / L.pw;
+    if (t < -0.02 || t > 1.02) return -1;
+    return Math.max(0, Math.min(prof.N - 1, Math.round(t * (prof.N - 1))));
+  }
+  function profSetA(ev) {
+    var L = prof.layout; if (!L) return;
+    var p = pos(ev, el.profile), t = Math.max(0, Math.min(1, (p.x - L.l) / L.pw));
+    stopPlay(); setA(snapA(L.lo + t * (L.hi - L.lo)));
+  }
+  el.profile.addEventListener('pointerdown', function (ev) {
+    try { el.profile.setPointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
+    profDrag = true; profSetA(ev); ev.preventDefault();
+  });
+  el.profile.addEventListener('pointermove', function (ev) {
+    if (profDrag) { profSetA(ev); return; }
+    var i = profIndex(ev);
+    if (i !== prof.hover) { prof.hover = i; requestRender(); }
+  });
+  el.profile.addEventListener('pointerup', function () { profDrag = false; });
+  el.profile.addEventListener('pointercancel', function () { profDrag = false; });
+  el.profile.addEventListener('pointerleave', function () { if (prof.hover !== -1) { prof.hover = -1; requestRender(); } });
+
+  el.copyLink.addEventListener('click', function () {
+    saveHash();
+    var url = '#' + stateParams().toString();
+    try { url = location.href.split('#')[0] + url; } catch (e) { /* ignore */ }
+    function shown() { el.linkbox.hidden = false; el.linkbox.value = url; el.linkbox.focus(); el.linkbox.select(); }
+    function done() { el.copyLink.textContent = 'Link copied'; setTimeout(function () { el.copyLink.textContent = 'Copy a link to this setup'; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, shown); else shown();
+  });
+
+  // ---------- boot ----------
+  readColors();
+  if (!loadHash()) loadExample(EXAMPLES[1]); else recompute();
+  if (window.ResizeObserver) { var ro = new ResizeObserver(function () { requestRender(); }); ro.observe(el.graph); ro.observe(el.profile); }
+  window.addEventListener('resize', requestRender);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(requestRender);
+  requestRender();
+})();
+</script>
+</body>
+</html>
