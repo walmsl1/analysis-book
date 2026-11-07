@@ -303,7 +303,7 @@
         so <m>\delta=\min\{1,\epsilon/(2|a|+1)\}</m> works. This <m>\delta</m> depends on <m>a</m> as well as on <m>\epsilon</m>, while for <m>3x+5</m> the same <m>\delta=\epsilon/3</m> worked at every <m>a</m>. Is the dependence on <m>a</m> just a feature of our formula, or is it forced?
       </p>
       <p>
-        The next topic, uniform continuity, asks exactly this question: when can one <m>\delta</m> serve every point <m>a</m> at once?
+        The next section, <xref ref="sec-uniform_continuity"/>, asks exactly this question: when can one <m>\delta</m> serve every point <m>a</m> at once?
       </p>
     </paragraphs>
 

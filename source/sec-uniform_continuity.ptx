@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Uniform continuity: reading after the epsilon-delta section.                      -->
+<!-- Four subsections:                                                                 -->
+<!--   1. Moving one quantifier: continuity on A vs uniform continuity on A. The       -->
+<!--      boxed "for all a in A" moves past "there exists delta", so delta can no      -->
+<!--      longer depend on a.                                                          -->
+<!--   2. x^2: the delta from Section 0.6 depends on a; the explorer (an iframe).      -->
+<!--   3. x^2 is uniformly continuous on [2,5]: delta = min{1, eps/11}, the delta that -->
+<!--      Section 0.6's formula gives at the worst point, a = 5.                       -->
+<!--   4. x^2 is not uniformly continuous on R: the negation, eps = 1, a = 1/delta.    -->
+<!-- The explorer is assets/interactives/epsilon_delta_explorer.html. The part of the  -->
+<!-- iframe address after # sets it up (function, A, a, eps, which boxes are checked); -->
+<!-- "embed=1" gives the compact layout. The print version shows the image in         -->
+<!-- assets/images/uc_explorer_preview.png and a QR code.                              -->
+<section xml:id="sec-uniform_continuity" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Uniform Continuity</title>
+
+  <introduction>
+    <p>
+      In <xref ref="sec-epsilon_delta"/>, the proof for <m>f(x)=3x+5</m> used <m>\delta=\epsilon/3</m> at every point <m>a</m>. The proof for <m>f(x)=x^2</m> used <m>\delta=\min\{1,\epsilon/(2|a|+1)\}</m>, which changes with <m>a</m>. This section asks when one <m>\delta</m> can serve every point of a set at once. The answer depends on the set as well as on the function.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-moving-quantifier">
+    <title>Moving one quantifier</title>
+
+    <p>
+      Let <m>A\subseteq\operatorname{dom}(f)</m>. Recall that <m>f</m> is continuous on <m>A</m> if <m>f</m> is continuous at every point of <m>A</m>. In this section only inputs from <m>A</m> matter, so we take <m>x\in A</m> too. Written with every quantifier, continuity on <m>A</m> says
+      <md>\boxed{\forall\, a\in A}\ \forall\,\epsilon\gt 0\ \exists\,\delta\gt 0 \text{ s.t. } \forall\, x\in A \text{ with } |x-a|\lt\delta,\ |f(x)-f(a)|\lt\epsilon.</md>
+      When <m>A=\operatorname{dom}(f)</m>, this is the <m>\epsilon</m>–<m>\delta</m> property (<xref ref="thm-epsilon-delta"/>) at every point of <m>A</m>.
+    </p>
+    <p>
+      A proof follows the quantifiers in order. It begins <q>Let <m>a\in A</m>,</q> then says <q>Let <m>\epsilon\gt 0</m>,</q> and only then chooses <m>\delta</m>. So when <m>\delta</m> is chosen, both <m>a</m> and <m>\epsilon</m> are known, and <m>\delta</m> may depend on both. For <m>f(x)=x^2</m>, it did.
+    </p>
+    <p>
+      Uniform continuity moves the boxed quantifier to the right of <m>\exists\,\delta\gt 0</m>.
+    </p>
+
+    <definition xml:id="def-uniformly-continuous">
+      <title>Uniform continuity</title>
+      <statement>
+        <p>
+          Let <m>A\subseteq\operatorname{dom}(f)</m>. The function <m>f</m> is <term>uniformly continuous on <m>A</m></term>
+          <idx><h>uniformly continuous</h></idx>
+          if
+          <md>
+            <mrow>\forall\,\epsilon\gt 0\ \exists\,\delta\gt 0 \text{ s.t. } \boxed{\forall\, a\in A}\ \forall\, x\in A \text{ with } |x-a|\lt\delta,</mrow>
+            <mrow>|f(x)-f(a)|\lt\epsilon.</mrow>
+          </md>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Now <m>\delta</m> is chosen before any point <m>a</m> is named. A proof begins <q>Let <m>\epsilon\gt 0</m>,</q> chooses <m>\delta</m>, and only then says <q>Let <m>a\in A</m>.</q> So <m>\delta</m> may depend on <m>\epsilon</m> (and on <m>f</m> and <m>A</m>), but not on <m>a</m>: one <m>\delta</m> must work at every point of <m>A</m> at once. Lined up, the only difference between the two statements is where the box sits. (The dots stand for the same words in both.)
+      <md>
+        <mrow>\text{continuity:}\amp\ \boxed{\forall\, a\in A}\ \forall\,\epsilon\gt 0\ \exists\,\delta\gt 0 \text{ s.t. } \hphantom{\boxed{\forall\, a\in A}\ }\forall\, x\in A\ \cdots</mrow>
+        <mrow>\text{uniform continuity:}\amp\ \hphantom{\boxed{\forall\, a\in A}\ }\forall\,\epsilon\gt 0\ \exists\,\delta\gt 0 \text{ s.t. } \boxed{\forall\, a\in A}\ \forall\, x\in A\ \cdots</mrow>
+      </md>
+    </p>
+    <p>
+      Moving a quantifier changes what a statement says, as in <xref ref="warning-requantify-swap"/>. There, moving <q>there exists <m>y</m></q> in front of <q>for all <m>x</m></q> turned a true statement into a false one. Here, moving <m>\forall\, a\in A</m> behind <m>\exists\,\delta\gt 0</m> gives a stronger statement, which may or may not be true. If one <m>\delta</m> works at every point of <m>A</m> at once, it works at each point, so a function that is uniformly continuous on <m>A</m> is continuous on <m>A</m>. The converse is false, and <m>f(x)=x^2</m> shows it.
+    </p>
+    <p>
+      Ross states this definition with the letters <m>x,y\in S</m> in place of <m>a,x\in A</m> (Definition 19.1). The quantifiers are in the same order.
+    </p>
+
+    <exercise xml:id="ex-linear-uniform">
+      <statement>
+        <p>
+          The proof of <xref ref="prop-linear-continuous"/> chose <m>\delta=\epsilon/3</m>. Is <m>f(x)=3x+5</m> uniformly continuous on <m>\R</m>? Explain using <xref ref="def-uniformly-continuous"/>.
+        </p>
+      </statement>
+      <answer>
+        <p>
+          Yes. Given <m>\epsilon\gt 0</m>, the number <m>\delta=\epsilon/3</m> does not depend on <m>a</m>. For all <m>a,x\in\R</m> with <m>|x-a|\lt\delta</m>, we have <m>|f(x)-f(a)|=3|x-a|\lt 3\cdot\epsilon/3=\epsilon</m>. So one <m>\delta</m> works at every point of <m>\R</m> at once.
+        </p>
+      </answer>
+    </exercise>
+
+    <exercise xml:id="ex-uc-implies-continuous">
+      <statement>
+        <p>
+          Suppose <m>f</m> is uniformly continuous on <m>A</m>. Explain why <m>f</m> is continuous on <m>A</m>, in the sense of the first boxed statement in this subsection.
+        </p>
+      </statement>
+      <answer>
+        <p>
+          Let <m>a\in A</m> and <m>\epsilon\gt 0</m>. Uniform continuity gives a <m>\delta\gt 0</m> such that for all <m>b,x\in A</m> with <m>|x-b|\lt\delta</m>, <m>|f(x)-f(b)|\lt\epsilon</m>. (The letter <m>b</m> is used because <m>a</m> already names a point.) Taking <m>b=a</m>, this <m>\delta</m> works at <m>a</m>: for all <m>x\in A</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\epsilon</m>.
+        </p>
+      </answer>
+    </exercise>
+  </subsection>
+
+  <subsection xml:id="subsec-uc-x-squared">
+    <title>How <m>\delta</m> depends on <m>a</m>: <m>f(x)=x^2</m></title>
+
+    <p>
+      Let <m>f(x)=x^2</m>. Here is the scratch work from <xref ref="subsec-bound-depends-on-x" text="title"/> again, at an arbitrary point <m>a\in\R</m>. We need <m>|x^2-a^2|\lt\epsilon</m> for every <m>x</m> with <m>|x-a|\lt\delta</m>. Factoring gives
+      <md>|x^2-a^2|=|x-a|\cdot|x+a|.</md>
+      The factor <m>|x+a|</m> changes with <m>x</m>, so decide in advance that <m>\delta\le 1</m>. Then <m>|x-a|\lt 1</m>, and the triangle inequality gives
+      <md>|x+a|=|(x-a)+2a|\le|x-a|+2|a|\lt 2|a|+1,</md>
+      so <m>|x^2-a^2|\le(2|a|+1)|x-a|</m>. Now <m>|x-a|\lt\epsilon/(2|a|+1)</m> would finish the job, so we chose
+      <md>\delta=\min\left\{1,\frac{\epsilon}{2|a|+1}\right\}.</md>
+    </p>
+    <p>
+      This <m>\delta</m> depends on <m>a</m>. <xref ref="tab-x2-deltas"/> shows what it gives for <m>\epsilon=1</m> at a few points.
+    </p>
+    <table xml:id="tab-x2-deltas">
+      <title>The <m>\delta</m> from the formula for <m>f(x)=x^2</m>, with <m>\epsilon=1</m></title>
+      <tabular halign="center">
+      <row bottom="minor">
+        <cell><m>a</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>2</m></cell>
+        <cell><m>5</m></cell>
+        <cell><m>10</m></cell>
+        <cell><m>100</m></cell>
+      </row>
+      <row>
+        <cell><m>\delta=\min\left\{1,\frac{1}{2|a|+1}\right\}</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>1/5</m></cell>
+        <cell><m>1/11</m></cell>
+        <cell><m>1/21</m></cell>
+        <cell><m>1/201</m></cell>
+      </row>
+      </tabular>
+    </table>
+    <p>
+      The farther <m>a</m> is from <m>0</m>, the smaller <m>\delta</m> is. The graph shows why: far from <m>0</m>, the graph of <m>x^2</m> is steep, so a small change in <m>x</m> makes a big change in <m>x^2</m>. To keep <m>x^2</m> within <m>\epsilon</m> of <m>a^2</m>, <m>x</m> must stay closer to <m>a</m>.
+    </p>
+    <p>
+      Can one <m>\delta</m> serve every point of a set <m>A</m> at once? That depends on <m>A</m>.
+    </p>
+    <ul>
+      <li>
+        <p>
+          On <m>A=[2,5]</m>, every <m>a</m> has <m>|a|\le 5</m>, so <m>2|a|+1\le 11</m>. So at every point of <m>[2,5]</m>, the formula gives a <m>\delta</m> at least as big as <m>\min\{1,\epsilon/11\}</m>, the one it gives at <m>a=5</m>. A smaller <m>\delta</m> still works, so the single number <m>\min\{1,\epsilon/11\}</m> works at every point of <m>[2,5]</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          On <m>A=\R</m>, the numbers in <xref ref="tab-x2-deltas"/> get as close to <m>0</m> as we like as <m>a</m> grows. No positive number is less than or equal to all of them.
+        </p>
+      </li>
+    </ul>
+    <p>
+      In the explorer below, the top graph shows the <m>\epsilon</m>-band around <m>f(a)</m> and, with <q>Auto <m>\delta</m></q> checked, the largest <m>\delta</m>-window that works at <m>a</m>. Drag the point, or press the play button to sweep <m>a</m> across <m>A</m>. The bottom graph shows the largest <m>\delta</m> that works at each <m>a\in A</m>. One <m>\delta</m> works at every point of <m>A</m> exactly when it is at or below this whole graph.
+    </p>
+
+    <figure xml:id="fig-uc-explorer">
+      <caption>The <m>\epsilon</m>–<m>\delta</m> explorer, set up for <m>f(x)=x^2</m> on <m>A=[2,5]</m> with <m>\epsilon=1</m>.</caption>
+      <interactive xml:id="uc_explorer" iframe="interactives/epsilon_delta_explorer.html#embed=1&amp;f=x%5E2&amp;S=2,5&amp;a=3.5&amp;eps=1&amp;auto=1&amp;graph=1&amp;onlyS=1&amp;view=1.5,5.5,-1,28" width="100%" aspect="600:975" preview="images/uc_explorer_preview.png">
+        <shortdescription>The epsilon-delta explorer for f of x equals x squared on A equals the interval from 2 to 5: a graph with the epsilon band and the largest delta window at a point a, and below it a graph of the largest delta at every point of A.</shortdescription>
+      </interactive>
+    </figure>
+
+    <exercise xml:id="ex-uc-explore">
+      <statement>
+        <p>
+          Use the explorer with <m>\epsilon=1</m>.
+          <ol marker="(a)">
+            <li>
+              <p>
+                With <m>A=[2,5]</m>, where on <m>A</m> is the largest <m>\delta</m> smallest? About how big is it there?
+              </p>
+            </li>
+            <li>
+              <p>
+                Change <m>A</m> to <m>[2,20]</m>, and then to <m>[2,100]</m>. What happens to the smallest value of the largest <m>\delta</m>? What does this suggest about <m>A=\R</m>?
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      <answer>
+        <p>
+          (a) At the right end, <m>a=5</m>, where the graph is steepest. There the largest <m>\delta</m> is about <m>0.101</m> (exactly <m>5-\sqrt{24}</m>). So one <m>\delta</m>, such as <m>0.1</m>, works at every point of <m>[2,5]</m>.
+        </p>
+        <p>
+          (b) It shrinks: it is about <m>0.025</m> on <m>[2,20]</m> and about <m>0.005</m> on <m>[2,100]</m>. On <m>[2,c]</m> it is about <m>1/(2c)</m>, which goes to <m>0</m> as <m>c</m> grows. This suggests that on <m>\R</m>, no single <m>\delta\gt 0</m> works for <m>\epsilon=1</m>.
+        </p>
+      </answer>
+    </exercise>
+
+    <p>
+      The first bullet above is the idea of a proof, written out in the next subsection, <xref ref="subsec-uc-on-interval" text="title"/>. The second bullet and the explorer are evidence, not proof. The formula <m>\min\{1,\epsilon/(2|a|+1)\}</m> is only one way to choose <m>\delta</m>, and a cleverer choice might not shrink. <xref ref="sec-epsilon_delta"/> ended by asking whether the dependence on <m>a</m> is a feature of our formula, or is forced. On <m>[2,5]</m> it is not forced. On <m>\R</m> it is, as the last subsection, <xref ref="subsec-uc-not-on-R" text="title"/>, proves.
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-uc-on-interval">
+    <title>Uniformly continuous on <m>[2,5]</m></title>
+
+    <proposition xml:id="prop-x2-uc-interval">
+      <statement>
+        <p>
+          Let <m>f(x)=x^2</m>. Then <m>f</m> is uniformly continuous on <m>[2,5]</m>.
+        </p>
+      </statement>
+    </proposition>
+
+    <paragraphs xml:id="par-uc-interval-outline">
+      <title>Proof outline</title>
+      <p>
+        The quantifiers in <xref ref="def-uniformly-continuous"/> dictate the outline. The holes are in brackets.
+      </p>
+      <blockquote>
+        <p>
+          By the definition of uniform continuity, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>a,x\in[2,5]</m> with <m>|x-a|\lt\delta</m>, <m>|x^2-a^2|\lt\epsilon</m>.
+        </p>
+        <p>
+          Let <m>\epsilon\gt 0</m>. [Choose <m>\delta</m>.] Let <m>a,x\in[2,5]</m> with <m>|x-a|\lt\delta</m>. We must show that <m>|x^2-a^2|\lt\epsilon</m>.
+        </p>
+        <p>
+          [Use <m>|x-a|\lt\delta</m> to show that <m>|x^2-a^2|\lt\epsilon</m>.]
+        </p>
+      </blockquote>
+      <p>
+        Compare this with the outline in <xref ref="subsec-first-proof" text="title"/>. There the outline began <q>Let <m>a\in\R</m>,</q> so <m>a</m> was known when <m>\delta</m> was chosen. Here <m>a</m> is introduced after <m>\delta</m> is chosen. The choice of <m>\delta</m> may use <m>\epsilon</m> and the interval <m>[2,5]</m>, but not <m>a</m>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="par-uc-interval-scratch">
+      <title>Scratch work</title>
+      <p>
+        Start from the scratch work in <xref ref="subsec-uc-x-squared" text="title"/>. If <m>|x-a|\lt 1</m>, then <m>|x^2-a^2|\le(2|a|+1)|x-a|</m>. The factor <m>2|a|+1</m> depends on <m>a</m>, but every <m>a\in[2,5]</m> has <m>|a|\le 5</m>, so <m>2|a|+1\le 11</m>. So if <m>|x-a|\lt 1</m>, then
+        <md>|x^2-a^2|\le 11|x-a|,</md>
+        and <m>|x-a|\lt\epsilon/11</m> would finish the job. Choose
+        <md>\delta=\min\left\{1,\frac{\epsilon}{11}\right\}.</md>
+        This is the <m>\delta</m> that the formula <m>\min\{1,\epsilon/(2|a|+1)\}</m> gives at <m>a=5</m>, where the graph is steepest. It does not depend on <m>a</m>.
+      </p>
+    </paragraphs>
+
+    <proof ref="prop-x2-uc-interval">
+      <p>
+        By the definition of uniform continuity, we must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>a,x\in[2,5]</m> with <m>|x-a|\lt\delta</m>, <m>|x^2-a^2|\lt\epsilon</m>.
+      </p>
+      <p>
+        Let <m>\epsilon\gt 0</m>. Choose <m>\delta=\min\{1,\epsilon/11\}</m>, which is positive since <m>\epsilon\gt 0</m>. Let <m>a,x\in[2,5]</m> with <m>|x-a|\lt\delta</m>. We must show that <m>|x^2-a^2|\lt\epsilon</m>.
+      </p>
+      <p>
+        Since <m>|x-a|\lt\delta\le 1</m> and <m>|a|\le 5</m>, the triangle inequality gives
+        <md>|x+a|\le|x-a|+2|a|\lt 1+10=11.</md>
+        Since also <m>|x-a|\lt\delta\le\epsilon/11</m>, we get
+        <md>|x^2-a^2|=|x-a|\cdot|x+a|\le 11|x-a|\lt 11\cdot\frac{\epsilon}{11}=\epsilon,</md>
+        as desired.
+      </p>
+    </proof>
+
+    <p>
+      Compare this proof with the first problem in <xref ref="parsons-epsilon-delta" text="title"/>, which proves that <m>x^2</m> is continuous at every <m>a\in\R</m>. That proof starts with <q>Let <m>a\in\R</m>,</q> and its <m>\delta=\min\{1,\epsilon/(2|a|+1)\}</m> mentions <m>a</m>. Here <m>a</m> is introduced after <m>\delta</m> is chosen, and <m>2|a|+1</m> is replaced by <m>11</m>, a bound that works for every <m>a\in[2,5]</m> at once.
+    </p>
+
+    <exercise xml:id="ex-uc-simpler-delta">
+      <statement>
+        <p>
+          Since <m>x</m> is also in <m>[2,5]</m>, there is a simpler bound: <m>0\lt x+a\le 10</m>.
+          <ol marker="(a)">
+            <li>
+              <p>
+                Show that <m>\delta=\epsilon/10</m> also works in the proof of <xref ref="prop-x2-uc-interval"/>. Why doesn't this <m>\delta</m> need a minimum with <m>1</m>?
+              </p>
+            </li>
+            <li>
+              <p>
+                In the explorer, set <m>A=[2,5]</m> and <m>\epsilon=1</m>, uncheck <q>Auto <m>\delta</m></q>, and type <m>0.1</m> for <m>\delta</m>. Sweep <m>a</m> across <m>A</m>. Then uncheck <q>Use only <m>x</m> in <m>A</m></q> and look at <m>a=5</m>. What changes? Why doesn't this contradict (a)?
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      <answer>
+        <p>
+          (a) For <m>a,x\in[2,5]</m> with <m>|x-a|\lt\epsilon/10</m>, we have <m>|x^2-a^2|=|x-a|\cdot(x+a)\le 10|x-a|\lt 10\cdot\epsilon/10=\epsilon</m>. The <m>1</m> in <m>\min\{1,\epsilon/11\}</m> kept <m>x</m> near <m>a</m>, so that <m>|x+a|</m> stayed bounded. Here <m>x\in[2,5]</m> already keeps <m>x+a\le 10</m>.
+        </p>
+        <p>
+          (b) When only <m>x\in A</m> count, <m>\delta=0.1</m> works at every <m>a\in[2,5]</m>. When every <m>x</m> counts, it fails at <m>a=5</m>: for example, <m>x=5.0995</m> is within <m>0.1</m> of <m>5</m>, but <m>x^2-25\approx 1.005\ge 1</m>. That <m>x</m> is not in <m>[2,5]</m>, and the definition of uniform continuity on <m>[2,5]</m> uses only <m>x\in[2,5]</m>. The bound <m>x+a\le 10</m> in (a) needs <m>x\le 5</m>.
+        </p>
+      </answer>
+    </exercise>
+  </subsection>
+
+  <subsection xml:id="subsec-uc-not-on-R">
+    <title>Not uniformly continuous on <m>\R</m></title>
+
+    <p>
+      To prove that a function is not uniformly continuous on <m>A</m>, prove the negation of <xref ref="def-uniformly-continuous"/>. Negate one quantifier at a time, as in <xref ref="sec-quantifiers"/>.
+    </p>
+    <tabular halign="left">
+      <row header="yes" bottom="minor">
+        <cell>Part of <q><m>f</m> is uniformly continuous on <m>A</m></q></cell>
+        <cell>Part of the negation</cell>
+      </row>
+      <row>
+        <cell><m>\forall\,\epsilon\gt 0</m></cell>
+        <cell><m>\exists\,\epsilon\gt 0</m> s.t.</cell>
+      </row>
+      <row>
+        <cell><m>\exists\,\delta\gt 0</m> s.t.</cell>
+        <cell><m>\forall\,\delta\gt 0</m></cell>
+      </row>
+      <row>
+        <cell><m>\forall\, a\in A\ \forall\, x\in A</m> with <m>|x-a|\lt\delta</m>,</cell>
+        <cell><m>\exists\, a,x\in A</m> with <m>|x-a|\lt\delta</m> s.t.</cell>
+      </row>
+      <row>
+        <cell><m>|f(x)-f(a)|\lt\epsilon</m>.</cell>
+        <cell><m>|f(x)-f(a)|\ge\epsilon</m>.</cell>
+      </row>
+    </tabular>
+    <p>
+      So <m>f</m> is not uniformly continuous on <m>A</m> exactly when
+      <md>\exists\,\epsilon\gt 0 \text{ s.t. } \forall\,\delta\gt 0\ \boxed{\exists\, a,x\in A} \text{ with } |x-a|\lt\delta \text{ s.t. } |f(x)-f(a)|\ge\epsilon.</md>
+      In words: some <m>\epsilon\gt 0</m> defeats every <m>\delta</m>. Whatever <m>\delta\gt 0</m> is proposed, there are two points of <m>A</m> within <m>\delta</m> of each other whose outputs are at least <m>\epsilon</m> apart. The boxed quantifier still comes after <m>\delta</m>, so the points <m>a</m> and <m>x</m> may depend on <m>\delta</m>.
+    </p>
+
+    <proposition xml:id="prop-x2-not-uc-R">
+      <statement>
+        <p>
+          Let <m>f(x)=x^2</m>. Then <m>f</m> is not uniformly continuous on <m>\R</m>.
+        </p>
+      </statement>
+    </proposition>
+
+    <paragraphs xml:id="par-uc-R-outline">
+      <title>Proof outline</title>
+      <blockquote>
+        <p>
+          We prove the negation of uniform continuity: there exists <m>\epsilon\gt 0</m> such that for all <m>\delta\gt 0</m>, there exist <m>a,x\in\R</m> with <m>|x-a|\lt\delta</m> such that <m>|x^2-a^2|\ge\epsilon</m>.
+        </p>
+        <p>
+          [Choose <m>\epsilon</m>.] Let <m>\delta\gt 0</m>. [Choose <m>a</m> and <m>x</m>.] We must show that <m>|x-a|\lt\delta</m> and <m>|x^2-a^2|\ge\epsilon</m>.
+        </p>
+        <p>
+          [Show both.]
+        </p>
+      </blockquote>
+      <p>
+        The roles are reversed. This time we choose <m>\epsilon</m>, and <m>\delta</m> is arbitrary: we do not get to pick it. The points <m>a</m> and <m>x</m> are chosen after <m>\delta</m>, so they may depend on <m>\delta</m>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="par-uc-R-scratch">
+      <title>Scratch work</title>
+      <p>
+        <xref ref="tab-x2-deltas"/> suggests that the trouble is far from <m>0</m>, and that any <m>\epsilon</m> will do. Take <m>\epsilon=1</m>. Given <m>\delta\gt 0</m>, we need two points within <m>\delta</m> of each other whose squares differ by at least <m>1</m>. Take <m>x=a+\delta/2</m>, so that <m>|x-a|=\delta/2\lt\delta</m>. For <m>a\gt 0</m>,
+        <md>x^2-a^2=(x-a)(x+a)=\frac{\delta}{2}\left(2a+\frac{\delta}{2}\right)=a\delta+\frac{\delta^2}{4}\gt a\delta.</md>
+        So it is enough to have <m>a\delta\ge 1</m>, that is, <m>a\ge 1/\delta</m>. Choose <m>a=1/\delta</m>. The smaller <m>\delta</m> is, the farther out <m>a</m> must be, just as the table suggested.
+      </p>
+    </paragraphs>
+
+    <proof ref="prop-x2-not-uc-R">
+      <p>
+        We prove the negation of uniform continuity: there exists <m>\epsilon\gt 0</m> such that for all <m>\delta\gt 0</m>, there exist <m>a,x\in\R</m> with <m>|x-a|\lt\delta</m> such that <m>|x^2-a^2|\ge\epsilon</m>.
+      </p>
+      <p>
+        Choose <m>\epsilon=1</m>. Let <m>\delta\gt 0</m>. Choose <m>a=1/\delta</m> and <m>x=1/\delta+\delta/2</m>. We must show that <m>|x-a|\lt\delta</m> and <m>|x^2-a^2|\ge 1</m>.
+      </p>
+      <p>
+        First, <m>|x-a|=\delta/2\lt\delta</m>. Second, <m>x-a=\delta/2</m> and <m>x+a=2/\delta+\delta/2</m> are both positive, so
+        <md>|x^2-a^2|=(x-a)(x+a)=\frac{\delta}{2}\left(\frac{2}{\delta}+\frac{\delta}{2}\right)=1+\frac{\delta^2}{4}\ge 1,</md>
+        as desired.
+      </p>
+    </proof>
+
+    <p>
+      So <m>f(x)=x^2</m> is continuous at every point of <m>\R</m> (the first problem in <xref ref="parsons-epsilon-delta" text="title"/>) but not uniformly continuous on <m>\R</m>. Continuity on a set does not imply uniform continuity on that set. On <m>[2,5]</m>, the steepest part of the graph, at <m>a=5</m>, set one <m>\delta</m> for the whole interval. On <m>\R</m>, the graph gets steeper without end, and no single <m>\delta</m> keeps up.
+    </p>
+
+    <remark xml:id="rem-closed-bounded">
+      <p>
+        For <m>x^2</m>, the only fact about <m>[2,5]</m> that the proof used is that it is bounded: it kept <m>|a|\le 5</m>. For a general continuous function, Ross proves that continuity on a closed, bounded interval implies uniform continuity there (Theorem 19.2). Both words matter. The proof of <xref ref="prop-x2-not-uc-R"/> works just as well on <m>[0,\infty)</m>, which is closed but not bounded. And <m>f(x)=1/x</m> is continuous but not uniformly continuous on <m>(0,1]</m>, which is bounded but not closed.
+      </p>
+    </remark>
+  </subsection>
+</section>
