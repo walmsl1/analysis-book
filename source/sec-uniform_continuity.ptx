@@ -6,6 +6,8 @@
 <!--      past "there exists delta".                                                       -->
 <!--   3. x^2 on [2,5]: the same scratch work with 2|a|+1 <= 11, so delta = min{1,eps/11}. -->
 <!--   4. x^2 on R: the negation (box becomes "there exist a, x"), eps = 1, a = 1/delta.   -->
+<!--   5. Uniform continuity as a hypothesis: the sentence with the box, then a Parsons    -->
+<!--      problem: f + g is uniformly continuous (eps/2 in both boxes; delta = min).       -->
 <!-- The explorer is assets/interactives/epsilon_delta_explorer.html. The part of the    -->
 <!-- iframe address after # sets it up (function, A, a, eps, which boxes are checked);   -->
 <!-- "embed=1" gives the compact layout. The print version shows the image in           -->
@@ -173,5 +175,71 @@
     <p>
       So <m>x^2</m> is continuous at every point of <m>\R</m> and uniformly continuous on <m>[2,5]</m>, but not uniformly continuous on <m>\R</m>. Ross proves that a function that is continuous on a closed, bounded interval is uniformly continuous there (Theorem 19.2).
     </p>
+  </subsection>
+
+  <subsection xml:id="subsec-uc-hypothesis">
+    <title>Uniform continuity as a hypothesis</title>
+
+    <p>
+      If <m>f</m> is uniformly continuous on <m>A</m>, the definition holds for <em>every</em> positive number, so a proof may apply it to whichever positive number it needs, just as in <xref ref="subsec-continuity-hypothesis" text="title"/>. The sentence has the chosen number in both places:
+    </p>
+    <blockquote>
+      <p>
+        Because <m>f</m> is uniformly continuous on <m>A</m> and <m>\square\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>a,x\in A</m> with <m>|x-a|\lt\delta</m>, <m>|f(x)-f(a)|\lt\square</m>.
+      </p>
+    </blockquote>
+    <p>
+      A proof that uses two such hypotheses gets two <m>\delta</m>'s, and it chooses the smaller one, so that both hypotheses apply. (In the sum law for sequences, the proof chose the larger of two <m>N</m>'s.)
+    </p>
+
+    <exercises xml:id="parsons-uc-hypothesis">
+      <title>Proof practice: using uniform continuity</title>
+
+      <!-- box: eps/2 for both f and g; delta = min{delta_1, delta_2}.          -->
+      <!-- Distractors: max instead of min; eps instead of eps/2 in f's box.    -->
+      <!-- Blocks 4 and 5 both depend on 3, so f and g may come in either order. -->
+      <exercise label="parsons-sum-uniformly-continuous" adaptive="yes" indentation="hide">
+        <title>Sums of uniformly continuous functions</title>
+        <statement><div>Let <m>A\subseteq\operatorname{dom}(f)\cap\operatorname{dom}(g)</m>, and suppose <m>f</m> and <m>g</m> are uniformly continuous on <m>A</m>. For <m>x\in A</m>, <m>(f+g)(x)=f(x)+g(x)</m>. Put the given blocks in a correct order to prove that <m>f+g</m> is uniformly continuous on <m>A</m>. Some blocks are not needed.</div></statement>
+        <blocks>
+          <block name="1" order="5">
+            <div>Assume <m>f</m> and <m>g</m> are uniformly continuous on <m>A</m>.</div>
+          </block>
+          <block name="2" depends="1" order="10">
+            <div>We must prove that for all <m>\epsilon\gt 0</m>, there exists <m>\delta\gt 0</m> such that for all <m>a,x\in A</m> with <m>|x-a|\lt\delta</m>, <m>|(f+g)(x)-(f+g)(a)|\lt\epsilon</m>.</div>
+          </block>
+          <block name="3" depends="2" order="2">
+            <div>Let <m>\epsilon\gt 0</m>.</div>
+          </block>
+          <block name="4" depends="3" order="8">
+            <div>Because <m>f</m> is uniformly continuous on <m>A</m> and <m>\epsilon/2\gt 0</m>, there exists <m>\delta_1\gt 0</m> such that for all <m>a,x\in A</m> with <m>|x-a|\lt\delta_1</m>, <m>|f(x)-f(a)|\lt\epsilon/2</m>.</div>
+          </block>
+          <block name="5" depends="3" order="12">
+            <div>Because <m>g</m> is uniformly continuous on <m>A</m> and <m>\epsilon/2\gt 0</m>, there exists <m>\delta_2\gt 0</m> such that for all <m>a,x\in A</m> with <m>|x-a|\lt\delta_2</m>, <m>|g(x)-g(a)|\lt\epsilon/2</m>.</div>
+          </block>
+          <block name="6" depends="4 5" order="4">
+            <div>Choose <m>\delta=\min\{\delta_1,\delta_2\}</m>, which is positive.</div>
+          </block>
+          <block name="7" depends="6" order="1">
+            <div>Let <m>a,x\in A</m> with <m>|x-a|\lt\delta</m>.</div>
+          </block>
+          <block name="8" depends="7" order="11">
+            <div>We must show that <m>|(f+g)(x)-(f+g)(a)|\lt\epsilon</m>.</div>
+          </block>
+          <block name="9" depends="8" order="6">
+            <div>By the triangle inequality, <m>|(f+g)(x)-(f+g)(a)|\le|f(x)-f(a)|+|g(x)-g(a)|</m>.</div>
+          </block>
+          <block name="10" depends="9" order="3">
+            <div>Since <m>|x-a|\lt\delta\le\delta_1</m> and <m>|x-a|\lt\delta\le\delta_2</m>, this is less than <m>\epsilon/2+\epsilon/2=\epsilon</m>, as desired.</div>
+          </block>
+          <block name="11" correct="no" order="9">
+            <div>Choose <m>\delta=\max\{\delta_1,\delta_2\}</m>.</div>
+          </block>
+          <block name="12" correct="no" order="7">
+            <div>Because <m>f</m> is uniformly continuous on <m>A</m> and <m>\epsilon\gt 0</m>, there exists <m>\delta_1\gt 0</m> such that for all <m>a,x\in A</m> with <m>|x-a|\lt\delta_1</m>, <m>|f(x)-f(a)|\lt\epsilon</m>.</div>
+          </block>
+        </blocks>
+      </exercise>
+    </exercises>
   </subsection>
 </section>
