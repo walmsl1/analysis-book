@@ -23,17 +23,30 @@
 
   <latex print="no" sides="one"/>
 
-  <html>
+  <!-- design-width: how many pixels wide an interactive with           -->
+  <!-- width="100%" is on the website. Keep it equal to $text-width     -->
+  <!-- in publication/theme-wide.scss.                                  -->
+  <html design-width="900">
     <!-- Where the website lives (used for QR codes and links). -->
     <baseurl href="https://walmsl1.github.io/analysis-book/"/>
 
-    <!-- Website theme. "denver" draws colored boxes around theorems,   -->
-    <!-- definitions, examples, etc. Other built-in themes to try:      -->
-    <!-- "salem", "greeley", "boulder", "tacoma", "default-modern".     -->
-    <!-- Denver/Salem accept palette="bold|bold2|primaries|primaries2|  -->
-    <!-- ice-fire|earth-sea|leaves|slate" and colors via color-main,    -->
-    <!-- color-fact (theorems), color-do (exercises), color-meta.       -->
-    <css theme="denver"/>
+    <!-- Website theme: PreTeXt's "denver" theme (colored boxes around  -->
+    <!-- theorems, definitions, examples, etc.) with a wider page. The  -->
+    <!-- widths are set at the top of publication/theme-wide.scss.      -->
+    <!-- To go back to plain denver: use <css theme="denver"/>, delete  -->
+    <!-- the tableofcontents line below and design-width above, and     -->
+    <!-- set the explorer's aspect in sec-uniform_continuity.ptx back   -->
+    <!-- to "600:975".                                                  -->
+    <!-- Other built-in themes: "salem", "greeley", "boulder",          -->
+    <!-- "tacoma", "default-modern".                                    -->
+    <!-- Colors: add palette="bold|bold2|primaries|primaries2|ice-fire| -->
+    <!-- earth-sea|leaves|slate", or color-main, color-fact (theorems), -->
+    <!-- color-do (exercises), color-meta, to the css line.             -->
+    <css theme="custom" entry-point="../publication/theme-wide.scss"/>
+
+    <!-- In the table of contents, show only the current chapter's     -->
+    <!-- sections (denver does this by itself; a custom theme asks).   -->
+    <tableofcontents focused="yes"/>
 
     <!-- Show proofs, examples, etc. in full rather than as             -->
     <!-- click-to-expand links.                                         -->
