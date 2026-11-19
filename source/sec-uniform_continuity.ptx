@@ -37,7 +37,7 @@
 
     <figure xml:id="fig-uc-explorer">
       <caption>The <m>\epsilon</m>–<m>\delta</m> explorer for <m>f(x)=x^2</m> with <m>\epsilon=1</m>.</caption>
-      <interactive xml:id="uc_explorer" iframe="interactives/epsilon_delta_explorer.html#embed=1&amp;f=x%5E2&amp;S=2,5&amp;a=3.5&amp;eps=1&amp;auto=1&amp;graph=1&amp;onlyS=1&amp;view=1.5,5.5,-1,28" width="100%" aspect="600:975" preview="images/uc_explorer_preview.png">
+      <interactive xml:id="uc_explorer" iframe="interactives/epsilon_delta_explorer.html#embed=1&amp;f=x%5E2&amp;S=2,5&amp;a=3.5&amp;eps=1&amp;auto=1&amp;graph=1&amp;onlyS=1&amp;view=1.5,5.5,-1,28" width="100%" aspect="900:975" preview="images/uc_explorer_preview.png">
         <shortdescription>The epsilon-delta explorer for f of x equals x squared on A equals the interval from 2 to 5: a graph with the epsilon band and the largest delta window at a point a, and below it a graph of the largest delta at every point of A.</shortdescription>
       </interactive>
     </figure>

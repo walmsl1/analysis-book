@@ -16,6 +16,7 @@ David Walmsley, St. Olaf College. Written in [PreTeXt](https://pretextbook.org).
 | `source/docinfo.ptx` | Book-wide settings, including math macros like `\R` and `\N`. |
 | `assets/images/` | Images. |
 | `publication/publication.ptx` | How the output looks: website theme, numbering, which solutions show. |
+| `publication/theme-wide.scss` | The website theme: PreTeXt's Denver theme with a wider page. The widths are at the top. |
 | `project.ptx` | The two outputs: `web` (website) and `print` (PDF). |
 
 Sections not currently in the book (`sec-set_notation`, `sec-preimages`, `sec-example_format`, `sec-testing`) are commented out in `ch-intro.ptx`; un-comment the `<xi:include>` line to add one back.
@@ -26,6 +27,7 @@ Sections not currently in the book (`sec-set_notation`, `sec-preimages`, `sec-ex
 - **Add a chapter:** create `source/ch-new_chapter.ptx` modeled on `ch-intro.ptx`, then add `<xi:include href="./ch-new_chapter.ptx"/>` to `source/main.ptx`.
 - **Add a math macro:** add a `\newcommand` line inside `<macros>` in `source/docinfo.ptx`.
 - **Change the look:** edit the `<css theme="..."/>` line in `publication/publication.ptx` (options are listed there).
+- **Change the page width:** edit the three numbers at the top of `publication/theme-wide.scss` (text width, side padding, text size). If you change the text width, set `design-width` on the `<html>` line of `publication/publication.ptx` to the same number.
 
 ## Publishing
 

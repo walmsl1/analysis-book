@@ -1,0 +1,120 @@
+/*! Theme: denver-wide */
+// The website theme for the book: PreTeXt's "denver" theme with a wider page.
+// It is used because publication.ptx says  <css theme="custom" entry-point="../publication/theme-wide.scss"/>.
+//
+// To make the page wider or narrower, change these three numbers:
+
+$text-width: 900px !default;        // width of the column of text      (denver: 600px)
+$text-side-padding: 60px !default;  // white space beside the text,
+                                    //   inside the white page            (denver: 120px)
+$text-size: 1.1rem !default;        // size of the text                 (denver: 1rem)
+
+// If you change $text-width, also change design-width in publication.ptx to the
+// same number (it sets how wide a width="100%" interactive is).
+// Larger text keeps the longer lines comfortable to read.
+// Parsons problems can spread past the text column to use the whole page.
+//
+// Everything below is a copy of PreTeXt's denver theme (PreTeXt 2.55,
+// css/targets/html/denver/theme-denver.scss; GPL, Copyright (C) 2024-2026
+// Robert A. Beezer), with only the widths and the text size changed.
+// -----------------------------------------------------------------------------
+
+// Colors. These can still be set in publication.ptx, e.g. palette="slate".
+$palette: 'bold' !default;
+$color-main: null !default;
+$color-do: null !default;
+$color-fact: null !default;
+$color-meta: null !default;
+$primary-color-dark: hsl(210, 50%, 50%) !default;
+$background-color-dark: hsl(210, 10%, 10%) !default;
+
+@use "sass:map";
+@use 'sass:color';
+@use "colors/color-helpers" as colorHelpers;
+
+// ---------------------------------------------
+// components
+
+// sizing for wide content (Parsons problems, tables): it may grow to fill the page
+@use 'targets/html/salem/sizing-globals' with (
+  $content-width: $text-width,
+  $content-side-padding: 20px
+);
+
+@use 'targets/html/denver/parts-paper' with (
+  $scrolling-toc: true,
+  $content-width: $text-width,
+  $content-side-padding: $text-side-padding,
+);
+
+@use 'targets/html/denver/chunks-denver';
+
+@use 'components/pretext-web' with (
+ $navbar-breakpoint: parts-paper.$navbar-breakpoint,
+);
+
+@use 'targets/html/salem/other-widen';
+
+// ---------------------------------------------
+// fonts and colors
+$heading-font: 'Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif' !default;
+@use 'fonts/fonts-google' with ($heading: $heading-font);
+
+// fancy colors for chunks
+@use 'colors/palette-quad-chunks' as palette-chunks with (
+  $palette: $palette,
+  $color-main: $color-main,
+  $color-do: $color-do,
+  $color-fact: $color-fact,
+  $color-meta: $color-meta,
+);
+
+// primary color defined by color-main as determined by palette-chunks
+$primary-color: map.get(palette-chunks.$colors, 'color-main');
+$secondary-color: map.get(palette-chunks.$colors, 'color-meta');
+
+@use 'colors/palette-single' as palette-light with (
+  $primary-color: $primary-color,
+);
+
+$custom-colors: map.merge(palette-chunks.$colors, (
+  "example-like-body-background": var(--content-background),
+  "example-like-border-color": var(--color-main),
+  "toclevel1-background": var(--content-background),
+  "toclevel2-background": var(--content-background),
+  "toclevel3-background": var(--content-background),
+));
+
+$light-colors: map.merge(palette-light.$colors, $custom-colors);
+
+@use 'colors/palette-dark' as palette-dark with (
+  $primary-color: $primary-color-dark,
+  $background-color: $background-color-dark,
+);
+
+$dark-colors: map.merge(palette-dark.$colors, (
+  "toclevel2-background": var(--content-background),
+  "toclevel3-background": var(--content-background),
+  "toclevel1-background": var(--content-background),
+));
+
+// ---------------------------------------------
+// customizations
+
+@use 'targets/html/denver/customizations' with ($text-color: colorHelpers.text-contrast($primary-color));
+
+// ---------------------------------------------
+// concrete rules / includes that generate CSS
+
+// render the actual colors
+@include colorHelpers.set-root-colors($light-colors, $dark-colors);
+
+// the text size (back to normal on phone-sized screens)
+body.pretext {
+  font-size: $text-size;
+}
+@media screen and (width < #{parts-paper.$navbar-breakpoint}) {
+  body.pretext {
+    font-size: 1rem;
+  }
+}
